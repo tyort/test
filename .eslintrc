@@ -4,7 +4,7 @@ env:
   browser: true
 
 ignorePatterns:
-  ["vendor-*.js", "gulpfile.js"]
+  ["vendor.js", "gulpfile.js"]
 
 extends:
-  "htmlacademy/es5"
+  "htmlacademy/es6"
