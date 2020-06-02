@@ -105,6 +105,36 @@ ul {
   border: $bred;
 }
 
+//_______________________calculation.html
+
+.page-calculation {
+  display: block;
+  height: 315px;
+  border: $bred;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    height: 205px;
+    width: 600px;
+    border: $bred;
+
+    h2 {
+      margin: 0 0 70px 0;
+    }
+  }
+}
+
+.ad-form__label {
+  display: block;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 140%;
+}
+
+
 //_______________________map.html
 
 .page-map {
@@ -128,7 +158,23 @@ ul {
   border: $bred;
 }
 
-.page-map__view {
+.page-map__contries {
+  height: 82px;
+  border: $bred;
+  background: #F6F7FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 140%;
+
+  div {
+    margin-right: 30px;
+    border: $bred;
+  }
 }
 
 //_______________________footer.html
@@ -386,9 +432,9 @@ button:-moz-focusring,
  * Correct the padding in Firefox.
  */
 
-fieldset {
-  padding: 0.35em 0.75em 0.625em;
-}
+// fieldset {
+//   padding: 0.35em 0.75em 0.625em;
+// }
 
 /**
  * 1. Correct the text wrapping in Edge and IE.
