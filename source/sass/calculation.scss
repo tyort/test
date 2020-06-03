@@ -40,6 +40,10 @@
     height: 60px;
   }
 
+  input:invalid {
+    border-color: red;
+  }
+
   &__first-step {
     display: flex;
     float: left;

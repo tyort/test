@@ -1,4 +1,4 @@
-(function () {
+(function (decimal_js) {
   'use strict';
 
   const renderComponent = (container, element, place) => {
@@ -23,7 +23,7 @@
   const START_COST_OF_PROPERTY = 2000000;
 
   const createCalculationTemplate = (options = {}) => {
-    const {costOfProperty} = options;
+    const {costOfProperty, firstPayment} = options;
     return (
       `<div class="page-calculation">
       <div class="container clearfix">
@@ -71,12 +71,13 @@
             <input 
               id="first-payment"
               type="number"
-              value="2000000"
-              step="100000"
-              min="1200000"
-              max="25000000"
+              value="${firstPayment}"
               required
             />
+            <div class="slidecontainer">
+              <input id="rng" name="rng" type="range" min="1" max="100" value="50">
+              <output id="ong" for="rng">50</output>
+            </div>
           </fieldset>
 
             <p>Срок кредитования</p>
@@ -96,13 +97,15 @@
   class Calculation {
     constructor() {
       this._element = null;
-      this._subscribeOnEvents();
       this._costOfProperty = START_COST_OF_PROPERTY;
+      this._firstPayment = this._costOfProperty * 0.1;
+      this._subscribeOnEvents();
     }
 
     getTemplate() {
       return createCalculationTemplate({
-        costOfProperty: this._costOfProperty
+        costOfProperty: this._costOfProperty,
+        firstPayment: this._firstPayment
       });
     }
 
@@ -131,7 +134,8 @@
     }
 
     reset() {
-      this._costOfProperty = START_COST_OF_PROPERTY;
+      this._costOfProperty = this._costOfProperty;
+      this._firstPayment = START_COST_OF_PROPERTY * 0.1;
       this.reRender();
     }
 
@@ -142,6 +146,9 @@
           .addEventListener(`change`, (evt) => {
             if (evt.target.value <= 25000000 && evt.target.value >= 1200000) {
               this._costOfProperty = evt.target.value;
+              this._firstPayment = this._costOfProperty * 0.1;
+              console.log(evt.target.value);
+              this.reRender();
             }
           });
 
@@ -156,6 +163,6 @@
   const calculationComponent = new Calculation();
   renderComponent(pageOffersMenu, calculationComponent, `afterEnd`);
 
-}());
+}(decimal_js));
 
 //# sourceMappingURL=main.js.map
