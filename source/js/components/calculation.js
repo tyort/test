@@ -1,9 +1,11 @@
 import {createElement} from "../formulas.js";
 
 const START_COST_OF_PROPERTY = 2000000;
+const MIN_FIRST_PAYMENT_PERCENTAGE = 10;
+const MIN_SIZE_MORTGAGE = 500000;
 
 const createCalculationTemplate = (options = {}) => {
-  const {costOfProperty, firstPayment} = options;
+  const {costOfProperty, firstPayment, firstPaymentPercantage} = options;
   return (
     `<div class="page-calculation">
       <div class="container clearfix">
@@ -34,15 +36,16 @@ const createCalculationTemplate = (options = {}) => {
 
           <fieldset>
             <label for="cost-of-property">Стоимость недвижимости</label>
-            <input 
-              id="cost-of-property"
-              type="number"
-              value="${costOfProperty}"
-              step="100000"
-              min="1200000"
-              max="25000000"
-              required
-            />
+            <div class="cost-of-property__scale">
+              <button class="operator minus">-</button>
+              <input 
+                id="cost-of-property"
+                type="text"
+                value="${costOfProperty}"
+                required
+              />
+              <button class="operator plus">+</button>
+            </div>
             <p>От 1 200 000 до 25 000 000 рублей</p>
           </fieldset>
 
@@ -52,11 +55,12 @@ const createCalculationTemplate = (options = {}) => {
               id="first-payment"
               type="number"
               value="${firstPayment}"
+              max="${costOfProperty}"
               required
             />
-            <div class="slidecontainer">
-              <input id="rng" name="rng" type="range" min="1" max="100" value="50">
-              <output id="ong" for="rng">50</output>
+            <div class="percent-slider">
+              <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
+              <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
             </div>
           </fieldset>
 
@@ -78,14 +82,17 @@ export default class Calculation {
   constructor() {
     this._element = null;
     this._costOfProperty = START_COST_OF_PROPERTY;
-    this._firstPayment = this._costOfProperty * 0.1;
+    this._firstPaymentPercantage = MIN_FIRST_PAYMENT_PERCENTAGE;
+    this._mortgageSize = MIN_SIZE_MORTGAGE;
+    this._firstPayment = this._costOfProperty * this._firstPaymentPercantage / 100;
     this._subscribeOnEvents();
   }
 
   getTemplate() {
     return createCalculationTemplate({
       costOfProperty: this._costOfProperty,
-      firstPayment: this._firstPayment
+      firstPayment: this._firstPayment,
+      firstPaymentPercantage: this._firstPaymentPercantage
     });
   }
 
@@ -114,27 +121,51 @@ export default class Calculation {
   }
 
   reset() {
-    this._costOfProperty = this._costOfProperty;
-    this._firstPayment = START_COST_OF_PROPERTY * 0.1;
+    this._firstPaymentPercantage = MIN_FIRST_PAYMENT_PERCENTAGE;
+    this._firstPayment = this._costOfProperty * this._firstPaymentPercantage / 100;
     this.reRender();
   }
 
   _subscribeOnEvents() {
     const element = this.getElement();
 
-    element.querySelector(`#cost-of-property`)
+    element.querySelector(`form`)
+        .addEventListener(`submit`, (evt) => {
+          evt.preventDefault();
+        });
+
+    element.querySelector(`#first-payment__percent`)
         .addEventListener(`change`, (evt) => {
-          if (evt.target.value <= 25000000 && evt.target.value >= 1200000) {
-            this._costOfProperty = evt.target.value;
-            this._firstPayment = this._costOfProperty * 0.1;
-            console.log(evt.target.value);
+          this._firstPaymentPercantage = evt.target.value;
+          this._firstPayment = this._costOfProperty * this._firstPaymentPercantage / 100;
+          this.reRender();
+        });
+
+    element.querySelector(`#first-payment`)
+        .addEventListener(`change`, (evt) => {
+          if (evt.target.value >= this._costOfProperty * MIN_FIRST_PAYMENT_PERCENTAGE / 100 && evt.target.value <= this._costOfProperty) {
+            this._firstPayment = evt.target.value;
+            this._firstPaymentPercantage = new window.Decimal(100).mul(this._firstPayment).div(this._costOfProperty);
+            this.reRender();
+          } else if (evt.target.value < this._costOfProperty * MIN_FIRST_PAYMENT_PERCENTAGE / 100) {
+            this._firstPayment = this._costOfProperty * MIN_FIRST_PAYMENT_PERCENTAGE / 100;
+            this._firstPaymentPercantage = new window.Decimal(100).mul(this._firstPayment).div(this._costOfProperty);
             this.reRender();
           }
         });
 
-    element.querySelector(`form`)
-        .addEventListener(`submit`, (evt) => {
+    element.querySelector(`.cost-of-property__scale`)
+        .addEventListener(`click`, (evt) => {
           evt.preventDefault();
+          if (evt.target.className !== `operator minus` && evt.target.className !== `operator plus`) {
+            return;
+          } else if (evt.target.className === `operator minus`) {
+            this._costOfProperty -= 100000;
+            this.reset();
+          } else if (evt.target.className === `operator plus`) {
+            this._costOfProperty += 100000;
+            this.reset();
+          }
         });
   }
 }

@@ -40,22 +40,26 @@
     height: 60px;
   }
 
+  input[type="range"] {
+    height: auto;
+  }
+
   input:invalid {
     border-color: red;
   }
 
-  &__first-step {
+  &__first-step { // не растягивается
     display: flex;
     float: left;
     flex-direction: column;
     width: 600px;
     border: $bred;
-    height: 106px;
+    height: 136px;
     justify-content: space-between;
     margin-bottom: 40px;
   }
 
-  &__our-offer {
+  &__our-offer { // не растягивается
     float: right;
     border: $bred;
     width: 380px;
@@ -69,10 +73,31 @@
     }
   }
 
-  &__parameters{
+  &__parameters{ // не растягивается
     float: left;
     border: $bred;
     height: 520px;
     width: 600px;
+
+    output {
+      position: relative;
+    }
+
+    .cost-of-property__scale {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .operator {
+        font-size: 30px;
+        font-weight: bold;
+        border: 1px solid black;
+        padding: 15px;
+      }
+
+      input {
+        width: 500px;
+      }
+    }
   }
 }
