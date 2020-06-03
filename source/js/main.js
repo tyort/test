@@ -1,9 +1,7 @@
-import { makeSomething } from "./components/somemodule";
+import CalculationComponent from "./components/calculation.js";
+import {renderComponent} from "./formulas.js";
 
-// использую функцию, которую импортировал как модуль
-makeSomething("use make something");
+const pageOffersMenu = document.querySelector(`.page-offers-menu`);
+const calculationComponent = new CalculationComponent();
+renderComponent(pageOffersMenu, calculationComponent, `afterEnd`);
 
-console.log(
-  "использую jquery так импортировал его в vendor.js",
-  window.$("h1").parent()
-);

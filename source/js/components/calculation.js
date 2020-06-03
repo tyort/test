@@ -1,31 +1,11 @@
-(function () {
-  'use strict';
+import {createElement} from "../formulas.js";
 
-  const renderComponent = (container, element, place) => {
-    switch (place) {
-      case `afterBegin`:
-        container.prepend(element.getElement());
-        break;
-      case `afterEnd`:
-        container.after(element.getElement());
-        break;
-      default:
-        container.append(element.getElement());
-    }
-  };
+const START_COST_OF_PROPERTY = 2000000;
 
-  const createElement = (template) => {
-    const newElement = document.createElement(`div`);
-    newElement.innerHTML = template;
-    return newElement.firstChild;
-  };
-
-  const START_COST_OF_PROPERTY = 2000000;
-
-  const createCalculationTemplate = (options = {}) => {
-    const {costOfProperty} = options;
-    return (
-      `<div class="page-calculation">
+const createCalculationTemplate = (options = {}) => {
+  const {costOfProperty} = options;
+  return (
+    `<div class="page-calculation">
       <div class="container clearfix">
         <h2>Кредитный калькулятор</h2>
 
@@ -90,72 +70,64 @@
         </form>
       </div>
     </div>`
-    );
-  };
+  );
+};
 
-  class Calculation {
-    constructor() {
-      this._element = null;
-      this._subscribeOnEvents();
-      this._costOfProperty = START_COST_OF_PROPERTY;
-    }
-
-    getTemplate() {
-      return createCalculationTemplate({
-        costOfProperty: this._costOfProperty
-      });
-    }
-
-    getElement() {
-      if (!this._element) {
-        this._element = createElement(this.getTemplate());
-      }
-      return this._element;
-    }
-
-    removeElement() {
-      this._element = null;
-    }
-
-    recoveryListeners() {
-      this._subscribeOnEvents();
-    }
-
-    reRender() {
-      const oldElement = this.getElement();
-      const parent = oldElement.parentElement;
-      this.removeElement();
-      const newElement = this.getElement();
-      parent.replaceChild(newElement, oldElement);
-      this.recoveryListeners();
-    }
-
-    reset() {
-      this._costOfProperty = START_COST_OF_PROPERTY;
-      this.reRender();
-    }
-
-    _subscribeOnEvents() {
-      const element = this.getElement();
-
-      element.querySelector(`#cost-of-property`)
-          .addEventListener(`change`, (evt) => {
-            if (evt.target.value <= 25000000 && evt.target.value >= 1200000) {
-              this._costOfProperty = evt.target.value;
-            }
-          });
-
-      element.querySelector(`form`)
-          .addEventListener(`submit`, (evt) => {
-            evt.preventDefault();
-          });
-    }
+export default class Calculation {
+  constructor() {
+    this._element = null;
+    this._subscribeOnEvents();
+    this._costOfProperty = START_COST_OF_PROPERTY;
   }
 
-  const pageOffersMenu = document.querySelector(`.page-offers-menu`);
-  const calculationComponent = new Calculation();
-  renderComponent(pageOffersMenu, calculationComponent, `afterEnd`);
+  getTemplate() {
+    return createCalculationTemplate({
+      costOfProperty: this._costOfProperty
+    });
+  }
 
-}());
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
 
-//# sourceMappingURL=main.js.map
+  removeElement() {
+    this._element = null;
+  }
+
+  recoveryListeners() {
+    this._subscribeOnEvents();
+  }
+
+  reRender() {
+    const oldElement = this.getElement();
+    const parent = oldElement.parentElement;
+    this.removeElement();
+    const newElement = this.getElement();
+    parent.replaceChild(newElement, oldElement);
+    this.recoveryListeners();
+  }
+
+  reset() {
+    this._costOfProperty = START_COST_OF_PROPERTY;
+    this.reRender();
+  }
+
+  _subscribeOnEvents() {
+    const element = this.getElement();
+
+    element.querySelector(`#cost-of-property`)
+        .addEventListener(`change`, (evt) => {
+          if (evt.target.value <= 25000000 && evt.target.value >= 1200000) {
+            this._costOfProperty = evt.target.value;
+          }
+        });
+
+    element.querySelector(`form`)
+        .addEventListener(`submit`, (evt) => {
+          evt.preventDefault();
+        });
+  }
+}

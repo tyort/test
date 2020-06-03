@@ -25,28 +25,7 @@ html {
  * Remove the margin in all browsers.
  */
 
-body {
-  width: 1366px;
-  padding: 0;
-  margin: 0 auto;
-  border: $bred;
-}
 
-.container {
-  width: 1170px;
-  margin: 0 auto;
-  border: $bred;
-}
-
-a {
-  text-decoration: none;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
 
 //_______________________header.html
 
@@ -105,35 +84,21 @@ ul {
   border: $bred;
 }
 
-//_______________________calculation.html
+//_______________________offers-menu.html
 
-.page-calculation {
+.page-offers-menu { // высота должна быть 673
   display: block;
-  height: 315px;
+  height: 503px;
   border: $bred;
+  padding-top: 60px;
+  padding-bottom: 110px;
 
   &__inner {
     display: flex;
-    flex-direction: column;
-    height: 205px;
-    width: 600px;
+    height: 503px;
     border: $bred;
-
-    h2 {
-      margin: 0 0 70px 0;
-    }
   }
 }
-
-.ad-form__label {
-  display: block;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 140%;
-}
-
 
 //_______________________map.html
 

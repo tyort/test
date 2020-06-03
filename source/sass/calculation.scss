@@ -1,0 +1,74 @@
+.page-calculation {
+  display: block;
+  min-height: 205px;
+  border: $bred;
+  padding-bottom: 110px;
+
+  h2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 41px;
+    line-height: 140%;
+    margin: 0 0 70px 0;
+  }
+
+  h3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 140%;
+  }
+
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  input,
+  select {
+    display: block;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    width: 600px;
+    height: 60px;
+  }
+
+  &__first-step {
+    display: flex;
+    float: left;
+    flex-direction: column;
+    width: 600px;
+    border: $bred;
+    height: 106px;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  &__our-offer {
+    float: right;
+    border: $bred;
+    width: 380px;
+    height: 269px;
+    padding: 60px;
+
+    .calculation__result {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+
+  &__parameters{
+    float: left;
+    border: $bred;
+    height: 520px;
+    width: 600px;
+  }
+}
