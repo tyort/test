@@ -86,7 +86,6 @@
               id="first-payment"
               type="text"
               value="${firstPayment} рублей"
-              max="${costOfProperty}"
               required
             />
             <div class="percent-slider">
@@ -106,7 +105,7 @@
       this._costOfProperty = START_COST_OF_PROPERTY;
       this._firstPaymentPercantage = MIN_FIRST_PAYMENT_PERCENTAGE;
       this._mortgageSize = MIN_COST_MORTGAGE;
-      this._firstPayment = this._costOfProperty * this._firstPaymentPercantage / 100;
+      this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
       this._subscribeOnEvents();
     }
 
@@ -144,7 +143,7 @@
 
     reset() {
       this._firstPaymentPercantage = MIN_FIRST_PAYMENT_PERCENTAGE;
-      this._firstPayment = this._costOfProperty * this._firstPaymentPercantage / 100;
+      this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
       this.reRender();
     }
 
@@ -159,7 +158,7 @@
       element.querySelector(`#first-payment__percent`)
           .addEventListener(`change`, (evt) => {
             this._firstPaymentPercantage = evt.target.value;
-            this._firstPayment = this._costOfProperty * this._firstPaymentPercantage / 100;
+            this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
             this.reRender();
           });
 
@@ -219,7 +218,7 @@
               return;
 
             } else if (evt.target.className === `operator minus`) {
-              this._costOfProperty -= OPERATORS_STEP_COST;
+              this._costOfProperty = new window.Decimal(this._costOfProperty).sub(OPERATORS_STEP_COST);
 
               if (this._costOfProperty <= MAX_COST_OF_PROPERTY && this._costOfProperty >= MIN_COST_OF_PROPERTY) {
                 this.reset();
@@ -229,7 +228,7 @@
               }
 
             } else if (evt.target.className === `operator plus`) {
-              this._costOfProperty += OPERATORS_STEP_COST;
+              this._costOfProperty = new window.Decimal(this._costOfProperty).plus(OPERATORS_STEP_COST);
 
               if (this._costOfProperty <= MAX_COST_OF_PROPERTY && this._costOfProperty >= MIN_COST_OF_PROPERTY) {
                 this.reset();
@@ -241,31 +240,32 @@
           });
 
       const firstPayment = element.querySelector(`#first-payment`);
-
-      firstPayment.addEventListener(`change`, (evt) => {
+      const onChangeCostHandler = (evt) => {
         if (isNaN(Number(evt.target.value))) {
           alert(`Введите числовое значение`);
-          evt.target.value = `${this._firstPayment} рублей`;
+          evt.target.value = this._firstPayment;
           this.reRender();
 
         } else {
-          const allowableFirstPayment = this._costOfProperty * MIN_FIRST_PAYMENT_PERCENTAGE / 100;
+          const allowableFirstPayment = new window.Decimal(this._costOfProperty).mul(MIN_FIRST_PAYMENT_PERCENTAGE).div(100);
           if (Number(evt.target.value) <= this._costOfProperty && Number(evt.target.value) >= allowableFirstPayment) {
+
             this._firstPayment = Number(evt.target.value);
-            this._firstPaymentPercantage = this._firstPayment * 100 / this._costOfProperty;
+            this._firstPaymentPercantage = new window.Decimal(this._firstPayment).mul(100).div(this._costOfProperty);
             this.reRender();
 
           } else {
             alert(`Не подходящее число`);
-            evt.target.value = `${this._firstPayment} рублей`;
+            evt.target.value = this._firstPayment;
             this.reRender();
           }
         }
-      });
+      };
 
       firstPayment.addEventListener(`focus`, (evt) => {
         evt.target.value = this._firstPayment;
 
+        firstPayment.addEventListener(`change`, onChangeCostHandler);
         firstPayment.addEventListener(`keydown`, (e) => {
           if (Number(e.target.value) === Number(this._firstPayment) && e.keyCode === ENTER_KEY_CODE) {
             e.target.value = `${this._firstPayment} рублей`;
@@ -276,14 +276,13 @@
 
       firstPayment.addEventListener(`blur`, (evt) => {
         if (Number(evt.target.value) === Number(this._firstPayment)) {
+          firstPayment.removeEventListener(`change`, onChangeCostHandler);
           evt.target.value = `${this._firstPayment} рублей`;
         }
       });
 
     }
   }
-
-  new window.Decimal(10).div(2);
 
   const pageOffersMenu = document.querySelector(`.page-offers-menu`);
   const calculationComponent = new Calculation();
