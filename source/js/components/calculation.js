@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import {createElement} from "../formulas.js";
 
 const START_COST_OF_PROPERTY = 2000000;
@@ -6,6 +7,7 @@ const MIN_SIZE_MORTGAGE = 500000;
 
 const createCalculationTemplate = (options = {}) => {
   const {costOfProperty, firstPayment, firstPaymentPercantage} = options;
+
   return (
     `<div class="page-calculation">
       <div class="container clearfix">
@@ -37,21 +39,24 @@ const createCalculationTemplate = (options = {}) => {
           <fieldset>
             <label for="cost-of-property">Стоимость недвижимости</label>
             <div class="cost-of-property__scale">
-              <button class="operator minus">-</button>
-              <input 
+              <span class="operator minus">-</span>
+              <input
+                autocomplete="off"
+                class="cost-of-property__input"
                 id="cost-of-property"
                 type="text"
-                value="${costOfProperty}"
+                value="${costOfProperty} рублей"
                 required
               />
-              <button class="operator plus">+</button>
+              <span class="operator plus">+</span>
             </div>
             <p>От 1 200 000 до 25 000 000 рублей</p>
           </fieldset>
 
           <fieldset>
             <label for="first-payment">Первоначальный взнос</label>
-            <input 
+            <input
+              class="first-payment__input"
               id="first-payment"
               type="number"
               value="${firstPayment}"
@@ -62,15 +67,6 @@ const createCalculationTemplate = (options = {}) => {
               <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
               <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
             </div>
-          </fieldset>
-
-            <p>Срок кредитования</p>
-            <select id="fwhteadf" name="sdfewfwe">
-              <option value="novalue" selected>Выберете цель кредита</option>
-              <option value="mortgage">Ипотечное кредитование</option>
-              <option value="automobile">Автомобильное кредитование</option>
-              <option value="consumer">Потребительский кредит</option>
-            </select>
           </fieldset>
         </form>
       </div>
@@ -154,17 +150,55 @@ export default class Calculation {
           }
         });
 
+    const costOfProperty = element.querySelector(`#cost-of-property`);
+    costOfProperty.addEventListener(`change`, (evt) => {
+      if (isNaN(Number(evt.target.value))) {
+        alert(`Введите числовое значение`);
+      } else {
+        if (Number(evt.target.value) <= 25000000 && Number(evt.target.value) >= 1200000) {
+          this._costOfProperty = Number(evt.target.value);
+          this.reset();
+        } else {
+          alert(`Не подходящее число`);
+        }
+      }
+    });
+    costOfProperty.addEventListener(`blur`, (evt) => {
+      if (isNaN(Number(evt.target.value)) || Number(evt.target.value) > 25000000 || Number(evt.target.value) < 1200000) {
+        costOfProperty.focus();
+      } else if (Number(evt.target.value) === this._costOfProperty) {
+        this.reset();
+        costOfProperty.blur();
+      } else {
+        costOfProperty.blur();
+      }
+    });
+    costOfProperty.addEventListener(`focus`, (evt) => {
+      evt.target.value = this._costOfProperty;
+      return;
+    });
+
     element.querySelector(`.cost-of-property__scale`)
         .addEventListener(`click`, (evt) => {
           evt.preventDefault();
           if (evt.target.className !== `operator minus` && evt.target.className !== `operator plus`) {
             return;
+
           } else if (evt.target.className === `operator minus`) {
             this._costOfProperty -= 100000;
-            this.reset();
+            if (this._costOfProperty <= 25000000 && this._costOfProperty >= 1200000) {
+              this.reset();
+            } else {
+              alert(`Неправильная стоимость недвижимости`);
+            }
+
           } else if (evt.target.className === `operator plus`) {
             this._costOfProperty += 100000;
-            this.reset();
+            if (this._costOfProperty <= 25000000 && this._costOfProperty >= 1200000) {
+              this.reset();
+            } else {
+              alert(`Неправильная стоимость недвижимости`);
+            }
           }
         });
   }
