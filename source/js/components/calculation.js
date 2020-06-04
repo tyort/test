@@ -3,7 +3,11 @@ import {createElement} from "../formulas.js";
 
 const START_COST_OF_PROPERTY = 2000000;
 const MIN_FIRST_PAYMENT_PERCENTAGE = 10;
-const MIN_SIZE_MORTGAGE = 500000;
+const MIN_COST_MORTGAGE = 500000;
+const ENTER_KEY_CODE = 13;
+const MAX_COST_OF_PROPERTY = 25000000;
+const MIN_COST_OF_PROPERTY = 1200000;
+const OPERATORS_STEP_COST = 100000;
 
 const createCalculationTemplate = (options = {}) => {
   const {costOfProperty, firstPayment, firstPaymentPercantage} = options;
@@ -56,10 +60,11 @@ const createCalculationTemplate = (options = {}) => {
           <fieldset>
             <label for="first-payment">Первоначальный взнос</label>
             <input
+              autocomplete="off"
               class="first-payment__input"
               id="first-payment"
-              type="number"
-              value="${firstPayment}"
+              type="text"
+              value="${firstPayment} рублей"
               max="${costOfProperty}"
               required
             />
@@ -79,7 +84,7 @@ export default class Calculation {
     this._element = null;
     this._costOfProperty = START_COST_OF_PROPERTY;
     this._firstPaymentPercantage = MIN_FIRST_PAYMENT_PERCENTAGE;
-    this._mortgageSize = MIN_SIZE_MORTGAGE;
+    this._mortgageSize = MIN_COST_MORTGAGE;
     this._firstPayment = this._costOfProperty * this._firstPaymentPercantage / 100;
     this._subscribeOnEvents();
   }
@@ -151,31 +156,39 @@ export default class Calculation {
         });
 
     const costOfProperty = element.querySelector(`#cost-of-property`);
+
     costOfProperty.addEventListener(`change`, (evt) => {
       if (isNaN(Number(evt.target.value))) {
         alert(`Введите числовое значение`);
+        this.reset();
+
       } else {
-        if (Number(evt.target.value) <= 25000000 && Number(evt.target.value) >= 1200000) {
+        if (Number(evt.target.value) <= MAX_COST_OF_PROPERTY && Number(evt.target.value) >= MIN_COST_OF_PROPERTY) {
           this._costOfProperty = Number(evt.target.value);
           this.reset();
+
         } else {
           alert(`Не подходящее число`);
+          this.reset();
         }
       }
     });
-    costOfProperty.addEventListener(`blur`, (evt) => {
-      if (isNaN(Number(evt.target.value)) || Number(evt.target.value) > 25000000 || Number(evt.target.value) < 1200000) {
-        costOfProperty.focus();
-      } else if (Number(evt.target.value) === this._costOfProperty) {
-        this.reset();
-        costOfProperty.blur();
-      } else {
-        costOfProperty.blur();
-      }
-    });
+
     costOfProperty.addEventListener(`focus`, (evt) => {
       evt.target.value = this._costOfProperty;
-      return;
+
+      costOfProperty.addEventListener(`keydown`, (e) => {
+        if (Number(e.target.value) === Number(this._costOfProperty) && e.keyCode === ENTER_KEY_CODE) {
+          e.target.value = `${this._costOfProperty} рублей`;
+          costOfProperty.blur();
+        }
+      });
+    });
+
+    costOfProperty.addEventListener(`blur`, (evt) => {
+      if (Number(evt.target.value) === Number(this._costOfProperty)) {
+        evt.target.value = `${this._costOfProperty} рублей`;
+      }
     });
 
     element.querySelector(`.cost-of-property__scale`)
@@ -185,21 +198,68 @@ export default class Calculation {
             return;
 
           } else if (evt.target.className === `operator minus`) {
-            this._costOfProperty -= 100000;
-            if (this._costOfProperty <= 25000000 && this._costOfProperty >= 1200000) {
+            this._costOfProperty -= OPERATORS_STEP_COST;
+
+            if (this._costOfProperty <= MAX_COST_OF_PROPERTY && this._costOfProperty >= MIN_COST_OF_PROPERTY) {
               this.reset();
+
             } else {
-              alert(`Неправильная стоимость недвижимости`);
+              return;
             }
 
           } else if (evt.target.className === `operator plus`) {
-            this._costOfProperty += 100000;
-            if (this._costOfProperty <= 25000000 && this._costOfProperty >= 1200000) {
+            this._costOfProperty += OPERATORS_STEP_COST;
+
+            if (this._costOfProperty <= MAX_COST_OF_PROPERTY && this._costOfProperty >= MIN_COST_OF_PROPERTY) {
               this.reset();
+
             } else {
-              alert(`Неправильная стоимость недвижимости`);
+              return;
             }
           }
         });
+
+    const firstPayment = element.querySelector(`#first-payment`);
+
+    firstPayment.addEventListener(`change`, (evt) => {
+      if (isNaN(Number(evt.target.value))) {
+        alert(`Введите числовое значение`);
+        evt.target.value = `${this._firstPayment} рублей`;
+        this.reRender();
+
+      } else {
+        const allowableFirstPayment = this._costOfProperty * MIN_FIRST_PAYMENT_PERCENTAGE / 100;
+        if (Number(evt.target.value) <= this._costOfProperty && Number(evt.target.value) >= allowableFirstPayment) {
+          this._firstPayment = Number(evt.target.value);
+          this._firstPaymentPercantage = this._firstPayment * 100 / this._costOfProperty;
+          this.reRender();
+
+        } else {
+          alert(`Не подходящее число`);
+          evt.target.value = `${this._firstPayment} рублей`;
+          this.reRender();
+        }
+      }
+    });
+
+    firstPayment.addEventListener(`focus`, (evt) => {
+      evt.target.value = this._firstPayment;
+
+      firstPayment.addEventListener(`keydown`, (e) => {
+        if (Number(e.target.value) === Number(this._firstPayment) && e.keyCode === ENTER_KEY_CODE) {
+          e.target.value = `${this._firstPayment} рублей`;
+          firstPayment.blur();
+        }
+      });
+    });
+
+    firstPayment.addEventListener(`blur`, (evt) => {
+      if (Number(evt.target.value) === Number(this._firstPayment)) {
+        evt.target.value = `${this._firstPayment} рублей`;
+      }
+    });
+
   }
 }
+
+new window.Decimal(10).div(2)
