@@ -117,6 +117,12 @@ export default class Calculation extends AbstractSmartComponent {
     });
   }
 
+  reRender() {
+    super.reRender();
+    this.setCalculateResultHandler(this._calculateResultHandler);
+    this.recoveryListeners();
+  }
+
   recoveryListeners() {
     this._subscribeOnEvents();
   }

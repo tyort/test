@@ -14,6 +14,7 @@ renderComponent(pageCalculation, ourOfferComponent, `afterBegin`);
 
 calculationComponent.setCalculateResultHandler(() => {
   console.log(`Привет`);
+  ourOfferComponent.reRender();
   // const formData = calculationComponent.getChangedDataByView();
   // let pointModel = parseFormData(formData);
 });

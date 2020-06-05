@@ -56,7 +56,6 @@
       this.removeElement();
       const newElement = this.getElement();
       parent.replaceChild(newElement, oldElement);
-      this.recoveryListeners();
     }
   }
 
@@ -176,6 +175,12 @@
         firstPaymentPercantage: this._firstPaymentPercantage,
         periodOfCredit: this._periodOfCredit
       });
+    }
+
+    reRender() {
+      super.reRender();
+      this.setCalculateResultHandler(this._calculateResultHandler);
+      this.recoveryListeners();
     }
 
     recoveryListeners() {
@@ -409,6 +414,7 @@
 
   calculationComponent.setCalculateResultHandler(() => {
     console.log(`Привет`);
+    ourOfferComponent.reRender();
     // const formData = calculationComponent.getChangedDataByView();
     // let pointModel = parseFormData(formData);
   });
