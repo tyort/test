@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-import {createElement} from "../formulas.js";
+import AbstractSmartComponent from './abstract-smart-component.js';
 
 const START_COST_OF_PROPERTY = 2000000;
 const MIN_FIRST_PAYMENT_PERCENTAGE = 10;
@@ -7,10 +7,13 @@ const MIN_COST_MORTGAGE = 500000;
 const ENTER_KEY_CODE = 13;
 const MAX_COST_OF_PROPERTY = 25000000;
 const MIN_COST_OF_PROPERTY = 1200000;
+const MAX_CREDIT_PERIOD = 30;
+const MIN_CREDIT_PERIOD = 5;
 const OPERATORS_STEP_COST = 100000;
+const CAPITAL_OF_MOTHER = 470000;
 
 const createCalculationTemplate = (options = {}) => {
-  const {costOfProperty, firstPayment, firstPaymentPercantage} = options;
+  const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit} = options;
 
   return (
     `<div class="page-calculation">
@@ -25,16 +28,6 @@ const createCalculationTemplate = (options = {}) => {
             <option value="automobile">Автомобильное кредитование</option>
             <option value="consumer">Потребительский кредит</option>
           </select>
-        </div>
-
-        <div class="page-calculation__our-offer">
-          <h3>Наше предложение</h3>
-          <div class="calculation__result">
-            <div><p>1 300 000 рублей</br>Сумма ипотеки</p></div>
-            <div><p>9,40%</br>Процентная ставка</p></div>
-            <div><p>27 000 рублей</br>Ежемесячный платеж</p></div>
-            <div><p>60 000 рублей</br>Необходимый доход</p></div>
-          </div>
         </div>
 
         <form class="page-calculation__parameters">
@@ -72,19 +65,43 @@ const createCalculationTemplate = (options = {}) => {
               <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
             </div>
           </fieldset>
+
+          <fieldset>
+            <label for="credit-period">Срок кредитования</label>
+            <input
+              autocomplete="off"
+              class="credit-period__input"
+              id="credit-period"
+              type="text"
+              value="${periodOfCredit} лет"
+              required
+            />
+            <div class="years-slider">
+              <output for="credit-period__years" style="left: ${periodOfCredit * 23 - 110}px">${periodOfCredit}лет</output>
+              <input type="range" id="credit-period__years" min="5" max="30" step="1" value="${periodOfCredit}">
+            </div>
+          </fieldset>
+
+          <fieldset class="mothers-capital__fieldset">
+            <input type="checkbox" name="mothers-capital" id="mothers-capital__input">
+            <label for="mothers-capital__input">Использовать материнский капитал</label>
+          </fieldset>
+
         </form>
       </div>
     </div>`
   );
 };
 
-export default class Calculation {
+export default class Calculation extends AbstractSmartComponent {
   constructor() {
-    this._element = null;
+    super();
     this._costOfProperty = START_COST_OF_PROPERTY;
     this._firstPaymentPercantage = MIN_FIRST_PAYMENT_PERCENTAGE;
     this._mortgageSize = MIN_COST_MORTGAGE;
     this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
+    this._periodOfCredit = MIN_CREDIT_PERIOD;
+    this._costOfMothersCapital = 0;
     this._subscribeOnEvents();
   }
 
@@ -92,32 +109,13 @@ export default class Calculation {
     return createCalculationTemplate({
       costOfProperty: this._costOfProperty,
       firstPayment: this._firstPayment,
-      firstPaymentPercantage: this._firstPaymentPercantage
+      firstPaymentPercantage: this._firstPaymentPercantage,
+      periodOfCredit: this._periodOfCredit
     });
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 
   recoveryListeners() {
     this._subscribeOnEvents();
-  }
-
-  reRender() {
-    const oldElement = this.getElement();
-    const parent = oldElement.parentElement;
-    this.removeElement();
-    const newElement = this.getElement();
-    parent.replaceChild(newElement, oldElement);
-    this.recoveryListeners();
   }
 
   reset() {
@@ -132,26 +130,6 @@ export default class Calculation {
     element.querySelector(`form`)
         .addEventListener(`submit`, (evt) => {
           evt.preventDefault();
-        });
-
-    element.querySelector(`#first-payment__percent`)
-        .addEventListener(`change`, (evt) => {
-          this._firstPaymentPercantage = evt.target.value;
-          this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
-          this.reRender();
-        });
-
-    element.querySelector(`#first-payment`)
-        .addEventListener(`change`, (evt) => {
-          if (evt.target.value >= this._costOfProperty * MIN_FIRST_PAYMENT_PERCENTAGE / 100 && evt.target.value <= this._costOfProperty) {
-            this._firstPayment = evt.target.value;
-            this._firstPaymentPercantage = new window.Decimal(100).mul(this._firstPayment).div(this._costOfProperty);
-            this.reRender();
-          } else if (evt.target.value < this._costOfProperty * MIN_FIRST_PAYMENT_PERCENTAGE / 100) {
-            this._firstPayment = this._costOfProperty * MIN_FIRST_PAYMENT_PERCENTAGE / 100;
-            this._firstPaymentPercantage = new window.Decimal(100).mul(this._firstPayment).div(this._costOfProperty);
-            this.reRender();
-          }
         });
 
     const costOfProperty = element.querySelector(`#cost-of-property`);
@@ -195,26 +173,21 @@ export default class Calculation {
           evt.preventDefault();
           if (evt.target.className !== `operator minus` && evt.target.className !== `operator plus`) {
             return;
+          }
 
-          } else if (evt.target.className === `operator minus`) {
-            this._costOfProperty = new window.Decimal(this._costOfProperty).sub(OPERATORS_STEP_COST);
+          if (evt.target.className === `operator minus`) {
+            this._costOfProperty -= OPERATORS_STEP_COST;
+            this._costOfProperty = this._costOfProperty >= MIN_COST_OF_PROPERTY
+              ? this._costOfProperty
+              : MIN_COST_OF_PROPERTY;
+            this.reset();
 
-            if (this._costOfProperty <= MAX_COST_OF_PROPERTY && this._costOfProperty >= MIN_COST_OF_PROPERTY) {
-              this.reset();
-
-            } else {
-              return;
-            }
-
-          } else if (evt.target.className === `operator plus`) {
-            this._costOfProperty = new window.Decimal(this._costOfProperty).plus(OPERATORS_STEP_COST);
-
-            if (this._costOfProperty <= MAX_COST_OF_PROPERTY && this._costOfProperty >= MIN_COST_OF_PROPERTY) {
-              this.reset();
-
-            } else {
-              return;
-            }
+          } else {
+            this._costOfProperty += OPERATORS_STEP_COST;
+            this._costOfProperty = this._costOfProperty <= MAX_COST_OF_PROPERTY
+              ? this._costOfProperty
+              : MAX_COST_OF_PROPERTY;
+            this.reset();
           }
         });
 
@@ -233,9 +206,14 @@ export default class Calculation {
           this._firstPaymentPercantage = new window.Decimal(this._firstPayment).mul(100).div(this._costOfProperty);
           this.reRender();
 
+        } else if (Number(evt.target.value) > this._costOfProperty) {
+          this._firstPayment = this._costOfProperty;
+          this._firstPaymentPercantage = new window.Decimal(this._firstPayment).mul(100).div(this._costOfProperty);
+          this.reRender();
+
         } else {
-          alert(`Не подходящее число`);
-          evt.target.value = this._firstPayment;
+          this._firstPayment = allowableFirstPayment;
+          this._firstPaymentPercantage = new window.Decimal(this._firstPayment).mul(100).div(this._costOfProperty);
           this.reRender();
         }
       }
@@ -260,5 +238,64 @@ export default class Calculation {
       }
     });
 
+    element.querySelector(`#first-payment__percent`)
+        .addEventListener(`change`, (evt) => {
+          this._firstPaymentPercantage = evt.target.value;
+          this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
+          this.reRender();
+        });
+
+    const periodOfCredit = element.querySelector(`#credit-period`);
+    const onChangePeriodHandler = (evt) => {
+      if (isNaN(Number(evt.target.value))) {
+        alert(`Введите числовое значение`);
+        evt.target.value = this._periodOfCredit;
+        this.reRender();
+
+      } else {
+        if (Number(evt.target.value) <= MAX_CREDIT_PERIOD && Number(evt.target.value) >= MIN_CREDIT_PERIOD) {
+          this._periodOfCredit = Number(evt.target.value);
+          this.reRender();
+
+        } else if (Number(evt.target.value) > MAX_CREDIT_PERIOD) {
+          this._periodOfCredit = MAX_CREDIT_PERIOD;
+          this.reRender();
+
+        } else {
+          this._periodOfCredit = MIN_CREDIT_PERIOD;
+          this.reRender();
+        }
+      }
+    };
+
+    periodOfCredit.addEventListener(`focus`, (evt) => {
+      evt.target.value = this._periodOfCredit;
+
+      periodOfCredit.addEventListener(`change`, onChangePeriodHandler);
+      periodOfCredit.addEventListener(`keydown`, (e) => {
+        if (Number(e.target.value) === Number(this._periodOfCredit) && e.keyCode === ENTER_KEY_CODE) {
+          e.target.value = `${this._periodOfCredit} лет`;
+          periodOfCredit.blur();
+        }
+      });
+    });
+
+    periodOfCredit.addEventListener(`blur`, (evt) => {
+      if (Number(evt.target.value) === Number(this._periodOfCredit)) {
+        periodOfCredit.removeEventListener(`change`, onChangePeriodHandler);
+        evt.target.value = `${this._periodOfCredit} лет`;
+      }
+    });
+
+    element.querySelector(`#credit-period__years`)
+        .addEventListener(`change`, (evt) => {
+          this._periodOfCredit = evt.target.value;
+          this.reRender();
+        });
+
+    element.querySelector(`#mothers-capital__input`)
+        .addEventListener(`change`, (evt) => {
+          this._costOfMothersCapital = evt.target.checked ? CAPITAL_OF_MOTHER : 0;
+        });
   }
 }
