@@ -78,77 +78,75 @@
 
     return (
       `<div class="page-calculation">
-      <div class="container clearfix">
-        <h2>Кредитный калькулятор</h2>
-        <form class="page-calculation__parameters">
+      <h2>Кредитный калькулятор</h2>
+      <form class="page-calculation__parameters">
 
-          <h3>Шаг 1. Цель кредита</h3>
-          <fieldset>
-            <select id="type-of-credit" name="credit-type">
-              <option value="novalue" selected>Выберете цель кредита</option>
-              <option value="mortgage">Ипотечное кредитование</option>
-              <option value="automobile">Автомобильное кредитование</option>
-              <option value="consumer">Потребительский кредит</option>
-            </select>
-          </fieldset>
-        
-          <h3>Шаг 2. Введите параметры кредита</h3>
-          <fieldset>
-            <label for="cost-of-property">Стоимость недвижимости</label>
-            <div class="cost-of-property__scale">
-              <span class="operator minus">-</span>
-              <input
-                autocomplete="off"
-                class="cost-of-property__input"
-                id="cost-of-property"
-                type="text"
-                value="${costOfProperty} рублей"
-                required
-              />
-              <span class="operator plus">+</span>
-            </div>
-            <p>От 1 200 000 до 25 000 000 рублей</p>
-          </fieldset>
-
-          <fieldset>
-            <label for="first-payment">Первоначальный взнос</label>
+        <h3>Шаг 1. Цель кредита</h3>
+        <fieldset>
+          <select id="type-of-credit" name="credit-type">
+            <option value="novalue" selected>Выберете цель кредита</option>
+            <option value="mortgage">Ипотечное кредитование</option>
+            <option value="automobile">Автомобильное кредитование</option>
+            <option value="consumer">Потребительский кредит</option>
+          </select>
+        </fieldset>
+      
+        <h3>Шаг 2. Введите параметры кредита</h3>
+        <fieldset>
+          <label for="cost-of-property">Стоимость недвижимости</label>
+          <div class="cost-of-property__scale">
+            <span class="operator minus">-</span>
             <input
               autocomplete="off"
-              class="first-payment__input"
-              id="first-payment"
+              class="cost-of-property__input"
+              id="cost-of-property"
               type="text"
-              value="${firstPayment} рублей"
+              value="${costOfProperty} рублей"
               required
             />
-            <div class="percent-slider">
-              <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
-              <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
-            </div>
-          </fieldset>
+            <span class="operator plus">+</span>
+          </div>
+          <p>От 1 200 000 до 25 000 000 рублей</p>
+        </fieldset>
 
-          <fieldset>
-            <label for="credit-period">Срок кредитования</label>
-            <input
-              autocomplete="off"
-              class="credit-period__input"
-              id="credit-period"
-              type="text"
-              value="${periodOfCredit} лет"
-              required
-            />
-            <div class="years-slider">
-              <output for="credit-period__years" style="left: ${periodOfCredit * 23 - 110}px">${periodOfCredit}лет</output>
-              <input type="range" id="credit-period__years" min="5" max="30" step="1" value="${periodOfCredit}">
-            </div>
-          </fieldset>
+        <fieldset>
+          <label for="first-payment">Первоначальный взнос</label>
+          <input
+            autocomplete="off"
+            class="first-payment__input"
+            id="first-payment"
+            type="text"
+            value="${firstPayment} рублей"
+            required
+          />
+          <div class="percent-slider">
+            <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
+            <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
+          </div>
+        </fieldset>
 
-          <fieldset class="mothers-capital__fieldset">
-            <input type="checkbox" name="mothers-capital" id="mothers-capital__input">
-            <label for="mothers-capital__input">Использовать материнский капитал</label>
-          </fieldset>
+        <fieldset>
+          <label for="credit-period">Срок кредитования</label>
+          <input
+            autocomplete="off"
+            class="credit-period__input"
+            id="credit-period"
+            type="text"
+            value="${periodOfCredit} лет"
+            required
+          />
+          <div class="years-slider">
+            <output for="credit-period__years" style="left: ${periodOfCredit * 23 - 110}px">${periodOfCredit}лет</output>
+            <input type="range" id="credit-period__years" min="5" max="30" step="1" value="${periodOfCredit}">
+          </div>
+        </fieldset>
 
-        </form>
-      </div>
+        <fieldset class="mothers-capital__fieldset">
+          <input type="checkbox" name="mothers-capital" id="mothers-capital__input">
+          <label for="mothers-capital__input">Использовать материнский капитал</label>
+        </fieldset>
+
+      </form>
     </div>`
     );
   };
@@ -162,6 +160,7 @@
       this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
       this._periodOfCredit = MIN_CREDIT_PERIOD;
       this._costOfMothersCapital = 0;
+      this._calculateResultHandler = null;
       this._subscribeOnEvents();
     }
 
@@ -188,6 +187,20 @@
       this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
       this.reRender();
     }
+
+    setCalculateResultHandler(handler) {
+      const element = this.getElement();
+      const form = element.querySelector(`form`);
+      const operatorMinus = element.querySelector(`.minus`);
+      const operatorPlus = element.querySelector(`.plus`);
+
+      form.addEventListener(`change`, handler);
+      operatorMinus.addEventListener(`click`, handler);
+      operatorPlus.addEventListener(`click`, handler);
+
+      this._calculateResultHandler = handler;
+    }
+
 
     _subscribeOnEvents() {
       const element = this.getElement();
@@ -365,16 +378,40 @@
     }
   }
 
+  const createOurOfferTemplate = () => {
+    return (
+      `<div class="page-calculation__our-offer">
+      <h3>Наше предложение</h3>
+      <div class="calculation__result">
+        <div><p>1 300 000 рублей</br>Сумма ипотеки</p></div>
+        <div><p>9,40%</br>Процентная ставка</p></div>
+        <div><p>27 000 рублей</br>Ежемесячный платеж</p></div>
+        <div><p>60 000 рублей</br>Необходимый доход</p></div>
+      </div>
+    </div>`
+    );
+  };
+
+  class OurOffer extends AbstractSmartComponent {
+    getTemplate() {
+      return createOurOfferTemplate();
+    }
+  }
+
   const calculationComponent = new Calculation();
-  // const ourOfferComponent = new OurOfferComponent();
+  const ourOfferComponent = new OurOffer();
 
   const pageOffersMenu = document.querySelector(`.page-offers-menu`);
   renderComponent(pageOffersMenu, calculationComponent, `afterEnd`);
 
-  // const calculationFirstStep = document.querySelector(`.page-calculation__first-step`);
-  // renderComponent(calculationFirstStep, ourOfferComponent, `afterEnd`);
+  const pageCalculation = document.querySelector(`.page-calculation`);
+  renderComponent(pageCalculation, ourOfferComponent, `afterBegin`);
 
-  // ourOfferComponent.render();
+  calculationComponent.setCalculateResultHandler(() => {
+    console.log(`Привет`);
+    // const formData = calculationComponent.getChangedDataByView();
+    // let pointModel = parseFormData(formData);
+  });
 
 }());
 

@@ -1,117 +1,108 @@
+h2 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 41px;
+  line-height: 140%;
+  margin: 0 0 70px 0;
+}
+
+h3 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 140%;
+}
+
+input {
+  text-align: center;
+  width: 594px;
+  height: 60px;
+
+  &[type="range"] {
+    height: auto;
+  }
+
+  &[type="checkbox"] {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-right: 20px;
+  }
+}
+
+select {
+  width: 600px;
+  height: 60px;
+  text-align-last: center
+}
+
+output {
+  position: relative;
+}
+
+label {
+  display: block;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 140%;
+}
+
 .page-calculation {
   display: block;
-  min-height: 205px;
+  height: 765px;
   border: $bred;
   padding-bottom: 110px;
+  width: 1170px;
+  margin: auto;
 
-  h2 {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 41px;
-    line-height: 140%;
-    margin: 0 0 70px 0;
+  form {
+    display: flex;
+    height: 666px;
+    border: $bred;
+    flex-direction: column;
+    width: 600px;
   }
-
-  h3 {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 140%;
-  }
-
 
   fieldset {
-    margin: 0;
+    margin: 10px 0 0 0;
     padding: 0;
     border: none;
   }
 
-  input,
-  select {
-    display: block;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 140%;
-    width: 596px;
-    height: 60px;
-    text-align: center;
-    padding: 0;
-  }
-
-  input[type="range"] {
-    height: auto;
-  }
-
-  input:invalid {
-    border-color: red;
-  }
-
-  &__first-step { // не растягивается
+  .cost-of-property__scale {
     display: flex;
-    float: left;
-    flex-direction: column;
-    width: 600px;
-    border: $bred;
-    height: 136px;
+    height: 60px;
+
+    input {
+      width: 470px;
+      height: auto
+    }
+
+    .operator {
+      font-size: 30px;
+      font-weight: bold;
+      background-color: rgb(96, 177, 209);
+      text-align: center;
+      width: 60px;
+      padding-top: 10px
+    }
+  }
+}
+
+.page-calculation__our-offer {
+  float: right;
+  border: $bred;
+  width: 380px;
+  height: 269px;
+  padding: 60px;
+
+  .calculation__result {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 40px;
   }
-
-  &__our-offer { // не растягивается
-    float: right;
-    border: $bred;
-    width: 380px;
-    height: 269px;
-    padding: 60px;
-
-    .calculation__result {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-  }
-
-  &__parameters{ // не растягивается
-    float: left;
-    border: $bred;
-    height: 520px;
-    width: 600px;
-
-    output {
-      position: relative;
-    }
-
-    .cost-of-property__scale {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .operator {
-        font-size: 30px;
-        font-weight: bold;
-        border: 1px solid black;
-        padding: 15px;
-        background-color: rgb(97, 170, 219);
-      }
-
-      input {
-        width: 500px;
-      }
-    }
-  }
-}
-
-input[type="checkbox"] {
-  width: 30px;
-  float: left;
-  margin-right: 25px;
-}
-
-.mothers-capital__fieldset label {
-  float: left;
-  margin-top: 25px;
 }

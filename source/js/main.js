@@ -1,17 +1,20 @@
 import CalculationComponent from "./components/calculation.js";
-// import OurOfferComponent from "./components/our-offer.js";
+import OurOfferComponent from "./components/our-offer.js";
 import {renderComponent} from "./formulas.js";
 
 
 const calculationComponent = new CalculationComponent();
-// const ourOfferComponent = new OurOfferComponent();
+const ourOfferComponent = new OurOfferComponent();
 
 const pageOffersMenu = document.querySelector(`.page-offers-menu`);
 renderComponent(pageOffersMenu, calculationComponent, `afterEnd`);
 
-// const calculationFirstStep = document.querySelector(`.page-calculation__first-step`);
-// renderComponent(calculationFirstStep, ourOfferComponent, `afterEnd`);
+const pageCalculation = document.querySelector(`.page-calculation`);
+renderComponent(pageCalculation, ourOfferComponent, `afterBegin`);
 
-// ourOfferComponent.render();
-
+calculationComponent.setCalculateResultHandler(() => {
+  console.log(`Привет`);
+  // const formData = calculationComponent.getChangedDataByView();
+  // let pointModel = parseFormData(formData);
+});
 
