@@ -36,6 +36,7 @@ const createCalculationTemplate = (options = {}) => {
           <input
             autocomplete="off"
             class="cost-of-property__input"
+            name="cost-of-property"
             id="cost-of-property"
             type="text"
             value="${costOfProperty} рублей"
@@ -115,7 +116,6 @@ export default class Calculation extends AbstractSmartComponent {
 
   reRender() {
     super.reRender();
-    this.setCalculateResultHandler(this._calculateResultHandler);
     this.recoveryListeners();
   }
 
@@ -139,6 +139,7 @@ export default class Calculation extends AbstractSmartComponent {
     operatorPlus.addEventListener(`click`, handler);
 
     this._calculateResultHandler = handler;
+    console.log(handler);
   }
 
 

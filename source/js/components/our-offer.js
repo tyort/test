@@ -14,6 +14,18 @@ const createOurOfferTemplate = () => {
   );
 };
 
+const createMessageTemplate = () => {
+  return (
+    `<div class="page-calculation__our-offer">
+      <p>
+        <span>Наш банк не выдает ипотечные кредиты
+        меньше 200 000 рублей.</span></br>
+        Попробуйте использовать другие параметры для расчета.
+      <p>
+    </div>`
+  );
+};
+
 export default class OurOffer extends AbstractSmartComponent {
   constructor() {
     super();

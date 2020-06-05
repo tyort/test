@@ -119,6 +119,7 @@
           <input
             autocomplete="off"
             class="cost-of-property__input"
+            name="cost-of-property"
             id="cost-of-property"
             type="text"
             value="${costOfProperty} рублей"
@@ -198,7 +199,6 @@
 
     reRender() {
       super.reRender();
-      this.setCalculateResultHandler(this._calculateResultHandler);
       this.recoveryListeners();
     }
 
@@ -222,6 +222,7 @@
       operatorPlus.addEventListener(`click`, handler);
 
       this._calculateResultHandler = handler;
+      console.log(handler);
     }
 
 
@@ -426,9 +427,21 @@
   const titleName = pageCalculation.querySelector(`h2`);
   renderComponent(titleName, ourOfferComponent, `afterEnd`);
 
+  const parseFormData = (formData) => {
+    let propertyCost = formData.get(`cost-of-property`);
+    propertyCost = Number(propertyCost.slice(0, propertyCost.length - 7));
+
+    return {
+      'creditType': formData.get(`credit-type`),
+      propertyCost
+    };
+  };
+
   calculationComponent.setCalculateResultHandler(() => {
-    console.log(`Привет`);
-    ourOfferComponent.reRender();
+    const formData = calculationComponent.getChangedDataByView();
+    let viewInformation = parseFormData(formData);
+    console.log(viewInformation); // срабатывает 2. Не актуальные данные
+
     // const formData = calculationComponent.getChangedDataByView();
     // let pointModel = parseFormData(formData);
   });
