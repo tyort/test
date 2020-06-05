@@ -1,92 +1,88 @@
 /* eslint-disable no-alert */
 import AbstractSmartComponent from './abstract-smart-component.js';
-
-const START_COST_OF_PROPERTY = 2000000;
-const MIN_FIRST_PAYMENT_PERCENTAGE = 10;
-const MIN_COST_MORTGAGE = 500000;
-const ENTER_KEY_CODE = 13;
-const MAX_COST_OF_PROPERTY = 25000000;
-const MIN_COST_OF_PROPERTY = 1200000;
-const MAX_CREDIT_PERIOD = 30;
-const MIN_CREDIT_PERIOD = 5;
-const OPERATORS_STEP_COST = 100000;
-const CAPITAL_OF_MOTHER = 470000;
+import {
+  START_COST_OF_PROPERTY,
+  MIN_FIRST_PAYMENT_PERCENTAGE,
+  MIN_COST_MORTGAGE,
+  ENTER_KEY_CODE,
+  MAX_COST_OF_PROPERTY,
+  MIN_COST_OF_PROPERTY,
+  MAX_CREDIT_PERIOD,
+  MIN_CREDIT_PERIOD,
+  OPERATORS_STEP_COST,
+  CAPITAL_OF_MOTHER
+} from '../formulas.js';
 
 const createCalculationTemplate = (options = {}) => {
   const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit} = options;
 
   return (
-    `<div class="page-calculation">
-      <h2>Кредитный калькулятор</h2>
-      <form class="page-calculation__parameters">
-
-        <h3>Шаг 1. Цель кредита</h3>
-        <fieldset>
-          <select id="type-of-credit" name="credit-type">
-            <option value="novalue" selected>Выберете цель кредита</option>
-            <option value="mortgage">Ипотечное кредитование</option>
-            <option value="automobile">Автомобильное кредитование</option>
-            <option value="consumer">Потребительский кредит</option>
-          </select>
-        </fieldset>
-      
-        <h3>Шаг 2. Введите параметры кредита</h3>
-        <fieldset>
-          <label for="cost-of-property">Стоимость недвижимости</label>
-          <div class="cost-of-property__scale">
-            <span class="operator minus">-</span>
-            <input
-              autocomplete="off"
-              class="cost-of-property__input"
-              id="cost-of-property"
-              type="text"
-              value="${costOfProperty} рублей"
-              required
-            />
-            <span class="operator plus">+</span>
-          </div>
-          <p>От 1 200 000 до 25 000 000 рублей</p>
-        </fieldset>
-
-        <fieldset>
-          <label for="first-payment">Первоначальный взнос</label>
+    `<form class="page-calculation__parameters">
+      <h3>Шаг 1. Цель кредита</h3>
+      <fieldset>
+        <select id="type-of-credit" name="credit-type">
+          <option value="novalue" selected>Выберете цель кредита</option>
+          <option value="mortgage">Ипотечное кредитование</option>
+          <option value="automobile">Автомобильное кредитование</option>
+          <option value="consumer">Потребительский кредит</option>
+        </select>
+      </fieldset>
+    
+      <h3>Шаг 2. Введите параметры кредита</h3>
+      <fieldset>
+        <label for="cost-of-property">Стоимость недвижимости</label>
+        <div class="cost-of-property__scale">
+          <span class="operator minus">-</span>
           <input
             autocomplete="off"
-            class="first-payment__input"
-            id="first-payment"
+            class="cost-of-property__input"
+            id="cost-of-property"
             type="text"
-            value="${firstPayment} рублей"
+            value="${costOfProperty} рублей"
             required
           />
-          <div class="percent-slider">
-            <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
-            <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
-          </div>
-        </fieldset>
+          <span class="operator plus">+</span>
+        </div>
+        <p>От 1 200 000 до 25 000 000 рублей</p>
+      </fieldset>
 
-        <fieldset>
-          <label for="credit-period">Срок кредитования</label>
-          <input
-            autocomplete="off"
-            class="credit-period__input"
-            id="credit-period"
-            type="text"
-            value="${periodOfCredit} лет"
-            required
-          />
-          <div class="years-slider">
-            <output for="credit-period__years" style="left: ${periodOfCredit * 23 - 110}px">${periodOfCredit}лет</output>
-            <input type="range" id="credit-period__years" min="5" max="30" step="1" value="${periodOfCredit}">
-          </div>
-        </fieldset>
+      <fieldset>
+        <label for="first-payment">Первоначальный взнос</label>
+        <input
+          autocomplete="off"
+          class="first-payment__input"
+          id="first-payment"
+          type="text"
+          value="${firstPayment} рублей"
+          required
+        />
+        <div class="percent-slider">
+          <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
+          <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
+        </div>
+      </fieldset>
 
-        <fieldset class="mothers-capital__fieldset">
-          <input type="checkbox" name="mothers-capital" id="mothers-capital__input">
-          <label for="mothers-capital__input">Использовать материнский капитал</label>
-        </fieldset>
+      <fieldset>
+        <label for="credit-period">Срок кредитования</label>
+        <input
+          autocomplete="off"
+          class="credit-period__input"
+          id="credit-period"
+          type="text"
+          value="${periodOfCredit} лет"
+          required
+        />
+        <div class="years-slider">
+          <output for="credit-period__years" style="left: ${periodOfCredit * 23 - 110}px">${periodOfCredit}лет</output>
+          <input type="range" id="credit-period__years" min="5" max="30" step="1" value="${periodOfCredit}">
+        </div>
+      </fieldset>
 
-      </form>
-    </div>`
+      <fieldset class="mothers-capital__fieldset">
+        <input type="checkbox" name="mothers-capital" id="mothers-capital__input">
+        <label for="mothers-capital__input">Использовать материнский капитал</label>
+      </fieldset>
+    </form>`
   );
 };
 
@@ -104,7 +100,7 @@ export default class Calculation extends AbstractSmartComponent {
   }
 
   getChangedDataByView() {
-    const form = this.getElement().querySelector(`form`);
+    const form = this.getElement();
     return new FormData(form);
   }
 
@@ -134,10 +130,9 @@ export default class Calculation extends AbstractSmartComponent {
   }
 
   setCalculateResultHandler(handler) {
-    const element = this.getElement();
-    const form = element.querySelector(`form`);
-    const operatorMinus = element.querySelector(`.minus`);
-    const operatorPlus = element.querySelector(`.plus`);
+    const form = this.getElement();
+    const operatorMinus = form.querySelector(`.minus`);
+    const operatorPlus = form.querySelector(`.plus`);
 
     form.addEventListener(`change`, handler);
     operatorMinus.addEventListener(`click`, handler);
@@ -148,14 +143,13 @@ export default class Calculation extends AbstractSmartComponent {
 
 
   _subscribeOnEvents() {
-    const element = this.getElement();
+    const form = this.getElement();
 
-    element.querySelector(`form`)
-        .addEventListener(`submit`, (evt) => {
-          evt.preventDefault();
-        });
+    form.addEventListener(`submit`, (evt) => {
+      evt.preventDefault();
+    });
 
-    const costOfProperty = element.querySelector(`#cost-of-property`);
+    const costOfProperty = form.querySelector(`#cost-of-property`);
 
     costOfProperty.addEventListener(`change`, (evt) => {
       if (isNaN(Number(evt.target.value))) {
@@ -191,7 +185,7 @@ export default class Calculation extends AbstractSmartComponent {
       }
     });
 
-    element.querySelector(`.cost-of-property__scale`)
+    form.querySelector(`.cost-of-property__scale`)
         .addEventListener(`click`, (evt) => {
           evt.preventDefault();
           if (evt.target.className !== `operator minus` && evt.target.className !== `operator plus`) {
@@ -214,7 +208,7 @@ export default class Calculation extends AbstractSmartComponent {
           }
         });
 
-    const firstPayment = element.querySelector(`#first-payment`);
+    const firstPayment = form.querySelector(`#first-payment`);
     const onChangeCostHandler = (evt) => {
       if (isNaN(Number(evt.target.value))) {
         alert(`Введите числовое значение`);
@@ -261,14 +255,14 @@ export default class Calculation extends AbstractSmartComponent {
       }
     });
 
-    element.querySelector(`#first-payment__percent`)
+    form.querySelector(`#first-payment__percent`)
         .addEventListener(`change`, (evt) => {
           this._firstPaymentPercantage = evt.target.value;
           this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
           this.reRender();
         });
 
-    const periodOfCredit = element.querySelector(`#credit-period`);
+    const periodOfCredit = form.querySelector(`#credit-period`);
     const onChangePeriodHandler = (evt) => {
       if (isNaN(Number(evt.target.value))) {
         alert(`Введите числовое значение`);
@@ -310,13 +304,13 @@ export default class Calculation extends AbstractSmartComponent {
       }
     });
 
-    element.querySelector(`#credit-period__years`)
+    form.querySelector(`#credit-period__years`)
         .addEventListener(`change`, (evt) => {
           this._periodOfCredit = evt.target.value;
           this.reRender();
         });
 
-    element.querySelector(`#mothers-capital__input`)
+    form.querySelector(`#mothers-capital__input`)
         .addEventListener(`change`, (evt) => {
           this._costOfMothersCapital = evt.target.checked ? CAPITAL_OF_MOTHER : 0;
         });
