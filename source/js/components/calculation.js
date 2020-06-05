@@ -19,20 +19,19 @@ const createCalculationTemplate = (options = {}) => {
     `<div class="page-calculation">
       <div class="container clearfix">
         <h2>Кредитный калькулятор</h2>
-
-        <div class="page-calculation__first-step">
-          <h3>Шаг 1. Цель кредита</h3>
-          <select id="type-of-credit" name="credit-type">
-            <option value="novalue" selected>Выберете цель кредита</option>
-            <option value="mortgage">Ипотечное кредитование</option>
-            <option value="automobile">Автомобильное кредитование</option>
-            <option value="consumer">Потребительский кредит</option>
-          </select>
-        </div>
-
         <form class="page-calculation__parameters">
-          <h3>Шаг 2. Введите параметры кредита</h3>
 
+          <h3>Шаг 1. Цель кредита</h3>
+          <fieldset>
+            <select id="type-of-credit" name="credit-type">
+              <option value="novalue" selected>Выберете цель кредита</option>
+              <option value="mortgage">Ипотечное кредитование</option>
+              <option value="automobile">Автомобильное кредитование</option>
+              <option value="consumer">Потребительский кредит</option>
+            </select>
+          </fieldset>
+        
+          <h3>Шаг 2. Введите параметры кредита</h3>
           <fieldset>
             <label for="cost-of-property">Стоимость недвижимости</label>
             <div class="cost-of-property__scale">
@@ -103,6 +102,11 @@ export default class Calculation extends AbstractSmartComponent {
     this._periodOfCredit = MIN_CREDIT_PERIOD;
     this._costOfMothersCapital = 0;
     this._subscribeOnEvents();
+  }
+
+  getChangedDataByView() {
+    const form = this.getElement().querySelector(`form`);
+    return new FormData(form);
   }
 
   getTemplate() {

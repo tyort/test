@@ -1,4 +1,9 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
+import CalculationComponent from './calculation.js';
+
+const parseFormData = (formData) => {
+  console.log(`Привет`);
+}
 
 const createOurOfferTemplate = () => {
   return (
@@ -17,9 +22,15 @@ const createOurOfferTemplate = () => {
 export default class OurOffer extends AbstractSmartComponent {
   constructor() {
     super();
+    this._calculationComponent = new CalculationComponent();
+    this._formData = this._calculationComponent.getChangedDataByView();
   }
 
   getTemplate() {
     return createOurOfferTemplate();
+  }
+
+  render() {
+    parseFormData(this._formData);
   }
 }
