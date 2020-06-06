@@ -12,6 +12,13 @@
   const OPERATORS_STEP_COST = 100000;
   const CAPITAL_OF_MOTHER = 470000;
 
+  const sdfwsfwe = [
+    [`novalue`, `Выберете цель кредита`],
+    [`mortgage`, `Ипотечное кредитование`],
+    [`automobile`, `Автомобильное кредитование`],
+    [`consumer`, `Потребительский кредит`],
+  ];
+
   const renderComponent = (container, element, place) => {
     switch (place) {
       case `afterBegin`:
@@ -96,18 +103,28 @@
 
   /* eslint-disable no-alert */
 
+
+  const createOptions = (options, typeOfCredit) => {
+    return options
+        .map((item) => {
+          const isSelected = typeOfCredit === item[0] ? `selected` : ``;
+          return (
+            `<option value="${item[0]}" ${isSelected}>${item[1]}</option>`
+          );
+        })
+        .join(``);
+  };
+
   const createCalculationTemplate = (options = {}) => {
-    const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit} = options;
+    const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit} = options;
+    const addOptions = createOptions(sdfwsfwe, typeOfCredit);
 
     return (
       `<form class="page-calculation__parameters">
       <h3>Шаг 1. Цель кредита</h3>
       <fieldset>
         <select id="type-of-credit" name="credit-type">
-          <option value="novalue" selected>Выберете цель кредита</option>
-          <option value="mortgage">Ипотечное кредитование</option>
-          <option value="automobile">Автомобильное кредитование</option>
-          <option value="consumer">Потребительский кредит</option>
+          ${addOptions}
         </select>
       </fieldset>
     
@@ -180,6 +197,7 @@
       this._periodOfCredit = MIN_CREDIT_PERIOD;
       this._costOfMothersCapital = 0;
       this._calculateResultHandler = null;
+      this._typeOfCredit = sdfwsfwe[0][0];
       this._subscribeOnEvents();
     }
 
@@ -193,13 +211,15 @@
         costOfProperty: this._costOfProperty,
         firstPayment: this._firstPayment,
         firstPaymentPercantage: this._firstPaymentPercantage,
-        periodOfCredit: this._periodOfCredit
+        periodOfCredit: this._periodOfCredit,
+        typeOfCredit: this._typeOfCredit
       });
     }
 
     reRender() {
       super.reRender();
       this.recoveryListeners();
+      this._calculateResultHandler();
     }
 
     recoveryListeners() {
@@ -213,16 +233,7 @@
     }
 
     setCalculateResultHandler(handler) {
-      const form = this.getElement();
-      const operatorMinus = form.querySelector(`.minus`);
-      const operatorPlus = form.querySelector(`.plus`);
-
-      form.addEventListener(`change`, handler);
-      operatorMinus.addEventListener(`click`, handler);
-      operatorPlus.addEventListener(`click`, handler);
-
       this._calculateResultHandler = handler;
-      console.log(handler);
     }
 
 
@@ -232,6 +243,12 @@
       form.addEventListener(`submit`, (evt) => {
         evt.preventDefault();
       });
+
+      form.querySelector(`#type-of-credit`)
+          .addEventListener(`change`, (evt) => {
+            this._typeOfCredit = evt.target.value;
+            this.reset();
+          });
 
       const costOfProperty = form.querySelector(`#cost-of-property`);
 

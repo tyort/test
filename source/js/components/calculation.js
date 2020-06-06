@@ -10,21 +10,32 @@ import {
   MAX_CREDIT_PERIOD,
   MIN_CREDIT_PERIOD,
   OPERATORS_STEP_COST,
-  CAPITAL_OF_MOTHER
+  CAPITAL_OF_MOTHER,
+  sdfwsfwe
 } from '../formulas.js';
 
+
+const createOptions = (options, typeOfCredit) => {
+  return options
+      .map((item) => {
+        const isSelected = typeOfCredit === item[0] ? `selected` : ``;
+        return (
+          `<option value="${item[0]}" ${isSelected}>${item[1]}</option>`
+        );
+      })
+      .join(``);
+};
+
 const createCalculationTemplate = (options = {}) => {
-  const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit} = options;
+  const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit} = options;
+  const addOptions = createOptions(sdfwsfwe, typeOfCredit);
 
   return (
     `<form class="page-calculation__parameters">
       <h3>Шаг 1. Цель кредита</h3>
       <fieldset>
         <select id="type-of-credit" name="credit-type">
-          <option value="novalue" selected>Выберете цель кредита</option>
-          <option value="mortgage">Ипотечное кредитование</option>
-          <option value="automobile">Автомобильное кредитование</option>
-          <option value="consumer">Потребительский кредит</option>
+          ${addOptions}
         </select>
       </fieldset>
     
@@ -97,6 +108,7 @@ export default class Calculation extends AbstractSmartComponent {
     this._periodOfCredit = MIN_CREDIT_PERIOD;
     this._costOfMothersCapital = 0;
     this._calculateResultHandler = null;
+    this._typeOfCredit = sdfwsfwe[0][0];
     this._subscribeOnEvents();
   }
 
@@ -110,13 +122,15 @@ export default class Calculation extends AbstractSmartComponent {
       costOfProperty: this._costOfProperty,
       firstPayment: this._firstPayment,
       firstPaymentPercantage: this._firstPaymentPercantage,
-      periodOfCredit: this._periodOfCredit
+      periodOfCredit: this._periodOfCredit,
+      typeOfCredit: this._typeOfCredit
     });
   }
 
   reRender() {
     super.reRender();
     this.recoveryListeners();
+    this._calculateResultHandler();
   }
 
   recoveryListeners() {
@@ -130,16 +144,7 @@ export default class Calculation extends AbstractSmartComponent {
   }
 
   setCalculateResultHandler(handler) {
-    const form = this.getElement();
-    const operatorMinus = form.querySelector(`.minus`);
-    const operatorPlus = form.querySelector(`.plus`);
-
-    form.addEventListener(`change`, handler);
-    operatorMinus.addEventListener(`click`, handler);
-    operatorPlus.addEventListener(`click`, handler);
-
     this._calculateResultHandler = handler;
-    console.log(handler);
   }
 
 
@@ -149,6 +154,12 @@ export default class Calculation extends AbstractSmartComponent {
     form.addEventListener(`submit`, (evt) => {
       evt.preventDefault();
     });
+
+    form.querySelector(`#type-of-credit`)
+        .addEventListener(`change`, (evt) => {
+          this._typeOfCredit = evt.target.value;
+          this.reset();
+        });
 
     const costOfProperty = form.querySelector(`#cost-of-property`);
 
