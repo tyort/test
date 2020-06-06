@@ -12,7 +12,7 @@
   const OPERATORS_STEP_COST = 100000;
   const CAPITAL_OF_MOTHER = 470000;
 
-  const sdfwsfwe = [
+  const creditTypes = [
     [`novalue`, `Выберете цель кредита`],
     [`mortgage`, `Ипотечное кредитование`],
     [`automobile`, `Автомобильное кредитование`],
@@ -77,27 +77,63 @@
     }
   }
 
-  const createOurOfferTemplate = () => {
+  const createOurOfferTemplate = (options = {}) => {
+    const {costOfMortgage, creditType} = options;
+    const isElementHidden = creditType === creditTypes[0][0] ? `visually-hidden` : ``;
+
     return (
-      `<div class="page-calculation__our-offer">
-      <h3>Наше предложение</h3>
-      <div class="calculation__result">
-        <div><p><span>1 300 000 рублей</span></br>Сумма ипотеки</p></div>
-        <div><p><span>9,40%</span></br>Процентная ставка</p></div>
-        <div><p><span>27 000 рублей</span></br>Ежемесячный платеж</p></div>
-        <div><p><span>60 000 рублей</span></br>Необходимый доход</p></div>
-      </div>
-    </div>`
+      `<div class="page-calculation__our-offer ${isElementHidden}">
+      ${costOfMortgage >= 500000
+      ? `<h3>Наше предложение</h3>
+          <div class="calculation__result">
+            <div><p><span>${costOfMortgage} рублей</span></br>Сумма ипотеки</p></div>
+            <div><p><span>9,40%</span></br>Процентная ставка</p></div>
+            <div><p><span>27 000 рублей</span></br>Ежемесячный платеж</p></div>
+            <div><p><span>60 000 рублей</span></br>Необходимый доход</p></div>
+          </div>
+        </div>`
+      : `<p>
+          <span>Наш банк не выдает ипотечные кредиты
+          меньше 200 000 рублей.</span></br>
+          Попробуйте использовать другие параметры для расчета.
+        <p>`
+    }`
     );
   };
 
   class OurOffer extends AbstractSmartComponent {
     constructor() {
       super();
+
+      this._creditType = creditTypes[0][0];
+      this._propertyCost = null;
+      this._firstPayment = null;
+      this._girstPayPercent = null;
+      this._yearsCount = null;
+      this._isMotherUsed = false;
+      this._costOfMortgage = null;
+      this._banksPercentRate = null;
     }
 
     getTemplate() {
-      return createOurOfferTemplate();
+      return createOurOfferTemplate({
+        costOfMortgage: this._costOfMortgage,
+        creditType: this._creditType
+      });
+    }
+
+    reRender(viewInformation) {
+      this._creditType = viewInformation.creditType;
+      this._propertyCost = viewInformation.propertyCost;
+      this._firstPayment = viewInformation.firstPayment;
+      this._girstPayPercent = viewInformation.girstPayPercent;
+      this._yearsCount = viewInformation.yearsCount;
+      this._isMotherUsed = viewInformation.isMotherUsed;
+
+      const mothersCapital = this._isMotherUsed ? CAPITAL_OF_MOTHER : 0;
+      this._costOfMortgage = this._propertyCost - this._firstPayment - mothersCapital;
+
+      super.reRender();
     }
   }
 
@@ -116,8 +152,9 @@
   };
 
   const createCalculationTemplate = (options = {}) => {
-    const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit} = options;
-    const addOptions = createOptions(sdfwsfwe, typeOfCredit);
+    const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit, isMotherUsed} = options;
+    const addOptions = createOptions(creditTypes, typeOfCredit);
+    const isElementHidden = typeOfCredit === creditTypes[0][0] ? `visually-hidden` : ``;
 
     return (
       `<form class="page-calculation__parameters">
@@ -128,8 +165,8 @@
         </select>
       </fieldset>
     
-      <h3>Шаг 2. Введите параметры кредита</h3>
-      <fieldset>
+      <h3 class="${isElementHidden}">Шаг 2. Введите параметры кредита</h3>
+      <fieldset class="${isElementHidden}">
         <label for="cost-of-property">Стоимость недвижимости</label>
         <div class="cost-of-property__scale">
           <span class="operator minus">-</span>
@@ -147,11 +184,12 @@
         <p>От 1 200 000 до 25 000 000 рублей</p>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="${isElementHidden}">
         <label for="first-payment">Первоначальный взнос</label>
         <input
           autocomplete="off"
           class="first-payment__input"
+          name="first-payment"
           id="first-payment"
           type="text"
           value="${firstPayment} рублей"
@@ -159,11 +197,17 @@
         />
         <div class="percent-slider">
           <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
-          <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
+          <input 
+            type="range"
+            id="first-payment__percent"
+            name="first-payment-percent"
+            min="10" max="100" step="5"
+            value="${firstPaymentPercantage}"
+          />
         </div>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="${isElementHidden}">
         <label for="credit-period">Срок кредитования</label>
         <input
           autocomplete="off"
@@ -179,8 +223,8 @@
         </div>
       </fieldset>
 
-      <fieldset class="mothers-capital__fieldset">
-        <input type="checkbox" name="mothers-capital" id="mothers-capital__input">
+      <fieldset class="${isElementHidden}">
+        <input type="checkbox" name="mothers-capital" id="mothers-capital__input" ${isMotherUsed ? `checked` : ``}>
         <label for="mothers-capital__input">Использовать материнский капитал</label>
       </fieldset>
     </form>`
@@ -195,9 +239,9 @@
       this._mortgageSize = MIN_COST_MORTGAGE;
       this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
       this._periodOfCredit = MIN_CREDIT_PERIOD;
-      this._costOfMothersCapital = 0;
+      this._isMotherUsed = false;
       this._calculateResultHandler = null;
-      this._typeOfCredit = sdfwsfwe[0][0];
+      this._typeOfCredit = creditTypes[0][0];
       this._subscribeOnEvents();
     }
 
@@ -212,7 +256,8 @@
         firstPayment: this._firstPayment,
         firstPaymentPercantage: this._firstPaymentPercantage,
         periodOfCredit: this._periodOfCredit,
-        typeOfCredit: this._typeOfCredit
+        typeOfCredit: this._typeOfCredit,
+        isMotherUsed: this._isMotherUsed
       });
     }
 
@@ -413,7 +458,8 @@
 
       form.querySelector(`#mothers-capital__input`)
           .addEventListener(`change`, (evt) => {
-            this._costOfMothersCapital = evt.target.checked ? CAPITAL_OF_MOTHER : 0;
+            this._isMotherUsed = evt.target.checked;
+            this.reRender();
           });
     }
   }
@@ -447,20 +493,28 @@
   const parseFormData = (formData) => {
     let propertyCost = formData.get(`cost-of-property`);
     propertyCost = Number(propertyCost.slice(0, propertyCost.length - 7));
+    let firstPayment = formData.get(`first-payment`);
+    firstPayment = Number(firstPayment.slice(0, firstPayment.length - 7));
+    let firstPayPercent = document.querySelector(`.percent-slider`).querySelector(`output`).textContent;
+    firstPayPercent = Number(firstPayPercent.slice(0, firstPayPercent.length - 1));
+    let yearsCount = document.querySelector(`.years-slider`).querySelector(`output`).textContent;
+    yearsCount = Number(yearsCount.slice(0, yearsCount.length - 3));
+    const isMotherUsed = document.querySelector(`#mothers-capital__input`).hasAttribute(`checked`);
 
     return {
       'creditType': formData.get(`credit-type`),
-      propertyCost
+      propertyCost,
+      firstPayment,
+      firstPayPercent,
+      yearsCount,
+      isMotherUsed
     };
   };
 
   calculationComponent.setCalculateResultHandler(() => {
     const formData = calculationComponent.getChangedDataByView();
     let viewInformation = parseFormData(formData);
-    console.log(viewInformation); // срабатывает 2. Не актуальные данные
-
-    // const formData = calculationComponent.getChangedDataByView();
-    // let pointModel = parseFormData(formData);
+    ourOfferComponent.reRender(viewInformation);
   });
 
 }());

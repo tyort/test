@@ -10,8 +10,7 @@ import {
   MAX_CREDIT_PERIOD,
   MIN_CREDIT_PERIOD,
   OPERATORS_STEP_COST,
-  CAPITAL_OF_MOTHER,
-  sdfwsfwe
+  creditTypes
 } from '../formulas.js';
 
 
@@ -27,8 +26,9 @@ const createOptions = (options, typeOfCredit) => {
 };
 
 const createCalculationTemplate = (options = {}) => {
-  const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit} = options;
-  const addOptions = createOptions(sdfwsfwe, typeOfCredit);
+  const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit, isMotherUsed} = options;
+  const addOptions = createOptions(creditTypes, typeOfCredit);
+  const isElementHidden = typeOfCredit === creditTypes[0][0] ? `visually-hidden` : ``;
 
   return (
     `<form class="page-calculation__parameters">
@@ -39,8 +39,8 @@ const createCalculationTemplate = (options = {}) => {
         </select>
       </fieldset>
     
-      <h3>Шаг 2. Введите параметры кредита</h3>
-      <fieldset>
+      <h3 class="${isElementHidden}">Шаг 2. Введите параметры кредита</h3>
+      <fieldset class="${isElementHidden}">
         <label for="cost-of-property">Стоимость недвижимости</label>
         <div class="cost-of-property__scale">
           <span class="operator minus">-</span>
@@ -58,11 +58,12 @@ const createCalculationTemplate = (options = {}) => {
         <p>От 1 200 000 до 25 000 000 рублей</p>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="${isElementHidden}">
         <label for="first-payment">Первоначальный взнос</label>
         <input
           autocomplete="off"
           class="first-payment__input"
+          name="first-payment"
           id="first-payment"
           type="text"
           value="${firstPayment} рублей"
@@ -70,11 +71,17 @@ const createCalculationTemplate = (options = {}) => {
         />
         <div class="percent-slider">
           <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
-          <input type="range" id="first-payment__percent" min="10" max="100" step="5" value="${firstPaymentPercantage}">
+          <input 
+            type="range"
+            id="first-payment__percent"
+            name="first-payment-percent"
+            min="10" max="100" step="5"
+            value="${firstPaymentPercantage}"
+          />
         </div>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="${isElementHidden}">
         <label for="credit-period">Срок кредитования</label>
         <input
           autocomplete="off"
@@ -90,8 +97,8 @@ const createCalculationTemplate = (options = {}) => {
         </div>
       </fieldset>
 
-      <fieldset class="mothers-capital__fieldset">
-        <input type="checkbox" name="mothers-capital" id="mothers-capital__input">
+      <fieldset class="${isElementHidden}">
+        <input type="checkbox" name="mothers-capital" id="mothers-capital__input" ${isMotherUsed ? `checked` : ``}>
         <label for="mothers-capital__input">Использовать материнский капитал</label>
       </fieldset>
     </form>`
@@ -106,9 +113,9 @@ export default class Calculation extends AbstractSmartComponent {
     this._mortgageSize = MIN_COST_MORTGAGE;
     this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
     this._periodOfCredit = MIN_CREDIT_PERIOD;
-    this._costOfMothersCapital = 0;
+    this._isMotherUsed = false;
     this._calculateResultHandler = null;
-    this._typeOfCredit = sdfwsfwe[0][0];
+    this._typeOfCredit = creditTypes[0][0];
     this._subscribeOnEvents();
   }
 
@@ -123,7 +130,8 @@ export default class Calculation extends AbstractSmartComponent {
       firstPayment: this._firstPayment,
       firstPaymentPercantage: this._firstPaymentPercantage,
       periodOfCredit: this._periodOfCredit,
-      typeOfCredit: this._typeOfCredit
+      typeOfCredit: this._typeOfCredit,
+      isMotherUsed: this._isMotherUsed
     });
   }
 
@@ -324,7 +332,8 @@ export default class Calculation extends AbstractSmartComponent {
 
     form.querySelector(`#mothers-capital__input`)
         .addEventListener(`change`, (evt) => {
-          this._costOfMothersCapital = evt.target.checked ? CAPITAL_OF_MOTHER : 0;
+          this._isMotherUsed = evt.target.checked;
+          this.reRender();
         });
   }
 }

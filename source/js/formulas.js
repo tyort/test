@@ -9,14 +9,7 @@ export const MIN_CREDIT_PERIOD = 5;
 export const OPERATORS_STEP_COST = 100000;
 export const CAPITAL_OF_MOTHER = 470000;
 
-export const TypeOfCredit = {
-  MORTGAGE: `mortgage`,
-  NOVALUE: `novalue`,
-  AUTOMOBILE: `automobile`,
-  CONSUMER: `consumer`
-};
-
-export const sdfwsfwe = [
+export const creditTypes = [
   [`novalue`, `Выберете цель кредита`],
   [`mortgage`, `Ипотечное кредитование`],
   [`automobile`, `Автомобильное кредитование`],

@@ -53,7 +53,7 @@ label {
 
 .page-calculation {
   display: block;
-  height: 765px;
+  max-height: 765px;
   border: $bred;
   padding-bottom: 110px;
   width: 1170px;
@@ -61,7 +61,7 @@ label {
 
   form {
     display: flex;
-    height: 666px;
+    max-height: 666px;
     border: $bred;
     flex-direction: column;
     width: 600px;
@@ -114,4 +114,8 @@ label {
     flex-wrap: wrap;
     justify-content: space-between;
   }
+}
+
+.visually-hidden {
+  display: none;
 }
