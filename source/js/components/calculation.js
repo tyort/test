@@ -135,6 +135,10 @@ export default class Calculation extends AbstractSmartComponent {
     });
   }
 
+  setCalculateResultHandler(handler) {
+    this._calculateResultHandler = handler;
+  }
+
   reRender() {
     super.reRender();
     this.recoveryListeners();
@@ -150,11 +154,6 @@ export default class Calculation extends AbstractSmartComponent {
     this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
     this.reRender();
   }
-
-  setCalculateResultHandler(handler) {
-    this._calculateResultHandler = handler;
-  }
-
 
   _subscribeOnEvents() {
     const form = this.getElement();
