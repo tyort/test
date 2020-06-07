@@ -15,6 +15,7 @@ const createOurOfferTemplate = (options = {}) => {
             <div><p><span>27 000 рублей</span></br>Ежемесячный платеж</p></div>
             <div><p><span>60 000 рублей</span></br>Необходимый доход</p></div>
           </div>
+          <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>`
       : `<p>
           <span>Наш банк не выдает ипотечные кредиты

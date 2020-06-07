@@ -91,6 +91,7 @@
             <div><p><span>27 000 рублей</span></br>Ежемесячный платеж</p></div>
             <div><p><span>60 000 рублей</span></br>Необходимый доход</p></div>
           </div>
+          <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>`
       : `<p>
           <span>Наш банк не выдает ипотечные кредиты
@@ -478,9 +479,50 @@
     }
   }
 
+  const createStepThreeTemplate = () => {
+    return (`<div class="page-calculation__step-three">
+            <h3>Шаг 3. Оформление заявки</h3>
+            <table class="page-calculation__request-information">
+              <tr>
+                <td class="request-article">Номер заявки</td>
+                <td>№ 0010</td>
+              </tr>
+              <tr>
+                <td class="request-article">Цель кредита</td>
+                <td>Ипотека</td>
+              </tr>
+              <tr>
+                <td class="request-article">Стоимсоть недвижимости</td>
+                <td>2000000 рублей</td>
+              </tr>
+              <tr>
+                <td class="request-article">Первоначальный взнос</td>
+                <td>200000 рублей</td>
+              </tr>
+              <tr>
+                <td class="request-article">Срок кредитования</td>
+                <td>5 лет</td>
+              </tr>
+            </table>
+            <button class="calculation__send-btn" type="submit">Отправить</button>
+          </div>`);
+  };
+
+
+  class StepThree extends AbstractSmartComponent {
+    constructor() {
+      super();
+    }
+
+    getTemplate() {
+      return createStepThreeTemplate();
+    }
+  }
+
   const pageCalculationComponent = new PageCalculation();
   const calculationComponent = new Calculation();
   const ourOfferComponent = new OurOffer();
+  const stepThreeComponent = new StepThree();
 
   const pageOffersMenu = document.querySelector(`.page-offers-menu`);
   renderComponent(pageOffersMenu, pageCalculationComponent, `afterEnd`);
@@ -489,6 +531,9 @@
   renderComponent(pageCalculation, calculationComponent);
   const titleName = pageCalculation.querySelector(`h2`);
   renderComponent(titleName, ourOfferComponent, `afterEnd`);
+
+  const pageCalculationParameters = document.querySelector(`.page-calculation__parameters`);
+  renderComponent(pageCalculationParameters, stepThreeComponent, `afterEnd`);
 
   const parseFormData = (formData) => {
     let propertyCost = formData.get(`cost-of-property`);

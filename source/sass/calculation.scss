@@ -15,6 +15,10 @@ h3 {
   line-height: 140%;
 }
 
+.visually-hidden {
+  display: none;
+}
+
 input {
   text-align: center;
   width: 594px;
@@ -53,7 +57,7 @@ label {
 
 .page-calculation {
   display: block;
-  max-height: 765px;
+  max-height: 1557px;
   border: $bred;
   padding-bottom: 110px;
   width: 1170px;
@@ -116,6 +120,54 @@ label {
   }
 }
 
-.visually-hidden {
-  display: none;
+.calculation__request-btn {
+  width: 100%;
+  height: 51px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.page-calculation__step-three {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: $bred;
+  height: 582px;
+  width: 630px;
+  margin: 70px auto 0;
+  padding: 70px;
+
+  .page-calculation__request-information {
+    width: 100%;
+    border-collapse: collapse;
+    line-height: 65px;
+
+    td {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 140%;
+      border-bottom: 1px solid #C4C4C4;
+      text-align: right;
+    }
+
+    td.request-article {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 140%;
+      text-align: left;
+    }
+  }
+
+  .calculation__send-btn {
+    width: 198px;
+    height: 51px;
+    margin-top: 40px;
+  }
 }
