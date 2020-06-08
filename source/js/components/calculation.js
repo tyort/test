@@ -5,14 +5,41 @@ import {
   MIN_FIRST_PAYMENT_PERCENTAGE,
   MIN_COST_MORTGAGE,
   ENTER_KEY_CODE,
-  MAX_COST_OF_PROPERTY,
-  MIN_COST_OF_PROPERTY,
   MAX_CREDIT_PERIOD,
   MIN_CREDIT_PERIOD,
   OPERATORS_STEP_COST,
   creditTypes
 } from '../formulas.js';
 
+const getActualFeaturesNames = (creditType) => {
+  let creditTypeTitle = ``;
+  let maxPuschaseCost = null;
+  let minPuschaseCost = null;
+
+  switch (creditType) {
+    case `automobile`:
+      creditTypeTitle = `Стоимость автомобиля`;
+      maxPuschaseCost = 5000000;
+      minPuschaseCost = 500000;
+      break;
+    case `consumer`:
+      creditTypeTitle = `Сумма потребительского кредита`;
+      maxPuschaseCost = 3000000;
+      minPuschaseCost = 50000;
+      break;
+    default:
+      creditTypeTitle = `Стоимость недвижимости`;
+      maxPuschaseCost = 25000000;
+      minPuschaseCost = 1200000;
+      break;
+  }
+
+  return {
+    creditTypeTitle,
+    maxPuschaseCost,
+    minPuschaseCost
+  };
+};
 
 const createOptions = (options, typeOfCredit) => {
   return options
@@ -41,7 +68,7 @@ const createCalculationTemplate = (options = {}) => {
     
       <h3 class="${isElementHidden}">Шаг 2. Введите параметры кредита</h3>
       <fieldset class="${isElementHidden}">
-        <label for="cost-of-property">Стоимость недвижимости</label>
+        <label for="cost-of-property">${getActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
         <div class="cost-of-property__scale">
           <span class="operator minus">-</span>
           <input
@@ -55,7 +82,7 @@ const createCalculationTemplate = (options = {}) => {
           />
           <span class="operator plus">+</span>
         </div>
-        <p>От 1 200 000 до 25 000 000 рублей</p>
+        <p>От ${getActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${getActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
       </fieldset>
 
       <fieldset class="${isElementHidden}">
@@ -176,7 +203,7 @@ export default class Calculation extends AbstractSmartComponent {
         this.reset();
 
       } else {
-        if (Number(evt.target.value) <= MAX_COST_OF_PROPERTY && Number(evt.target.value) >= MIN_COST_OF_PROPERTY) {
+        if (Number(evt.target.value) <= getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost && Number(evt.target.value) >= getActualFeaturesNames(this._typeOfCredit).minPuschaseCost) {
           this._costOfProperty = Number(evt.target.value);
           this.reset();
 
@@ -213,16 +240,16 @@ export default class Calculation extends AbstractSmartComponent {
 
           if (evt.target.className === `operator minus`) {
             this._costOfProperty -= OPERATORS_STEP_COST;
-            this._costOfProperty = this._costOfProperty >= MIN_COST_OF_PROPERTY
+            this._costOfProperty = this._costOfProperty >= getActualFeaturesNames(this._typeOfCredit).minPuschaseCost
               ? this._costOfProperty
-              : MIN_COST_OF_PROPERTY;
+              : getActualFeaturesNames(this._typeOfCredit).minPuschaseCost;
             this.reset();
 
           } else {
             this._costOfProperty += OPERATORS_STEP_COST;
-            this._costOfProperty = this._costOfProperty <= MAX_COST_OF_PROPERTY
+            this._costOfProperty = this._costOfProperty <= getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost
               ? this._costOfProperty
-              : MAX_COST_OF_PROPERTY;
+              : getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost;
             this.reset();
           }
         });
