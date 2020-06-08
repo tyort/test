@@ -1,8 +1,7 @@
 import OurOfferComponent from "./components/our-offer.js";
 import CalculationComponent from "./components/calculation.js";
 import PageCalculationComponent from "./components/page-calculation.js";
-import RequestComponent from "./components/step-three.js";
-
+import RequestComponent from "./components/request.js";
 import {renderComponent} from './formulas.js';
 
 const pageCalculationComponent = new PageCalculationComponent();
@@ -42,13 +41,16 @@ const parseFormData = (formData) => {
   };
 };
 
+let viewInformation = {};
+
 calculationComponent.setCalculateResultHandler(() => {
   const formData = calculationComponent.getChangedDataByView();
-  let viewInformation = parseFormData(formData);
+  viewInformation = parseFormData(formData);
   ourOfferComponent.reRender(viewInformation);
+  requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
 });
 
 ourOfferComponent.setCreateRequestHandler(() => {
-  console.log(`пока`);
+  requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: false}));
 });
 

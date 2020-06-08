@@ -1,8 +1,6 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
 import {CAPITAL_OF_MOTHER, creditTypes} from '../formulas.js';
 
-const FIRST_REQUEST_NUMBER = 11;
-
 const createOurOfferTemplate = (options = {}) => {
   const {costOfMortgage, creditType, annualPercentRate, mounthlyPayment, requiredIncome} = options;
   const isElementHidden = creditType === creditTypes[0][0] ? `visually-hidden` : ``;
@@ -55,12 +53,6 @@ export default class OurOffer extends AbstractSmartComponent {
     });
   }
 
-  getChangedData() {
-    return {
-
-    };
-  }
-
   setCreateRequestHandler(handler) {
     this._createRequestHandler = handler;
   }
@@ -76,7 +68,7 @@ export default class OurOffer extends AbstractSmartComponent {
     const mothersCapital = this._isMotherUsed ? CAPITAL_OF_MOTHER : 0;
     this._costOfMortgage = this._propertyCost - this._firstPayment - mothersCapital;
 
-    const currentFirstPayPercent = (this._firstPayment + mothersCapital) * 100 / this._costOfMortgage;
+    const currentFirstPayPercent = this._firstPayment * 100 / this._costOfMortgage;
     this._annualPercentRate = currentFirstPayPercent >= 15 ? 8.5 : 9.4;
 
     const mounthlyPercentRate = this._annualPercentRate === 8.5 ? 0.00708 : 0.00783;
@@ -98,10 +90,11 @@ export default class OurOffer extends AbstractSmartComponent {
   _subscribeOnEvents() {
     const element = this.getElement();
 
-    element.querySelector(`.calculation__request-btn`)
-        .addEventListener(`click`, () => {
-          console.log(`Привет`);
-          this._createRequestHandler();
-        });
+    if (element.querySelector(`.calculation__request-btn`) !== null) {
+      element.querySelector(`.calculation__request-btn`)
+          .addEventListener(`click`, () => {
+            this._createRequestHandler();
+          });
+    }
   }
 }

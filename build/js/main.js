@@ -129,12 +129,6 @@
       });
     }
 
-    getChangedData() {
-      return {
-
-      };
-    }
-
     setCreateRequestHandler(handler) {
       this._createRequestHandler = handler;
     }
@@ -150,7 +144,7 @@
       const mothersCapital = this._isMotherUsed ? CAPITAL_OF_MOTHER : 0;
       this._costOfMortgage = this._propertyCost - this._firstPayment - mothersCapital;
 
-      const currentFirstPayPercent = (this._firstPayment + mothersCapital) * 100 / this._costOfMortgage;
+      const currentFirstPayPercent = this._firstPayment * 100 / this._costOfMortgage;
       this._annualPercentRate = currentFirstPayPercent >= 15 ? 8.5 : 9.4;
 
       const mounthlyPercentRate = this._annualPercentRate === 8.5 ? 0.00708 : 0.00783;
@@ -172,11 +166,12 @@
     _subscribeOnEvents() {
       const element = this.getElement();
 
-      element.querySelector(`.calculation__request-btn`)
-          .addEventListener(`click`, () => {
-            console.log(`Привет`);
-            this._createRequestHandler();
-          });
+      if (element.querySelector(`.calculation__request-btn`) !== null) {
+        element.querySelector(`.calculation__request-btn`)
+            .addEventListener(`click`, () => {
+              this._createRequestHandler();
+            });
+      }
     }
   }
 
@@ -520,29 +515,42 @@
     }
   }
 
-  const createStepThreeTemplate = () => {
-    return (`<div class="page-calculation__step-three">
+  const FIRST_REQUEST_NUMBER = 11;
+  const creditNames = new Map([
+    [`mortgage`, `Ипотека`],
+    [`automobile`, `Автокредит`],
+    [`consumer`, `Потребительский кредит`],
+  ]);
+
+  const createRequestTemplate = (options = {}) => {
+    const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
+    const sdfdfdsf = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
+
+    let requestNumberView = String(requestNumber);
+    requestNumberView = (`№ 00`).slice(0, 6 - requestNumberView.length) + requestNumberView;
+
+    return (`<div class="page-calculation__step-three ${sdfdfdsf}">
             <h3>Шаг 3. Оформление заявки</h3>
             <table class="page-calculation__request-information">
               <tr>
                 <td class="request-article">Номер заявки</td>
-                <td>№ 0010</td>
+                <td>${requestNumberView}</td>
               </tr>
               <tr>
                 <td class="request-article">Цель кредита</td>
-                <td>Ипотека</td>
+                <td>${creditNames.get(creditType)}</td>
               </tr>
               <tr>
-                <td class="request-article">Стоимсоть недвижимости</td>
-                <td>2000000 рублей</td>
+                <td class="request-article">Стоимость недвижимости</td>
+                <td>${propertyCost} рублей</td>
               </tr>
               <tr>
                 <td class="request-article">Первоначальный взнос</td>
-                <td>200000 рублей</td>
+                <td>${firstPayment} рублей</td>
               </tr>
               <tr>
                 <td class="request-article">Срок кредитования</td>
-                <td>5 лет</td>
+                <td>${yearsCount} лет</td>
               </tr>
             </table>
             <button class="calculation__send-btn" type="submit">Отправить</button>
@@ -550,20 +558,43 @@
   };
 
 
-  class StepThree extends AbstractSmartComponent {
+  class Request extends AbstractSmartComponent {
     constructor() {
       super();
+
+      this._requestNumber = FIRST_REQUEST_NUMBER;
+      this._creditType = ``;
+      this._firstPayment = null;
+      this._propertyCost = null;
+      this._yearsCount = null;
+      this._isElementHidden = true;
     }
 
     getTemplate() {
-      return createStepThreeTemplate();
+      return createRequestTemplate({
+        requestNumber: this._requestNumber,
+        creditType: this._creditType,
+        propertyCost: this._propertyCost,
+        firstPayment: this._firstPayment,
+        yearsCount: this._yearsCount,
+        isElementHidden: this._isElementHidden
+      });
+    }
+
+    reRender(request) {
+      this._creditType = request.creditType;
+      this._propertyCost = request.propertyCost;
+      this._firstPayment = request.firstPayment;
+      this._yearsCount = request.yearsCount;
+      this._isElementHidden = request.isRequestHidden;
+      super.reRender();
     }
   }
 
   const pageCalculationComponent = new PageCalculation();
   const calculationComponent = new Calculation();
   const ourOfferComponent = new OurOffer();
-  const requestComponent = new StepThree();
+  const requestComponent = new Request();
 
   const pageOffersMenu = document.querySelector(`.page-offers-menu`);
   renderComponent(pageOffersMenu, pageCalculationComponent, `afterEnd`);
@@ -597,14 +628,17 @@
     };
   };
 
+  let viewInformation = {};
+
   calculationComponent.setCalculateResultHandler(() => {
     const formData = calculationComponent.getChangedDataByView();
-    let viewInformation = parseFormData(formData);
+    viewInformation = parseFormData(formData);
     ourOfferComponent.reRender(viewInformation);
+    requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
   });
 
   ourOfferComponent.setCreateRequestHandler(() => {
-    console.log(`пока`);
+    requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: false}));
   });
 
 }());
