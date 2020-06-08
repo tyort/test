@@ -1,10 +1,6 @@
 export const START_COST_OF_PROPERTY = 2000000;
-export const MIN_FIRST_PAYMENT_PERCENTAGE = 10;
-export const MIN_COST_MORTGAGE = 500000;
 export const ENTER_KEY_CODE = 13;
-export const MAX_CREDIT_PERIOD = 30;
 export const MIN_CREDIT_PERIOD = 5;
-export const OPERATORS_STEP_COST = 100000;
 export const CAPITAL_OF_MOTHER = 470000;
 
 export const creditTypes = [
@@ -50,4 +46,77 @@ export const setAtributeSelected = (element, currentValue) => {
       it.setAttribute(`selected`, `selected`);
     }
   });
+};
+
+export const getActualFeaturesNames = (creditType) => {
+  let creditTypeTitle = ``;
+  let maxPuschaseCost = null;
+  let minPuschaseCost = null;
+  let opertorsStepCost = null;
+  let minFirstPaymentPercentage = null;
+  let minMortgageCost = null;
+  let maxCreditPeriod = null;
+  let minCreditPeriod = null;
+
+  switch (creditType) {
+    case `automobile`:
+      creditTypeTitle = `Стоимость автомобиля`;
+      maxPuschaseCost = 5000000;
+      minPuschaseCost = 500000;
+      opertorsStepCost = 50000;
+      minFirstPaymentPercentage = 20;
+      minMortgageCost = 200000;
+      maxCreditPeriod = 5;
+      minCreditPeriod = 1;
+      break;
+    case `consumer`:
+      creditTypeTitle = `Сумма потребительского кредита`;
+      maxPuschaseCost = 3000000;
+      minPuschaseCost = 50000;
+      opertorsStepCost = 50000;
+      minFirstPaymentPercentage = 0;
+      minMortgageCost = 0;
+      maxCreditPeriod = 7;
+      minCreditPeriod = 1;
+      break;
+    default:
+      creditTypeTitle = `Стоимость недвижимости`;
+      maxPuschaseCost = 25000000;
+      minPuschaseCost = 1200000;
+      opertorsStepCost = 100000;
+      minFirstPaymentPercentage = 10;
+      minMortgageCost = 500000;
+      maxCreditPeriod = 30;
+      minCreditPeriod = 5;
+      break;
+  }
+
+  return {
+    creditTypeTitle,
+    maxPuschaseCost,
+    minPuschaseCost,
+    opertorsStepCost,
+    minFirstPaymentPercentage,
+    minMortgageCost,
+    maxCreditPeriod,
+    minCreditPeriod
+  };
+};
+
+export const sliderScale = (creditType, number) => {
+  let speedOfSlider = null;
+
+  switch (creditType) {
+    case `automobile`:
+      speedOfSlider = number * 145 - 140;
+      break;
+    case `consumer`:
+      speedOfSlider = number * 96 - 90;
+      break;
+    default:
+      speedOfSlider = number * 23 - 110;
+      break;
+  }
+
+  return speedOfSlider;
 };

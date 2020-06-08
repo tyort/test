@@ -2,12 +2,7 @@
   'use strict';
 
   const START_COST_OF_PROPERTY = 2000000;
-  const MIN_FIRST_PAYMENT_PERCENTAGE = 10;
-  const MIN_COST_MORTGAGE = 500000;
   const ENTER_KEY_CODE = 13;
-  const MAX_CREDIT_PERIOD = 30;
-  const MIN_CREDIT_PERIOD = 5;
-  const OPERATORS_STEP_COST = 100000;
   const CAPITAL_OF_MOTHER = 470000;
 
   const creditTypes = [
@@ -34,6 +29,79 @@
     const newElement = document.createElement(`div`);
     newElement.innerHTML = template;
     return newElement.firstChild;
+  };
+
+  const getActualFeaturesNames = (creditType) => {
+    let creditTypeTitle = ``;
+    let maxPuschaseCost = null;
+    let minPuschaseCost = null;
+    let opertorsStepCost = null;
+    let minFirstPaymentPercentage = null;
+    let minMortgageCost = null;
+    let maxCreditPeriod = null;
+    let minCreditPeriod = null;
+
+    switch (creditType) {
+      case `automobile`:
+        creditTypeTitle = `Стоимость автомобиля`;
+        maxPuschaseCost = 5000000;
+        minPuschaseCost = 500000;
+        opertorsStepCost = 50000;
+        minFirstPaymentPercentage = 20;
+        minMortgageCost = 200000;
+        maxCreditPeriod = 5;
+        minCreditPeriod = 1;
+        break;
+      case `consumer`:
+        creditTypeTitle = `Сумма потребительского кредита`;
+        maxPuschaseCost = 3000000;
+        minPuschaseCost = 50000;
+        opertorsStepCost = 50000;
+        minFirstPaymentPercentage = 0;
+        minMortgageCost = 0;
+        maxCreditPeriod = 7;
+        minCreditPeriod = 1;
+        break;
+      default:
+        creditTypeTitle = `Стоимость недвижимости`;
+        maxPuschaseCost = 25000000;
+        minPuschaseCost = 1200000;
+        opertorsStepCost = 100000;
+        minFirstPaymentPercentage = 10;
+        minMortgageCost = 500000;
+        maxCreditPeriod = 30;
+        minCreditPeriod = 5;
+        break;
+    }
+
+    return {
+      creditTypeTitle,
+      maxPuschaseCost,
+      minPuschaseCost,
+      opertorsStepCost,
+      minFirstPaymentPercentage,
+      minMortgageCost,
+      maxCreditPeriod,
+      minCreditPeriod
+    };
+  };
+
+  const sliderScale = (creditType, number) => {
+    let speedOfSlider = null;
+
+    switch (creditType) {
+      case `automobile`:
+        speedOfSlider = number * 145 - 140;
+        break;
+      case `consumer`:
+        speedOfSlider = number * 96 - 90;
+        break;
+      default:
+        speedOfSlider = number * 23 - 110;
+        break;
+    }
+
+    return speedOfSlider;
   };
 
   class AbstractComponent {
@@ -175,36 +243,6 @@
 
   /* eslint-disable no-alert */
 
-  const getActualFeaturesNames = (creditType) => {
-    let creditTypeTitle = ``;
-    let maxPuschaseCost = null;
-    let minPuschaseCost = null;
-
-    switch (creditType) {
-      case `automobile`:
-        creditTypeTitle = `Стоимость автомобиля`;
-        maxPuschaseCost = 5000000;
-        minPuschaseCost = 500000;
-        break;
-      case `consumer`:
-        creditTypeTitle = `Сумма потребительского кредита`;
-        maxPuschaseCost = 3000000;
-        minPuschaseCost = 50000;
-        break;
-      default:
-        creditTypeTitle = `Стоимость недвижимости`;
-        maxPuschaseCost = 25000000;
-        minPuschaseCost = 1200000;
-        break;
-    }
-
-    return {
-      creditTypeTitle,
-      maxPuschaseCost,
-      minPuschaseCost
-    };
-  };
-
   const createOptions = (options, typeOfCredit) => {
     return options
         .map((item) => {
@@ -249,28 +287,37 @@
         <p>От ${getActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${getActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
       </fieldset>
 
-      <fieldset class="${isElementHidden}">
-        <label for="first-payment">Первоначальный взнос</label>
-        <input
-          autocomplete="off"
-          class="first-payment__input"
-          name="first-payment"
-          id="first-payment"
-          type="text"
-          value="${firstPayment} рублей"
-          required
-        />
-        <div class="percent-slider">
-          <output for="first-payment__percent" style="left: ${firstPaymentPercantage * 6.5 - 65}px">${firstPaymentPercantage}%</output>
-          <input 
-            type="range"
-            id="first-payment__percent"
-            name="first-payment-percent"
-            min="10" max="100" step="5"
-            value="${firstPaymentPercantage}"
+      ${typeOfCredit === `consumer`
+      ? ``
+      : `<fieldset class="${isElementHidden}">
+          <label for="first-payment">Первоначальный взнос</label>
+          <input
+            autocomplete="off"
+            class="first-payment__input"
+            name="first-payment"
+            id="first-payment"
+            type="text"
+            value="${firstPayment} рублей"
+            required
           />
-        </div>
-      </fieldset>
+          <div class="percent-slider">
+            <output for="first-payment__percent" style="left: 
+              ${typeOfCredit === `automobile` ? firstPaymentPercantage * 7.2 - 145 : firstPaymentPercantage * 6.4 - 65}px">${firstPaymentPercantage}%
+            </output>
+            <input 
+              type="range"
+              id="first-payment__percent"
+              name="first-payment-percent"
+              min="${getActualFeaturesNames(typeOfCredit).minFirstPaymentPercentage}"
+              max="100" 
+              step="5"
+              value="${firstPaymentPercantage}"
+            />
+          </div>
+        </fieldset>`
+    }
+
+
 
       <fieldset class="${isElementHidden}">
         <label for="credit-period">Срок кредитования</label>
@@ -283,8 +330,14 @@
           required
         />
         <div class="years-slider">
-          <output for="credit-period__years" style="left: ${periodOfCredit * 23 - 110}px">${periodOfCredit}лет</output>
-          <input type="range" id="credit-period__years" min="5" max="30" step="1" value="${periodOfCredit}">
+          <output for="credit-period__years" style="left: ${sliderScale(typeOfCredit, periodOfCredit)}px">${periodOfCredit}лет</output>
+          <input 
+            type="range"
+            id="credit-period__years"
+            min="${getActualFeaturesNames(typeOfCredit).minCreditPeriod}"
+            max="${getActualFeaturesNames(typeOfCredit).maxCreditPeriod}"
+            step="1"
+            value="${periodOfCredit}">
         </div>
       </fieldset>
 
@@ -299,14 +352,14 @@
   class Calculation extends AbstractSmartComponent {
     constructor() {
       super();
+      this._typeOfCredit = creditTypes[0][0];
       this._costOfProperty = START_COST_OF_PROPERTY;
-      this._firstPaymentPercantage = MIN_FIRST_PAYMENT_PERCENTAGE;
-      this._mortgageSize = MIN_COST_MORTGAGE;
+      this._firstPaymentPercantage = getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
+      this._mortgageSize = getActualFeaturesNames(this._typeOfCredit).minMortgageCost;
       this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
-      this._periodOfCredit = MIN_CREDIT_PERIOD;
+      this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
       this._isMotherUsed = false;
       this._calculateResultHandler = null;
-      this._typeOfCredit = creditTypes[0][0];
       this._subscribeOnEvents();
     }
 
@@ -341,7 +394,7 @@
     }
 
     reset() {
-      this._firstPaymentPercantage = MIN_FIRST_PAYMENT_PERCENTAGE;
+      this._firstPaymentPercantage = getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
       this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
       this.reRender();
     }
@@ -356,6 +409,8 @@
       form.querySelector(`#type-of-credit`)
           .addEventListener(`change`, (evt) => {
             this._typeOfCredit = evt.target.value;
+            this._costOfProperty = START_COST_OF_PROPERTY;
+            this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
             this.reset();
           });
 
@@ -403,14 +458,14 @@
             }
 
             if (evt.target.className === `operator minus`) {
-              this._costOfProperty -= OPERATORS_STEP_COST;
+              this._costOfProperty -= getActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
               this._costOfProperty = this._costOfProperty >= getActualFeaturesNames(this._typeOfCredit).minPuschaseCost
                 ? this._costOfProperty
                 : getActualFeaturesNames(this._typeOfCredit).minPuschaseCost;
               this.reset();
 
             } else {
-              this._costOfProperty += OPERATORS_STEP_COST;
+              this._costOfProperty += getActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
               this._costOfProperty = this._costOfProperty <= getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost
                 ? this._costOfProperty
                 : getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost;
@@ -426,7 +481,7 @@
           this.reRender();
 
         } else {
-          const allowableFirstPayment = new window.Decimal(this._costOfProperty).mul(MIN_FIRST_PAYMENT_PERCENTAGE).div(100);
+          const allowableFirstPayment = new window.Decimal(this._costOfProperty).mul(getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage).div(100);
           if (Number(evt.target.value) <= this._costOfProperty && Number(evt.target.value) >= allowableFirstPayment) {
 
             this._firstPayment = Number(evt.target.value);
@@ -446,31 +501,33 @@
         }
       };
 
-      firstPayment.addEventListener(`focus`, (evt) => {
-        evt.target.value = this._firstPayment;
+      if (firstPayment !== null) {
+        firstPayment.addEventListener(`focus`, (evt) => {
+          evt.target.value = this._firstPayment;
 
-        firstPayment.addEventListener(`change`, onChangeCostHandler);
-        firstPayment.addEventListener(`keydown`, (e) => {
-          if (Number(e.target.value) === Number(this._firstPayment) && e.keyCode === ENTER_KEY_CODE) {
-            e.target.value = `${this._firstPayment} рублей`;
-            firstPayment.blur();
+          firstPayment.addEventListener(`change`, onChangeCostHandler);
+          firstPayment.addEventListener(`keydown`, (e) => {
+            if (Number(e.target.value) === Number(this._firstPayment) && e.keyCode === ENTER_KEY_CODE) {
+              e.target.value = `${this._firstPayment} рублей`;
+              firstPayment.blur();
+            }
+          });
+        });
+
+        firstPayment.addEventListener(`blur`, (evt) => {
+          if (Number(evt.target.value) === Number(this._firstPayment)) {
+            firstPayment.removeEventListener(`change`, onChangeCostHandler);
+            evt.target.value = `${this._firstPayment} рублей`;
           }
         });
-      });
 
-      firstPayment.addEventListener(`blur`, (evt) => {
-        if (Number(evt.target.value) === Number(this._firstPayment)) {
-          firstPayment.removeEventListener(`change`, onChangeCostHandler);
-          evt.target.value = `${this._firstPayment} рублей`;
-        }
-      });
-
-      form.querySelector(`#first-payment__percent`)
-          .addEventListener(`change`, (evt) => {
-            this._firstPaymentPercantage = evt.target.value;
-            this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
-            this.reRender();
-          });
+        form.querySelector(`#first-payment__percent`)
+            .addEventListener(`change`, (evt) => {
+              this._firstPaymentPercantage = evt.target.value;
+              this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
+              this.reRender();
+            });
+      }
 
       const periodOfCredit = form.querySelector(`#credit-period`);
       const onChangePeriodHandler = (evt) => {
@@ -480,16 +537,16 @@
           this.reRender();
 
         } else {
-          if (Number(evt.target.value) <= MAX_CREDIT_PERIOD && Number(evt.target.value) >= MIN_CREDIT_PERIOD) {
+          if (Number(evt.target.value) <= getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod && Number(evt.target.value) >= getActualFeaturesNames(this._typeOfCredit).minCreditPeriod) {
             this._periodOfCredit = Number(evt.target.value);
             this.reRender();
 
-          } else if (Number(evt.target.value) > MAX_CREDIT_PERIOD) {
-            this._periodOfCredit = MAX_CREDIT_PERIOD;
+          } else if (Number(evt.target.value) > getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod) {
+            this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod;
             this.reRender();
 
           } else {
-            this._periodOfCredit = MIN_CREDIT_PERIOD;
+            this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
             this.reRender();
           }
         }
@@ -638,9 +695,16 @@
     let propertyCost = formData.get(`cost-of-property`);
     propertyCost = Number(propertyCost.slice(0, propertyCost.length - 7));
     let firstPayment = formData.get(`first-payment`);
-    firstPayment = Number(firstPayment.slice(0, firstPayment.length - 7));
-    let firstPayPercent = document.querySelector(`.percent-slider`).querySelector(`output`).textContent;
-    firstPayPercent = Number(firstPayPercent.slice(0, firstPayPercent.length - 1));
+    firstPayment = firstPayment
+      ? Number(firstPayment.slice(0, firstPayment.length - 7))
+      : null;
+
+    let firstPayPercent = null;
+    if (document.querySelector(`.percent-slider`) !== null) {
+      firstPayPercent = document.querySelector(`.percent-slider`).querySelector(`output`).textContent;
+      firstPayPercent = Number(firstPayPercent.slice(0, firstPayPercent.length - 1));
+    }
+
     let yearsCount = document.querySelector(`.years-slider`).querySelector(`output`).textContent;
     yearsCount = Number(yearsCount.slice(0, yearsCount.length - 3));
     const isMotherUsed = document.querySelector(`#mothers-capital__input`).hasAttribute(`checked`);

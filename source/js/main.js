@@ -24,9 +24,16 @@ const parseFormData = (formData) => {
   let propertyCost = formData.get(`cost-of-property`);
   propertyCost = Number(propertyCost.slice(0, propertyCost.length - 7));
   let firstPayment = formData.get(`first-payment`);
-  firstPayment = Number(firstPayment.slice(0, firstPayment.length - 7));
-  let firstPayPercent = document.querySelector(`.percent-slider`).querySelector(`output`).textContent;
-  firstPayPercent = Number(firstPayPercent.slice(0, firstPayPercent.length - 1));
+  firstPayment = firstPayment
+    ? Number(firstPayment.slice(0, firstPayment.length - 7))
+    : null;
+
+  let firstPayPercent = null;
+  if (document.querySelector(`.percent-slider`) !== null) {
+    firstPayPercent = document.querySelector(`.percent-slider`).querySelector(`output`).textContent;
+    firstPayPercent = Number(firstPayPercent.slice(0, firstPayPercent.length - 1));
+  }
+
   let yearsCount = document.querySelector(`.years-slider`).querySelector(`output`).textContent;
   yearsCount = Number(yearsCount.slice(0, yearsCount.length - 3));
   const isMotherUsed = document.querySelector(`#mothers-capital__input`).hasAttribute(`checked`);
