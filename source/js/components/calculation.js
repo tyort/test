@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import AbstractSmartComponent from './abstract-smart-component.js';
-import {START_COST_OF_PROPERTY, ENTER_KEY_CODE, creditTypes, getActualFeaturesNames, sliderScale} from '../formulas.js';
+import {START_COST_OF_PROPERTY, ENTER_KEY_CODE, creditTypes, setActualFeaturesNames, sliderScale} from '../formulas.js';
 
 const createOptions = (options, typeOfCredit) => {
   return options
@@ -14,7 +14,7 @@ const createOptions = (options, typeOfCredit) => {
 };
 
 const createCalculationTemplate = (options = {}) => {
-  const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit, isMotherUsed} = options;
+  const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit, isBonusUsed, isKaskoUsed, isInsuranceUsed, isParticipantUsed} = options;
   const addOptions = createOptions(creditTypes, typeOfCredit);
   const isElementHidden = typeOfCredit === creditTypes[0][0] ? `visually-hidden` : ``;
 
@@ -29,7 +29,7 @@ const createCalculationTemplate = (options = {}) => {
     
       <h3 class="${isElementHidden}">Шаг 2. Введите параметры кредита</h3>
       <fieldset class="${isElementHidden}">
-        <label for="cost-of-property">${getActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
+        <label for="cost-of-property">${setActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
         <div class="cost-of-property__scale">
           <span class="operator minus">-</span>
           <input
@@ -43,7 +43,7 @@ const createCalculationTemplate = (options = {}) => {
           />
           <span class="operator plus">+</span>
         </div>
-        <p>От ${getActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${getActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
+        <p>От ${setActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${setActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
       </fieldset>
 
       ${typeOfCredit === `consumer`
@@ -60,14 +60,15 @@ const createCalculationTemplate = (options = {}) => {
             required
           />
           <div class="percent-slider">
-            <output for="first-payment__percent" style="left: 
-              ${typeOfCredit === `automobile` ? firstPaymentPercantage * 7.2 - 145 : firstPaymentPercantage * 6.4 - 65}px">${firstPaymentPercantage}%
-            </output>
+            <output 
+              for="first-payment__percent" 
+              style="left: ${typeOfCredit === `automobile` ? firstPaymentPercantage * 7.2 - 145 : firstPaymentPercantage * 6.4 - 65}px"
+            >${firstPaymentPercantage}%</output>
             <input 
               type="range"
               id="first-payment__percent"
               name="first-payment-percent"
-              min="${getActualFeaturesNames(typeOfCredit).minFirstPaymentPercentage}"
+              min="${setActualFeaturesNames(typeOfCredit).minFirstPaymentPercentage}"
               max="100" 
               step="5"
               value="${firstPaymentPercantage}"
@@ -93,16 +94,28 @@ const createCalculationTemplate = (options = {}) => {
           <input 
             type="range"
             id="credit-period__years"
-            min="${getActualFeaturesNames(typeOfCredit).minCreditPeriod}"
-            max="${getActualFeaturesNames(typeOfCredit).maxCreditPeriod}"
+            min="${setActualFeaturesNames(typeOfCredit).minCreditPeriod}"
+            max="${setActualFeaturesNames(typeOfCredit).maxCreditPeriod}"
             step="1"
             value="${periodOfCredit}">
         </div>
       </fieldset>
 
       <fieldset class="${isElementHidden}">
-        <input type="checkbox" name="mothers-capital" id="mothers-capital__input" ${isMotherUsed ? `checked` : ``}>
-        <label for="mothers-capital__input">Использовать материнский капитал</label>
+${typeOfCredit === `mortgage`
+      ? `<input type="checkbox" name="bonus" id="bonus__input" ${isBonusUsed ? `checked` : ``}>
+        <label for="bonus__input">Использовать материнский капитал</label>`
+      : ``}
+${typeOfCredit === `automobile`
+      ? `<input type="checkbox" name="kasko" id="kasko__input" ${isKaskoUsed ? `checked` : ``}>
+        <label for="kasko__input">Оформить КАСКО в нашем банке</label>
+        <input type="checkbox" name="insurance" id="insurance__input" ${isInsuranceUsed ? `checked` : ``}>
+        <label for="insurance__input">Оформить Страхование жизни в нашем банке</label>`
+      : ``}
+${typeOfCredit === `consumer`
+      ? `<input type="checkbox" name="participant" id="participant__input" ${isParticipantUsed ? `checked` : ``}>
+        <label for="participant__input">Участник зарплатного проекта нашего банка</label>`
+      : ``}
       </fieldset>
     </form>`
   );
@@ -113,11 +126,14 @@ export default class Calculation extends AbstractSmartComponent {
     super();
     this._typeOfCredit = creditTypes[0][0];
     this._costOfProperty = START_COST_OF_PROPERTY;
-    this._firstPaymentPercantage = getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
-    this._mortgageSize = getActualFeaturesNames(this._typeOfCredit).minMortgageCost;
+    this._firstPaymentPercantage = setActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
+    this._mortgageSize = setActualFeaturesNames(this._typeOfCredit).minMortgageCost;
     this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
-    this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
-    this._isMotherUsed = false;
+    this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
+    this._isBonusUsed = false;
+    this._isKaskoUsed = false;
+    this._isInsuranceUsed = false;
+    this._isParticipantUsed = false;
     this._calculateResultHandler = null;
     this._subscribeOnEvents();
   }
@@ -134,7 +150,10 @@ export default class Calculation extends AbstractSmartComponent {
       firstPaymentPercantage: this._firstPaymentPercantage,
       periodOfCredit: this._periodOfCredit,
       typeOfCredit: this._typeOfCredit,
-      isMotherUsed: this._isMotherUsed
+      isBonusUsed: this._isBonusUsed,
+      isKaskoUsed: this._isKaskoUsed,
+      isInsuranceUsed: this._isInsuranceUsed,
+      isParticipantUsed: this._isParticipantUsed
     });
   }
 
@@ -153,8 +172,12 @@ export default class Calculation extends AbstractSmartComponent {
   }
 
   reset() {
-    this._firstPaymentPercantage = getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
+    this._firstPaymentPercantage = setActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
     this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
+    this._isBonusUsed = false;
+    this._isKaskoUsed = false;
+    this._isInsuranceUsed = false;
+    this._isParticipantUsed = false;
     this.reRender();
   }
 
@@ -169,7 +192,7 @@ export default class Calculation extends AbstractSmartComponent {
         .addEventListener(`change`, (evt) => {
           this._typeOfCredit = evt.target.value;
           this._costOfProperty = START_COST_OF_PROPERTY;
-          this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
+          this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
           this.reset();
         });
 
@@ -181,7 +204,7 @@ export default class Calculation extends AbstractSmartComponent {
         this.reset();
 
       } else {
-        if (Number(evt.target.value) <= getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost && Number(evt.target.value) >= getActualFeaturesNames(this._typeOfCredit).minPuschaseCost) {
+        if (Number(evt.target.value) <= setActualFeaturesNames(this._typeOfCredit).maxPuschaseCost && Number(evt.target.value) >= setActualFeaturesNames(this._typeOfCredit).minPuschaseCost) {
           this._costOfProperty = Number(evt.target.value);
           this.reset();
 
@@ -217,17 +240,17 @@ export default class Calculation extends AbstractSmartComponent {
           }
 
           if (evt.target.className === `operator minus`) {
-            this._costOfProperty -= getActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
-            this._costOfProperty = this._costOfProperty >= getActualFeaturesNames(this._typeOfCredit).minPuschaseCost
+            this._costOfProperty -= setActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
+            this._costOfProperty = this._costOfProperty >= setActualFeaturesNames(this._typeOfCredit).minPuschaseCost
               ? this._costOfProperty
-              : getActualFeaturesNames(this._typeOfCredit).minPuschaseCost;
+              : setActualFeaturesNames(this._typeOfCredit).minPuschaseCost;
             this.reset();
 
           } else {
-            this._costOfProperty += getActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
-            this._costOfProperty = this._costOfProperty <= getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost
+            this._costOfProperty += setActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
+            this._costOfProperty = this._costOfProperty <= setActualFeaturesNames(this._typeOfCredit).maxPuschaseCost
               ? this._costOfProperty
-              : getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost;
+              : setActualFeaturesNames(this._typeOfCredit).maxPuschaseCost;
             this.reset();
           }
         });
@@ -240,7 +263,7 @@ export default class Calculation extends AbstractSmartComponent {
         this.reRender();
 
       } else {
-        const allowableFirstPayment = new window.Decimal(this._costOfProperty).mul(getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage).div(100);
+        const allowableFirstPayment = new window.Decimal(this._costOfProperty).mul(setActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage).div(100);
         if (Number(evt.target.value) <= this._costOfProperty && Number(evt.target.value) >= allowableFirstPayment) {
 
           this._firstPayment = Number(evt.target.value);
@@ -296,16 +319,16 @@ export default class Calculation extends AbstractSmartComponent {
         this.reRender();
 
       } else {
-        if (Number(evt.target.value) <= getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod && Number(evt.target.value) >= getActualFeaturesNames(this._typeOfCredit).minCreditPeriod) {
+        if (Number(evt.target.value) <= setActualFeaturesNames(this._typeOfCredit).maxCreditPeriod && Number(evt.target.value) >= setActualFeaturesNames(this._typeOfCredit).minCreditPeriod) {
           this._periodOfCredit = Number(evt.target.value);
           this.reRender();
 
-        } else if (Number(evt.target.value) > getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod) {
-          this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod;
+        } else if (Number(evt.target.value) > setActualFeaturesNames(this._typeOfCredit).maxCreditPeriod) {
+          this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).maxCreditPeriod;
           this.reRender();
 
         } else {
-          this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
+          this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
           this.reRender();
         }
       }
@@ -323,6 +346,7 @@ export default class Calculation extends AbstractSmartComponent {
       });
     });
 
+
     periodOfCredit.addEventListener(`blur`, (evt) => {
       if (Number(evt.target.value) === Number(this._periodOfCredit)) {
         periodOfCredit.removeEventListener(`change`, onChangePeriodHandler);
@@ -336,10 +360,36 @@ export default class Calculation extends AbstractSmartComponent {
           this.reRender();
         });
 
-    form.querySelector(`#mothers-capital__input`)
-        .addEventListener(`change`, (evt) => {
-          this._isMotherUsed = evt.target.checked;
-          this.reRender();
-        });
+    if (form.querySelector(`#bonus__input`)) {
+      form.querySelector(`#bonus__input`)
+          .addEventListener(`change`, (evt) => {
+            this._isBonusUsed = evt.target.checked;
+            this.reRender();
+          });
+    }
+
+    if (form.querySelector(`#kasko__input`)) {
+      form.querySelector(`#kasko__input`)
+          .addEventListener(`change`, (evt) => {
+            this._isKaskoUsed = evt.target.checked;
+            this.reRender();
+          });
+    }
+
+    if (form.querySelector(`#participant__input`)) {
+      form.querySelector(`#participant__input`)
+          .addEventListener(`change`, (evt) => {
+            this._isParticipantUsed = evt.target.checked;
+            this.reRender();
+          });
+    }
+
+    if (form.querySelector(`#insurance__input`)) {
+      form.querySelector(`#insurance__input`)
+          .addEventListener(`change`, (evt) => {
+            this._isInsuranceUsed = evt.target.checked;
+            this.reRender();
+          });
+    }
   }
 }

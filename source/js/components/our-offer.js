@@ -35,7 +35,7 @@ export default class OurOffer extends AbstractSmartComponent {
     this._firstPayment = null;
     this._firstPayPercent = null;
     this._yearsCount = null;
-    this._isMotherUsed = false;
+    this._isBonusUsed = false;
     this._costOfMortgage = null;
     this._annualPercentRate = null;
     this._mounthlyPayment = null;
@@ -58,14 +58,15 @@ export default class OurOffer extends AbstractSmartComponent {
   }
 
   reRender(viewInformation) {
+    console.log(viewInformation);
     this._creditType = viewInformation.creditType;
     this._propertyCost = viewInformation.propertyCost;
     this._firstPayment = viewInformation.firstPayment;
     this._firstPayPercent = viewInformation.firstPayPercent;
     this._yearsCount = viewInformation.yearsCount;
-    this._isMotherUsed = viewInformation.isMotherUsed;
+    this._isBonusUsed = viewInformation.isBonusUsed;
 
-    const mothersCapital = this._isMotherUsed ? CAPITAL_OF_MOTHER : 0;
+    const mothersCapital = this._isBonusUsed ? CAPITAL_OF_MOTHER : 0;
     this._costOfMortgage = this._propertyCost - this._firstPayment - mothersCapital;
 
     const currentFirstPayPercent = this._firstPayment * 100 / this._costOfMortgage;

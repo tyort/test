@@ -29,14 +29,29 @@ const parseFormData = (formData) => {
     : null;
 
   let firstPayPercent = null;
-  if (document.querySelector(`.percent-slider`) !== null) {
+  if (document.querySelector(`.percent-slider`)) {
     firstPayPercent = document.querySelector(`.percent-slider`).querySelector(`output`).textContent;
     firstPayPercent = Number(firstPayPercent.slice(0, firstPayPercent.length - 1));
   }
 
   let yearsCount = document.querySelector(`.years-slider`).querySelector(`output`).textContent;
   yearsCount = Number(yearsCount.slice(0, yearsCount.length - 3));
-  const isMotherUsed = document.querySelector(`#mothers-capital__input`).hasAttribute(`checked`);
+
+  const isBonusUsed = document.querySelector(`#bonus__input`)
+    ? document.querySelector(`#bonus__input`).hasAttribute(`checked`)
+    : null;
+
+  const isKaskoUsed = document.querySelector(`#kasko__input`)
+    ? document.querySelector(`#kasko__input`).hasAttribute(`checked`)
+    : null;
+
+  const isInsuranceUsed = document.querySelector(`#insurance__input`)
+    ? document.querySelector(`#insurance__input`).hasAttribute(`checked`)
+    : null;
+
+  const isParticipantUsed = document.querySelector(`#participant__input`)
+    ? document.querySelector(`#participant__input`).hasAttribute(`checked`)
+    : null;
 
   return {
     'creditType': formData.get(`credit-type`),
@@ -44,7 +59,10 @@ const parseFormData = (formData) => {
     firstPayment,
     firstPayPercent,
     yearsCount,
-    isMotherUsed
+    isBonusUsed,
+    isKaskoUsed,
+    isInsuranceUsed,
+    isParticipantUsed
   };
 };
 

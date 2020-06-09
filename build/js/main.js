@@ -31,7 +31,8 @@
     return newElement.firstChild;
   };
 
-  const getActualFeaturesNames = (creditType) => {
+
+  const setActualFeaturesNames = (creditType) => {
     let creditTypeTitle = ``;
     let maxPuschaseCost = null;
     let minPuschaseCost = null;
@@ -61,6 +62,7 @@
         minMortgageCost = 0;
         maxCreditPeriod = 7;
         minCreditPeriod = 1;
+
         break;
       default:
         creditTypeTitle = `Стоимость недвижимости`;
@@ -177,7 +179,7 @@
       this._firstPayment = null;
       this._firstPayPercent = null;
       this._yearsCount = null;
-      this._isMotherUsed = false;
+      this._isBonusUsed = false;
       this._costOfMortgage = null;
       this._annualPercentRate = null;
       this._mounthlyPayment = null;
@@ -200,14 +202,15 @@
     }
 
     reRender(viewInformation) {
+      console.log(viewInformation);
       this._creditType = viewInformation.creditType;
       this._propertyCost = viewInformation.propertyCost;
       this._firstPayment = viewInformation.firstPayment;
       this._firstPayPercent = viewInformation.firstPayPercent;
       this._yearsCount = viewInformation.yearsCount;
-      this._isMotherUsed = viewInformation.isMotherUsed;
+      this._isBonusUsed = viewInformation.isBonusUsed;
 
-      const mothersCapital = this._isMotherUsed ? CAPITAL_OF_MOTHER : 0;
+      const mothersCapital = this._isBonusUsed ? CAPITAL_OF_MOTHER : 0;
       this._costOfMortgage = this._propertyCost - this._firstPayment - mothersCapital;
 
       const currentFirstPayPercent = this._firstPayment * 100 / this._costOfMortgage;
@@ -255,7 +258,7 @@
   };
 
   const createCalculationTemplate = (options = {}) => {
-    const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit, isMotherUsed} = options;
+    const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit, isBonusUsed, isKaskoUsed, isInsuranceUsed, isParticipantUsed} = options;
     const addOptions = createOptions(creditTypes, typeOfCredit);
     const isElementHidden = typeOfCredit === creditTypes[0][0] ? `visually-hidden` : ``;
 
@@ -270,7 +273,7 @@
     
       <h3 class="${isElementHidden}">Шаг 2. Введите параметры кредита</h3>
       <fieldset class="${isElementHidden}">
-        <label for="cost-of-property">${getActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
+        <label for="cost-of-property">${setActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
         <div class="cost-of-property__scale">
           <span class="operator minus">-</span>
           <input
@@ -284,7 +287,7 @@
           />
           <span class="operator plus">+</span>
         </div>
-        <p>От ${getActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${getActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
+        <p>От ${setActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${setActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
       </fieldset>
 
       ${typeOfCredit === `consumer`
@@ -301,14 +304,15 @@
             required
           />
           <div class="percent-slider">
-            <output for="first-payment__percent" style="left: 
-              ${typeOfCredit === `automobile` ? firstPaymentPercantage * 7.2 - 145 : firstPaymentPercantage * 6.4 - 65}px">${firstPaymentPercantage}%
-            </output>
+            <output 
+              for="first-payment__percent" 
+              style="left: ${typeOfCredit === `automobile` ? firstPaymentPercantage * 7.2 - 145 : firstPaymentPercantage * 6.4 - 65}px"
+            >${firstPaymentPercantage}%</output>
             <input 
               type="range"
               id="first-payment__percent"
               name="first-payment-percent"
-              min="${getActualFeaturesNames(typeOfCredit).minFirstPaymentPercentage}"
+              min="${setActualFeaturesNames(typeOfCredit).minFirstPaymentPercentage}"
               max="100" 
               step="5"
               value="${firstPaymentPercantage}"
@@ -334,16 +338,28 @@
           <input 
             type="range"
             id="credit-period__years"
-            min="${getActualFeaturesNames(typeOfCredit).minCreditPeriod}"
-            max="${getActualFeaturesNames(typeOfCredit).maxCreditPeriod}"
+            min="${setActualFeaturesNames(typeOfCredit).minCreditPeriod}"
+            max="${setActualFeaturesNames(typeOfCredit).maxCreditPeriod}"
             step="1"
             value="${periodOfCredit}">
         </div>
       </fieldset>
 
       <fieldset class="${isElementHidden}">
-        <input type="checkbox" name="mothers-capital" id="mothers-capital__input" ${isMotherUsed ? `checked` : ``}>
-        <label for="mothers-capital__input">Использовать материнский капитал</label>
+${typeOfCredit === `mortgage`
+      ? `<input type="checkbox" name="bonus" id="bonus__input" ${isBonusUsed ? `checked` : ``}>
+        <label for="bonus__input">Использовать материнский капитал</label>`
+      : ``}
+${typeOfCredit === `automobile`
+      ? `<input type="checkbox" name="kasko" id="kasko__input" ${isKaskoUsed ? `checked` : ``}>
+        <label for="kasko__input">Оформить КАСКО в нашем банке</label>
+        <input type="checkbox" name="insurance" id="insurance__input" ${isInsuranceUsed ? `checked` : ``}>
+        <label for="insurance__input">Оформить Страхование жизни в нашем банке</label>`
+      : ``}
+${typeOfCredit === `consumer`
+      ? `<input type="checkbox" name="participant" id="participant__input" ${isParticipantUsed ? `checked` : ``}>
+        <label for="participant__input">Участник зарплатного проекта нашего банка</label>`
+      : ``}
       </fieldset>
     </form>`
     );
@@ -354,11 +370,14 @@
       super();
       this._typeOfCredit = creditTypes[0][0];
       this._costOfProperty = START_COST_OF_PROPERTY;
-      this._firstPaymentPercantage = getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
-      this._mortgageSize = getActualFeaturesNames(this._typeOfCredit).minMortgageCost;
+      this._firstPaymentPercantage = setActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
+      this._mortgageSize = setActualFeaturesNames(this._typeOfCredit).minMortgageCost;
       this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
-      this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
-      this._isMotherUsed = false;
+      this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
+      this._isBonusUsed = false;
+      this._isKaskoUsed = false;
+      this._isInsuranceUsed = false;
+      this._isParticipantUsed = false;
       this._calculateResultHandler = null;
       this._subscribeOnEvents();
     }
@@ -375,7 +394,10 @@
         firstPaymentPercantage: this._firstPaymentPercantage,
         periodOfCredit: this._periodOfCredit,
         typeOfCredit: this._typeOfCredit,
-        isMotherUsed: this._isMotherUsed
+        isBonusUsed: this._isBonusUsed,
+        isKaskoUsed: this._isKaskoUsed,
+        isInsuranceUsed: this._isInsuranceUsed,
+        isParticipantUsed: this._isParticipantUsed
       });
     }
 
@@ -394,8 +416,12 @@
     }
 
     reset() {
-      this._firstPaymentPercantage = getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
+      this._firstPaymentPercantage = setActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage;
       this._firstPayment = new window.Decimal(this._costOfProperty).mul(this._firstPaymentPercantage).div(100);
+      this._isBonusUsed = false;
+      this._isKaskoUsed = false;
+      this._isInsuranceUsed = false;
+      this._isParticipantUsed = false;
       this.reRender();
     }
 
@@ -410,7 +436,7 @@
           .addEventListener(`change`, (evt) => {
             this._typeOfCredit = evt.target.value;
             this._costOfProperty = START_COST_OF_PROPERTY;
-            this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
+            this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
             this.reset();
           });
 
@@ -422,7 +448,7 @@
           this.reset();
 
         } else {
-          if (Number(evt.target.value) <= getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost && Number(evt.target.value) >= getActualFeaturesNames(this._typeOfCredit).minPuschaseCost) {
+          if (Number(evt.target.value) <= setActualFeaturesNames(this._typeOfCredit).maxPuschaseCost && Number(evt.target.value) >= setActualFeaturesNames(this._typeOfCredit).minPuschaseCost) {
             this._costOfProperty = Number(evt.target.value);
             this.reset();
 
@@ -458,17 +484,17 @@
             }
 
             if (evt.target.className === `operator minus`) {
-              this._costOfProperty -= getActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
-              this._costOfProperty = this._costOfProperty >= getActualFeaturesNames(this._typeOfCredit).minPuschaseCost
+              this._costOfProperty -= setActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
+              this._costOfProperty = this._costOfProperty >= setActualFeaturesNames(this._typeOfCredit).minPuschaseCost
                 ? this._costOfProperty
-                : getActualFeaturesNames(this._typeOfCredit).minPuschaseCost;
+                : setActualFeaturesNames(this._typeOfCredit).minPuschaseCost;
               this.reset();
 
             } else {
-              this._costOfProperty += getActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
-              this._costOfProperty = this._costOfProperty <= getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost
+              this._costOfProperty += setActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
+              this._costOfProperty = this._costOfProperty <= setActualFeaturesNames(this._typeOfCredit).maxPuschaseCost
                 ? this._costOfProperty
-                : getActualFeaturesNames(this._typeOfCredit).maxPuschaseCost;
+                : setActualFeaturesNames(this._typeOfCredit).maxPuschaseCost;
               this.reset();
             }
           });
@@ -481,7 +507,7 @@
           this.reRender();
 
         } else {
-          const allowableFirstPayment = new window.Decimal(this._costOfProperty).mul(getActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage).div(100);
+          const allowableFirstPayment = new window.Decimal(this._costOfProperty).mul(setActualFeaturesNames(this._typeOfCredit).minFirstPaymentPercentage).div(100);
           if (Number(evt.target.value) <= this._costOfProperty && Number(evt.target.value) >= allowableFirstPayment) {
 
             this._firstPayment = Number(evt.target.value);
@@ -537,16 +563,16 @@
           this.reRender();
 
         } else {
-          if (Number(evt.target.value) <= getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod && Number(evt.target.value) >= getActualFeaturesNames(this._typeOfCredit).minCreditPeriod) {
+          if (Number(evt.target.value) <= setActualFeaturesNames(this._typeOfCredit).maxCreditPeriod && Number(evt.target.value) >= setActualFeaturesNames(this._typeOfCredit).minCreditPeriod) {
             this._periodOfCredit = Number(evt.target.value);
             this.reRender();
 
-          } else if (Number(evt.target.value) > getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod) {
-            this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).maxCreditPeriod;
+          } else if (Number(evt.target.value) > setActualFeaturesNames(this._typeOfCredit).maxCreditPeriod) {
+            this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).maxCreditPeriod;
             this.reRender();
 
           } else {
-            this._periodOfCredit = getActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
+            this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
             this.reRender();
           }
         }
@@ -564,6 +590,7 @@
         });
       });
 
+
       periodOfCredit.addEventListener(`blur`, (evt) => {
         if (Number(evt.target.value) === Number(this._periodOfCredit)) {
           periodOfCredit.removeEventListener(`change`, onChangePeriodHandler);
@@ -577,11 +604,37 @@
             this.reRender();
           });
 
-      form.querySelector(`#mothers-capital__input`)
-          .addEventListener(`change`, (evt) => {
-            this._isMotherUsed = evt.target.checked;
-            this.reRender();
-          });
+      if (form.querySelector(`#bonus__input`)) {
+        form.querySelector(`#bonus__input`)
+            .addEventListener(`change`, (evt) => {
+              this._isBonusUsed = evt.target.checked;
+              this.reRender();
+            });
+      }
+
+      if (form.querySelector(`#kasko__input`)) {
+        form.querySelector(`#kasko__input`)
+            .addEventListener(`change`, (evt) => {
+              this._isKaskoUsed = evt.target.checked;
+              this.reRender();
+            });
+      }
+
+      if (form.querySelector(`#participant__input`)) {
+        form.querySelector(`#participant__input`)
+            .addEventListener(`change`, (evt) => {
+              this._isParticipantUsed = evt.target.checked;
+              this.reRender();
+            });
+      }
+
+      if (form.querySelector(`#insurance__input`)) {
+        form.querySelector(`#insurance__input`)
+            .addEventListener(`change`, (evt) => {
+              this._isInsuranceUsed = evt.target.checked;
+              this.reRender();
+            });
+      }
     }
   }
 
@@ -700,14 +753,29 @@
       : null;
 
     let firstPayPercent = null;
-    if (document.querySelector(`.percent-slider`) !== null) {
+    if (document.querySelector(`.percent-slider`)) {
       firstPayPercent = document.querySelector(`.percent-slider`).querySelector(`output`).textContent;
       firstPayPercent = Number(firstPayPercent.slice(0, firstPayPercent.length - 1));
     }
 
     let yearsCount = document.querySelector(`.years-slider`).querySelector(`output`).textContent;
     yearsCount = Number(yearsCount.slice(0, yearsCount.length - 3));
-    const isMotherUsed = document.querySelector(`#mothers-capital__input`).hasAttribute(`checked`);
+
+    const isBonusUsed = document.querySelector(`#bonus__input`)
+      ? document.querySelector(`#bonus__input`).hasAttribute(`checked`)
+      : null;
+
+    const isKaskoUsed = document.querySelector(`#kasko__input`)
+      ? document.querySelector(`#kasko__input`).hasAttribute(`checked`)
+      : null;
+
+    const isInsuranceUsed = document.querySelector(`#insurance__input`)
+      ? document.querySelector(`#insurance__input`).hasAttribute(`checked`)
+      : null;
+
+    const isParticipantUsed = document.querySelector(`#participant__input`)
+      ? document.querySelector(`#participant__input`).hasAttribute(`checked`)
+      : null;
 
     return {
       'creditType': formData.get(`credit-type`),
@@ -715,7 +783,10 @@
       firstPayment,
       firstPayPercent,
       yearsCount,
-      isMotherUsed
+      isBonusUsed,
+      isKaskoUsed,
+      isInsuranceUsed,
+      isParticipantUsed
     };
   };
 

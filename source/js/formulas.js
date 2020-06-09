@@ -48,7 +48,8 @@ export const setAtributeSelected = (element, currentValue) => {
   });
 };
 
-export const getActualFeaturesNames = (creditType) => {
+
+export const setActualFeaturesNames = (creditType) => {
   let creditTypeTitle = ``;
   let maxPuschaseCost = null;
   let minPuschaseCost = null;
@@ -78,6 +79,7 @@ export const getActualFeaturesNames = (creditType) => {
       minMortgageCost = 0;
       maxCreditPeriod = 7;
       minCreditPeriod = 1;
+
       break;
     default:
       creditTypeTitle = `Стоимость недвижимости`;
