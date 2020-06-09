@@ -58,10 +58,13 @@ export const setActualFeaturesNames = (creditType) => {
   let minMortgageCost = null;
   let maxCreditPeriod = null;
   let minCreditPeriod = null;
+  let messageInsert = ``;
+  let sumCreditName = ``;
 
   switch (creditType) {
     case `automobile`:
       creditTypeTitle = `Стоимость автомобиля`;
+      sumCreditName = `Сумма автокредита`;
       maxPuschaseCost = 5000000;
       minPuschaseCost = 500000;
       opertorsStepCost = 50000;
@@ -69,9 +72,11 @@ export const setActualFeaturesNames = (creditType) => {
       minMortgageCost = 200000;
       maxCreditPeriod = 5;
       minCreditPeriod = 1;
+      messageInsert = `автокредиты`;
       break;
     case `consumer`:
       creditTypeTitle = `Сумма потребительского кредита`;
+      sumCreditName = `Cумма ипотеки`;
       maxPuschaseCost = 3000000;
       minPuschaseCost = 50000;
       opertorsStepCost = 50000;
@@ -83,6 +88,7 @@ export const setActualFeaturesNames = (creditType) => {
       break;
     default:
       creditTypeTitle = `Стоимость недвижимости`;
+      sumCreditName = `Cумма кредита`;
       maxPuschaseCost = 25000000;
       minPuschaseCost = 1200000;
       opertorsStepCost = 100000;
@@ -90,6 +96,7 @@ export const setActualFeaturesNames = (creditType) => {
       minMortgageCost = 500000;
       maxCreditPeriod = 30;
       minCreditPeriod = 5;
+      messageInsert = `ипотечные кредиты`;
       break;
   }
 
@@ -101,7 +108,9 @@ export const setActualFeaturesNames = (creditType) => {
     minFirstPaymentPercentage,
     minMortgageCost,
     maxCreditPeriod,
-    minCreditPeriod
+    minCreditPeriod,
+    messageInsert,
+    sumCreditName
   };
 };
 

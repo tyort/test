@@ -41,10 +41,13 @@
     let minMortgageCost = null;
     let maxCreditPeriod = null;
     let minCreditPeriod = null;
+    let messageInsert = ``;
+    let sumCreditName = ``;
 
     switch (creditType) {
       case `automobile`:
         creditTypeTitle = `Стоимость автомобиля`;
+        sumCreditName = `Сумма автокредита`;
         maxPuschaseCost = 5000000;
         minPuschaseCost = 500000;
         opertorsStepCost = 50000;
@@ -52,9 +55,11 @@
         minMortgageCost = 200000;
         maxCreditPeriod = 5;
         minCreditPeriod = 1;
+        messageInsert = `автокредиты`;
         break;
       case `consumer`:
         creditTypeTitle = `Сумма потребительского кредита`;
+        sumCreditName = `Cумма ипотеки`;
         maxPuschaseCost = 3000000;
         minPuschaseCost = 50000;
         opertorsStepCost = 50000;
@@ -66,6 +71,7 @@
         break;
       default:
         creditTypeTitle = `Стоимость недвижимости`;
+        sumCreditName = `Cумма кредита`;
         maxPuschaseCost = 25000000;
         minPuschaseCost = 1200000;
         opertorsStepCost = 100000;
@@ -73,6 +79,7 @@
         minMortgageCost = 500000;
         maxCreditPeriod = 30;
         minCreditPeriod = 5;
+        messageInsert = `ипотечные кредиты`;
         break;
     }
 
@@ -84,7 +91,9 @@
       minFirstPaymentPercentage,
       minMortgageCost,
       maxCreditPeriod,
-      minCreditPeriod
+      minCreditPeriod,
+      messageInsert,
+      sumCreditName
     };
   };
 
@@ -146,24 +155,24 @@
   }
 
   const createOurOfferTemplate = (options = {}) => {
-    const {costOfMortgage, creditType, annualPercentRate, mounthlyPayment, requiredIncome} = options;
+    const {costOfMortgage, creditType, annualPercentRate, mounthlyPayment, requiredIncome, minCreditRequired} = options;
     const isElementHidden = creditType === creditTypes[0][0] ? `visually-hidden` : ``;
 
     return (
       `<div class="page-calculation__our-offer ${isElementHidden}">
-      ${costOfMortgage >= 500000
+      ${costOfMortgage >= minCreditRequired
       ? `<h3>Наше предложение</h3>
           <div class="calculation__result">
-            <div><p><span>${costOfMortgage} рублей</span></br>Сумма ипотеки</p></div>
-            <div><p><span>${annualPercentRate === 8.5 ? `8,50%` : `9,40%`}</span></br>Процентная ставка</p></div>
+            <div><p><span>${costOfMortgage} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
+            <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
             <div><p><span>${mounthlyPayment} рублей</span></br>Ежемесячный платеж</p></div>
             <div><p><span>${requiredIncome} рублей</span></br>Необходимый доход</p></div>
           </div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>`
       : `<p>
-          <span>Наш банк не выдает ипотечные кредиты
-          меньше 200 000 рублей.</span></br>
+          <span>Наш банк не выдает ${setActualFeaturesNames(creditType).messageInsert}
+          меньше ${minCreditRequired} рублей.</span></br>
           Попробуйте использовать другие параметры для расчета.
         <p>`
     }`
@@ -180,11 +189,15 @@
       this._firstPayPercent = null;
       this._yearsCount = null;
       this._isBonusUsed = false;
+      this._isKaskoUsed = false;
+      this._isInsuranceUsed = false;
+      this._isParticipantUsed = false;
       this._costOfMortgage = null;
       this._annualPercentRate = null;
       this._mounthlyPayment = null;
       this._requiredIncome = null;
       this._createRequestHandler = null;
+      this._minCreditRequired = null;
     }
 
     getTemplate() {
@@ -193,7 +206,12 @@
         creditType: this._creditType,
         annualPercentRate: this._annualPercentRate,
         mounthlyPayment: this._mounthlyPayment,
-        requiredIncome: this._requiredIncome
+        requiredIncome: this._requiredIncome,
+        isBonusUsed: this._isBonusUsed,
+        isKaskoUsed: this._isKaskoUsed,
+        isInsuranceUsed: this._isInsuranceUsed,
+        isParticipantUsed: this._isParticipantUsed,
+        minCreditRequired: this._minCreditRequired
       });
     }
 
@@ -202,21 +220,49 @@
     }
 
     reRender(viewInformation) {
-      console.log(viewInformation);
+
       this._creditType = viewInformation.creditType;
       this._propertyCost = viewInformation.propertyCost;
       this._firstPayment = viewInformation.firstPayment;
       this._firstPayPercent = viewInformation.firstPayPercent;
       this._yearsCount = viewInformation.yearsCount;
       this._isBonusUsed = viewInformation.isBonusUsed;
+      this._isKaskoUsed = viewInformation.isKaskoUsed;
+      this._isInsuranceUsed = viewInformation.isInsuranceUsed;
+      this._isParticipantUsed = viewInformation.isParticipantUsed;
 
       const mothersCapital = this._isBonusUsed ? CAPITAL_OF_MOTHER : 0;
       this._costOfMortgage = this._propertyCost - this._firstPayment - mothersCapital;
 
-      const currentFirstPayPercent = this._firstPayment * 100 / this._costOfMortgage;
-      this._annualPercentRate = currentFirstPayPercent >= 15 ? 8.5 : 9.4;
+      if (this._creditType === `mortgage`) {
+        const currentFirstPayPercent = this._firstPayment * 100 / this._costOfMortgage;
+        this._annualPercentRate = currentFirstPayPercent >= 15 ? 8.5 : 9.4;
+        this._minCreditRequired = 500000;
 
-      const mounthlyPercentRate = this._annualPercentRate === 8.5 ? 0.00708 : 0.00783;
+      } else if (this._creditType === `automobile`) {
+        this._minCreditRequired = 200000;
+        this._annualPercentRate = this._propertyCost >= 2000000 ? 15 : 16;
+        if (this._isKaskoUsed || this._isInsuranceUsed) {
+          this._annualPercentRate = 8.5;
+          if (this._isKaskoUsed && this._isInsuranceUsed) {
+            this._annualPercentRate = 3.5;
+          }
+        }
+
+      } else {
+        this._minCreditRequired = 0;
+        if (this._propertyCost < 750000) {
+          this._annualPercentRate = 15;
+        } else if (this._propertyCost >= 750000 && this._propertyCost < 2000000) {
+          this._annualPercentRate = 12.5;
+        } else {
+          this._annualPercentRate = 9.5;
+        }
+      }
+
+      let mounthlyPercentRate = this._annualPercentRate / 100 / 12;
+      mounthlyPercentRate = Math.round(mounthlyPercentRate * 100000) / 100000;
+
       const countOfperiods = this._yearsCount * 12;
       this._mounthlyPayment = this._costOfMortgage * mounthlyPercentRate / (1 - (1 / Math.pow((1 + mounthlyPercentRate), countOfperiods)));
       this._mounthlyPayment = Math.round(this._mounthlyPayment);
@@ -678,13 +724,15 @@ ${typeOfCredit === `consumer`
                 <td>${creditNames.get(creditType)}</td>
               </tr>
               <tr>
-                <td class="request-article">Стоимость недвижимости</td>
+                <td class="request-article">${setActualFeaturesNames(creditType).creditTypeTitle}</td>
                 <td>${propertyCost} рублей</td>
               </tr>
-              <tr>
-                <td class="request-article">Первоначальный взнос</td>
-                <td>${firstPayment} рублей</td>
-              </tr>
+    ${firstPayment
+      ? `<tr>
+          <td class="request-article">Первоначальный взнос</td>
+          <td>${firstPayment} рублей</td>
+        </tr>`
+      : ``}
               <tr>
                 <td class="request-article">Срок кредитования</td>
                 <td>${yearsCount} лет</td>
