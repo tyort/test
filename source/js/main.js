@@ -1,6 +1,8 @@
 import OurOfferComponent from "./components/our-offer.js";
 import CalculationComponent from "./components/calculation.js";
 import PageCalculationComponent from "./components/page-calculation.js";
+import MapComponent from "./components/map.js";
+import OffersMenuComponent from "./components/offers-menu.js";
 import RequestComponent from "./components/request.js";
 import {renderComponent} from './formulas.js';
 
@@ -8,6 +10,11 @@ const pageCalculationComponent = new PageCalculationComponent();
 const calculationComponent = new CalculationComponent();
 const ourOfferComponent = new OurOfferComponent();
 const requestComponent = new RequestComponent();
+const mapComponent = new MapComponent();
+const offersMenuComponent = new OffersMenuComponent();
+
+const promo = document.querySelector(`.page-promo`);
+renderComponent(promo, offersMenuComponent, `afterEnd`);
 
 const pageOffersMenu = document.querySelector(`.page-offers-menu`);
 renderComponent(pageOffersMenu, pageCalculationComponent, `afterEnd`);
@@ -19,6 +26,8 @@ renderComponent(titleName, ourOfferComponent, `afterEnd`);
 
 const pageCalculationParameters = document.querySelector(`.page-calculation__parameters`);
 renderComponent(pageCalculationParameters, requestComponent, `afterEnd`);
+
+renderComponent(pageCalculation, mapComponent, `afterEnd`);
 
 const parseFormData = (formData) => {
   let propertyCost = formData.get(`cost-of-property`);

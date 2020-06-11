@@ -48,7 +48,7 @@ gulp.task("server", function () {
   gulp.watch("source/img/icon-*.svg", gulp.series("sprite", "html", "refresh"));
   gulp.watch("source/*.html", gulp.series("html", "refresh"));
   gulp.watch(
-    ["source/js/main.js", "source/js/components/*.js"],
+    ["source/js/**/*.js", "!source/js/vendor.js"],
     gulp.series("js-main", "refresh")
   );
   gulp.watch("source/js/vendor.js", gulp.series("js-vendor", "refresh"));

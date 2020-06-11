@@ -3,6 +3,7 @@ export const ENTER_KEY_CODE = 13;
 export const MIN_CREDIT_PERIOD = 5;
 export const CAPITAL_OF_MOTHER = 470000;
 
+
 export const creditTypes = [
   [`novalue`, `Выберете цель кредита`],
   [`mortgage`, `Ипотечное кредитование`],
