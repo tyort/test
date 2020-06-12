@@ -29,14 +29,12 @@ const cities = {
   ]
 };
 
-const createWorldParts = (parts, actualCountries) => {
+const createWorldParts = (parts) => {
   return parts
       .map((item) => {
-        const isChecked = actualCountries.includes(item[0]) ? `checked` : ``;
-
         return (
           `<div>
-            <input type="checkbox" value="${item[0]}" id="${item[0]}" ${isChecked}>
+            <input type="checkbox" value="${item[0]}" id="${item[0]}">
             <label for="russia">${item[1]}</label>
           </div>`
         );
@@ -44,9 +42,8 @@ const createWorldParts = (parts, actualCountries) => {
       .join(``);
 };
 
-const createMapTemplate = (options = {}) => {
-  const {actualCountries} = options;
-  const worldsPart = createWorldParts(worldParts, actualCountries);
+const createMapTemplate = () => {
+  const worldsPart = createWorldParts(worldParts);
 
   return (
     `<div class="page-map">
@@ -74,54 +71,49 @@ export default class Map extends AbstractSmartComponent {
     super();
     this._myMap = null;
     this._countries = [];
-    this._sdsdf = [55.76, 37.64];
+    this._getInitMap();
     this._subscribeOnEvents();
   }
 
   getTemplate() {
-    return createMapTemplate({
-      actualCountries: this._countries
-    });
+    return createMapTemplate();
   }
 
-  reRender() {
-    super.reRender();
-    this.onLoadMapHandler();
-    this.recoveryListeners();
-  }
+  changedDataByView() {
+    let interestedCities = [];
 
-  recoveryListeners() {
-    this._subscribeOnEvents();
-  }
-
-  onLoadMapHandler() {
-    window.ymaps.ready(() => {
-      this._myMap = new window.ymaps.Map(`YMapsID`, {
-        center: [55.76, 37.64],
-        zoom: 10,
-      }, {
-        searchControlProvider: `yandex#search`
+    if (this._countries) {
+      Object.keys(cities).forEach((it) => {
+        if (this._countries.includes(it)) {
+          interestedCities = [...interestedCities, ...cities[it]];
+        }
       });
+    }
 
-      let interestedCities = [];
+    this._myMap.geoObjects.removeAll();
 
-      if (this._countries) {
-        Object.keys(cities).forEach((it) => {
-          if (this._countries.includes(it)) {
-            interestedCities = [...interestedCities, ...cities[it]];
-          }
+    for (let i = 0; i < interestedCities.length; i++) {
+      this._myMap.geoObjects
+          .add(new window.ymaps.Placemark(interestedCities[i][1], {
+            balloonContent: `${interestedCities[i][0]}`
+          }, {
+            preset: `islands#icon`,
+            iconColor: `#0095b6`
+          }));
+    }
+
+  }
+
+  _getInitMap() {
+    window.addEventListener(`mapWasLoaded`, () => {
+      window.ymaps.ready(() => {
+        this._myMap = new window.ymaps.Map(`YMapsID`, {
+          center: [55.76, 37.64],
+          zoom: 10,
+        }, {
+          searchControlProvider: `yandex#search`
         });
-      }
-
-      for (let i = 0; i < interestedCities.length; i++) {
-        this._myMap.geoObjects
-            .add(new window.ymaps.Placemark(interestedCities[i][1], {
-              balloonContent: `${interestedCities[i][0]}`
-            }, {
-              preset: `islands#icon`,
-              iconColor: `#0095b6`
-            }));
-      }
+      });
     });
   }
 
@@ -140,9 +132,7 @@ export default class Map extends AbstractSmartComponent {
             original.delete(evt.target.value);
           }
           this._countries = [...original];
-          this.reRender();
+          this.changedDataByView();
         });
-
-    window.addEventListener(`mapWasLoaded`, this.onLoadMapHandler);
   }
 }

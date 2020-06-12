@@ -1,0 +1,26 @@
+.page-offers-menu { // высота должна быть 673
+  display: block;
+  height: 503px;
+  border: $bred;
+  padding-top: 60px;
+  padding-bottom: 110px;
+
+  &__inner {
+    display: flex;
+    max-width: 1170px;
+    margin: 0 auto;
+    height: 503px;
+    border: $bred;
+
+    .page-offers-menu__nav {
+      display: flex;
+      border: $bred;
+      max-height: 93px;
+      width: 100%;
+
+      li {
+        width: 100%;
+      }
+    }
+  }
+}

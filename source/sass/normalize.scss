@@ -24,6 +24,34 @@ html {
  * Remove the margin in all browsers.
  */
 
+body {
+  width: 1366px;
+  padding: 0;
+  margin: 0 auto;
+  border: $bred;
+}
+
+.container { // растягивается
+  width: 1170px;
+  margin: 0 auto;
+  border: $bred;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 
 //_______________________header.html
@@ -81,22 +109,6 @@ html {
   background-position: center;
   background-size: cover;
   border: $bred;
-}
-
-//_______________________offers-menu.html
-
-.page-offers-menu { // высота должна быть 673
-  display: block;
-  height: 503px;
-  border: $bred;
-  padding-top: 60px;
-  padding-bottom: 110px;
-
-  &__inner {
-    display: flex;
-    height: 503px;
-    border: $bred;
-  }
 }
 
 //_______________________map.html
