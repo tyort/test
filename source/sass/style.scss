@@ -22,3 +22,12 @@
        url("../fonts/RobotoMedium.woff") format("woff");
   font-weight: 500px;
 }
+
+
+input:valid {
+  border-color: green;
+}
+
+input:not(:placeholder-shown):invalid{
+  border-color: red
+}
