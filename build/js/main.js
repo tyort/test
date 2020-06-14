@@ -870,12 +870,12 @@ ${typeOfCredit === `consumer`
 
   const createRequestTemplate = (options = {}) => {
     const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
-    const sdfdfdsf = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
+    const showElement = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
 
     let requestNumberView = String(requestNumber);
     requestNumberView = (`№ 00`).slice(0, 6 - requestNumberView.length) + requestNumberView;
 
-    return (`<div class="page-calculation__request ${sdfdfdsf}">
+    return (`<div class="page-calculation__request ${showElement}">
             <h3>Шаг 3. Оформление заявки</h3>
             <table class="page-calculation__request-information">
               <tr>
@@ -955,6 +955,7 @@ ${typeOfCredit === `consumer`
       this._propertyCost = null;
       this._yearsCount = null;
       this._isElementHidden = true;
+      this._showPopup = null;
       this._subscribeOnEvents();
     }
 
@@ -967,6 +968,10 @@ ${typeOfCredit === `consumer`
         yearsCount: this._yearsCount,
         isElementHidden: this._isElementHidden
       });
+    }
+
+    setShowPopupHandler(handler) {
+      this._showPopup = handler;
     }
 
     recoveryListeners() {
@@ -989,29 +994,96 @@ ${typeOfCredit === `consumer`
 
       element.querySelector(`form`)
           .addEventListener(`input`, (evt) => {
-            const re = /^((8|\+7)[\- ]?)?(\(?\d{3,4}\)?[\- ]?)?[\d\- ]{5,10}$/;
+            const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+            const mailSample = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
-            if (evt.target.className === `field--name__input`) {
-              if (evt.target.validity.valueMissing) {
-                evt.target.setCustomValidity(`Хочешь, я угадаю твое имя?`);
+            if (evt.target.className === `field--phone__input`) {
+              if (!phoneSample.test(evt.target.value)) {
+                evt.target.setCustomValidity(`Напиши номер правильно`);
+              } else {
+                evt.target.setCustomValidity(``);
               }
 
-            } else if (evt.target.className === `field--phone__input`) {
-              if (evt.target.value !== re) {
-                evt.target.setCustomValidity(`напиши свой телефон`);
-              }
-
-            } else {
-              if (evt.target.validity.valueMissing) {
-                evt.target.setCustomValidity(`Оставь здесь свою почту`);
+            } else if (evt.target.className === `field--email__input`) {
+              if (!mailSample.test(evt.target.value)) {
+                evt.target.setCustomValidity(`Напиши email правильно`);
+              } else {
+                evt.target.setCustomValidity(``);
               }
             }
           });
 
       element.querySelector(`form`)
-          .addEventListener(`submit`, () => {
-            console.log(`Все прошло успешно`);
+          .addEventListener(`submit`, (evt) => {
+            evt.preventDefault();
+            this._requestNumber += 1;
+            element.querySelector(`form`).reset();
+            this._showPopup();
           });
+    }
+  }
+
+  const createPopupTemplate = (options = {}) => {
+    const {isPopupHidden} = options;
+    const isElementHidden = isPopupHidden ? `visually-hidden` : ``;
+
+    return (`<div class="popup-gratitude ${isElementHidden}">
+            <div class="popup-gratitude__body">
+              <div class="popup-gratitude__content">
+                <a href="#" class="popup-gratitude__close"></a>
+                <p class="popup-gratitude__title">Спасибо за обращение в банк.</p>
+                <p class="popup-gratitude__text">Наш менеджер скоро свяжется с Вами</br>по указанному номеру телефона</p>
+              </div>
+            </div>
+          </div>`);
+  };
+
+  class Popup extends AbstractSmartComponent {
+    constructor() {
+      super();
+      this.isPopupHidden = true;
+      this._showRequest = null;
+      this._onEscKeyDown = this._onEscKeyDown.bind(this);
+      this._subscribeOnEvents();
+    }
+
+    getTemplate() {
+      return createPopupTemplate({
+        isPopupHidden: this.isPopupHidden
+      });
+    }
+
+    setShowRequestHandler(handler) {
+      this._showRequest = handler;
+    }
+
+    recoveryListeners() {
+      this._subscribeOnEvents();
+    }
+
+    reRender(request) {
+      this.isPopupHidden = request.isPopupHidden;
+      this._showRequest();
+      super.reRender();
+      this.recoveryListeners();
+    }
+
+    _subscribeOnEvents() {
+      const element = this.getElement();
+
+      document.addEventListener(`keydown`, this._onEscKeyDown);
+
+      element.querySelector(`.popup-gratitude__close`)
+          .addEventListener(`click`, () => {
+            this.reRender({isPopupHidden: true});
+          });
+    }
+
+    _onEscKeyDown(evt) {
+      if (evt.key === `Escape` || evt.key === `Esc`) {
+        this.reRender({isPopupHidden: true});
+        document.removeEventListener(`keydown`, this._onEscKeyDown);
+      }
     }
   }
 
@@ -1021,6 +1093,9 @@ ${typeOfCredit === `consumer`
   const requestComponent = new Request();
   const mapComponent = new Map$1();
   const offersMenuComponent = new OffersMenu();
+  const popupGratitudeComponent = new Popup();
+
+  renderComponent(document.querySelector(`body`), popupGratitudeComponent);
 
   const promo = document.querySelector(`.page-promo`);
   renderComponent(promo, offersMenuComponent, `afterEnd`);
@@ -1095,6 +1170,14 @@ ${typeOfCredit === `consumer`
 
   ourOfferComponent.setCreateRequestHandler(() => {
     requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: false}));
+  });
+
+  requestComponent.setShowPopupHandler(() => {
+    popupGratitudeComponent.reRender({isPopupHidden: false});
+  });
+
+  popupGratitudeComponent.setShowRequestHandler(() => {
+    requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
   });
 
 }());

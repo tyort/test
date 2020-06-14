@@ -11,12 +11,12 @@ const creditNames = new Map([
 
 const createRequestTemplate = (options = {}) => {
   const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
-  const sdfdfdsf = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
+  const showElement = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
 
   let requestNumberView = String(requestNumber);
   requestNumberView = (`№ 00`).slice(0, 6 - requestNumberView.length) + requestNumberView;
 
-  return (`<div class="page-calculation__request ${sdfdfdsf}">
+  return (`<div class="page-calculation__request ${showElement}">
             <h3>Шаг 3. Оформление заявки</h3>
             <table class="page-calculation__request-information">
               <tr>
@@ -96,6 +96,7 @@ export default class Request extends AbstractSmartComponent {
     this._propertyCost = null;
     this._yearsCount = null;
     this._isElementHidden = true;
+    this._showPopup = null;
     this._subscribeOnEvents();
   }
 
@@ -108,6 +109,10 @@ export default class Request extends AbstractSmartComponent {
       yearsCount: this._yearsCount,
       isElementHidden: this._isElementHidden
     });
+  }
+
+  setShowPopupHandler(handler) {
+    this._showPopup = handler;
   }
 
   recoveryListeners() {
@@ -130,28 +135,31 @@ export default class Request extends AbstractSmartComponent {
 
     element.querySelector(`form`)
         .addEventListener(`input`, (evt) => {
-          const re = /^((8|\+7)[\- ]?)?(\(?\d{3,4}\)?[\- ]?)?[\d\- ]{5,10}$/;
+          const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+          const mailSample = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
-          if (evt.target.className === `field--name__input`) {
-            if (evt.target.validity.valueMissing) {
-              evt.target.setCustomValidity(`Хочешь, я угадаю твое имя?`);
+          if (evt.target.className === `field--phone__input`) {
+            if (!phoneSample.test(evt.target.value)) {
+              evt.target.setCustomValidity(`Напиши номер правильно`);
+            } else {
+              evt.target.setCustomValidity(``);
             }
 
-          } else if (evt.target.className === `field--phone__input`) {
-            if (evt.target.value !== re) {
-              evt.target.setCustomValidity(`напиши свой телефон`);
-            }
-
-          } else {
-            if (evt.target.validity.valueMissing) {
-              evt.target.setCustomValidity(`Оставь здесь свою почту`);
+          } else if (evt.target.className === `field--email__input`) {
+            if (!mailSample.test(evt.target.value)) {
+              evt.target.setCustomValidity(`Напиши email правильно`);
+            } else {
+              evt.target.setCustomValidity(``);
             }
           }
         });
 
     element.querySelector(`form`)
-        .addEventListener(`submit`, () => {
-          console.log(`Все прошло успешно`);
+        .addEventListener(`submit`, (evt) => {
+          evt.preventDefault();
+          this._requestNumber += 1;
+          element.querySelector(`form`).reset();
+          this._showPopup();
         });
   }
 }

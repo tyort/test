@@ -4,6 +4,7 @@ import PageCalculationComponent from "./components/page-calculation.js";
 import MapComponent from "./components/map.js";
 import OffersMenuComponent from "./components/offers-menu.js";
 import RequestComponent from "./components/request.js";
+import PopupGratitudeComponent from "./components/popup-gratitude.js";
 import {renderComponent} from './formulas.js';
 
 const pageCalculationComponent = new PageCalculationComponent();
@@ -12,6 +13,9 @@ const ourOfferComponent = new OurOfferComponent();
 const requestComponent = new RequestComponent();
 const mapComponent = new MapComponent();
 const offersMenuComponent = new OffersMenuComponent();
+const popupGratitudeComponent = new PopupGratitudeComponent();
+
+renderComponent(document.querySelector(`body`), popupGratitudeComponent);
 
 const promo = document.querySelector(`.page-promo`);
 renderComponent(promo, offersMenuComponent, `afterEnd`);
@@ -87,4 +91,13 @@ calculationComponent.setCalculateResultHandler(() => {
 ourOfferComponent.setCreateRequestHandler(() => {
   requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: false}));
 });
+
+requestComponent.setShowPopupHandler(() => {
+  popupGratitudeComponent.reRender({isPopupHidden: false});
+});
+
+popupGratitudeComponent.setShowRequestHandler(() => {
+  requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
+});
+
 

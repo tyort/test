@@ -1,6 +1,7 @@
 @import "normalize.scss";
 @import "offers-menu.scss";
 @import "calculation.scss";
+@import "popup.scss";
 
 @font-face {
   font-family: "Roboto";
@@ -30,4 +31,8 @@ input:valid {
 
 input:not(:placeholder-shown):invalid{
   border-color: red
+}
+
+.visually-hidden {
+  display: none;
 }

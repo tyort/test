@@ -1,0 +1,89 @@
+.popup-gratitude {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.719);
+
+  .popup-gratitude__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .popup-gratitude__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 500px;
+      max-height: 193px;
+      padding: 25px;
+      background-color: #F6F7FF;
+      border-radius: 4px;
+
+      .popup-gratitude__title {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 140%;
+      }
+
+      .popup-gratitude__text {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 140%;
+        text-align: center;
+      }
+
+      .popup-gratitude__close {
+        align-self: flex-end;
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+      }
+
+      .popup-gratitude__close:before {
+        content: '+';
+        color: #337AB7;
+        position: absolute;
+        z-index: 2;
+        transform: rotate(45deg);
+        font-size: 50px;
+        line-height: 1;
+        top: -5px;
+        left: 6px;
+        transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+      }
+
+      .popup-gratitude__close:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background: #337AB7;
+        z-index: 1;
+        transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+        transform: scale(0.01);
+      }
+
+      .popup-gratitude__close:hover:after {
+        transform: scale(1);
+      }
+      
+      .popup-gratitude__close:hover:before {
+        transform: scale(0.8) rotate(45deg);
+        color: #fff;
+      }
+    }
+  }
+}
