@@ -221,7 +221,6 @@
     }
 
     reRender(viewInformation) {
-
       this._creditType = viewInformation.creditType;
       this._propertyCost = viewInformation.propertyCost;
       this._firstPayment = viewInformation.firstPayment;
@@ -236,7 +235,7 @@
       this._costOfMortgage = this._propertyCost - this._firstPayment - mothersCapital;
 
       if (this._creditType === `mortgage`) {
-        const currentFirstPayPercent = this._firstPayment * 100 / this._costOfMortgage;
+        const currentFirstPayPercent = this._firstPayment * 100 / this._propertyCost;
         this._annualPercentRate = currentFirstPayPercent >= 15 ? 8.5 : 9.4;
         this._minCreditRequired = 500000;
 
@@ -259,6 +258,8 @@
         } else {
           this._annualPercentRate = 9.5;
         }
+
+        this._annualPercentRate = this._isParticipantUsed ? this._annualPercentRate - 0.5 : this._annualPercentRate;
       }
 
       let mounthlyPercentRate = this._annualPercentRate / 100 / 12;
