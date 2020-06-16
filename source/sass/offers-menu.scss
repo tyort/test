@@ -7,6 +7,7 @@
 
   &__inner {
     display: flex;
+    flex-wrap: wrap;
     max-width: 1170px;
     margin: 0 auto;
     height: 503px;
@@ -15,12 +16,14 @@
     .page-offers-menu__nav {
       display: flex;
       border: $bred;
-      max-height: 93px;
+      min-height: 93px;
       width: 100%;
+    }
 
-      li {
-        width: 100%;
-      }
+    .page-offers__slider {
+      border: $bred;
+      min-height: 410px;
+      width: 100%;
     }
   }
 }
