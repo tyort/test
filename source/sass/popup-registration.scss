@@ -1,0 +1,99 @@
+.popup-registration {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.719);
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .popup-registration__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .popup-registration__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 424px;
+      height: 373px;
+      padding: 60px;
+      background-color: #F6F7FF;
+      border-radius: 4px;
+
+      .popup-registration__content-header {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
+
+        img {
+          margin-right: auto;
+        }
+
+        .popup-registration__close {
+          align-self: flex-end;
+          width: 40px;
+          height: 40px;
+          border-radius: 40px;
+          position: relative;
+          z-index: 1;
+          cursor: pointer;
+        }
+  
+        .popup-registration__close:before {
+          content: '+';
+          color: #337AB7;
+          position: absolute;
+          z-index: 2;
+          transform: rotate(45deg);
+          font-size: 50px;
+          line-height: 1;
+          top: -5px;
+          left: 6px;
+          transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+        }
+  
+        .popup-registration__close:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 100%;
+          background: #337AB7;
+          z-index: 1;
+          transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+          transform: scale(0.01);
+        }
+  
+        .popup-registration__close:hover:after {
+          transform: scale(1);
+        }
+        
+        .popup-registration__close:hover:before {
+          transform: scale(0.8) rotate(45deg);
+          color: #fff;
+        }
+      }
+
+      .popup-registration__form {
+        width: 100%;
+
+        .popup-registration__btn {
+          margin-top: 49px;
+          width: 100%;
+          height: 60px;
+        }
+      }
+    }
+  }
+}

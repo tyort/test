@@ -5,8 +5,11 @@ import MapComponent from "./components/map.js";
 import OffersMenuComponent from "./components/offers-menu.js";
 import RequestComponent from "./components/request.js";
 import PopupGratitudeComponent from "./components/popup-gratitude.js";
+import RegistrationComponent from "./components/popup-registration.js";
+import HeaderComponent from "./components/header.js";
 import {renderComponent} from './formulas.js';
 
+const headerComponent = new HeaderComponent();
 const pageCalculationComponent = new PageCalculationComponent();
 const calculationComponent = new CalculationComponent();
 const ourOfferComponent = new OurOfferComponent();
@@ -14,8 +17,11 @@ const requestComponent = new RequestComponent();
 const mapComponent = new MapComponent();
 const offersMenuComponent = new OffersMenuComponent();
 const popupGratitudeComponent = new PopupGratitudeComponent();
+const registrationComponent = new RegistrationComponent();
 
+renderComponent(document.querySelector(`body`), headerComponent, `afterBegin`);
 renderComponent(document.querySelector(`body`), popupGratitudeComponent);
+renderComponent(document.querySelector(`body`), registrationComponent);
 
 const promo = document.querySelector(`.page-promo`);
 renderComponent(promo, offersMenuComponent, `afterEnd`);
@@ -98,6 +104,10 @@ requestComponent.setShowPopupHandler(() => {
 
 popupGratitudeComponent.setShowRequestHandler(() => {
   requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
+});
+
+headerComponent.setShowRegistrationHandler(() => {
+  registrationComponent.reRender({isPopupHidden: false});
 });
 
 

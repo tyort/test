@@ -52,6 +52,7 @@ const createRequestTemplate = (options = {}) => {
                   id="block-name"
                   placeholder="ФИО"
                   autocomplete="off"
+                  autofocus
                   required
                 />
               </fieldset>

@@ -911,6 +911,7 @@ ${typeOfCredit === `consumer`
                   id="block-name"
                   placeholder="ФИО"
                   autocomplete="off"
+                  autofocus
                   required
                 />
               </fieldset>
@@ -1087,6 +1088,148 @@ ${typeOfCredit === `consumer`
     }
   }
 
+  const createPopupTemplate$1 = (options = {}) => {
+    const {isPopupHidden} = options;
+    const isElementHidden = isPopupHidden ? `visually-hidden` : ``;
+
+    return (`<div class="popup-registration ${isElementHidden}">
+            <div class="popup-registration__body">
+              <div class="popup-registration__content">
+                <div class="popup-registration__content-header">
+                  <img src="img/reglogo.svg" alt="ЛИГА Банк" width="150" height="27">
+                  <a href="#" class="popup-registration__close"></a>
+                </div>
+                <form class="popup-registration__form">
+                  <fieldset class="field--login__field">
+                    <label for="block-login">Логин</label>
+                    <input 
+                      class="field--login__input"
+                      type="text"
+                      name="login"
+                      value=""
+                      id="block-login"
+                      placeholder="Login"
+                      autocomplete="off"
+                      autofocus
+                      required
+                    />
+                  </fieldset>
+                  <fieldset class="field--password__field">
+                    <label for="block-password">Пароль</label>
+                    <input 
+                      class="field--password__input"
+                      type="password"
+                      name="password"
+                      value=""
+                      id="block-password"
+                      placeholder="Password"
+                      autocomplete="off"
+                      required
+                    />
+                  </fieldset>
+                  <button class="popup-registration__btn" type="submit">Войти</button>
+                </form>
+              </div>
+            </div>
+          </div>`);
+  };
+
+  class Popup$1 extends AbstractSmartComponent {
+    constructor() {
+      super();
+      this.isPopupHidden = true;
+      this._onEscKeyDown = this._onEscKeyDown.bind(this);
+      this._subscribeOnEvents();
+    }
+
+    getTemplate() {
+      return createPopupTemplate$1({
+        isPopupHidden: this.isPopupHidden
+      });
+    }
+
+    recoveryListeners() {
+      this._subscribeOnEvents();
+    }
+
+    reRender(request) {
+      this.isPopupHidden = request.isPopupHidden;
+      super.reRender();
+      this.recoveryListeners();
+    }
+
+    _subscribeOnEvents() {
+      const element = this.getElement();
+
+      document.addEventListener(`keydown`, this._onEscKeyDown);
+
+      element.querySelector(`.popup-registration__close`)
+          .addEventListener(`click`, () => {
+            this.reRender({isPopupHidden: true});
+          });
+    }
+
+    _onEscKeyDown(evt) {
+      if (evt.key === `Escape` || evt.key === `Esc`) {
+        this.reRender({isPopupHidden: true});
+        document.removeEventListener(`keydown`, this._onEscKeyDown);
+      }
+    }
+  }
+
+  const createHeaderTemplate = () => {
+
+    return (`<header class="page-header">
+            <div class="page-header__logo">
+              <img src="img/logo.svg" alt="ЛИГА Банк" width="149" height="25">
+            </div>
+            <ul class="main-nav">
+              <li><a href="#">Услуги</a></li>
+              <li><a href="#">Рассчитать кредит</a></li>
+              <li><a href="#">Контакты</a></li>
+              <li><a href="#">Задать вопрос</a></li>
+            </ul>
+            <div class="btn btn-page-header__login">
+              <img src="img/login-icon.svg" alt="Войти в Интернет-банк" width="203" height="22">
+            </div>
+          </header>`);
+  };
+
+  class Header extends AbstractSmartComponent {
+    constructor() {
+      super();
+      this._showRegistration = null;
+      this._subscribeOnEvents();
+    }
+
+    getTemplate() {
+      return createHeaderTemplate();
+    }
+
+    setShowRegistrationHandler(handler) {
+      this._showRegistration = handler;
+    }
+
+    recoveryListeners() {
+      this._subscribeOnEvents();
+    }
+
+    reRender() {
+      super.reRender();
+      this.recoveryListeners();
+    }
+
+    _subscribeOnEvents() {
+      const element = this.getElement();
+
+      element.querySelector(`.btn-page-header__login`)
+          .addEventListener(`click`, () => {
+            this._showRegistration();
+          });
+    }
+  }
+
+  const headerComponent = new Header();
   const pageCalculationComponent = new PageCalculation();
   const calculationComponent = new Calculation();
   const ourOfferComponent = new OurOffer();
@@ -1094,8 +1237,11 @@ ${typeOfCredit === `consumer`
   const mapComponent = new Map$1();
   const offersMenuComponent = new OffersMenu();
   const popupGratitudeComponent = new Popup();
+  const registrationComponent = new Popup$1();
 
+  renderComponent(document.querySelector(`body`), headerComponent, `afterBegin`);
   renderComponent(document.querySelector(`body`), popupGratitudeComponent);
+  renderComponent(document.querySelector(`body`), registrationComponent);
 
   const promo = document.querySelector(`.page-promo`);
   renderComponent(promo, offersMenuComponent, `afterEnd`);
@@ -1178,6 +1324,10 @@ ${typeOfCredit === `consumer`
 
   popupGratitudeComponent.setShowRequestHandler(() => {
     requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
+  });
+
+  headerComponent.setShowRegistrationHandler(() => {
+    registrationComponent.reRender({isPopupHidden: false});
   });
 
 }());
