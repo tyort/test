@@ -1236,6 +1236,9 @@ ${typeOfCredit === `consumer`
   const createHeaderTemplate = () => {
 
     return (`<header class="page-header">
+            <div class="page-header__menu-icon">
+              <div class="page-header__menu-icon--lines"></div>
+            </div>
             <div class="page-header__logo">
               <img src="img/logo.svg" alt="ЛИГА Банк" width="149" height="25">
             </div>
@@ -1248,7 +1251,7 @@ ${typeOfCredit === `consumer`
               </ul>
             </div>
             <div class="btn btn-page-header__login">
-              Войти в Интернет-банк
+              <p>Войти в Интернет-банк<p>
             </div>
           </header>`);
   };
