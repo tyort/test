@@ -735,7 +735,7 @@ ${typeOfCredit === `consumer`
           return (
             `<div>
             <input type="checkbox" value="${item[0]}" id="${item[0]}">
-            <label for="russia">${item[1]}</label>
+            <label for="${item[0]}">${item[1]}</label>
           </div>`
           );
         })
@@ -837,13 +837,31 @@ ${typeOfCredit === `consumer`
     }
   }
 
+  const getCheckedSlickSlide = (element) => {
+    switch (element) {
+      case `menu__nav-item--first`:
+        return document.querySelector(`#slick-slide-control00`);
+      case `menu__nav-item--second`:
+        return document.querySelector(`#slick-slide-control01`);
+      case `menu__nav-item--third`:
+        return document.querySelector(`#slick-slide-control02`);
+      case `menu__nav-item--forth`:
+        return document.querySelector(`#slick-slide-control03`);
+      default:
+        return null;
+    }
+  };
+
   const createOffersMenuTemplate = () => {
     return (
       `<div class="page-offers-menu">
         <div class="page-offers-menu__inner">
-          <ul class="page-offers-menu__nav">
-              <img src="" alt="">
-          </ul>
+          <div class="page-offers-menu__nav">
+            <button class="menu__nav-item--first">Вклады</button>
+            <button class="menu__nav-item--second">Кредиты</button>
+            <button class="menu__nav-item--third">Страхование</button>
+            <button class="menu__nav-item--forth">Онлайн-сервисы</button>
+          </div>
           <div class="page-offers__slider">
             <div class="page-offers-item__view">
                 <img src="img/slide-deposit.svg" alt="deposit" width="1170" height="410">
@@ -866,6 +884,7 @@ ${typeOfCredit === `consumer`
   class OffersMenu extends AbstractSmartComponent {
     constructor() {
       super();
+      this._getInitMap();
       this._subscribeOnEvents();
     }
 
@@ -873,7 +892,29 @@ ${typeOfCredit === `consumer`
       return createOffersMenuTemplate();
     }
 
-    _subscribeOnEvents() {}
+    _getInitMap() {
+      window.$(document).ready(() => {
+        window.$(`.page-offers__slider`).slick({
+          dots: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          adaptiveHeight: true,
+          arrows: false
+        });
+
+        document.querySelector(`.slick-dots`).classList.add(`visually-hidden`);
+      });
+    }
+
+    _subscribeOnEvents() {
+      const element = this.getElement();
+
+      element.querySelector(`.page-offers-menu__nav`)
+          .addEventListener(`click`, (evt) => {
+            getCheckedSlickSlide(evt.target.className).click();
+          });
+    }
   }
 
   const FIRST_REQUEST_NUMBER = 11;
@@ -1244,6 +1285,66 @@ ${typeOfCredit === `consumer`
     }
   }
 
+  // const sdfsdfdsf = (element) => {
+  //   switch (element) {
+  //     case `menu__nav-item--first`:
+  //       return document.querySelector(`#slick-slide-control00`);
+  //     case `menu__nav-item--second`:
+  //       return document.querySelector(`#slick-slide-control01`);
+  //     case `menu__nav-item--third`:
+  //       return document.querySelector(`#slick-slide-control02`);
+  //     case `menu__nav-item--forth`:
+  //       return document.querySelector(`#slick-slide-control03`);
+  //     default:
+  //       return null;
+  //   }
+  // };
+
+  const createPresentationTemplate = () => {
+    return (
+      `<div class="page-presentation">
+        <div class="page-presentation__slider">
+          <div class="page-presentation-item__view">
+            <img src="img/slide-cards.svg" alt="cards">
+          </div>
+          <div class="page-presentation-item__view">
+            <img src="img/slide-confidence.svg" alt="confidence">
+          </div>
+          <div class="page-presentation-item__view">
+            <img src="img/slide-girl.svg" alt="girl">
+          </div>
+        </div>
+    </div>`);
+  };
+
+
+  class OffersMenu$1 extends AbstractSmartComponent {
+    constructor() {
+      super();
+      this._getInitMap();
+      this._subscribeOnEvents();
+    }
+
+    getTemplate() {
+      return createPresentationTemplate();
+    }
+
+    _getInitMap() {
+      window.$(document).ready(() => {
+        window.$(`.page-presentation__slider`).slick({
+          dots: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          adaptiveHeight: true,
+          arrows: false,
+        });
+      });
+    }
+
+    _subscribeOnEvents() {}
+  }
+
   const headerComponent = new Header();
   const pageCalculationComponent = new PageCalculation();
   const calculationComponent = new Calculation();
@@ -1253,10 +1354,14 @@ ${typeOfCredit === `consumer`
   const offersMenuComponent = new OffersMenu();
   const popupGratitudeComponent = new Popup();
   const registrationComponent = new Popup$1();
+  const presentationComponent = new OffersMenu$1();
 
   renderComponent(document.querySelector(`body`), headerComponent, `afterBegin`);
   renderComponent(document.querySelector(`body`), popupGratitudeComponent);
   renderComponent(document.querySelector(`body`), registrationComponent);
+
+  const pageHeader = document.querySelector(`.page-header`);
+  renderComponent(pageHeader, presentationComponent, `afterEnd`);
 
   const promo = document.querySelector(`.page-promo`);
   renderComponent(promo, offersMenuComponent, `afterEnd`);

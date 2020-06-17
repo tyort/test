@@ -7,6 +7,7 @@ import RequestComponent from "./components/request.js";
 import PopupGratitudeComponent from "./components/popup-gratitude.js";
 import RegistrationComponent from "./components/popup-registration.js";
 import HeaderComponent from "./components/header.js";
+import PresentationComponent from "./components/presentation.js";
 import {renderComponent} from './formulas.js';
 
 const headerComponent = new HeaderComponent();
@@ -18,10 +19,14 @@ const mapComponent = new MapComponent();
 const offersMenuComponent = new OffersMenuComponent();
 const popupGratitudeComponent = new PopupGratitudeComponent();
 const registrationComponent = new RegistrationComponent();
+const presentationComponent = new PresentationComponent();
 
 renderComponent(document.querySelector(`body`), headerComponent, `afterBegin`);
 renderComponent(document.querySelector(`body`), popupGratitudeComponent);
 renderComponent(document.querySelector(`body`), registrationComponent);
+
+const pageHeader = document.querySelector(`.page-header`);
+renderComponent(pageHeader, presentationComponent, `afterEnd`);
 
 const promo = document.querySelector(`.page-promo`);
 renderComponent(promo, offersMenuComponent, `afterEnd`);

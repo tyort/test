@@ -35,7 +35,7 @@ const createWorldParts = (parts) => {
         return (
           `<div>
             <input type="checkbox" value="${item[0]}" id="${item[0]}">
-            <label for="russia">${item[1]}</label>
+            <label for="${item[0]}">${item[1]}</label>
           </div>`
         );
       })
