@@ -5,7 +5,20 @@
   margin: 0 auto;
   padding-left: 61px;
   padding-right: 98px;
-  border: $bred;
+  // border: $bred;
+  height: 91px;
+}
+
+@media (max-width: 1023px) {
+  .page-header {
+    height: 69px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-header {
+    height: 48px;
+  }
 }
 
 // появляется, когда ширина не более 767 пикселей
@@ -14,13 +27,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: $bred;
+    // border: $bred;
+    margin-right: 15px;
+    z-index: 19;
   }
 
   .page-header__menu-icon--lines {
     position: relative;
     width: 16px;
-    height: 1px;
+    height: 2px;
     background-color: rgb(0, 0, 0);
   }
   
@@ -30,7 +45,7 @@
     display: block;
     top: 5px;
     width: 16px;
-    height: 1px;
+    height: 2px;
     background-color: rgb(0, 0, 0);
   }
   
@@ -40,16 +55,31 @@
     display: block;
     top: -5px;
     width: 16px;
-    height: 1px;
+    height: 2px;
     background-color: rgb(0, 0, 0);
   }
 }
 
 .page-header__logo {
-  padding-top: 27px;
-  padding-bottom: 39px;
+  display: flex;
   margin-right: 58px;
-  border: $bred;
+  // border: $bred;
+  align-items: center;
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.page-header__logo p{
+  margin: 0;
+}
+
+.page-header__logo::before {
+  content: url(../img/logo.svg);
+  margin-right: 9px;
+  margin-bottom: 6px;
 }
 
 .main-nav {
@@ -57,7 +87,7 @@
 }
 
 .main-nav__list {
-  border: $bred;
+  // border: $bred;
   display: flex;
   align-items: center;
 }
@@ -83,18 +113,23 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
+  color: #1F1E25;
 }
 
 .btn-page-header__login {
   display: flex;
   align-items: center;
-  border: $bred;
+  // border: $bred;
   margin-left: auto;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
+}
+
+.btn-page-header__login p{
+  margin: 0;
 }
 
 // срабатывает при width от 0 до 1023 пикселей
@@ -107,4 +142,37 @@
 .btn-page-header__login::before {
   content: url(../img/login-icon.svg);
   margin-right: 10px;
+}
+
+
+/*_____________мобильная навигация________________*/
+
+.main-nav--mobile {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 70px 50px 0px;
+  background-color: rgba(156, 173, 226, 0.87);
+  z-index: 9;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+
+@media (min-width: 768px) {
+  .main-nav--mobile {
+    display: none;
+  }
+}
+
+.main-nav--mobile__item {
+  margin-bottom: 30px;
+}
+
+.main-nav--mobile__item--link {
+  color: #1F1E25;
 }

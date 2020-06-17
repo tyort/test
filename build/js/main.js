@@ -1240,7 +1240,7 @@ ${typeOfCredit === `consumer`
               <div class="page-header__menu-icon--lines"></div>
             </div>
             <div class="page-header__logo">
-              <img src="img/logo.svg" alt="ЛИГА Банк" width="149" height="25">
+              <p>ЛИГА Банк<p>
             </div>
             <div class="main-nav">
               <ul class="main-nav__list">
@@ -1250,7 +1250,15 @@ ${typeOfCredit === `consumer`
                 <li class="main-nav__item"><a class="main-nav__item--link" href="#">Задать вопрос</a></li>
               </ul>
             </div>
-            <div class="btn btn-page-header__login">
+            <div class="main-nav--mobile">
+              <ul class="main-nav--mobile__list">
+                <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Услуги</a></li>
+                <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Рассчитать кредит</a></li>
+                <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Контакты</a></li>
+                <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Задать вопрос</a></li>
+              </ul>
+            </div>
+            <div class="btn-page-header__login">
               <p>Войти в Интернет-банк<p>
             </div>
           </header>`);
