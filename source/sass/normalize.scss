@@ -12,12 +12,16 @@
 
 $bred: 0.5px solid red;
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
 body {
-  margin: auto;
+  margin: 0;
 }
 
 .container { // растягивается

@@ -6,14 +6,16 @@ const createHeaderTemplate = () => {
             <div class="page-header__logo">
               <img src="img/logo.svg" alt="ЛИГА Банк" width="149" height="25">
             </div>
-            <ul class="main-nav">
-              <li><a href="#">Услуги</a></li>
-              <li><a href="#">Рассчитать кредит</a></li>
-              <li><a href="#">Контакты</a></li>
-              <li><a href="#">Задать вопрос</a></li>
-            </ul>
+            <div class="main-nav">
+              <ul class="main-nav__list">
+                <li class="main-nav__item"><a class="main-nav__item--link" href="#">Услуги</a></li>
+                <li class="main-nav__item"><a class="main-nav__item--link" href="#">Рассчитать кредит</a></li>
+                <li class="main-nav__item"><a class="main-nav__item--link" href="#">Контакты</a></li>
+                <li class="main-nav__item"><a class="main-nav__item--link" href="#">Задать вопрос</a></li>
+              </ul>
+            </div>
             <div class="btn btn-page-header__login">
-              <img src="img/login-icon.svg" alt="Войти в Интернет-банк" width="203" height="22">
+              Войти в Интернет-банк
             </div>
           </header>`);
 };

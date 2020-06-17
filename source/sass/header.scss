@@ -1,44 +1,59 @@
-//_______________________header.html
-
 .page-header {
   display: flex;
-  width: 1207px;
-  height: 91px;
+  justify-content: flex-start;
+  max-width: 1366px;
   margin: 0 auto;
+  padding-left: 61px;
+  padding-right: 98px;
   border: $bred;
 }
 
 .page-header__logo {
-  display: flex;
-  width: 207px;
-  justify-content: flex-start;
-  border: $bred;
   padding-top: 27px;
-}
-
-.btn-page-header__login {
-  display: flex;
-  width: 207px;
-  justify-content: flex-start;
+  padding-bottom: 39px;
+  margin-right: 58px;
   border: $bred;
-  padding-top: 34px;
 }
 
 .main-nav {
   display: flex;
-  justify-content: flex-start;
-  margin: 0;
-  padding: 40px 0 0 0;
-  width: 797px;
+}
+
+.main-nav__list {
+  border: $bred;
+  display: flex;
+  align-items: center;
+}
+
+.main-nav__item {
+  margin-right: 25px;
+}
+
+.main-nav__item:last-child {
+  margin-right: 0;
+}
+
+.main-nav__item--link {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-  color: #1F1E25;
-  border: $bred;
 }
 
-.main-nav li{
-  padding-right: 25px;
+.btn-page-header__login {
+  display: flex;
+  align-items: center;
+  border: $bred;
+  margin-left: auto;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.btn-page-header__login::before {
+  content: url(../img/login-icon.svg);
+  margin-right: 10px;
 }
