@@ -1233,7 +1233,10 @@ ${typeOfCredit === `consumer`
     }
   }
 
-  const createHeaderTemplate = () => {
+  const createHeaderTemplate = (options = {}) => {
+    const {isMobileNavHidden} = options;
+
+    const isElementHidden = isMobileNavHidden ? `visually-hidden` : ``;
 
     return (`<header class="page-header">
             <div class="page-header__menu-icon">
@@ -1250,7 +1253,7 @@ ${typeOfCredit === `consumer`
                 <li class="main-nav__item"><a class="main-nav__item--link" href="#">Задать вопрос</a></li>
               </ul>
             </div>
-            <div class="main-nav--mobile">
+            <div class="main-nav--mobile ${isElementHidden}">
               <ul class="main-nav--mobile__list">
                 <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Услуги</a></li>
                 <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Рассчитать кредит</a></li>
@@ -1268,11 +1271,14 @@ ${typeOfCredit === `consumer`
     constructor() {
       super();
       this._showRegistration = null;
+      this._isMobileNavHidden = true;
       this._subscribeOnEvents();
     }
 
     getTemplate() {
-      return createHeaderTemplate();
+      return createHeaderTemplate({
+        isMobileNavHidden: this._isMobileNavHidden
+      });
     }
 
     setShowRegistrationHandler(handler) {
@@ -1294,6 +1300,12 @@ ${typeOfCredit === `consumer`
       element.querySelector(`.btn-page-header__login`)
           .addEventListener(`click`, () => {
             this._showRegistration();
+          });
+
+      element.querySelector(`.page-header__menu-icon`)
+          .addEventListener(`click`, () => {
+            this._isMobileNavHidden = !this._isMobileNavHidden;
+            this.reRender();
           });
     }
   }
