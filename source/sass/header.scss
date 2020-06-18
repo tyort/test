@@ -12,12 +12,16 @@
 @media (max-width: 1023px) {
   .page-header {
     height: 69px;
+    padding-right: 45px;
+    padding-left: 45px;
   }
 }
 
 @media (max-width: 767px) {
   .page-header {
     height: 48px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 
@@ -70,6 +74,7 @@
   font-weight: bold;
   font-size: 20px;
   line-height: 23px;
+  flex-shrink: 0;
 }
 
 .page-header__logo p{
@@ -84,6 +89,7 @@
 
 .main-nav {
   display: flex;
+  flex-shrink: 0;
 }
 
 .main-nav__list {
@@ -126,6 +132,7 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
+  flex-shrink: 0;
 }
 
 .btn-page-header__login p{
