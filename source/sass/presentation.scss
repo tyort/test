@@ -1,6 +1,255 @@
 .page-presentation {
   max-width: 1366px;
-  border: $bred;
+  margin: 0 auto;
+  // border: $bred;
+
+  .page-presentation-item__view {
+    padding: 48px 15px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    // border: $bred;
+
+    .page-presentation-item__view--inner {
+      display: flex;
+      // border: $bred;
+      height: 304px;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        height: 204px;
+      }
+      @media (max-width: 767px) {
+        height: 130px;
+      }
+
+      .page-presentation__essence {
+        display: flex;
+        flex-direction: column;
+        // border: $bred;
+        height: 304px;
+        margin-left: 253px;
+        @media (min-width: 768px) and (max-width: 1023px) {
+          margin-left: 71px;
+          height: 204px;
+        }
+        @media (max-width: 767px) {
+          margin-left: 0;
+          height: 130px;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+
+  /*---------------------- Для первой фотографии -----------------------------*/
+  .page-presentation-item__view.first-slide {
+    background-image: url(../img/slide-cards.svg);
+  }
+
+  .page-presentation__credits-offer--photo {
+    margin: 0 auto;
+    // border: $bred;
+    // overflow: hidden;
+    img {
+      width: 100%;
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      img {
+        margin-top: -30px;
+        width: 400px;
+      }
+    }
+    @media (max-width: 767px) {
+      img {
+        margin-top: -40px;
+        width: 300px;
+      }
+    }
+  }
+
+  .page-presentation__credits-offer--title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 54px;
+    line-height: 63px;
+    color: #F6F7FF;
+    // border: $bred;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      font-size: 46px;
+      line-height: 54px;
+    }
+    @media (max-width: 767px) {
+      font-size: 38px;
+      line-height: 45px;
+    }
+  }
+
+  .page-presentation__credits-offer--comment {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 26px;
+    color: #F6F7FF;
+    // border: $bred;
+    margin-top: 25px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      font-size: 18px;
+      line-height: 21px;
+      margin-top: 25px;
+    }
+    @media (max-width: 767px) {
+      font-size: 16px;
+      line-height: 19px;
+      margin-top: 0;
+    }
+  }
+
+  .page-presentation__credits-offer--btn {
+    width: 234px;
+    height: 53px;
+    background: #F6F7FF;
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    // border: $bred;
+    margin-top: 40px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      width: 206px;
+      height: 48px;
+      font-size: 16px;
+      line-height: 19px;
+      margin-top: 40px;
+    }
+    @media (max-width: 767px) {
+      width: 188px;
+      height: 43px;
+      font-size: 14px;
+      line-height: 16px;
+      margin-top: 0px;
+    }
+  }
+
+  /*---------------------- Для второй фотографии -----------------------------*/
+  .page-presentation-item__view.second-slide {
+    background-image: url(../img/slide-confidence.svg);
+  }
+
+  .page-presentation__confidence--title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 54px;
+    line-height: 63px;
+    color: #1F1E25;
+    // border: $bred;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      font-size: 46px;
+      line-height: 54px;
+    }
+    @media (max-width: 767px) {
+      font-size: 38px;
+      line-height: 45px;
+    }
+  }
+
+  .page-presentation__confidence--comment {
+    width: 100%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 26px;
+    color: #2B3C4F;
+    // border: $bred;
+    margin-top: 25px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      font-size: 18px;
+      line-height: 21px;
+      margin-top: 25px;
+    }
+    @media (max-width: 767px) {
+      font-size: 16px;
+      line-height: 19px;
+      margin-top: 0;
+      width: 85%;
+    }
+  }
+
+  /*---------------------- Для третьей фотографии -----------------------------*/
+  .page-presentation-item__view.third-slide {
+    background-image: url(../img/slide-girl.svg);
+  }
+
+  .page-presentation__closeness--title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 54px;
+    line-height: 63px;
+    color: #1F1E25;
+    // border: $bred;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      font-size: 46px;
+      line-height: 54px;
+    }
+    @media (max-width: 767px) {
+      font-size: 38px;
+      line-height: 45px;
+    }
+  }
+
+  .page-presentation__closeness--comment {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 26px;
+    color: #1F1E25;
+    // border: $bred;
+    margin-top: 25px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      font-size: 18px;
+      line-height: 21px;
+      margin-top: 25px;
+    }
+    @media (max-width: 767px) {
+      font-size: 16px;
+      line-height: 19px;
+      margin-top: 0;
+    }
+  }
+
+  .page-presentation__closeness--btn {
+    width: 234px;
+    height: 53px;
+    background: #F6F7FF;
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    // border: $bred;
+    margin-top: 40px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      width: 206px;
+      height: 48px;
+      font-size: 16px;
+      line-height: 19px;
+      margin-top: 40px;
+    }
+    @media (max-width: 767px) {
+      width: 188px;
+      height: 43px;
+      font-size: 14px;
+      line-height: 16px;
+      margin-top: 0px;
+    }
+  }
 
   .slick-dots {
     position: absolute;
@@ -32,3 +281,4 @@
     }
   }
 }
+

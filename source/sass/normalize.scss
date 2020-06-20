@@ -46,6 +46,10 @@ ul {
   clear: both;
 }
 
+p {
+  margin: 0;
+}
+
 
 //_______________________promo.html
 
@@ -149,10 +153,6 @@ ul {
   border: $bred;
   margin-left: auto;
 }
-
-
-
-
 
 /**
  * Render the `main` element consistently in IE.

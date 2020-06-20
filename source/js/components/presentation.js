@@ -1,42 +1,44 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
 
-// const sdfsdfdsf = (element) => {
-//   switch (element) {
-//     case `menu__nav-item--first`:
-//       return document.querySelector(`#slick-slide-control00`);
-//     case `menu__nav-item--second`:
-//       return document.querySelector(`#slick-slide-control01`);
-//     case `menu__nav-item--third`:
-//       return document.querySelector(`#slick-slide-control02`);
-//     case `menu__nav-item--forth`:
-//       return document.querySelector(`#slick-slide-control03`);
-//     default:
-//       return null;
-//   }
-// };
-
 const createPresentationTemplate = () => {
   return (
     `<div class="page-presentation">
-        <div class="page-presentation__slider">
-          <div class="page-presentation-item__view">
-            <img src="img/slide-cards.svg" alt="cards">
+      <div class="page-presentation-item__view first-slide">
+        <div class="page-presentation-item__view--inner">
+          <div class="page-presentation__essence">
+            <p class="page-presentation__credits-offer--title">Лига Банк</p>
+            <p class="page-presentation__credits-offer--comment">Кредиты на любой случай</p>
+            <button class="page-presentation__credits-offer--btn">Рассчитать кредит</button>
           </div>
-          <div class="page-presentation-item__view">
-            <img src="img/slide-confidence.svg" alt="confidence">
-          </div>
-          <div class="page-presentation-item__view">
-            <img src="img/slide-girl.svg" alt="girl">
+          <div class="page-presentation__credits-offer--photo">
+            <img src="img/credit-cards.svg" alt="credit-cards">
           </div>
         </div>
+      </div>
+      <div class="page-presentation-item__view second-slide">
+        <div class="page-presentation-item__view--inner">
+          <div class="page-presentation__essence">
+            <p class="page-presentation__confidence--title">Лига Банк</p>
+            <p class="page-presentation__confidence--comment">Ваша уверенность в завтрашнем дне</p>
+          </div>
+        </div>
+      </div>
+      <div class="page-presentation-item__view third-slide">
+        <div class="page-presentation-item__view--inner">
+          <div class="page-presentation__essence">
+            <p class="page-presentation__closeness--title">Лига Банк</p>
+            <p class="page-presentation__closeness--comment">Всегда рядом</p>
+            <button class="page-presentation__closeness--btn">Найти отделение</button>
+          </div>
+        </div>
+      </div>
     </div>`);
 };
-
 
 export default class OffersMenu extends AbstractSmartComponent {
   constructor() {
     super();
-    this._getInitMap();
+    this._getInitSlider();
     this._subscribeOnEvents();
   }
 
@@ -44,9 +46,9 @@ export default class OffersMenu extends AbstractSmartComponent {
     return createPresentationTemplate();
   }
 
-  _getInitMap() {
+  _getInitSlider() {
     window.$(document).ready(() => {
-      window.$(`.page-presentation__slider`).slick({
+      window.$(`.page-presentation`).slick({
         dots: true,
         infinite: true,
         speed: 300,
