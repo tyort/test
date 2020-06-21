@@ -1,29 +1,238 @@
 .page-offers-menu { // высота должна быть 673
-  display: block;
-  height: 503px;
-  border: $bred;
-  padding-top: 60px;
-  padding-bottom: 110px;
+  max-width: 1170px;
+  margin: 0 auto;
+  // border: $bred;
+  @media (min-width: 1024px) {
+    margin-top: 60px;
+  }
 
-  &__inner {
+  .page-offers-item__view {
+    background: #F6F7FF;
+    border-radius: 0px 4px 4px 4px;
+  }
+
+  .page-offers-menu__nav {
     display: flex;
-    flex-wrap: wrap;
-    max-width: 1170px;
-    margin: 0 auto;
-    height: 503px;
-    border: $bred;
-
-    .page-offers-menu__nav {
-      display: flex;
-      border: $bred;
-      min-height: 93px;
-      width: 100%;
+    height: 93px;
+    justify-content: stretch;
+    align-items: stretch;
+    // border: $bred;
+    @media (max-width: 1023px) {
+      display: none;
     }
 
-    .page-offers__slider {
-      border: $bred;
-      min-height: 410px;
+    button {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+      border: none;
+      background: none;
+      outline: none;
+      flex-grow: 1;
+      // border: $bred;
+    }
+
+    button:hover {
+      background: #F6F7FF;
+    }
+  }
+}
+
+
+.page-offers-item__view--inner {
+  display: flex;
+  height: 410px;
+  // border: $bred;
+  padding: 60px 0 60px 70px;
+  position: relative;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding-left: 45px;
+    height: 380px;
+  }
+  @media (max-width: 767px) {
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 362px;
+  }
+
+  .page-offers__service--description {
+    // border: $bred;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 19;
+    @media (max-width: 767px) {
+      flex-grow: 1;
+      min-width: 260px;
+    }
+
+    .page-offers__service--title {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 140%;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        font-size: 18px;
+      }
+      @media (max-width: 767px) {
+        font-size: 16px;
+      }
+    }
+
+    .page-offers__service--advantages {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 130%;
+      // border: $bred;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 112px;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        font-size: 16px;
+        height: 104px;
+      }
+      @media (max-width: 767px) {
+        font-size: 14px;
+        height: 106px;
+      }
+
+      li {
+        position: relative;
+        padding-left: 20px;
+        // border: $bred;
+      }
+
+      li:before{
+        content: '✔';
+        // border: $bred;
+        position: absolute; top: 0; left: 0px;
+        color: #1F1E25;
+      }
+    }
+
+    .page-offers__service--btn {
+      outline: none;
+      width: 198px;
+      height: 51px;
+      background: #2C36F2;
+      border-radius: 4px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #F6F7FF;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        height: 48px;
+      }
+      @media (max-width: 767px) {
+        font-size: 14px;
+        line-height: 16px;
+        height: 43px;
+        width: 100%;
+      }
+    }
+
+    .page-offers__service--link {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 140%;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        font-size: 16px;
+      }
+      @media (max-width: 767px) {
+        font-size: 14px;
+      }
+
+      a {
+        color: #1F1E25;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .page-offers__service--photo {
+    // border: $bred;
+    margin: 0 auto;
+    z-index: 9;
+    @media (max-width: 767px) {
+      position: absolute;
+      left: 50%;
+      top: 0px;
+      overflow: hidden;
+      width: 300px;
+    }
+
+    img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // border: $bred;
+      @media (max-width: 767px) {
+        margin-left: -150px;
+      }
+    }
+  }
+
+  .page-offers__service--photo.car-pic {
+    @media (max-width: 767px) {
+      top: 25%;
+      left: 60%;
+    }
+
+    img {
+      @media (max-width: 767px) {
+        margin-left: -50px;
+        width: 200px;
+      }
+    }
+  }
+
+}
+
+.page-offers__slider {
+  // border: $bred;
+
+  .slick-dots {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -40px;
+    // border: $bred;
+    left: 50%;
+    bottom: 15px;
+
+    li {
+      list-style: none;
+      margin: auto 4px;
+      @media (min-width: 1024px) {
+        display: none;
+      }
+    }
+
+    li.slick-active button{
+      background-color: #E0E0E0;
+    }
+
+    button {
+      font-size: 0;
+      width: 8px;
+      height: 8px;
+      background-color: #2028B6;
+      border-width: 0px;
+      outline-width: 0px;
+      border-radius: 50%;
+      vertical-align: middle;
     }
   }
 }
