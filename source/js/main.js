@@ -36,8 +36,7 @@ renderComponent(pageOffersMenu, pageCalculationComponent, `afterEnd`);
 
 const pageCalculation = document.querySelector(`.page-calculation`);
 renderComponent(pageCalculation, calculationComponent);
-const titleName = pageCalculation.querySelector(`h2`);
-renderComponent(titleName, ourOfferComponent, `afterEnd`);
+renderComponent(pageCalculation, ourOfferComponent);
 
 const pageCalculationParameters = document.querySelector(`.page-calculation__parameters`);
 renderComponent(pageCalculationParameters, requestComponent, `afterEnd`);

@@ -98,24 +98,6 @@
     };
   };
 
-  const sliderScale = (creditType, number) => {
-    let speedOfSlider = null;
-
-    switch (creditType) {
-      case `automobile`:
-        speedOfSlider = number * 145 - 140;
-        break;
-      case `consumer`:
-        speedOfSlider = number * 96 - 90;
-        break;
-      default:
-        speedOfSlider = number * 23 - 110;
-        break;
-    }
-
-    return speedOfSlider;
-  };
-
   class AbstractComponent {
     constructor() {
       if (new.target === AbstractComponent) {
@@ -299,7 +281,7 @@
         .map((item) => {
           const isSelected = typeOfCredit === item[0] ? `selected` : ``;
           return (
-            `<option value="${item[0]}" ${isSelected}>${item[1]}</option>`
+            `<option value="${item[0]}" ${isSelected}><span>${item[1]}</span></option>`
           );
         })
         .join(``);
@@ -312,15 +294,17 @@
 
     return (
       `<form class="page-calculation__parameters">
-      <h3>Шаг 1. Цель кредита</h3>
-      <fieldset>
+      
+      <div class="page-calculation__main--choice">
+        <h2>Кредитный калькулятор</h2>
+        <h3>Шаг 1. Цель кредита</h3>
         <select id="type-of-credit" name="credit-type">
           ${addOptions}
         </select>
-      </fieldset>
+      </div>
     
-      <h3 class="${isElementHidden}">Шаг 2. Введите параметры кредита</h3>
-      <fieldset class="${isElementHidden}">
+      <div class="${isElementHidden} page-calculation__type--cost">
+        <h3>Шаг 2. Введите параметры кредита</h3>
         <label for="cost-of-property">${setActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
         <div class="cost-of-property__scale">
           <span class="operator minus">-</span>
@@ -336,11 +320,11 @@
           <span class="operator plus">+</span>
         </div>
         <p>От ${setActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${setActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
-      </fieldset>
+      </div>
 
       ${typeOfCredit === `consumer`
       ? ``
-      : `<fieldset class="${isElementHidden}">
+      : `<div class="${isElementHidden} page-calculation__initial--fee">
           <label for="first-payment">Первоначальный взнос</label>
           <input
             autocomplete="off"
@@ -353,8 +337,7 @@
           />
           <div class="percent-slider">
             <output 
-              for="first-payment__percent" 
-              style="left: ${typeOfCredit === `automobile` ? firstPaymentPercantage * 7.2 - 145 : firstPaymentPercantage * 6.4 - 65}px"
+              for="first-payment__percent"
             >${firstPaymentPercantage}%</output>
             <input 
               type="range"
@@ -366,12 +349,10 @@
               value="${firstPaymentPercantage}"
             />
           </div>
-        </fieldset>`
+        </div>`
     }
 
-
-
-      <fieldset class="${isElementHidden}">
+      <div class="${isElementHidden} page-calculation__credit--term">
         <label for="credit-period">Срок кредитования</label>
         <input
           autocomplete="off"
@@ -382,7 +363,7 @@
           required
         />
         <div class="years-slider">
-          <output for="credit-period__years" style="left: ${sliderScale(typeOfCredit, periodOfCredit)}px">${periodOfCredit}лет</output>
+          <output for="credit-period__years">${periodOfCredit}лет</output>
           <input 
             type="range"
             id="credit-period__years"
@@ -391,24 +372,24 @@
             step="1"
             value="${periodOfCredit}">
         </div>
-      </fieldset>
+      </div>
 
-      <fieldset class="${isElementHidden}">
+      <div class="${isElementHidden} page-calculation__checkboxes">
 ${typeOfCredit === `mortgage`
-      ? `<input type="checkbox" name="bonus" id="bonus__input" ${isBonusUsed ? `checked` : ``}>
-        <label for="bonus__input">Использовать материнский капитал</label>`
+      ? `<div><input type="checkbox" name="bonus" id="bonus__input" ${isBonusUsed ? `checked` : ``}>
+        <label for="bonus__input">Использовать материнский капитал</label></div>`
       : ``}
 ${typeOfCredit === `automobile`
-      ? `<input type="checkbox" name="kasko" id="kasko__input" ${isKaskoUsed ? `checked` : ``}>
-        <label for="kasko__input">Оформить КАСКО в нашем банке</label>
-        <input type="checkbox" name="insurance" id="insurance__input" ${isInsuranceUsed ? `checked` : ``}>
-        <label for="insurance__input">Оформить Страхование жизни в нашем банке</label>`
+      ? `<div><input type="checkbox" name="kasko" id="kasko__input" ${isKaskoUsed ? `checked` : ``}>
+        <label for="kasko__input">Оформить КАСКО в нашем банке</label></div>
+        <div><input type="checkbox" name="insurance" id="insurance__input" ${isInsuranceUsed ? `checked` : ``}>
+        <label for="insurance__input">Оформить Страхование жизни в нашем банке</label></div>`
       : ``}
 ${typeOfCredit === `consumer`
-      ? `<input type="checkbox" name="participant" id="participant__input" ${isParticipantUsed ? `checked` : ``}>
-        <label for="participant__input">Участник зарплатного проекта нашего банка</label>`
+      ? `<div><input type="checkbox" name="participant" id="participant__input" ${isParticipantUsed ? `checked` : ``}>
+      <label for="participant__input">Участник зарплатного проекта нашего банка</label></div>`
       : ``}
-      </fieldset>
+      </div>
     </form>`
     );
   };
@@ -475,13 +456,13 @@ ${typeOfCredit === `consumer`
 
     _subscribeOnEvents() {
       const form = this.getElement();
-
       form.addEventListener(`submit`, (evt) => {
         evt.preventDefault();
       });
 
       form.querySelector(`#type-of-credit`)
           .addEventListener(`change`, (evt) => {
+
             this._typeOfCredit = evt.target.value;
             this._costOfProperty = START_COST_OF_PROPERTY;
             this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
@@ -689,7 +670,6 @@ ${typeOfCredit === `consumer`
   const createPageCalculationTemplate = () => {
     return (
       `<div class="page-calculation">
-      <h2>Кредитный калькулятор</h2>
     </div>`
     );
   };
@@ -852,6 +832,14 @@ ${typeOfCredit === `consumer`
         return pageOffersMenu.querySelector(`#slick-slide-control02`);
       case `menu__nav-item--forth`:
         return pageOffersMenu.querySelector(`#slick-slide-control03`);
+      case 0:
+        return pageOffersMenu.querySelector(`.menu__nav-item--first`);
+      case 1:
+        return pageOffersMenu.querySelector(`.menu__nav-item--second`);
+      case 2:
+        return pageOffersMenu.querySelector(`.menu__nav-item--third`);
+      case 3:
+        return pageOffersMenu.querySelector(`.menu__nav-item--forth`);
       default:
         return null;
     }
@@ -920,10 +908,40 @@ ${typeOfCredit === `consumer`
         </div>
 
         <div class="page-offers-item__view">
-            <img src="img/slide-insurance.svg" alt="insurance" width="1170" height="410">
+          <div class="page-offers-item__view--inner">
+            <div class="page-offers__service--description">
+              <p class="page-offers__service--title">
+                Лига Страхование - застрахуем</br>все, что захотите
+              </p>
+              <ul class="page-offers__service--advantages">
+                <li>Автомобильное страхование</li>
+                <li>Страхование жизни и здоровья</li>
+                <li>Страхование недвижимости</li>
+              </ul>
+              <button class="page-offers__service--btn">Узнать подробнее</Button>
+            </div>
+            <div class="page-offers__service--photo lock-pic">
+              <img src="img/lock.svg" alt="lock">
+            </div>
+          </div>
         </div>
+
         <div class="page-offers-item__view">
-            <img src="img/slide-online.svg" alt="online" width="1170" height="410">
+          <div class="page-offers-item__view--inner">
+            <div class="page-offers__service--description">
+              <p class="page-offers__service--title">
+                Лига Банк - это огромное количество</br>онлайн-сервисов для вашего удобства
+              </p>
+              <ul class="page-offers__service--advantages">
+                <li>Мобильный банк,</br>который всегда под рукой</li>
+                <li>Приложение Лига-проездной позволит</br>вам оплачивать билеты по всему миру</li>
+              </ul>
+              <button class="page-offers__service--btn">Узнать подробнее</Button>
+            </div>
+            <div class="page-offers__service--photo device-pic">
+              <img src="img/device.svg" alt="device">
+            </div>
+          </div>
         </div>
 
       </div>
@@ -954,7 +972,9 @@ ${typeOfCredit === `consumer`
           arrows: false
         });
 
-        // document.querySelector(`.slick-dots`).classList.add(`visually-hidden`);
+        window.$(`.page-offers__slider`).on(`afterChange`, function (event, slick, currentSlide) {
+          getCheckedSlickSlide(currentSlide).click();
+        });
       });
     }
 
@@ -972,9 +992,6 @@ ${typeOfCredit === `consumer`
           });
     }
   }
-
-
-  /* <img src="img/slide-service.svg" alt="service" width="1170" height="410"> */
 
   const FIRST_REQUEST_NUMBER = 11;
   const creditNames = new Map([
@@ -1457,8 +1474,7 @@ ${typeOfCredit === `consumer`
 
   const pageCalculation = document.querySelector(`.page-calculation`);
   renderComponent(pageCalculation, calculationComponent);
-  const titleName = pageCalculation.querySelector(`h2`);
-  renderComponent(titleName, ourOfferComponent, `afterEnd`);
+  renderComponent(pageCalculation, ourOfferComponent);
 
   const pageCalculationParameters = document.querySelector(`.page-calculation__parameters`);
   renderComponent(pageCalculationParameters, requestComponent, `afterEnd`);

@@ -183,7 +183,9 @@
     }
   }
 
-  .page-offers__service--photo.car-pic {
+  .page-offers__service--photo.car-pic,
+  .page-offers__service--photo.device-pic,
+  .page-offers__service--photo.lock-pic {
     @media (max-width: 767px) {
       top: 25%;
       left: 60%;
@@ -196,7 +198,6 @@
       }
     }
   }
-
 }
 
 .page-offers__slider {

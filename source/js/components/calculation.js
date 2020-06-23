@@ -1,13 +1,13 @@
 /* eslint-disable no-alert */
 import AbstractSmartComponent from './abstract-smart-component.js';
-import {START_COST_OF_PROPERTY, ENTER_KEY_CODE, creditTypes, setActualFeaturesNames, sliderScale} from '../formulas.js';
+import {START_COST_OF_PROPERTY, ENTER_KEY_CODE, creditTypes, setActualFeaturesNames} from '../formulas.js';
 
 const createOptions = (options, typeOfCredit) => {
   return options
       .map((item) => {
         const isSelected = typeOfCredit === item[0] ? `selected` : ``;
         return (
-          `<option value="${item[0]}" ${isSelected}>${item[1]}</option>`
+          `<option value="${item[0]}" ${isSelected}><span>${item[1]}</span></option>`
         );
       })
       .join(``);
@@ -20,15 +20,17 @@ const createCalculationTemplate = (options = {}) => {
 
   return (
     `<form class="page-calculation__parameters">
-      <h3>Шаг 1. Цель кредита</h3>
-      <fieldset>
+      
+      <div class="page-calculation__main--choice">
+        <h2>Кредитный калькулятор</h2>
+        <h3>Шаг 1. Цель кредита</h3>
         <select id="type-of-credit" name="credit-type">
           ${addOptions}
         </select>
-      </fieldset>
+      </div>
     
-      <h3 class="${isElementHidden}">Шаг 2. Введите параметры кредита</h3>
-      <fieldset class="${isElementHidden}">
+      <div class="${isElementHidden} page-calculation__type--cost">
+        <h3>Шаг 2. Введите параметры кредита</h3>
         <label for="cost-of-property">${setActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
         <div class="cost-of-property__scale">
           <span class="operator minus">-</span>
@@ -44,11 +46,11 @@ const createCalculationTemplate = (options = {}) => {
           <span class="operator plus">+</span>
         </div>
         <p>От ${setActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${setActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
-      </fieldset>
+      </div>
 
       ${typeOfCredit === `consumer`
       ? ``
-      : `<fieldset class="${isElementHidden}">
+      : `<div class="${isElementHidden} page-calculation__initial--fee">
           <label for="first-payment">Первоначальный взнос</label>
           <input
             autocomplete="off"
@@ -61,8 +63,7 @@ const createCalculationTemplate = (options = {}) => {
           />
           <div class="percent-slider">
             <output 
-              for="first-payment__percent" 
-              style="left: ${typeOfCredit === `automobile` ? firstPaymentPercantage * 7.2 - 145 : firstPaymentPercantage * 6.4 - 65}px"
+              for="first-payment__percent"
             >${firstPaymentPercantage}%</output>
             <input 
               type="range"
@@ -74,12 +75,10 @@ const createCalculationTemplate = (options = {}) => {
               value="${firstPaymentPercantage}"
             />
           </div>
-        </fieldset>`
+        </div>`
     }
 
-
-
-      <fieldset class="${isElementHidden}">
+      <div class="${isElementHidden} page-calculation__credit--term">
         <label for="credit-period">Срок кредитования</label>
         <input
           autocomplete="off"
@@ -90,7 +89,7 @@ const createCalculationTemplate = (options = {}) => {
           required
         />
         <div class="years-slider">
-          <output for="credit-period__years" style="left: ${sliderScale(typeOfCredit, periodOfCredit)}px">${periodOfCredit}лет</output>
+          <output for="credit-period__years">${periodOfCredit}лет</output>
           <input 
             type="range"
             id="credit-period__years"
@@ -99,24 +98,24 @@ const createCalculationTemplate = (options = {}) => {
             step="1"
             value="${periodOfCredit}">
         </div>
-      </fieldset>
+      </div>
 
-      <fieldset class="${isElementHidden}">
+      <div class="${isElementHidden} page-calculation__checkboxes">
 ${typeOfCredit === `mortgage`
-      ? `<input type="checkbox" name="bonus" id="bonus__input" ${isBonusUsed ? `checked` : ``}>
-        <label for="bonus__input">Использовать материнский капитал</label>`
+      ? `<div><input type="checkbox" name="bonus" id="bonus__input" ${isBonusUsed ? `checked` : ``}>
+        <label for="bonus__input">Использовать материнский капитал</label></div>`
       : ``}
 ${typeOfCredit === `automobile`
-      ? `<input type="checkbox" name="kasko" id="kasko__input" ${isKaskoUsed ? `checked` : ``}>
-        <label for="kasko__input">Оформить КАСКО в нашем банке</label>
-        <input type="checkbox" name="insurance" id="insurance__input" ${isInsuranceUsed ? `checked` : ``}>
-        <label for="insurance__input">Оформить Страхование жизни в нашем банке</label>`
+      ? `<div><input type="checkbox" name="kasko" id="kasko__input" ${isKaskoUsed ? `checked` : ``}>
+        <label for="kasko__input">Оформить КАСКО в нашем банке</label></div>
+        <div><input type="checkbox" name="insurance" id="insurance__input" ${isInsuranceUsed ? `checked` : ``}>
+        <label for="insurance__input">Оформить Страхование жизни в нашем банке</label></div>`
       : ``}
 ${typeOfCredit === `consumer`
-      ? `<input type="checkbox" name="participant" id="participant__input" ${isParticipantUsed ? `checked` : ``}>
-        <label for="participant__input">Участник зарплатного проекта нашего банка</label>`
+      ? `<div><input type="checkbox" name="participant" id="participant__input" ${isParticipantUsed ? `checked` : ``}>
+      <label for="participant__input">Участник зарплатного проекта нашего банка</label></div>`
       : ``}
-      </fieldset>
+      </div>
     </form>`
   );
 };
@@ -183,13 +182,13 @@ export default class Calculation extends AbstractSmartComponent {
 
   _subscribeOnEvents() {
     const form = this.getElement();
-
     form.addEventListener(`submit`, (evt) => {
       evt.preventDefault();
     });
 
     form.querySelector(`#type-of-credit`)
         .addEventListener(`change`, (evt) => {
+
           this._typeOfCredit = evt.target.value;
           this._costOfProperty = START_COST_OF_PROPERTY;
           this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;

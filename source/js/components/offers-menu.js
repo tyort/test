@@ -15,6 +15,14 @@ const getCheckedSlickSlide = (element) => {
       return pageOffersMenu.querySelector(`#slick-slide-control02`);
     case `menu__nav-item--forth`:
       return pageOffersMenu.querySelector(`#slick-slide-control03`);
+    case 0:
+      return pageOffersMenu.querySelector(`.menu__nav-item--first`);
+    case 1:
+      return pageOffersMenu.querySelector(`.menu__nav-item--second`);
+    case 2:
+      return pageOffersMenu.querySelector(`.menu__nav-item--third`);
+    case 3:
+      return pageOffersMenu.querySelector(`.menu__nav-item--forth`);
     default:
       return null;
   }
@@ -83,10 +91,40 @@ const createOffersMenuTemplate = () => {
         </div>
 
         <div class="page-offers-item__view">
-            <img src="img/slide-insurance.svg" alt="insurance" width="1170" height="410">
+          <div class="page-offers-item__view--inner">
+            <div class="page-offers__service--description">
+              <p class="page-offers__service--title">
+                Лига Страхование - застрахуем</br>все, что захотите
+              </p>
+              <ul class="page-offers__service--advantages">
+                <li>Автомобильное страхование</li>
+                <li>Страхование жизни и здоровья</li>
+                <li>Страхование недвижимости</li>
+              </ul>
+              <button class="page-offers__service--btn">Узнать подробнее</Button>
+            </div>
+            <div class="page-offers__service--photo lock-pic">
+              <img src="img/lock.svg" alt="lock">
+            </div>
+          </div>
         </div>
+
         <div class="page-offers-item__view">
-            <img src="img/slide-online.svg" alt="online" width="1170" height="410">
+          <div class="page-offers-item__view--inner">
+            <div class="page-offers__service--description">
+              <p class="page-offers__service--title">
+                Лига Банк - это огромное количество</br>онлайн-сервисов для вашего удобства
+              </p>
+              <ul class="page-offers__service--advantages">
+                <li>Мобильный банк,</br>который всегда под рукой</li>
+                <li>Приложение Лига-проездной позволит</br>вам оплачивать билеты по всему миру</li>
+              </ul>
+              <button class="page-offers__service--btn">Узнать подробнее</Button>
+            </div>
+            <div class="page-offers__service--photo device-pic">
+              <img src="img/device.svg" alt="device">
+            </div>
+          </div>
         </div>
 
       </div>
@@ -117,7 +155,9 @@ export default class OffersMenu extends AbstractSmartComponent {
         arrows: false
       });
 
-      // document.querySelector(`.slick-dots`).classList.add(`visually-hidden`);
+      window.$(`.page-offers__slider`).on(`afterChange`, function (event, slick, currentSlide) {
+        getCheckedSlickSlide(currentSlide).click();
+      });
     });
   }
 
@@ -135,6 +175,3 @@ export default class OffersMenu extends AbstractSmartComponent {
         });
   }
 }
-
-
-/* <img src="img/slide-service.svg" alt="service" width="1170" height="410"> */

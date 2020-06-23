@@ -1,198 +1,369 @@
-h2 {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 41px;
-  line-height: 140%;
-  margin: 0 0 70px 0;
-}
-
-h3 {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 140%;
-}
-
-input {
-  text-align: center;
-  width: 100%;
-  height: 60px;
-  padding: 0;
-
-  &[type="range"] {
-    height: auto;
-  }
-
-  &[type="checkbox"] {
-    float: left;
-    height: 20px;
-    width: 20px;
-    margin-right: 20px;
-  }
-}
-
-select {
-  width: 600px;
-  height: 60px;
-  text-align-last: center
-}
-
-output {
-  position: relative;
-}
-
-label {
-  display: block;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 140%;
-}
-
 .page-calculation {
-  display: block;
-  max-height: 1557px;
+  display: flex;
+  max-width: 1366px;
+  min-height: 425px;
+  margin: 0 auto;
   border: $bred;
-  padding-bottom: 110px;
-  width: 1170px;
-  margin: auto;
+  padding: 110px 98px;
+  max-height: 985px;
 
-  form {
-    display: flex;
-    max-height: 680px;
-    border: $bred;
-    flex-direction: column;
-    width: 600px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    min-height: 325px;
+    max-height: 862px;
+    padding: 80px 45px;
+  }
+  @media (max-width: 767px) {
+    min-height: 262px;
+    max-height: 767px;
+    padding: 60px 15px;
   }
 
-  fieldset {
-    margin: 10px 0 0 0;
-    padding: 0;
+  .percent-slider,
+  .years-slider {
+    width: 100%;
+    // border: $bred;
+    position: relative;
+    height: 32px;
+
+    input[type="range"] {
+      width: 100%;
+      position: absolute;
+      top: -23px;
+    }
+
+    output {
+      position: absolute;
+      bottom: 0px;
+    }
+  }
+
+  input {
     border: none;
-  }
-
-  .cost-of-property__scale {
-    display: flex;
-    height: 60px;
-
-    input {
-      width: 474px;
-      height: auto
-    }
-
-    .operator {
-      font-size: 30px;
-      font-weight: bold;
-      background-color: rgb(96, 177, 209);
-      text-align: center;
-      width: 60px;
-      padding-top: 10px
+    height: 100%;
+    text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 140%;
+    @media (max-width: 1023px) {
+      font-size: 16px;
     }
   }
-}
 
-.page-calculation__our-offer {
-  float: right;
-  border: $bred;
-  width: 380px;
-  height: 269px;
-  padding: 60px;
+  label,
+  output {
+    // border: $bred;
+    width: 100%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 70%;
+  }
 
-  h3,
-  span {
+  h3 {
+    margin: 0;
+    // border: $bred;
+    width: 100%;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
-    line-height: 140%;
-  }
-
-  .calculation__result {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-}
-
-.calculation__request-btn {
-  width: 100%;
-  height: 51px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 140%;
-}
-
-.page-calculation__request {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: $bred;
-  height: 582px;
-  width: 630px;
-  margin: 70px auto 0;
-  padding: 70px;
-
-  .page-calculation__request-information {
-    width: 100%;
-    border-collapse: collapse;
-    line-height: 65px;
-
-    td {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 22px;
-      line-height: 140%;
-      border-bottom: 1px solid #C4C4C4;
-      text-align: right;
+    line-height: 70%;
+    flex-shrink: 0;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      font-size: 18px;
     }
-
-    td.request-article {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
+    @media (max-width: 767px) {
       font-size: 16px;
-      line-height: 140%;
-      text-align: left;
     }
   }
 
-  .page-calculation__form {
+  form {
     display: flex;
-    width: 100%;
-    max-height: 241px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border: none;
+    flex-direction: column;
+    border: $bred;
+    width: 600px;
+    justify-content: flex-start;
+    @media (max-width: 1023px) {
+      width: 100%;
+    }
 
-    fieldset {
-      flex-grow: 1;
+    .page-calculation__main--choice {
+      // border: $bred;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      height: 205px;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        height: 165px;
+      }
+      @media (max-width: 767px) {
+        height: 142px;
+      }
+
+      h2 {
+        // border: $bred;
+        margin: 0;
+        width: 100%;
+        margin-bottom: auto;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 41px;
+        line-height: 70%;
+        flex-shrink: 0;
+        @media (min-width: 768px) and (max-width: 1023px) {
+          font-size: 32px;
+        }
+        @media (max-width: 767px) {
+          font-size: 22px;
+        }
+      }
+
+      h3 {
+        margin-top: auto;
+      }
+
+      select {
+        border: 1px solid #1F1E25;
+        border-radius: 4px;
+        height: 60px;
+        width: 100%;
+        margin-top: auto;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        padding-left: 24px;
+      }
+    }
+
+    .page-calculation__type--cost {
+      // border: $bred;
+      width: 100%;
+      height: 152px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-top: 40px;
+      @media (max-width: 767px) {
+        margin-top: 30px;
+      }
+
+      &.visually-hidden {
+        display: none;
+      }
+
+      h3 {
+        margin-bottom: auto;
+      }
+
+      label {
+        margin-top: auto;
+      }
+
+      .cost-of-property__scale {
+        width: 100%;
+        height: 60px;
+        border: 1px solid #1F1E25;
+        box-sizing: border-box;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        margin-top: auto;
+
+        .operator {
+          // border: $bred;
+          font-family: Roboto;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 25px;
+          line-height: 200%;
+          flex-grow: 1;
+          text-align: center;
+          align-self: stretch;
+        }
+
+        input {
+          flex-grow: 2;
+        }
+      }
+
+      p {
+        // border: $bred;
+        width: 100%;
+        margin-top: auto;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 70%;
+      }
+    }
+
+    .page-calculation__initial--fee {
+      // border: $bred;
+      width: 100%;
+      height: 133px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       margin-top: 30px;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        margin-top: 25px;
+      }
+      @media (max-width: 767px) {
+        margin-top: 20px;
+      }
+
+      &.visually-hidden {
+        display: none;
+      }
+
+      input {
+        height: 60px;
+        border: 1px solid #1F1E25;
+        box-sizing: border-box;
+        border-radius: 4px;
+      }
     }
 
-    .field--name__field {
+    .page-calculation__credit--term {
+      // border: $bred;
       width: 100%;
-      margin: 0;
+      height: 129px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 30px;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        margin-top: 25px;
+      }
+      @media (max-width: 767px) {
+        margin-top: 20px;
+      }
+
+      &.visually-hidden {
+        display: none;
+      }
+
+      input {
+        height: 60px;
+        border: 1px solid #1F1E25;
+        box-sizing: border-box;
+        border-radius: 4px;
+      }
     }
 
-    .field--email__field {
-      margin-left: 30px;
-    }
+    .page-calculation__checkboxes {
+      // border: $bred;
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
 
-    .btn-section {
-      width: 100%;
+      @media (min-width: 768px) and (max-width: 1023px) {
+        margin-top: 15px;
+      }
+      @media (max-width: 767px) {
+        margin-top: 10px;
+      }
 
-      .calculation__send-btn {
-        display: block;
-        width: 198px;
-        height: 51px;
-        margin: 40px auto 0;
+      &.visually-hidden {
+        display: none;
+      }
+
+      div {
+        // border: $bred;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 10px;
+
+        input {
+          height: 20px;
+          width: 20px;
+        }
+
+        label {
+          margin-left: 8px;
+        }
       }
     }
   }
 }
+
+// .calculation__request-btn {
+//   width: 100%;
+//   height: 51px;
+//   font-family: Roboto;
+//   font-style: normal;
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 140%;
+// }
+
+// .page-calculation__request {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   border: $bred;
+//   height: 582px;
+//   width: 630px;
+//   margin: 70px auto 0;
+//   padding: 70px;
+
+//   .page-calculation__request-information {
+//     width: 100%;
+//     border-collapse: collapse;
+//     line-height: 65px;
+
+//     td {
+//       font-family: Roboto;
+//       font-style: normal;
+//       font-weight: 500;
+//       font-size: 22px;
+//       line-height: 140%;
+//       border-bottom: 1px solid #C4C4C4;
+//       text-align: right;
+//     }
+
+//     td.request-article {
+//       font-family: Roboto;
+//       font-style: normal;
+//       font-weight: normal;
+//       font-size: 16px;
+//       line-height: 140%;
+//       text-align: left;
+//     }
+//   }
+
+//   .page-calculation__form {
+//     display: flex;
+//     width: 100%;
+//     max-height: 241px;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     border: none;
+
+//     .field--name__field {
+//       width: 100%;
+//       margin: 0;
+//     }
+
+//     .field--email__field {
+//       margin-left: 30px;
+//     }
+
+//     .btn-section {
+//       width: 100%;
+
+//       .calculation__send-btn {
+//         display: block;
+//         width: 198px;
+//         height: 51px;
+//         margin: 40px auto 0;
+//       }
+//     }
+//   }

@@ -4,6 +4,7 @@
 @import "presentation.scss";
 @import "offers-menu.scss";
 @import "calculation.scss";
+@import "our-offer.scss";
 @import "popup.scss";
 @import "popup-registration.scss";
 
@@ -39,4 +40,10 @@ input:not(:placeholder-shown):invalid{
 
 .visually-hidden {
   display: none;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0; 
 }
