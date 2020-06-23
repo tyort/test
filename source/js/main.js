@@ -37,11 +37,9 @@ renderComponent(pageOffersMenu, pageCalculationComponent, `afterEnd`);
 const pageCalculation = document.querySelector(`.page-calculation`);
 renderComponent(pageCalculation, calculationComponent);
 renderComponent(pageCalculation, ourOfferComponent);
-
-const pageCalculationParameters = document.querySelector(`.page-calculation__parameters`);
-renderComponent(pageCalculationParameters, requestComponent, `afterEnd`);
-
 renderComponent(pageCalculation, mapComponent, `afterEnd`);
+renderComponent(pageCalculation, requestComponent, `afterEnd`);
+
 
 const parseFormData = (formData) => {
   let propertyCost = formData.get(`cost-of-property`);

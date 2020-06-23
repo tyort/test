@@ -8,20 +8,21 @@ const createOurOfferTemplate = (options = {}) => {
   return (
     `<div class="page-calculation__our-offer ${isElementHidden}">
       ${costOfMortgage >= minCreditRequired
-      ? `<h3>Наше предложение</h3>
-          <div class="calculation__result">
-            <div><p><span>${costOfMortgage} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
-            <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
-            <div><p><span>${mounthlyPayment} рублей</span></br>Ежемесячный платеж</p></div>
-            <div><p><span>${requiredIncome} рублей</span></br>Необходимый доход</p></div>
-          </div>
+      ? `<div class="calculation__result">
+          <h3>Наше предложение</h3>
+          <div><p><span>${costOfMortgage} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
+          <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
+          <div><p><span>${mounthlyPayment} рублей</span></br>Ежемесячный платеж</p></div>
+          <div><p><span>${requiredIncome} рублей</span></br>Необходимый доход</p></div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
+        </div>
         </div>`
-      : `<p>
-          <span>Наш банк не выдает ${setActualFeaturesNames(creditType).messageInsert}
-          меньше ${minCreditRequired} рублей.</span></br>
-          Попробуйте использовать другие параметры для расчета.
-        <p>`
+      : `<div class="calculation__result--unwanted">
+          <p><span>Наш банк не выдает ${setActualFeaturesNames(creditType).messageInsert}
+            меньше ${minCreditRequired} рублей.</span>
+          </p></br>
+          <p>Попробуйте использовать другие параметры для расчета.</p>
+        </div>`
     }`
   );
 };

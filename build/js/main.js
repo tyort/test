@@ -144,20 +144,21 @@
     return (
       `<div class="page-calculation__our-offer ${isElementHidden}">
       ${costOfMortgage >= minCreditRequired
-      ? `<h3>Наше предложение</h3>
-          <div class="calculation__result">
-            <div><p><span>${costOfMortgage} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
-            <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
-            <div><p><span>${mounthlyPayment} рублей</span></br>Ежемесячный платеж</p></div>
-            <div><p><span>${requiredIncome} рублей</span></br>Необходимый доход</p></div>
-          </div>
+      ? `<div class="calculation__result">
+          <h3>Наше предложение</h3>
+          <div><p><span>${costOfMortgage} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
+          <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
+          <div><p><span>${mounthlyPayment} рублей</span></br>Ежемесячный платеж</p></div>
+          <div><p><span>${requiredIncome} рублей</span></br>Необходимый доход</p></div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
+        </div>
         </div>`
-      : `<p>
-          <span>Наш банк не выдает ${setActualFeaturesNames(creditType).messageInsert}
-          меньше ${minCreditRequired} рублей.</span></br>
-          Попробуйте использовать другие параметры для расчета.
-        <p>`
+      : `<div class="calculation__result--unwanted">
+          <p><span>Наш банк не выдает ${setActualFeaturesNames(creditType).messageInsert}
+            меньше ${minCreditRequired} рублей.</span>
+          </p></br>
+          <p>Попробуйте использовать другие параметры для расчета.</p>
+        </div>`
     }`
     );
   };
@@ -1009,68 +1010,62 @@ ${typeOfCredit === `consumer`
 
     return (`<div class="page-calculation__request ${showElement}">
             <h3>Шаг 3. Оформление заявки</h3>
-            <table class="page-calculation__request-information">
-              <tr>
-                <td class="request-article">Номер заявки</td>
-                <td>${requestNumberView}</td>
-              </tr>
-              <tr>
-                <td class="request-article">Цель кредита</td>
-                <td>${creditNames.get(creditType)}</td>
-              </tr>
-              <tr>
-                <td class="request-article">${setActualFeaturesNames(creditType).creditTypeTitle}</td>
-                <td>${propertyCost} рублей</td>
-              </tr>
+            <div class="page-calculation__request-information">
+              <div class="page-calculation__request--line">
+                <p class="request-article">Номер заявки</p>
+                <p>${requestNumberView}</p>
+              </div>
+              <div class="page-calculation__request--line">
+                <p class="request-article">Цель кредита</p>
+                <p>${creditNames.get(creditType)}</p>
+              </div>
+              <div class="page-calculation__request--line">
+                <p class="request-article">${setActualFeaturesNames(creditType).creditTypeTitle}</p>
+                <p>${propertyCost} рублей</p>
+              </div>
     ${firstPayment
-      ? `<tr>
-          <td class="request-article">Первоначальный взнос</td>
-          <td>${firstPayment} рублей</td>
-        </tr>`
+      ? `<div class="page-calculation__request--line">
+          <p class="request-article">Первоначальный взнос</p>
+          <p>${firstPayment} рублей</p>
+        </div>`
       : ``}
-              <tr>
-                <td class="request-article">Срок кредитования</td>
-                <td>${yearsCount} лет</td>
-              </tr>
-            </table>
+              <div class="page-calculation__request--line">
+                <p class="request-article">Срок кредитования</p>
+                <p>${yearsCount} лет</p>
+              </div>
+            </div>
             <form class="page-calculation__form">
-              <fieldset class="field--name__field">
-                <input 
-                  class="field--name__input"
-                  type="text"
-                  name="name"
-                  value=""
-                  id="block-name"
-                  placeholder="ФИО"
-                  autocomplete="off"
-                  autofocus
-                  required
-                />
-              </fieldset>
-              <fieldset class="field--phone__field">
-                <input
-                  class="field--phone__input"
-                  type="tel"
-                  name="phone"
-                  value=""
-                  id="block-phone"
-                  placeholder="Телефон"
-                  autocomplete="off"
-                  required
-                />
-              </fieldset>
-              <fieldset class="field--email__field">
-                <input
-                  class="field--email__input"
-                  type="text"
-                  name="email"
-                  value=""
-                  id="block-email"
-                  placeholder="E-mail"
-                  autocomplete="off"
-                  required
-                />
-              </fieldset>
+              <input 
+                class="field--name__input"
+                type="text"
+                name="name"
+                value=""
+                id="block-name"
+                placeholder="ФИО"
+                autocomplete="off"
+                autofocus
+                required
+              />
+              <input
+                class="field--phone__input"
+                type="tel"
+                name="phone"
+                value=""
+                id="block-phone"
+                placeholder="Телефон"
+                autocomplete="off"
+                required
+              />
+              <input
+                class="field--email__input"
+                type="text"
+                name="email"
+                value=""
+                id="block-email"
+                placeholder="E-mail"
+                autocomplete="off"
+                required
+              />
               <div class="btn-section">
                 <button class="calculation__send-btn" type="submit">Отправить</button>
               </div>
@@ -1475,11 +1470,9 @@ ${typeOfCredit === `consumer`
   const pageCalculation = document.querySelector(`.page-calculation`);
   renderComponent(pageCalculation, calculationComponent);
   renderComponent(pageCalculation, ourOfferComponent);
-
-  const pageCalculationParameters = document.querySelector(`.page-calculation__parameters`);
-  renderComponent(pageCalculationParameters, requestComponent, `afterEnd`);
-
   renderComponent(pageCalculation, mapComponent, `afterEnd`);
+  renderComponent(pageCalculation, requestComponent, `afterEnd`);
+
 
   const parseFormData = (formData) => {
     let propertyCost = formData.get(`cost-of-property`);

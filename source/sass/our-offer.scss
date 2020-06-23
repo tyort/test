@@ -1,22 +1,115 @@
-// .page-calculation__our-offer {
-//   float: right;
-//   border: $bred;
-//   width: 380px;
-//   height: 269px;
-//   padding: 60px;
+.page-calculation__our-offer {
+  // border: $bred;
+  height: 389px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-top: 99px;
+  padding: 60px;
+  display: flex;
+  background: #F6F7FF;
+  border-radius: 4px;
+  min-width: 450px;
 
-//   h3,
-//   span {
-//     font-family: Roboto;
-//     font-style: normal;
-//     font-weight: 500;
-//     font-size: 22px;
-//     line-height: 140%;
-//   }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 43px;
+  }
+  @media (max-width: 767px) {
+    height: 433px;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 32px;
+    min-width: 350px;
+  }
 
-//   .calculation__result {
-//     display: flex;
-//     flex-wrap: wrap;
-//     justify-content: space-between;
-//   }
-// }
+  .calculation__result--unwanted {
+    // border: $bred;
+    width: 100%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 140%;
+
+    span {
+      margin-bottom: 25px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 140%;
+    }
+  }
+
+  .calculation__result {
+    // border: $bred;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    h3 {
+      width: 100%;
+      // border: $bred;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 70%;
+      margin-bottom: auto;
+      @media (min-width: 1024px) {
+        font-size: 22px;
+      }
+      @media (max-width: 767px) {
+        font-size: 18px;
+      }
+    }
+
+    div {
+      width: 50%;
+      // border: $bred;
+      display: flex;
+      align-items: center;
+      padding-right: 5px;
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+
+      p {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 150%;
+        @media (max-width: 767px) {
+          line-height: 140%;
+        }
+
+        span {
+          font-family: Roboto;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 22px;
+          line-height: 70%;
+          @media (max-width: 767px) {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+    .calculation__request-btn {
+      width: 100%;
+      // border: $bred;
+      height: 51px;
+      margin-top: auto;
+      background: #2C36F2;
+      border-radius: 4px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 140%;
+      color: #F6F7FF;
+    }
+  }
+}
