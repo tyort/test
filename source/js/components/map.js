@@ -33,7 +33,7 @@ const createWorldParts = (parts) => {
   return parts
       .map((item) => {
         return (
-          `<div>
+          `<div class="page-map__country">
             <input type="checkbox" value="${item[0]}" id="${item[0]}">
             <label for="${item[0]}">${item[1]}</label>
           </div>`
@@ -47,20 +47,18 @@ const createMapTemplate = () => {
 
   return (
     `<div class="page-map">
-      <div class="container">
-        <div class="page-map__inner"></div>
+      <div class="page-map__inner">
 
-          <div class="page-map__title">
-            Отделения Лига Банка
-          </div>
-
-          <div class="page-map__contries">
-            ${worldsPart}
-          </div>
-
-          <div class="page-map__view" id="YMapsID" style="width: 1170px; height: 462px;"></div>
-
+        <div class="page-map__title">
+          Отделения Лига Банка
         </div>
+
+        <div class="page-map__contries">
+          ${worldsPart}
+        </div>
+
+        <div class="page-map__view" id="YMapsID"></div>
+
       </div>
     </div>`);
 };

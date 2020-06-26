@@ -63,48 +63,6 @@ p {
   border: $bred;
 }
 
-//_______________________map.html
-
-.page-map {
-  height: 643px;
-  border: $bred;
-  padding-bottom: 110px;
-}
-
-.page-map__inner {
-  display: flex;
-  flex-direction: column;
-}
-
-.page-map__title {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 41px;
-  line-height: 140%;
-  height: 99px;
-  border: $bred;
-}
-
-.page-map__contries {
-  height: 82px;
-  border: $bred;
-  background: #F6F7FF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 140%;
-
-  div {
-    margin-right: 30px;
-    border: $bred;
-  }
-}
-
 //_______________________footer.html
 
 .page-footer { // высота должна быть 224px
