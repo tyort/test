@@ -63,55 +63,6 @@ p {
   border: $bred;
 }
 
-//_______________________footer.html
-
-.page-footer { // высота должна быть 224px
-  height: 175px;
-  background: #F6F7FF;
-  border: $bred;
-  padding-top: 49px;
-}
-
-.page-footer__inner {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.page-footer__logo {
-  border: $bred;
-  margin-right: 81px;
-}
-
-.page-footer__menu {
-  margin-top: 11px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 140%;
-  margin-right: 80px;
-  border: $bred;
-  ul {
-    display: flex;
-    width: 144px;
-    height: 104px;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
-
-.page-footer__contacts {
-  margin-top: 11px;
-  border: $bred;
-}
-
-.page-footer__socials {
-  margin-top: 11px;
-  border: $bred;
-  margin-left: auto;
-}
-
 /**
  * Render the `main` element consistently in IE.
  */

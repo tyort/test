@@ -1,89 +1,103 @@
 .popup-gratitude {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.719);
 
-  .popup-gratitude__body {
-    min-height: 100%;
+  .popup-gratitude__content {
     display: flex;
+    position: relative;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    // border: $bred;
+    width: 500px;
+    height: 193px;
+    padding: 50px 67px;
+    background-color: #F6F7FF;
+    border-radius: 4px;
+    justify-content: space-between;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      width: 100%;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+      min-width: 400px;
+    }
 
-    .popup-gratitude__content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 500px;
-      max-height: 193px;
-      padding: 25px;
-      background-color: #F6F7FF;
-      border-radius: 4px;
+    .popup-gratitude__title {
+      // border: $bred;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 70%;
+      @media (max-width: 767px) {
+        font-size: 18px;
+      }
+    }
 
-      .popup-gratitude__title {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 22px;
-        line-height: 140%;
-      }
+    .popup-gratitude__text {
+      // border: $bred;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 140%;
+      text-align: center;
+    }
 
-      .popup-gratitude__text {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 140%;
-        text-align: center;
-      }
+    .popup-gratitude__close {
+      // border: $bred;
+      align-self: flex-end;
+      right: 15px;
+      top: 15px;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      position: absolute;
+      z-index: 1;
+      cursor: pointer;
+    }
 
-      .popup-gratitude__close {
-        align-self: flex-end;
-        width: 40px;
-        height: 40px;
-        border-radius: 40px;
-        position: relative;
-        z-index: 1;
-        cursor: pointer;
-      }
+    .popup-gratitude__close:before {
+      content: '+';
+      color: #337AB7;
+      position: absolute;
+      z-index: 2;
+      transform: rotate(45deg);
+      font-size: 40px;
+      line-height: 1;
+      top: -1px;
+      left: 7px;
+      transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+    }
 
-      .popup-gratitude__close:before {
-        content: '+';
-        color: #337AB7;
-        position: absolute;
-        z-index: 2;
-        transform: rotate(45deg);
-        font-size: 50px;
-        line-height: 1;
-        top: -5px;
-        left: 6px;
-        transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
-      }
+    .popup-gratitude__close:after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -2px;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      background: #337AB7;
+      z-index: 1;
+      transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+      transform: scale(0.01);
+    }
 
-      .popup-gratitude__close:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
-        background: #337AB7;
-        z-index: 1;
-        transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
-        transform: scale(0.01);
-      }
-
-      .popup-gratitude__close:hover:after {
-        transform: scale(1);
-      }
-      
-      .popup-gratitude__close:hover:before {
-        transform: scale(0.8) rotate(45deg);
-        color: #fff;
-      }
+    .popup-gratitude__close:hover:after {
+      transform: scale(1);
+    }
+    
+    .popup-gratitude__close:hover:before {
+      transform: scale(0.8) rotate(45deg);
+      color: #fff;
     }
   }
 }

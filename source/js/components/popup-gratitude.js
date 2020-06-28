@@ -5,12 +5,10 @@ const createPopupTemplate = (options = {}) => {
   const isElementHidden = isPopupHidden ? `visually-hidden` : ``;
 
   return (`<div class="popup-gratitude ${isElementHidden}">
-            <div class="popup-gratitude__body">
-              <div class="popup-gratitude__content">
-                <a href="#" class="popup-gratitude__close"></a>
-                <p class="popup-gratitude__title">Спасибо за обращение в банк.</p>
-                <p class="popup-gratitude__text">Наш менеджер скоро свяжется с Вами</br>по указанному номеру телефона</p>
-              </div>
+            <div class="popup-gratitude__content">
+              <a href="#" class="popup-gratitude__close"></a>
+              <p class="popup-gratitude__title">Спасибо за обращение в банк.</p>
+              <p class="popup-gratitude__text">Наш менеджер скоро свяжется с Вами</br>по указанному номеру телефона.</p>
             </div>
           </div>`);
 };

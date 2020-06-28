@@ -5,44 +5,42 @@ const createPopupTemplate = (options = {}) => {
   const isElementHidden = isPopupHidden ? `visually-hidden` : ``;
 
   return (`<div class="popup-registration ${isElementHidden}">
-            <div class="popup-registration__body">
-              <div class="popup-registration__content">
-                <div class="popup-registration__content-header">
-                  <img src="img/reglogo.svg" alt="ЛИГА Банк" width="150" height="27">
-                  <a href="#" class="popup-registration__close"></a>
-                </div>
-                <form class="popup-registration__form">
-                  <fieldset class="field--login__field">
-                    <label for="block-login">Логин</label>
-                    <input 
-                      class="field--login__input"
-                      type="text"
-                      name="login"
-                      value=""
-                      id="block-login"
-                      placeholder="Login"
-                      autocomplete="off"
-                      autofocus
-                      required
-                    />
-                  </fieldset>
-                  <fieldset class="field--password__field">
-                    <label for="block-password">Пароль</label>
-                    <input 
-                      class="field--password__input"
-                      type="password"
-                      name="password"
-                      value=""
-                      id="block-password"
-                      placeholder="Password"
-                      autocomplete="off"
-                      required
-                    />
-                  </fieldset>
-                  <button class="popup-registration__btn" type="submit">Войти</button>
-                </form>
+            <form class="popup-registration__form">
+              <div class="popup-registration__content-header">
+                <img src="img/reglogo.svg" alt="ЛИГА Банк" width="150" height="27">
+                <a href="#" class="popup-registration__close"></a>
               </div>
-            </div>
+              <div class="field--login__field">
+                <label for="block-login">Логин</label>
+                <input 
+                  class="field--login__input"
+                  type="text"
+                  name="login"
+                  value=""
+                  id="block-login"
+                  placeholder="Login"
+                  autocomplete="off"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="field--password__field">
+                <label for="block-password">Пароль</label>
+                <input 
+                  class="field--password__input"
+                  type="password"
+                  name="password"
+                  value=""
+                  id="block-password"
+                  placeholder="Password"
+                  autocomplete="off"
+                  required
+                />
+                <a href="#" class="field--password__forgotten">Забыли пароль?</a>
+                <a href="#" class="field--password__control"></a>
+              </div>
+              <button class="popup-registration__btn" type="submit">Войти</button>
+            </form>
           </div>`);
 };
 
@@ -78,6 +76,17 @@ export default class Popup extends AbstractSmartComponent {
     element.querySelector(`.popup-registration__close`)
         .addEventListener(`click`, () => {
           this.reRender({isPopupHidden: true});
+        });
+
+    element.querySelector(`.field--password__control`)
+        .addEventListener(`click`, () => {
+          if (element.querySelector(`.field--password__input`).getAttribute(`type`) === `password`) {
+            element.querySelector(`.field--password__control`).classList.add(`eye-opened`);
+            element.querySelector(`.field--password__input`).setAttribute(`type`, `text`);
+          } else {
+            element.querySelector(`.field--password__control`).classList.remove(`eye-opened`);
+            element.querySelector(`.field--password__input`).setAttribute(`type`, `password`);
+          }
         });
   }
 
