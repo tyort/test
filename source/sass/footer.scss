@@ -49,20 +49,19 @@
       }
 
       .page-footer__logo {
-        margin: 0;
+        display: flex;
+        margin-right: 58px;
+        align-items: center;
         // border: $bred;
-        position: relative;
-        padding-top: 12px;
-        padding-left: 39px;
-        float: left;
-      }
-
-      .page-footer__logo::before {
-        position: absolute;
-        content: url(../img/logo.svg);
-        // border: $bred;
-        left: 0px;
-        top: 0px;
+      
+        a {
+          // border: $bred;
+          img {
+            // border: $bred;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
       }
 
       .page-footer__menu {

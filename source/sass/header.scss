@@ -7,6 +7,7 @@
   padding-right: 98px;
   // border: $bred;
   height: 91px;
+  background: #F6F7FF;
 }
 
 @media (max-width: 1023px) {
@@ -67,24 +68,17 @@
 .page-header__logo {
   display: flex;
   margin-right: 58px;
-  // border: $bred;
   align-items: center;
-  font-family: Work Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 23px;
-  flex-shrink: 0;
-}
+  // border: $bred;
 
-.page-header__logo p{
-  margin: 0;
-}
-
-.page-header__logo::before {
-  content: url(../img/logo.svg);
-  margin-right: 9px;
-  margin-bottom: 6px;
+  a {
+    // border: $bred;
+    img {
+      // border: $bred;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
 }
 
 .main-nav {

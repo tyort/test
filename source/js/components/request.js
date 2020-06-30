@@ -1,5 +1,5 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
-import {setActualFeaturesNames} from '../formulas.js';
+import {setActualFeaturesNames, getTransformedNumber} from '../formulas.js';
 
 
 const FIRST_REQUEST_NUMBER = 11;
@@ -12,6 +12,8 @@ const creditNames = new Map([
 const createRequestTemplate = (options = {}) => {
   const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
   const showElement = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
+  const propertyCostToLine = propertyCost ? getTransformedNumber(propertyCost) : null;
+  const firstPaymentToLine = firstPayment ? getTransformedNumber(firstPayment) : null;
 
   let requestNumberView = String(requestNumber);
   requestNumberView = (`№ 00`).slice(0, 6 - requestNumberView.length) + requestNumberView;
@@ -29,12 +31,12 @@ const createRequestTemplate = (options = {}) => {
               </div>
               <div class="page-calculation__request--line">
                 <p class="request-article">${setActualFeaturesNames(creditType).creditTypeTitle}</p>
-                <p>${propertyCost} рублей</p>
+                <p>${propertyCostToLine} рублей</p>
               </div>
     ${firstPayment
       ? `<div class="page-calculation__request--line">
           <p class="request-article">Первоначальный взнос</p>
-          <p>${firstPayment} рублей</p>
+          <p>${firstPaymentToLine} рублей</p>
         </div>`
       : ``}
               <div class="page-calculation__request--line">

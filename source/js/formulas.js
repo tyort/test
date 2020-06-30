@@ -132,3 +132,14 @@ export const sliderScale = (creditType, number) => {
 
   return speedOfSlider;
 };
+
+
+export const getTransformedNumber = (number) => {
+  const numberAsString = number.toString();
+  return numberAsString.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, `$1` + ` `);
+};
+
+export const getTransformedLine = (numberAsLine) => {
+  return Number(numberAsLine.replace(/\s+/g, ``).trim());
+};
+

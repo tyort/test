@@ -8,7 +8,7 @@ import PopupGratitudeComponent from "./components/popup-gratitude.js";
 import RegistrationComponent from "./components/popup-registration.js";
 import HeaderComponent from "./components/header.js";
 import PresentationComponent from "./components/presentation.js";
-import {renderComponent} from './formulas.js';
+import {renderComponent, getTransformedLine} from './formulas.js';
 
 const headerComponent = new HeaderComponent();
 const pageCalculationComponent = new PageCalculationComponent();
@@ -43,10 +43,11 @@ renderComponent(pageCalculation, requestComponent, `afterEnd`);
 
 const parseFormData = (formData) => {
   let propertyCost = formData.get(`cost-of-property`);
-  propertyCost = Number(propertyCost.slice(0, propertyCost.length - 7));
+  propertyCost = getTransformedLine(propertyCost.slice(0, propertyCost.length - 7));
+
   let firstPayment = formData.get(`first-payment`);
   firstPayment = firstPayment
-    ? Number(firstPayment.slice(0, firstPayment.length - 7))
+    ? getTransformedLine(firstPayment.slice(0, firstPayment.length - 7))
     : null;
 
   let firstPayPercent = null;
@@ -94,6 +95,7 @@ calculationComponent.setCalculateResultHandler(() => {
   viewInformation = parseFormData(formData);
   ourOfferComponent.reRender(viewInformation);
   requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
+  console.log(viewInformation);
 });
 
 ourOfferComponent.setCreateRequestHandler(() => {

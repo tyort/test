@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import AbstractSmartComponent from './abstract-smart-component.js';
-import {START_COST_OF_PROPERTY, ENTER_KEY_CODE, creditTypes, setActualFeaturesNames} from '../formulas.js';
+import {START_COST_OF_PROPERTY, ENTER_KEY_CODE, creditTypes, setActualFeaturesNames, getTransformedNumber} from '../formulas.js';
 
 const createOptions = (options, typeOfCredit) => {
   return options
@@ -17,6 +17,9 @@ const createCalculationTemplate = (options = {}) => {
   const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit, isBonusUsed, isKaskoUsed, isInsuranceUsed, isParticipantUsed} = options;
   const addOptions = createOptions(creditTypes, typeOfCredit);
   const isElementHidden = typeOfCredit === creditTypes[0][0] ? `visually-hidden` : ``;
+
+  const costOfPropertyToLine = getTransformedNumber(costOfProperty);
+  const firstPaymentToLine = getTransformedNumber(firstPayment);
 
   return (
     `<form class="page-calculation__parameters">
@@ -40,7 +43,7 @@ const createCalculationTemplate = (options = {}) => {
             name="cost-of-property"
             id="cost-of-property"
             type="text"
-            value="${costOfProperty} рублей"
+            value="${costOfPropertyToLine} рублей"
             required
           />
           <span class="operator plus">+</span>
@@ -58,7 +61,7 @@ const createCalculationTemplate = (options = {}) => {
             name="first-payment"
             id="first-payment"
             type="text"
-            value="${firstPayment} рублей"
+            value="${firstPaymentToLine} рублей"
             required
           />
           <div class="percent-slider">

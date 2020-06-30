@@ -55,6 +55,8 @@ export default class OffersMenu extends AbstractSmartComponent {
         slidesToShow: 1,
         adaptiveHeight: true,
         arrows: false,
+        autoplay: true,
+        autoplaySpeed: 4000,
       });
     });
   }

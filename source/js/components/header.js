@@ -5,12 +5,12 @@ const createHeaderTemplate = (options = {}) => {
 
   const isElementHidden = isMobileNavHidden ? `visually-hidden` : ``;
 
-  return (`<header class="page-header">
+  return (`<header class="page-header" id="head-of-page">
             <div class="page-header__menu-icon">
               <div class="page-header__menu-icon--lines"></div>
             </div>
             <div class="page-header__logo">
-              <p>ЛИГА Банк<p>
+              <a class="page-header__logo--link"><img src="img/logo.svg" alt="logo"></a>
             </div>
             <div class="main-nav">
               <ul class="main-nav__list">
@@ -28,9 +28,9 @@ const createHeaderTemplate = (options = {}) => {
                 <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Задать вопрос</a></li>
               </ul>
             </div>
-            <div class="btn-page-header__login">
+            <button class="btn-page-header__login">
               <p>Войти в Интернет-банк<p>
-            </div>
+            </button>
           </header>`);
 };
 

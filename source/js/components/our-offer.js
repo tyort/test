@@ -1,19 +1,23 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
-import {CAPITAL_OF_MOTHER, creditTypes, setActualFeaturesNames} from '../formulas.js';
+import {CAPITAL_OF_MOTHER, creditTypes, setActualFeaturesNames, getTransformedNumber} from '../formulas.js';
 
 const createOurOfferTemplate = (options = {}) => {
   const {costOfMortgage, creditType, annualPercentRate, mounthlyPayment, requiredIncome, minCreditRequired} = options;
   const isElementHidden = creditType === creditTypes[0][0] ? `visually-hidden` : ``;
+
+  const costOfMortgageToLine = costOfMortgage ? getTransformedNumber(costOfMortgage) : null;
+  const mounthlyPaymentToLine = mounthlyPayment ? getTransformedNumber(mounthlyPayment) : null;
+  const requiredIncomeToLine = requiredIncome ? getTransformedNumber(requiredIncome) : null;
 
   return (
     `<div class="page-calculation__our-offer ${isElementHidden}">
       ${costOfMortgage >= minCreditRequired
       ? `<div class="calculation__result">
           <h3>Наше предложение</h3>
-          <div><p><span>${costOfMortgage} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
+          <div><p><span>${costOfMortgageToLine} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
           <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
-          <div><p><span>${mounthlyPayment} рублей</span></br>Ежемесячный платеж</p></div>
-          <div><p><span>${requiredIncome} рублей</span></br>Необходимый доход</p></div>
+          <div><p><span>${mounthlyPaymentToLine} рублей</span></br>Ежемесячный платеж</p></div>
+          <div><p><span>${requiredIncomeToLine} рублей</span></br>Необходимый доход</p></div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>
         </div>`

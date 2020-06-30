@@ -98,6 +98,16 @@
     };
   };
 
+
+  const getTransformedNumber = (number) => {
+    const numberAsString = number.toString();
+    return numberAsString.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, `$1` + ` `);
+  };
+
+  const getTransformedLine = (numberAsLine) => {
+    return Number(numberAsLine.replace(/\s+/g, ``).trim());
+  };
+
   class AbstractComponent {
     constructor() {
       if (new.target === AbstractComponent) {
@@ -141,15 +151,19 @@
     const {costOfMortgage, creditType, annualPercentRate, mounthlyPayment, requiredIncome, minCreditRequired} = options;
     const isElementHidden = creditType === creditTypes[0][0] ? `visually-hidden` : ``;
 
+    const costOfMortgageToLine = costOfMortgage ? getTransformedNumber(costOfMortgage) : null;
+    const mounthlyPaymentToLine = mounthlyPayment ? getTransformedNumber(mounthlyPayment) : null;
+    const requiredIncomeToLine = requiredIncome ? getTransformedNumber(requiredIncome) : null;
+
     return (
       `<div class="page-calculation__our-offer ${isElementHidden}">
       ${costOfMortgage >= minCreditRequired
       ? `<div class="calculation__result">
           <h3>Наше предложение</h3>
-          <div><p><span>${costOfMortgage} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
+          <div><p><span>${costOfMortgageToLine} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
           <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
-          <div><p><span>${mounthlyPayment} рублей</span></br>Ежемесячный платеж</p></div>
-          <div><p><span>${requiredIncome} рублей</span></br>Необходимый доход</p></div>
+          <div><p><span>${mounthlyPaymentToLine} рублей</span></br>Ежемесячный платеж</p></div>
+          <div><p><span>${requiredIncomeToLine} рублей</span></br>Необходимый доход</p></div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>
         </div>`
@@ -293,6 +307,9 @@
     const addOptions = createOptions(creditTypes, typeOfCredit);
     const isElementHidden = typeOfCredit === creditTypes[0][0] ? `visually-hidden` : ``;
 
+    const costOfPropertyToLine = getTransformedNumber(costOfProperty);
+    const firstPaymentToLine = getTransformedNumber(firstPayment);
+
     return (
       `<form class="page-calculation__parameters">
       
@@ -315,7 +332,7 @@
             name="cost-of-property"
             id="cost-of-property"
             type="text"
-            value="${costOfProperty} рублей"
+            value="${costOfPropertyToLine} рублей"
             required
           />
           <span class="operator plus">+</span>
@@ -333,7 +350,7 @@
             name="first-payment"
             id="first-payment"
             type="text"
-            value="${firstPayment} рублей"
+            value="${firstPaymentToLine} рублей"
             required
           />
           <div class="percent-slider">
@@ -1002,6 +1019,8 @@ ${typeOfCredit === `consumer`
   const createRequestTemplate = (options = {}) => {
     const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
     const showElement = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
+    const propertyCostToLine = propertyCost ? getTransformedNumber(propertyCost) : null;
+    const firstPaymentToLine = firstPayment ? getTransformedNumber(firstPayment) : null;
 
     let requestNumberView = String(requestNumber);
     requestNumberView = (`№ 00`).slice(0, 6 - requestNumberView.length) + requestNumberView;
@@ -1019,12 +1038,12 @@ ${typeOfCredit === `consumer`
               </div>
               <div class="page-calculation__request--line">
                 <p class="request-article">${setActualFeaturesNames(creditType).creditTypeTitle}</p>
-                <p>${propertyCost} рублей</p>
+                <p>${propertyCostToLine} рублей</p>
               </div>
     ${firstPayment
       ? `<div class="page-calculation__request--line">
           <p class="request-article">Первоначальный взнос</p>
-          <p>${firstPayment} рублей</p>
+          <p>${firstPaymentToLine} рублей</p>
         </div>`
       : ``}
               <div class="page-calculation__request--line">
@@ -1314,12 +1333,12 @@ ${typeOfCredit === `consumer`
 
     const isElementHidden = isMobileNavHidden ? `visually-hidden` : ``;
 
-    return (`<header class="page-header">
+    return (`<header class="page-header" id="head-of-page">
             <div class="page-header__menu-icon">
               <div class="page-header__menu-icon--lines"></div>
             </div>
             <div class="page-header__logo">
-              <p>ЛИГА Банк<p>
+              <a class="page-header__logo--link"><img src="img/logo.svg" alt="logo"></a>
             </div>
             <div class="main-nav">
               <ul class="main-nav__list">
@@ -1337,9 +1356,9 @@ ${typeOfCredit === `consumer`
                 <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Задать вопрос</a></li>
               </ul>
             </div>
-            <div class="btn-page-header__login">
+            <button class="btn-page-header__login">
               <p>Войти в Интернет-банк<p>
-            </div>
+            </button>
           </header>`);
   };
 
@@ -1441,6 +1460,8 @@ ${typeOfCredit === `consumer`
           slidesToShow: 1,
           adaptiveHeight: true,
           arrows: false,
+          autoplay: true,
+          autoplaySpeed: 4000,
         });
       });
     }
@@ -1481,10 +1502,11 @@ ${typeOfCredit === `consumer`
 
   const parseFormData = (formData) => {
     let propertyCost = formData.get(`cost-of-property`);
-    propertyCost = Number(propertyCost.slice(0, propertyCost.length - 7));
+    propertyCost = getTransformedLine(propertyCost.slice(0, propertyCost.length - 7));
+
     let firstPayment = formData.get(`first-payment`);
     firstPayment = firstPayment
-      ? Number(firstPayment.slice(0, firstPayment.length - 7))
+      ? getTransformedLine(firstPayment.slice(0, firstPayment.length - 7))
       : null;
 
     let firstPayPercent = null;
@@ -1532,6 +1554,7 @@ ${typeOfCredit === `consumer`
     viewInformation = parseFormData(formData);
     ourOfferComponent.reRender(viewInformation);
     requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
+    console.log(viewInformation);
   });
 
   ourOfferComponent.setCreateRequestHandler(() => {
