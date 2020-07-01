@@ -11,6 +11,16 @@ const creditNames = new Map([
 
 const clientsStorage = new ClientsStorage();
 
+const getNextNumber = () => {
+  if (clientsStorage.getClients().length !== 0) {
+    const requestNumbers = clientsStorage.getClients()
+        .map((it) => Number(it[`Request number`]))
+        .sort((a, b) => a - b);
+    return requestNumbers[requestNumbers.length - 1] + 1;
+  }
+  return null;
+};
+
 const createRequestTemplate = (options = {}) => {
   const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
   const showElement = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
@@ -89,7 +99,7 @@ export default class Request extends AbstractSmartComponent {
   constructor() {
     super();
 
-    this._requestNumber = FIRST_REQUEST_NUMBER;
+    this._requestNumber = getNextNumber() || FIRST_REQUEST_NUMBER;
     this._creditType = ``;
     this._firstPayment = null;
     this._propertyCost = null;
@@ -165,6 +175,7 @@ export default class Request extends AbstractSmartComponent {
           });
 
           this._requestNumber += 1;
+
           element.querySelector(`form`).reset();
           this._showPopup();
         });

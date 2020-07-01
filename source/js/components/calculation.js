@@ -408,16 +408,3 @@ export default class Calculation extends AbstractSmartComponent {
     }
   }
 }
-
-
-// const getFirstNumber = () => {
-//   if (clientStorage.getClients().length !== 0) {
-//     const requestNumbers = clientStorage.getClients()
-//         .map((it) => Number(it[`Request Number`].slice(2)))
-//         .sort((a, b) => a - b);
-//     return requestNumbers[requestNumbers.length - 1] + 1;
-
-//   } else {
-//     return FIRST_REQUEST_NUMBER;
-//   }
-// };

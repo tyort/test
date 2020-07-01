@@ -698,19 +698,6 @@ ${typeOfCredit === `consumer`
     }
   }
 
-
-  // const getFirstNumber = () => {
-  //   if (clientStorage.getClients().length !== 0) {
-  //     const requestNumbers = clientStorage.getClients()
-  //         .map((it) => Number(it[`Request Number`].slice(2)))
-  //         .sort((a, b) => a - b);
-  //     return requestNumbers[requestNumbers.length - 1] + 1;
-
-  //   } else {
-  //     return FIRST_REQUEST_NUMBER;
-  //   }
-  // };
-
   const createPageCalculationTemplate = () => {
     return (
       `<div class="page-calculation">
@@ -1072,6 +1059,16 @@ ${typeOfCredit === `consumer`
 
   const clientsStorage = new LocalStorageUtil();
 
+  const getNextNumber = () => {
+    if (clientsStorage.getClients().length !== 0) {
+      const requestNumbers = clientsStorage.getClients()
+          .map((it) => Number(it[`Request number`]))
+          .sort((a, b) => a - b);
+      return requestNumbers[requestNumbers.length - 1] + 1;
+    }
+    return null;
+  };
+
   const createRequestTemplate = (options = {}) => {
     const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
     const showElement = creditNames.has(creditType) && !isElementHidden ? `` : `visually-hidden`;
@@ -1150,7 +1147,7 @@ ${typeOfCredit === `consumer`
     constructor() {
       super();
 
-      this._requestNumber = FIRST_REQUEST_NUMBER;
+      this._requestNumber = getNextNumber() || FIRST_REQUEST_NUMBER;
       this._creditType = ``;
       this._firstPayment = null;
       this._propertyCost = null;
@@ -1226,6 +1223,7 @@ ${typeOfCredit === `consumer`
             });
 
             this._requestNumber += 1;
+
             element.querySelector(`form`).reset();
             this._showPopup();
           });
