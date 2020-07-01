@@ -698,6 +698,19 @@ ${typeOfCredit === `consumer`
     }
   }
 
+
+  // const getFirstNumber = () => {
+  //   if (clientStorage.getClients().length !== 0) {
+  //     const requestNumbers = clientStorage.getClients()
+  //         .map((it) => Number(it[`Request Number`].slice(2)))
+  //         .sort((a, b) => a - b);
+  //     return requestNumbers[requestNumbers.length - 1] + 1;
+
+  //   } else {
+  //     return FIRST_REQUEST_NUMBER;
+  //   }
+  // };
+
   const createPageCalculationTemplate = () => {
     return (
       `<div class="page-calculation">
@@ -1022,12 +1035,42 @@ ${typeOfCredit === `consumer`
     }
   }
 
+  class LocalStorageUtil {
+    constructor() {
+      this.keyName = `clients`;
+    }
+
+    getClients() {
+      const clients = localStorage.getItem(this.keyName);
+      if (clients !== null) {
+        return JSON.parse(clients);
+      }
+      return [];
+    }
+
+    putClient(clientInformation) {
+      const clients = this.getClients();
+      const index = clients.findIndex((it) => it[`E-mail`] === clientInformation[`E-mail`]);
+
+      if (index === -1) {
+        clients.push(clientInformation);
+
+      } else {
+        clients.splice(index, 1, clientInformation);
+      }
+
+      localStorage.setItem(this.keyName, JSON.stringify(clients));
+    }
+  }
+
   const FIRST_REQUEST_NUMBER = 11;
   const creditNames = new Map([
     [`mortgage`, `Ипотека`],
     [`automobile`, `Автокредит`],
     [`consumer`, `Потребительский кредит`],
   ]);
+
+  const clientsStorage = new LocalStorageUtil();
 
   const createRequestTemplate = (options = {}) => {
     const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
@@ -1174,6 +1217,14 @@ ${typeOfCredit === `consumer`
       element.querySelector(`form`)
           .addEventListener(`submit`, (evt) => {
             evt.preventDefault();
+
+            clientsStorage.putClient({
+              'Request number': this._requestNumber.toString(),
+              'Full name': element.querySelector(`#block-name`).value,
+              'Phone number': element.querySelector(`#block-phone`).value.toString(),
+              'E-mail': element.querySelector(`#block-email`).value
+            });
+
             this._requestNumber += 1;
             element.querySelector(`form`).reset();
             this._showPopup();

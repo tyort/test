@@ -1,6 +1,6 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
 import {setActualFeaturesNames, getTransformedNumber} from '../formulas.js';
-
+import ClientsStorage from '../storage/storage.js';
 
 const FIRST_REQUEST_NUMBER = 11;
 const creditNames = new Map([
@@ -8,6 +8,8 @@ const creditNames = new Map([
   [`automobile`, `Автокредит`],
   [`consumer`, `Потребительский кредит`],
 ]);
+
+const clientsStorage = new ClientsStorage();
 
 const createRequestTemplate = (options = {}) => {
   const {requestNumber, creditType, propertyCost, firstPayment, yearsCount, isElementHidden} = options;
@@ -154,6 +156,14 @@ export default class Request extends AbstractSmartComponent {
     element.querySelector(`form`)
         .addEventListener(`submit`, (evt) => {
           evt.preventDefault();
+
+          clientsStorage.putClient({
+            'Request number': this._requestNumber.toString(),
+            'Full name': element.querySelector(`#block-name`).value,
+            'Phone number': element.querySelector(`#block-phone`).value.toString(),
+            'E-mail': element.querySelector(`#block-email`).value
+          });
+
           this._requestNumber += 1;
           element.querySelector(`form`).reset();
           this._showPopup();
