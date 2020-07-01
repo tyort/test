@@ -490,24 +490,37 @@ ${typeOfCredit === `consumer`
       const costOfProperty = form.querySelector(`#cost-of-property`);
 
       costOfProperty.addEventListener(`change`, (evt) => {
+        const parent = evt.target.parentElement;
+        const ourOffer = document.querySelector(`.page-calculation__our-offer`);
+
         if (isNaN(Number(evt.target.value))) {
-          alert(`Введите числовое значение`);
+          parent.className = `cost-of-property__scale error`;
+          ourOffer.className = `page-calculation__our-offer visually-hidden`;
+          evt.target.value = `Некорректное значение`;
+          costOfProperty.blur();
+          return;
+        }
+
+        if (Number(evt.target.value) <= setActualFeaturesNames(this._typeOfCredit).maxPuschaseCost && Number(evt.target.value) >= setActualFeaturesNames(this._typeOfCredit).minPuschaseCost) {
+          parent.className = `cost-of-property__scale`;
+          ourOffer.className = `page-calculation__our-offer`;
+          this._costOfProperty = Number(evt.target.value);
           this.reset();
 
         } else {
-          if (Number(evt.target.value) <= setActualFeaturesNames(this._typeOfCredit).maxPuschaseCost && Number(evt.target.value) >= setActualFeaturesNames(this._typeOfCredit).minPuschaseCost) {
-            this._costOfProperty = Number(evt.target.value);
-            this.reset();
-
-          } else {
-            alert(`Не подходящее число`);
-            this.reset();
-          }
+          parent.className = `cost-of-property__scale error`;
+          ourOffer.className = `page-calculation__our-offer visually-hidden`;
+          evt.target.value = `Некорректное значение`;
+          costOfProperty.blur();
         }
       });
 
       costOfProperty.addEventListener(`focus`, (evt) => {
+        const ourOffer = document.querySelector(`.page-calculation__our-offer`);
+        const parent = evt.target.parentElement;
         evt.target.value = this._costOfProperty;
+        parent.className = `cost-of-property__scale`;
+        ourOffer.className = `page-calculation__our-offer`;
 
         costOfProperty.addEventListener(`keydown`, (e) => {
           if (Number(e.target.value) === Number(this._costOfProperty) && e.keyCode === ENTER_KEY_CODE) {
@@ -1554,7 +1567,6 @@ ${typeOfCredit === `consumer`
     viewInformation = parseFormData(formData);
     ourOfferComponent.reRender(viewInformation);
     requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
-    console.log(viewInformation);
   });
 
   ourOfferComponent.setCreateRequestHandler(() => {

@@ -95,7 +95,6 @@ calculationComponent.setCalculateResultHandler(() => {
   viewInformation = parseFormData(formData);
   ourOfferComponent.reRender(viewInformation);
   requestComponent.reRender(Object.assign({}, viewInformation, {isRequestHidden: true}));
-  console.log(viewInformation);
 });
 
 ourOfferComponent.setCreateRequestHandler(() => {
