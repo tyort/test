@@ -807,8 +807,10 @@ ${typeOfCredit === `consumer`
             .add(new window.ymaps.Placemark(interestedCities[i][1], {
               balloonContent: `${interestedCities[i][0]}`
             }, {
-              preset: `islands#icon`,
-              iconColor: `#0095b6`
+              iconLayout: `default#image`,
+              iconImageHref: `img/location.svg`,
+              iconImageSize: [35, 40],
+              iconImageOffset: [-17.5, -40]
             }));
       }
 
@@ -1577,7 +1579,6 @@ ${typeOfCredit === `consumer`
   renderComponent(pageCalculation, ourOfferComponent);
   renderComponent(pageCalculation, mapComponent, `afterEnd`);
   renderComponent(pageCalculation, requestComponent, `afterEnd`);
-
 
   const parseFormData = (formData) => {
     let propertyCost = formData.get(`cost-of-property`);

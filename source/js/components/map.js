@@ -95,8 +95,10 @@ export default class Map extends AbstractSmartComponent {
           .add(new window.ymaps.Placemark(interestedCities[i][1], {
             balloonContent: `${interestedCities[i][0]}`
           }, {
-            preset: `islands#icon`,
-            iconColor: `#0095b6`
+            iconLayout: `default#image`,
+            iconImageHref: `img/location.svg`,
+            iconImageSize: [35, 40],
+            iconImageOffset: [-17.5, -40]
           }));
     }
 

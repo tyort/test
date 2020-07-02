@@ -40,7 +40,6 @@ renderComponent(pageCalculation, ourOfferComponent);
 renderComponent(pageCalculation, mapComponent, `afterEnd`);
 renderComponent(pageCalculation, requestComponent, `afterEnd`);
 
-
 const parseFormData = (formData) => {
   let propertyCost = formData.get(`cost-of-property`);
   propertyCost = getTransformedLine(propertyCost.slice(0, propertyCost.length - 7));
