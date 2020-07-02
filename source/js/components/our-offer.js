@@ -138,6 +138,7 @@ export default class OurOffer extends AbstractSmartComponent {
       element.querySelector(`.calculation__request-btn`)
           .addEventListener(`click`, () => {
             this._createRequestHandler();
+            document.querySelector(`.field--name__input`).focus();
           });
     }
   }

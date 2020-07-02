@@ -3,6 +3,7 @@ import {setActualFeaturesNames, getTransformedNumber} from '../formulas.js';
 import ClientsStorage from '../storage/storage.js';
 
 const FIRST_REQUEST_NUMBER = 11;
+const SHAKE_ANIMATION_TIMEOUT = 600;
 const creditNames = new Map([
   [`mortgage`, `Ипотека`],
   [`automobile`, `Автокредит`],
@@ -65,7 +66,6 @@ const createRequestTemplate = (options = {}) => {
                 id="block-name"
                 placeholder="ФИО"
                 autocomplete="off"
-                autofocus
                 required
               />
               <input
@@ -138,6 +138,14 @@ export default class Request extends AbstractSmartComponent {
     this.recoveryListeners();
   }
 
+  shake() {
+    this.getElement().style.animation = `shake ${SHAKE_ANIMATION_TIMEOUT / 1000}s`;
+
+    setTimeout(() => {
+      this.getElement().style.animation = ``;
+    }, SHAKE_ANIMATION_TIMEOUT);
+  }
+
 
   _subscribeOnEvents() {
     const element = this.getElement();
@@ -150,6 +158,7 @@ export default class Request extends AbstractSmartComponent {
           if (evt.target.className === `field--phone__input`) {
             if (!phoneSample.test(evt.target.value)) {
               evt.target.setCustomValidity(`Напиши номер правильно`);
+
             } else {
               evt.target.setCustomValidity(``);
             }
@@ -157,6 +166,7 @@ export default class Request extends AbstractSmartComponent {
           } else if (evt.target.className === `field--email__input`) {
             if (!mailSample.test(evt.target.value)) {
               evt.target.setCustomValidity(`Напиши email правильно`);
+
             } else {
               evt.target.setCustomValidity(``);
             }
@@ -179,5 +189,11 @@ export default class Request extends AbstractSmartComponent {
           element.querySelector(`form`).reset();
           this._showPopup();
         });
+
+
+    element.querySelector(`form`)
+        .addEventListener(`invalid`, () => {
+          this.shake();
+        }, true);
   }
 }
