@@ -36,12 +36,13 @@
 // появляется, когда ширина не более 767 пикселей
 @media (max-width: 767px) {
   .page-header__menu-icon {
+    // border: $bred;
     display: flex;
     align-items: center;
     justify-content: center;
-    // border: $bred;
     margin-right: 15px;
     z-index: 19;
+    cursor: pointer;
   }
 
   .page-header__menu-icon--lines {
@@ -49,8 +50,12 @@
     width: 16px;
     height: 2px;
     background-color: rgb(0, 0, 0);
+
+    &.lines__active {
+      background-color: transparent;
+    }
   }
-  
+
   .page-header__menu-icon--lines::after {
     content: "";
     position: absolute;
@@ -59,6 +64,7 @@
     width: 16px;
     height: 2px;
     background-color: rgb(0, 0, 0);
+    transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
   }
   
   .page-header__menu-icon--lines::before {
@@ -69,6 +75,19 @@
     width: 16px;
     height: 2px;
     background-color: rgb(0, 0, 0);
+    transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
+  }
+
+  .page-header__menu-icon--lines.lines__active::after {
+    transform: rotate(-45deg);
+    top: 0;
+    transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
+  }
+
+  .page-header__menu-icon--lines.lines__active::before {
+    transform: rotate(45deg);
+    top: 0;
+    transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
   }
 }
 
@@ -91,23 +110,20 @@
     margin-left: -2px;
   }
 
-  a {
+  a img {
     // border: $bred;
-    img {
-      // border: $bred;
-      object-fit: cover;
-      width: 149px;
-      height: 25px;
+    object-fit: cover;
+    width: 149px;
+    height: 25px;
 
-      @media (max-width: 1023px) {
-        width: 133px;
-        height: 22px;
-      }
+    @media (max-width: 1023px) {
+      width: 133px;
+      height: 22px;
+    }
 
-      @media (max-width: 767px) {
-        width: 113px;
-        height: 20px;
-      }
+    @media (max-width: 767px) {
+      width: 115px;
+      height: 20px;
     }
   }
 }
@@ -207,20 +223,28 @@
 .main-nav--mobile {
   display: block;
   position: absolute;
-  left: 0;
+  background: linear-gradient(to right, rgb(229, 229, 233) , rgb(212, 220, 255));
+  left: -200px;
   top: 0;
-  padding: 70px 50px 0px;
-  background-color: rgba(156, 173, 226, 0.87);
+  padding: 70px 25px 0px;
+  background-color: rgb(249, 251, 255);
   z-index: 9;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
+  height: 100%;
+  width: 200px;
+  transition: transform 0.4s ease-in;
 
   @media (min-width: 768px) {
     display: none;
   }
+}
+
+.main-nav--mobile.main-nav--mobile-active {
+  transform: translateX(100%);
 }
 
 .main-nav--mobile__item {
@@ -229,4 +253,8 @@
 
 .main-nav--mobile__item--link {
   color: #1F1E25;
+}
+
+.main-nav--mobile__item--link:hover {
+  color: #1f21b1;
 }

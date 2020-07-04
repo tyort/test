@@ -1,9 +1,7 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
 
 const createHeaderTemplate = (options = {}) => {
-  const {isMobileNavHidden} = options;
-
-  const isElementHidden = isMobileNavHidden ? `visually-hidden` : ``;
+  const {} = options;
 
   return (`<header class="page-header" id="head-of-page">
             <div class="container">
@@ -21,7 +19,7 @@ const createHeaderTemplate = (options = {}) => {
                   <li class="main-nav__item"><a class="main-nav__item--link" href="#">Задать вопрос</a></li>
                 </ul>
               </div>
-              <div class="main-nav--mobile ${isElementHidden}">
+              <div class="main-nav--mobile">
                 <ul class="main-nav--mobile__list">
                   <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Услуги</a></li>
                   <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Рассчитать кредит</a></li>
@@ -40,14 +38,12 @@ export default class Header extends AbstractSmartComponent {
   constructor() {
     super();
     this._showRegistration = null;
-    this._isMobileNavHidden = true;
+    this._onEscKeyDown = this._onEscKeyDown.bind(this);
     this._subscribeOnEvents();
   }
 
   getTemplate() {
-    return createHeaderTemplate({
-      isMobileNavHidden: this._isMobileNavHidden
-    });
+    return createHeaderTemplate({});
   }
 
   setShowRegistrationHandler(handler) {
@@ -73,8 +69,23 @@ export default class Header extends AbstractSmartComponent {
 
     element.querySelector(`.page-header__menu-icon`)
         .addEventListener(`click`, () => {
-          this._isMobileNavHidden = !this._isMobileNavHidden;
-          this.reRender();
+          document.addEventListener(`keydown`, this._onEscKeyDown);
+
+          if (element.querySelector(`.page-header__menu-icon--lines`).classList.contains(`lines__active`)) {
+            document.removeEventListener(`keydown`, this._onEscKeyDown);
+          }
+
+          element.querySelector(`.main-nav--mobile`).classList.toggle(`main-nav--mobile-active`);
+          element.querySelector(`.page-header__menu-icon--lines`).classList.toggle(`lines__active`);
         });
+  }
+
+  _onEscKeyDown(evt) {
+    if (evt.key === `Escape` || evt.key === `Esc`) {
+      const element = this.getElement();
+      element.querySelector(`.main-nav--mobile`).classList.toggle(`main-nav--mobile-active`, false);
+      element.querySelector(`.page-header__menu-icon--lines`).classList.toggle(`lines__active`, false);
+      document.removeEventListener(`keydown`, this._onEscKeyDown);
+    }
   }
 }
