@@ -168,6 +168,11 @@
   line-height: 19px;
   color: #1F1E25;
 
+  &:hover {
+    color: #7a6ada;
+    text-shadow: 1px 2px 3px rgba(33, 29, 83, 0.452);
+  }
+
   @media (max-width: 1023px) {
     font-size: 14px;
     line-height: 16px;
@@ -256,5 +261,6 @@
 }
 
 .main-nav--mobile__item--link:hover {
-  color: #1f21b1;
+  color: #7a6ada;
+  text-shadow: 1px 2px 3px rgba(33, 29, 83, 0.452);
 }

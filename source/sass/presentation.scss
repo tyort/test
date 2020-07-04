@@ -1,18 +1,17 @@
 .page-presentation {
-  max-width: 1366px;
+  width: 100%;
   margin: 0 auto;
   // border: $bred;
 
   .page-presentation-item__view {
     padding: 48px 15px;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
     background-size: cover;
-    // border: $bred;
+    border: $bred;
 
     .page-presentation-item__view--inner {
       display: flex;
-      // border: $bred;
+      border: $bred;
       height: 304px;
       @media (min-width: 768px) and (max-width: 1023px) {
         height: 204px;
@@ -24,7 +23,7 @@
       .page-presentation__essence {
         display: flex;
         flex-direction: column;
-        // border: $bred;
+        border: $bred;
         height: 304px;
         margin-left: 253px;
         @media (min-width: 768px) and (max-width: 1023px) {
@@ -42,7 +41,7 @@
 
   /*---------------------- Для первой фотографии -----------------------------*/
   .page-presentation-item__view.first-slide {
-    background-image: url(../img/slide-cards.svg);
+    background: linear-gradient(180.33deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
   }
 
   .page-presentation__credits-offer--photo {
