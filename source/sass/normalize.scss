@@ -384,3 +384,8 @@ button {
   padding: 0;
   background: none;
 }
+
+button:focus {
+  border: none;
+  outline: none;
+}

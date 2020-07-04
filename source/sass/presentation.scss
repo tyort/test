@@ -1,38 +1,34 @@
 .page-presentation {
   width: 100%;
-  margin: 0 auto;
   // border: $bred;
 
   .page-presentation-item__view {
-    padding: 48px 15px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: $bred;
+    // border: $bred;
 
     .page-presentation-item__view--inner {
+      // border: $bred;
       display: flex;
-      border: $bred;
-      height: 304px;
+      justify-content: space-between;
+      width: 851px;
+      margin: 80px auto;
+
       @media (min-width: 768px) and (max-width: 1023px) {
-        height: 204px;
       }
       @media (max-width: 767px) {
-        height: 130px;
       }
 
       .page-presentation__essence {
+        // border: $bred;
         display: flex;
         flex-direction: column;
-        border: $bred;
-        height: 304px;
-        margin-left: 253px;
+        margin-left: 10px;
+        padding-top: 22px;
+
         @media (min-width: 768px) and (max-width: 1023px) {
           margin-left: 71px;
-          height: 204px;
         }
         @media (max-width: 767px) {
           margin-left: 0;
-          height: 130px;
           justify-content: space-between;
         }
       }
@@ -41,26 +37,22 @@
 
   /*---------------------- Для первой фотографии -----------------------------*/
   .page-presentation-item__view.first-slide {
-    background: linear-gradient(180.33deg, rgba(32, 39, 179, 0) 32.89%, #2027B3 99.79%);
-  }
-
-  .page-presentation__credits-offer--photo {
-    margin: 0 auto;
+    background: #2C36F2;
     // border: $bred;
-    // overflow: hidden;
+
     img {
-      width: 100%;
-    }
-    @media (min-width: 768px) and (max-width: 1023px) {
-      img {
-        margin-top: -30px;
-        width: 400px;
+      // border: $bred;
+      width: 445px;
+      height: 240px;
+      object-fit: cover;
+      object-position: 50% 43%;
+      margin-right: -34px;
+      
+      @media (min-width: 768px) and (max-width: 1023px) {
+        width: 311px;
+        height: 186px;  
       }
-    }
-    @media (max-width: 767px) {
-      img {
-        margin-top: -40px;
-        width: 300px;
+      @media (max-width: 767px) {
       }
     }
   }
@@ -84,14 +76,15 @@
   }
 
   .page-presentation__credits-offer--comment {
+    // border: $bred;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
     line-height: 26px;
     color: #F6F7FF;
-    // border: $bred;
-    margin-top: 25px;
+    margin-top: 8px;
+
     @media (min-width: 768px) and (max-width: 1023px) {
       font-size: 18px;
       line-height: 21px;
@@ -105,6 +98,7 @@
   }
 
   .page-presentation__credits-offer--btn {
+    // border: $bred;
     width: 234px;
     height: 53px;
     background: #F6F7FF;
@@ -114,8 +108,13 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 21px;
-    // border: $bred;
-    margin-top: 40px;
+    margin-top: 35px;
+    cursor: pointer;
+
+    &:active {
+      box-shadow: inset 0 0 0 1px #1c05a1, inset 0 5px 40px #9fb5f1;
+    }
+
     @media (min-width: 768px) and (max-width: 1023px) {
       width: 206px;
       height: 48px;
@@ -253,11 +252,11 @@
   .slick-dots {
     position: absolute;
     left: 50%;
-    top: 85%;
+    top: 86.5%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: -30px;
+    margin-left: -25px;
 
     li {
       list-style: none;

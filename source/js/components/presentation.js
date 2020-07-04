@@ -10,9 +10,7 @@ const createPresentationTemplate = () => {
             <p class="page-presentation__credits-offer--comment">Кредиты на любой случай</p>
             <button class="page-presentation__credits-offer--btn">Рассчитать кредит</button>
           </div>
-          <div class="page-presentation__credits-offer--photo">
-            <img src="img/credit-cards.svg" alt="credit-cards">
-          </div>
+          <img src="img/credit-cards.svg" alt="logo">
         </div>
       </div>
       <div class="page-presentation-item__view second-slide">
