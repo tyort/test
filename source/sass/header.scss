@@ -1,28 +1,26 @@
 .page-header {
+  width: 100%;
+  // border: $bred;
+  background: #F6F7FF;
+  display: flex;
+}
+
+.container {
   display: flex;
   justify-content: flex-start;
-  max-width: 1366px;
-  margin: 0 auto;
-  padding-left: 61px;
-  padding-right: 98px;
+  margin-left: 4.4%;
+  width: 1207px;
+  height: 100%;
   // border: $bred;
-  height: 91px;
-  background: #F6F7FF;
-}
 
-@media (max-width: 1023px) {
-  .page-header {
-    height: 69px;
-    padding-right: 45px;
-    padding-left: 45px;
+  @media (max-width: 1023px) {
+    width: 685px;
+    margin-left: 5.7%;
   }
-}
-
-@media (max-width: 767px) {
-  .page-header {
-    height: 48px;
-    padding-left: 15px;
-    padding-right: 15px;
+  
+  @media (max-width: 767px) {
+    width: 290px;
+    margin: 0 auto;
   }
 }
 
@@ -68,15 +66,39 @@
 .page-header__logo {
   display: flex;
   margin-right: 58px;
-  align-items: center;
   // border: $bred;
+  padding-top: 27px;
+  padding-bottom: 33px; 
+
+  @media (max-width: 1023px) {
+    padding-top: 23px;
+    padding-bottom: 20px; 
+    margin-right: 67px;
+  }
+
+  @media (max-width: 767px) {
+    padding-top: 10px;
+    padding-bottom: 14px; 
+    margin-left: -2px;
+  }
 
   a {
     // border: $bred;
     img {
       // border: $bred;
-      width: 100%;
       object-fit: cover;
+      width: 149px;
+      height: 25px;
+
+      @media (max-width: 1023px) {
+        width: 133px;
+        height: 22px;
+      }
+
+      @media (max-width: 767px) {
+        width: 113px;
+        height: 20px;
+      }
     }
   }
 }
@@ -84,23 +106,30 @@
 .main-nav {
   display: flex;
   flex-shrink: 0;
+  // border: $bred;
+  width: 700px;
+
+  @media (max-width: 1023px) {
+    width: 396px;
+  }
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 }
 
 .main-nav__list {
   // border: $bred;
   display: flex;
   align-items: center;
-}
-
-// невидима, когда ширина не более 767 пикселей
-@media (max-width: 767px) {
-  .main-nav {
-    display: none;
-  }
+  flex-wrap: wrap;
 }
 
 .main-nav__item {
   margin-right: 25px;
+  @media (max-width: 1023px) {
+    margin-right: 20px;
+  }
 }
 
 .main-nav__item:last-child {
@@ -114,6 +143,11 @@
   font-size: 16px;
   line-height: 19px;
   color: #1F1E25;
+
+  @media (max-width: 1023px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
 }
 
 .btn-page-header__login {
@@ -131,18 +165,31 @@
 
 .btn-page-header__login p{
   margin: 0;
-}
 
-// срабатывает при width от 0 до 1023 пикселей
-@media (max-width: 1023px) {
-  .btn-page-header__login p{
+  @media (max-width: 1023px) {
     display: none;
   }
 }
 
 .btn-page-header__login::before {
-  content: url(../img/login-icon.svg);
-  margin-right: 10px;
+  content: '';
+  background-image: url(../img/login-icon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 22px;
+  width: 20px;
+  margin-right: 6px;
+
+  @media (max-width: 1023px) {
+    padding-bottom: 3px;
+  }
+
+  @media (max-width: 767px) {
+    margin-right: 0px;
+    height: 16px;
+    width: 14px;
+    padding-bottom: 0px;
+  }
 }
 
 
@@ -161,11 +208,8 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-}
 
-
-@media (min-width: 768px) {
-  .main-nav--mobile {
+  @media (min-width: 768px) {
     display: none;
   }
 }

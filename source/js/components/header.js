@@ -6,31 +6,33 @@ const createHeaderTemplate = (options = {}) => {
   const isElementHidden = isMobileNavHidden ? `visually-hidden` : ``;
 
   return (`<header class="page-header" id="head-of-page">
-            <div class="page-header__menu-icon">
-              <div class="page-header__menu-icon--lines"></div>
+            <div class="container">
+              <div class="page-header__menu-icon">
+                <div class="page-header__menu-icon--lines"></div>
+              </div>
+              <div class="page-header__logo">
+                <a class="page-header__logo--link"><img src="img/logo.svg" alt="logo"></a>
+              </div>
+              <div class="main-nav">
+                <ul class="main-nav__list">
+                  <li class="main-nav__item"><a class="main-nav__item--link" href="#">Услуги</a></li>
+                  <li class="main-nav__item"><a class="main-nav__item--link" href="#">Рассчитать кредит</a></li>
+                  <li class="main-nav__item"><a class="main-nav__item--link" href="#">Контакты</a></li>
+                  <li class="main-nav__item"><a class="main-nav__item--link" href="#">Задать вопрос</a></li>
+                </ul>
+              </div>
+              <div class="main-nav--mobile ${isElementHidden}">
+                <ul class="main-nav--mobile__list">
+                  <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Услуги</a></li>
+                  <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Рассчитать кредит</a></li>
+                  <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Контакты</a></li>
+                  <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Задать вопрос</a></li>
+                </ul>
+              </div>
+              <button class="btn-page-header__login">
+                <p>Войти в Интернет-банк<p>
+              </button>
             </div>
-            <div class="page-header__logo">
-              <a class="page-header__logo--link"><img src="img/logo.svg" alt="logo"></a>
-            </div>
-            <div class="main-nav">
-              <ul class="main-nav__list">
-                <li class="main-nav__item"><a class="main-nav__item--link" href="#">Услуги</a></li>
-                <li class="main-nav__item"><a class="main-nav__item--link" href="#">Рассчитать кредит</a></li>
-                <li class="main-nav__item"><a class="main-nav__item--link" href="#">Контакты</a></li>
-                <li class="main-nav__item"><a class="main-nav__item--link" href="#">Задать вопрос</a></li>
-              </ul>
-            </div>
-            <div class="main-nav--mobile ${isElementHidden}">
-              <ul class="main-nav--mobile__list">
-                <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Услуги</a></li>
-                <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Рассчитать кредит</a></li>
-                <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Контакты</a></li>
-                <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Задать вопрос</a></li>
-              </ul>
-            </div>
-            <button class="btn-page-header__login">
-              <p>Войти в Интернет-банк<p>
-            </button>
           </header>`);
 };
 
