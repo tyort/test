@@ -1508,7 +1508,10 @@ ${typeOfCredit === `consumer`
             <p class="page-presentation__credits-offer--comment">Кредиты на любой случай</p>
             <button class="page-presentation__credits-offer--btn">Рассчитать кредит</button>
           </div>
-          <img src="img/credit-cards.svg" alt="logo">
+          <picture>
+            <source srcset="img/black-card.svg" media="(max-width: 767px)">
+            <img src="img/credit-cards.svg" alt="logo">
+          </picture>
         </div>
       </div>
       <div class="page-presentation-item__view second-slide">

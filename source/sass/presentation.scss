@@ -13,10 +13,15 @@
       margin: 80px auto;
 
       @media (max-width: 1023px) {
-        width: 596px;
+        width: 100%;
         margin: 57px auto;
+        padding: 0 86px;
       }
+
       @media (max-width: 767px) {
+        width: 100%;
+        margin: 48px auto 45px;
+        padding: 0 15px;
       }
 
       .page-presentation__essence {
@@ -24,15 +29,14 @@
         display: flex;
         flex-direction: column;
         margin-left: 10px;
-        padding-top: 22px;
 
         @media (max-width: 1023px) {
           margin-left: 0px;
-          padding-top: 8px;
         }
         @media (max-width: 767px) {
+          flex-shrink: 0;
           margin-left: 0;
-          justify-content: space-between;
+          margin-right: 7px;
         }
       }
     }
@@ -58,6 +62,10 @@
       }
 
       @media (max-width: 767px) {
+        object-position: 50% 43%;
+        width: 240px;
+        height: 133px;
+        margin: 0 auto;
       }
     }
   }
@@ -67,16 +75,17 @@
     font-style: normal;
     font-weight: bold;
     font-size: 54px;
-    line-height: 63px;
+    line-height: 70%;
     color: #F6F7FF;
-    // border: $bred;
+    margin-top: 35px;
+
     @media (min-width: 768px) and (max-width: 1023px) {
       font-size: 46px;
-      line-height: 54px;
+      margin-top: 20px;
     }
     @media (max-width: 767px) {
       font-size: 38px;
-      line-height: 45px;
+      margin-top: 0;
     }
   }
 
@@ -86,19 +95,17 @@
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
-    line-height: 26px;
+    line-height: 70%;
     color: #F6F7FF;
-    margin-top: 8px;
+    margin-top: 25px;
 
     @media (min-width: 768px) and (max-width: 1023px) {
       font-size: 18px;
-      line-height: 21px;
-      margin-top: 6px;
+      margin-top: 20px;
     }
     @media (max-width: 767px) {
       font-size: 16px;
-      line-height: 19px;
-      margin-top: 0;
+      margin-top: 20px;
     }
   }
 
@@ -112,8 +119,8 @@
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    line-height: 21px;
-    margin-top: 35px;
+    line-height: 70%;
+    margin-top: 40px;
     cursor: pointer;
 
     &:active {
@@ -124,61 +131,73 @@
       width: 206px;
       height: 48px;
       font-size: 16px;
-      line-height: 19px;
-      margin-top: 30px;
+      margin-top: 35px;
     }
     @media (max-width: 767px) {
       width: 188px;
       height: 43px;
       font-size: 14px;
-      line-height: 16px;
-      margin-top: 0px;
+      margin-top: 30px;
     }
   }
 
   /*---------------------- Для второй фотографии -----------------------------*/
   .page-presentation-item__view.second-slide {
-    background-image: url(../img/slide-confidence.svg);
+    background: url(../img/slide-confidence.svg) center no-repeat, linear-gradient(90deg, #DDE2EC 50%, #F2F9FF 40%);
+    background-size: cover;
+
+    @media (max-width: 1023px) {
+      background-position: 61.5%;
+    }
+    @media (max-width: 767px) {
+      background-position: 65.5%;
+    }
   }
 
   .page-presentation__confidence--title {
+    // border: $bred;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 54px;
-    line-height: 63px;
+    line-height: 70%;
     color: #1F1E25;
-    // border: $bred;
-    @media (min-width: 768px) and (max-width: 1023px) {
+    margin-top: 35px;
+
+    @media (max-width: 1023px) {
       font-size: 46px;
-      line-height: 54px;
+      margin-top: 20px;
     }
     @media (max-width: 767px) {
       font-size: 38px;
-      line-height: 45px;
+      margin-top: 0px;
     }
   }
 
   .page-presentation__confidence--comment {
+    // border: $bred;
     width: 100%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
-    line-height: 26px;
+    line-height: 70%;
     color: #2B3C4F;
-    // border: $bred;
     margin-top: 25px;
-    @media (min-width: 768px) and (max-width: 1023px) {
+    margin-bottom: 130px;
+
+    @media (max-width: 1023px) {
       font-size: 18px;
-      line-height: 21px;
-      margin-top: 25px;
+      margin-top: 20px;
+      margin-bottom: 100px;
     }
+
     @media (max-width: 767px) {
       font-size: 16px;
-      line-height: 19px;
-      margin-top: 0;
-      width: 85%;
+      width: 50%;
+      line-height: 120%;
+      margin-top: 15px;
+      margin-bottom: 55px;
     }
   }
 
@@ -192,16 +211,14 @@
     font-style: normal;
     font-weight: bold;
     font-size: 54px;
-    line-height: 63px;
+    line-height: 70%;
     color: #1F1E25;
     // border: $bred;
     @media (min-width: 768px) and (max-width: 1023px) {
       font-size: 46px;
-      line-height: 54px;
     }
     @media (max-width: 767px) {
       font-size: 38px;
-      line-height: 45px;
     }
   }
 
@@ -210,18 +227,16 @@
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
-    line-height: 26px;
+    line-height: 70%;
     color: #1F1E25;
     // border: $bred;
     margin-top: 25px;
     @media (min-width: 768px) and (max-width: 1023px) {
       font-size: 18px;
-      line-height: 21px;
       margin-top: 25px;
     }
     @media (max-width: 767px) {
       font-size: 16px;
-      line-height: 19px;
       margin-top: 0;
     }
   }
@@ -236,42 +251,49 @@
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    line-height: 21px;
+    line-height: 70%;
     margin-top: 40px;
 
     @media (max-width: 1023px) {
       width: 206px;
       height: 48px;
       font-size: 16px;
-      line-height: 19px;
       margin-top: 40px;
     }
     @media (max-width: 767px) {
       width: 188px;
       height: 43px;
       font-size: 14px;
-      line-height: 16px;
       margin-top: 0px;
     }
   }
 
   .slick-dots {
+    // border: $bred;
     position: absolute;
     left: 50%;
     top: 86.5%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: -25px;
+    margin-left: -23px;
 
     @media (max-width: 1023px) {
       top: 90.3%;
       margin-left: -24px;
     }
 
+    @media (max-width: 767px) {
+      top: 89%;
+      margin-left: -18px;
+    }
+
     li {
       list-style: none;
       margin: auto 4px;
+      @media (max-width: 767px) {
+        margin: auto 3px;
+      }
     }
 
     li.slick-active button{
@@ -287,6 +309,11 @@
       outline-width: 0px;
       border-radius: 50%;
       vertical-align: middle;
+ 
+      @media (max-width: 767px) {
+        width: 6px;
+        height: 6px;
+      }
     }
   }
 }
