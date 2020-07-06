@@ -33,7 +33,7 @@ const createButtons = () => {
       .map((item, index) => {
         const isElementChecked = index === 0 ? `blue` : ``;
         return (
-          `<button class="menu__nav-item--${item}" style="background: ${isElementChecked}">${pointersNames[index]}</button>`
+          `<button class="menu__nav-item--${item}" style="background: ${isElementChecked}"><p>${pointersNames[index]}</p></button>`
         );
       })
       .join(``);
@@ -57,7 +57,7 @@ const createOffersMenuTemplate = () => {
               <ul class="page-offers__service--advantages">
                 <li>Проценты по вкладам до 7%</li>
                 <li>Разнообразные условия</li>
-                <li>Возможность ежемесячной капитализации</br>или вывод процентов на банковскую карту</li>
+                <li>Возможность ежемесячной капитализации или вывод процентов на банковскую карту</li>
               </ul>
               <button class="page-offers__service--btn">Узнать подробнее</Button>
             </div>
