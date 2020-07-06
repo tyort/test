@@ -165,13 +165,18 @@ export default class OffersMenu extends AbstractSmartComponent {
     const element = this.getElement();
     element.querySelector(`.page-offers-menu__nav`)
         .addEventListener(`click`, (evt) => {
-          getCheckedSlickSlide(evt.target.className.trim()).click();
-          Array.from(document.querySelector(`.page-offers-menu__nav`).children)
-              .forEach((it) => {
-                it.style.backgroundColor = `white`;
-              });
+          const neededElement = evt.target.tagName === `P` ? evt.target.parentElement : evt.target;
 
-          evt.target.style.backgroundColor = `blue`;
+          if (getCheckedSlickSlide(neededElement.className.trim()) !== null) {
+            getCheckedSlickSlide(neededElement.className.trim()).click();
+
+            Array.from(document.querySelector(`.page-offers-menu__nav`).children)
+                .forEach((it) => {
+                  it.style.backgroundColor = `white`;
+                });
+
+            neededElement.style.backgroundColor = `blue`;
+          }
         });
   }
 }
