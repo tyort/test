@@ -880,7 +880,7 @@ ${typeOfCredit === `consumer`
   const createButtons = () => {
     return pointersNumbers
         .map((item, index) => {
-          const isElementChecked = index === 0 ? `#F6F7FF` : ``;
+          const isElementChecked = index === 0 ? `blue` : ``;
           return (
             `<button class="menu__nav-item--${item}" style="background: ${isElementChecked}">${pointersNames[index]}</button>`
           );
@@ -901,7 +901,7 @@ ${typeOfCredit === `consumer`
           <div class="page-offers-item__view--inner">
             <div class="page-offers__service--description">
               <p class="page-offers__service--title">
-                Вклады Лига Банка - это выгодная</br>инвестиция в свое будущее
+                Вклады Лига Банка &ndash; это выгодная</br>инвестиция в свое будущее
               </p>
               <ul class="page-offers__service--advantages">
                 <li>Проценты по вкладам до 7%</li>
@@ -1020,7 +1020,7 @@ ${typeOfCredit === `consumer`
                   it.style.backgroundColor = `white`;
                 });
 
-            evt.target.style.backgroundColor = `#F6F7FF`;
+            evt.target.style.backgroundColor = `blue`;
           });
     }
   }
