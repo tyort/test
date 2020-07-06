@@ -8,7 +8,7 @@ const createPresentationTemplate = () => {
           <div class="page-presentation__essence">
             <p class="page-presentation__offer--title">Лига Банк</p>
             <p class="page-presentation__offer--comment">Кредиты на любой случай</p>
-            <button class="page-presentation__offer--btn">Рассчитать кредит</button>
+            <a class="page-presentation__offer--btn">Рассчитать кредит</a>
           </div>
           <picture>
             <source srcset="img/black-card.svg" media="(max-width: 767px)">
@@ -29,7 +29,7 @@ const createPresentationTemplate = () => {
           <div class="page-presentation__essence">
             <p class="page-presentation__offer--title">Лига Банк</p>
             <p class="page-presentation__offer--comment">Всегда рядом</p>
-            <button class="page-presentation__offer--btn">Найти отделение</button>
+            <a class="page-presentation__offer--btn">Найти отделение</a>
           </div>
         </div>
       </div>
