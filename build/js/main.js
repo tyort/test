@@ -1504,9 +1504,9 @@ ${typeOfCredit === `consumer`
       <div class="page-presentation-item__view first-slide">
         <div class="page-presentation-item__view--inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__credits-offer--title">Лига Банк</p>
-            <p class="page-presentation__credits-offer--comment">Кредиты на любой случай</p>
-            <button class="page-presentation__credits-offer--btn">Рассчитать кредит</button>
+            <p class="page-presentation__offer--title">Лига Банк</p>
+            <p class="page-presentation__offer--comment">Кредиты на любой случай</p>
+            <button class="page-presentation__offer--btn">Рассчитать кредит</button>
           </div>
           <picture>
             <source srcset="img/black-card.svg" media="(max-width: 767px)">
@@ -1517,17 +1517,17 @@ ${typeOfCredit === `consumer`
       <div class="page-presentation-item__view second-slide">
         <div class="page-presentation-item__view--inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__confidence--title">Лига Банк</p>
-            <p class="page-presentation__confidence--comment">Ваша уверенность в завтрашнем дне</p>
+            <p class="page-presentation__offer--title">Лига Банк</p>
+            <p class="page-presentation__offer--comment">Ваша уверенность в завтрашнем дне</p>
           </div>
         </div>
       </div>
       <div class="page-presentation-item__view third-slide">
         <div class="page-presentation-item__view--inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__closeness--title">Лига Банк</p>
-            <p class="page-presentation__closeness--comment">Всегда рядом</p>
-            <button class="page-presentation__closeness--btn">Найти отделение</button>
+            <p class="page-presentation__offer--title">Лига Банк</p>
+            <p class="page-presentation__offer--comment">Всегда рядом</p>
+            <button class="page-presentation__offer--btn">Найти отделение</button>
           </div>
         </div>
       </div>
