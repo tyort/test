@@ -46,7 +46,7 @@ const createMapTemplate = () => {
   const worldsPart = createWorldParts(worldParts);
 
   return (
-    `<div class="page-map">
+    `<div class="page-map" id="branches-map">
       <div class="page-map__inner">
 
         <div class="page-map__title">

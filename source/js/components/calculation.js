@@ -22,7 +22,7 @@ const createCalculationTemplate = (options = {}) => {
   const firstPaymentToLine = getTransformedNumber(firstPayment);
 
   return (
-    `<form class="page-calculation__parameters">
+    `<form class="page-calculation__parameters" id="page-calculator">
       
       <div class="page-calculation__main--choice">
         <h2>Кредитный калькулятор</h2>

@@ -385,14 +385,17 @@ button {
   background: none;
 }
 
-button:focus {
+button:focus,
+button:active {
   border: none;
   outline: none;
 }
 
 
 a:focus,
-a:active {
+a:active,
+a:link,
+a:visited {
   border: none;
   outline: none;
 }
