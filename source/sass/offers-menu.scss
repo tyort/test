@@ -10,7 +10,7 @@
 
 .page-offers-item__view {
   // border: $bred;
-  background: blue;
+  background: #F6F7FF;
   border-radius: 0 0 4px 4px;
 }
 
@@ -108,9 +108,14 @@
 .forth--item .page-offers__service--description {
   .page-offers__service--title,
   .page-offers__service--advantages {
+    max-width: 410px;
+
+    @media (max-width: 1023px) {
+      max-width: 340px;
+    }
+
     @media (max-width: 767px) {
       max-width: 240px;
-      min-width: min-content;
     }
   }
 }
@@ -199,6 +204,13 @@
   line-height: 19px;
   color: #F6F7FF;
   margin-top: 20px;
+  text-align: center;
+  padding-top: 15px;
+
+
+  &:active {
+    box-shadow: inset 0 0 0 1px #1c05a1, inset 0 5px 40px #9fb5f1;
+  }
 
   @media (min-width: 768px) and (max-width: 1023px) {
     height: 48px;
@@ -247,6 +259,10 @@
     color: #1F1E25;
     text-decoration: underline;
     font-weight: bold;
+  }
+
+  a:active {
+    color: #3c1fe0;
   }
 }
 
@@ -322,7 +338,7 @@
   margin-left: 20px;
 
   @media (max-width: 1023px) {
-    object-position: -66px 5px;
+    object-position: -70px 5px;
   }
 
   @media (max-width: 767px) {
@@ -404,3 +420,4 @@
     }
   }
 }
+

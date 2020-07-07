@@ -880,7 +880,7 @@ ${typeOfCredit === `consumer`
   const createButtons = () => {
     return pointersNumbers
         .map((item, index) => {
-          const isElementChecked = index === 0 ? `blue` : ``;
+          const isElementChecked = index === 0 ? `#F6F7FF` : ``;
           return (
             `<button class="menu__nav-item--${item}" style="background: ${isElementChecked}"><p>${pointersNames[index]}</p></button>`
           );
@@ -908,7 +908,7 @@ ${typeOfCredit === `consumer`
                 <li>Разнообразные условия</li>
                 <li>Возможность ежемесячной капитализации или вывод процентов на банковскую карту</li>
               </ul>
-              <button class="page-offers__service--btn">Узнать подробнее</Button>
+              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
             </div>
             <div class="page-offers__service--photo piggy-pic">
               <img src="img/piggybank.svg" alt="piggybank">
@@ -930,7 +930,7 @@ ${typeOfCredit === `consumer`
               <div class="page-offers__service--link">
                 <p>Рассчитайте ежемесячный платеж</p>
                 <p>и ставку по кредиту воспользовавшись</p>
-                <p>нашим <a href="#">кредитным калькулятором</a></p>
+                <p>нашим <a href="#page-calculator">кредитным калькулятором</a></p>
               </div>
             </div>
             <div class="page-offers__service--photo car-pic">
@@ -950,7 +950,7 @@ ${typeOfCredit === `consumer`
                 <li>Страхование жизни и здоровья</li>
                 <li>Страхование недвижимости</li>
               </ul>
-              <button class="page-offers__service--btn">Узнать подробнее</Button>
+              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
             </div>
             <div class="page-offers__service--photo lock-pic">
               <img src="img/lock.svg" alt="lock">
@@ -968,7 +968,7 @@ ${typeOfCredit === `consumer`
                 <li>Мобильный банк,</br>который всегда под рукой</li>
                 <li>Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>
               </ul>
-              <button class="page-offers__service--btn">Узнать подробнее</Button>
+              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
             </div>
             <div class="page-offers__service--photo device-pic">
               <img src="img/device.svg" alt="device">
@@ -1024,7 +1024,7 @@ ${typeOfCredit === `consumer`
                     it.style.backgroundColor = `white`;
                   });
 
-              neededElement.style.backgroundColor = `blue`;
+              neededElement.style.backgroundColor = `#F6F7FF`;
             }
           });
     }
