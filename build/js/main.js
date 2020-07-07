@@ -897,7 +897,7 @@ ${typeOfCredit === `consumer`
 
       <div class="page-offers__slider">
 
-        <div class="page-offers-item__view">
+        <div class="page-offers-item__view first--item">
           <div class="page-offers-item__view--inner">
             <div class="page-offers__service--description">
               <p class="page-offers__service--title">
@@ -916,7 +916,7 @@ ${typeOfCredit === `consumer`
           </div>
         </div>
 
-        <div class="page-offers-item__view">
+        <div class="page-offers-item__view second--item">
           <div class="page-offers-item__view--inner">
             <div class="page-offers__service--description">
               <p class="page-offers__service--title">
@@ -939,11 +939,11 @@ ${typeOfCredit === `consumer`
           </div>
         </div>
 
-        <div class="page-offers-item__view">
+        <div class="page-offers-item__view third--item">
           <div class="page-offers-item__view--inner">
             <div class="page-offers__service--description">
               <p class="page-offers__service--title">
-                Лига Страхование - застрахуем</br>все, что захотите
+                Лига Страхование &ndash; застрахуем</br>все что захотите
               </p>
               <ul class="page-offers__service--advantages">
                 <li>Автомобильное страхование</li>
@@ -958,15 +958,15 @@ ${typeOfCredit === `consumer`
           </div>
         </div>
 
-        <div class="page-offers-item__view">
+        <div class="page-offers-item__view forth--item">
           <div class="page-offers-item__view--inner">
             <div class="page-offers__service--description">
               <p class="page-offers__service--title">
-                Лига Банк - это огромное количество</br>онлайн-сервисов для вашего удобства
+                Лига Банк &ndash; это огромное количество онлайн-сервисов для вашего удобства
               </p>
               <ul class="page-offers__service--advantages">
                 <li>Мобильный банк,</br>который всегда под рукой</li>
-                <li>Приложение Лига-проездной позволит</br>вам оплачивать билеты по всему миру</li>
+                <li>Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>
               </ul>
               <button class="page-offers__service--btn">Узнать подробнее</Button>
             </div>
