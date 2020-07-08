@@ -5,7 +5,7 @@ export const CAPITAL_OF_MOTHER = 470000;
 
 
 export const creditTypes = [
-  [`novalue`, `Выберете цель кредита`],
+  [`novalue`, `Выберите цель кредита`],
   [`mortgage`, `Ипотечное кредитование`],
   [`automobile`, `Автомобильное кредитование`],
   [`consumer`, `Потребительский кредит`],
@@ -77,7 +77,7 @@ export const setActualFeaturesNames = (creditType) => {
       break;
     case `consumer`:
       creditTypeTitle = `Сумма потребительского кредита`;
-      sumCreditName = `Cумма ипотеки`;
+      sumCreditName = `Cумма кредита`;
       maxPuschaseCost = 3000000;
       minPuschaseCost = 50000;
       opertorsStepCost = 50000;
@@ -89,7 +89,7 @@ export const setActualFeaturesNames = (creditType) => {
       break;
     default:
       creditTypeTitle = `Стоимость недвижимости`;
-      sumCreditName = `Cумма кредита`;
+      sumCreditName = `Cумма ипотеки`;
       maxPuschaseCost = 25000000;
       minPuschaseCost = 1200000;
       opertorsStepCost = 100000;

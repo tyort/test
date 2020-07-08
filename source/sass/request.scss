@@ -1,9 +1,8 @@
 .page-calculation__request {
   display: flex;
   max-width: 770px;
-  height: 722px;
   // border: $bred;
-  margin: 70px auto 0;
+  margin: 67px auto 0;
   flex-wrap: wrap;
   padding: 70px;
   background: #F6F7FF;
@@ -45,7 +44,9 @@
     width: 100%;
     // border: $bred;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 22px;
 
     .page-calculation__request--line {
       width: 100%;
@@ -84,20 +85,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
     height: 241px;
-    margin-top: auto;
+    margin-top: 30px;
     @media (max-width: 767px) {
       height: 301px;
     }
 
     input {
-      text-align: center;
-    }
-
-    input:invalid {
-      border-color: #e74c3c;
-      box-shadow: 0 0 1px 1px #e74c3c;
+      text-align: start;
+      padding-left: 20px;
     }
 
     .field--name__input {
@@ -108,6 +104,7 @@
 
     .field--phone__input,
     .field--email__input {
+      margin-top: 10px;
       width: 48%;
       height: 60px;
       @media (max-width: 767px) {

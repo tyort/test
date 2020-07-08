@@ -106,10 +106,17 @@
 }
 
 .forth--item .page-offers__service--description {
+  .page-offers__service--advantages {
+    max-width: 390px;
+  }
+
+  .page-offers__service--title {
+    max-width: 410px;
+  }
+
+
   .page-offers__service--title,
   .page-offers__service--advantages {
-    max-width: 410px;
-
     @media (max-width: 1023px) {
       max-width: 340px;
     }

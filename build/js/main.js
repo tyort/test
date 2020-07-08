@@ -7,7 +7,7 @@
 
 
   const creditTypes = [
-    [`novalue`, `Выберете цель кредита`],
+    [`novalue`, `Выберите цель кредита`],
     [`mortgage`, `Ипотечное кредитование`],
     [`automobile`, `Автомобильное кредитование`],
     [`consumer`, `Потребительский кредит`],
@@ -60,7 +60,7 @@
         break;
       case `consumer`:
         creditTypeTitle = `Сумма потребительского кредита`;
-        sumCreditName = `Cумма ипотеки`;
+        sumCreditName = `Cумма кредита`;
         maxPuschaseCost = 3000000;
         minPuschaseCost = 50000;
         opertorsStepCost = 50000;
@@ -72,7 +72,7 @@
         break;
       default:
         creditTypeTitle = `Стоимость недвижимости`;
-        sumCreditName = `Cумма кредита`;
+        sumCreditName = `Cумма ипотеки`;
         maxPuschaseCost = 25000000;
         minPuschaseCost = 1200000;
         opertorsStepCost = 100000;
@@ -160,10 +160,14 @@
       ${costOfMortgage >= minCreditRequired
       ? `<div class="calculation__result">
           <h3>Наше предложение</h3>
-          <div><p><span>${costOfMortgageToLine} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
-          <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
-          <div><p><span>${mounthlyPaymentToLine} рублей</span></br>Ежемесячный платеж</p></div>
-          <div><p><span>${requiredIncomeToLine} рублей</span></br>Необходимый доход</p></div>
+          <div class="top--part">
+            <p><span>${costOfMortgageToLine} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p>
+            <p class="right--part"><span>${annualPercentRate}%</span></br>Процентная ставка</p>
+          </div>
+          <div class="bottom--part">
+            <p><span>${mounthlyPaymentToLine} рублей</span></br>Ежемесячный платеж</p>
+            <p class="right--part"><span>${requiredIncomeToLine} рублей</span></br>Необходимый доход</p>
+          </div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>
         </div>`
@@ -292,12 +296,11 @@
 
   /* eslint-disable no-alert */
 
-  const createOptions = (options, typeOfCredit) => {
+  const createOptions = (options) => {
     return options
         .map((item) => {
-          const isSelected = typeOfCredit === item[0] ? `selected` : ``;
           return (
-            `<option value="${item[0]}" ${isSelected}><span>${item[1]}</span></option>`
+            `<li value="${item[0]}">${item[1]}</li>`
           );
         })
         .join(``);
@@ -305,11 +308,13 @@
 
   const createCalculationTemplate = (options = {}) => {
     const {costOfProperty, firstPayment, firstPaymentPercantage, periodOfCredit, typeOfCredit, isBonusUsed, isKaskoUsed, isInsuranceUsed, isParticipantUsed} = options;
-    const addOptions = createOptions(creditTypes, typeOfCredit);
+    const addOptions = createOptions(creditTypes);
     const isElementHidden = typeOfCredit === creditTypes[0][0] ? `visually-hidden` : ``;
 
     const costOfPropertyToLine = getTransformedNumber(costOfProperty);
     const firstPaymentToLine = getTransformedNumber(firstPayment);
+
+    const creditTypesMap = new Map(creditTypes);
 
     return (
       `<form class="page-calculation__parameters" id="page-calculator">
@@ -317,16 +322,23 @@
       <div class="page-calculation__main--choice">
         <h2>Кредитный калькулятор</h2>
         <h3>Шаг 1. Цель кредита</h3>
-        <select id="type-of-credit" name="credit-type">
-          ${addOptions}
-        </select>
+        <div id="type-of-credit" name="credit-type">
+          <ul class="credit--types__list undisclosed--list">
+            <li value="${typeOfCredit}">${creditTypesMap.get(typeOfCredit)}</li>
+          </ul>
+          <ul class="credit--types__list expanded--list visually-hidden">
+            ${addOptions}
+          </ul>
+          <img id="select-reverse-arrow" src="img/select-reverse.svg" alt="logo" width="18px" height="11px">
+          <img id="select-arrow" class="visually-hidden" src="img/select.svg" alt="logo" width="18px" height="11px">
+        </div>
       </div>
     
       <div class="${isElementHidden} page-calculation__type--cost">
         <h3>Шаг 2. Введите параметры кредита</h3>
         <label for="cost-of-property">${setActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
         <div class="cost-of-property__scale">
-          <span class="operator minus">-</span>
+          <img id="minus-operator" src="img/minus-operator.svg" alt="minus" width="17px" height="17px">
           <input
             autocomplete="off"
             class="cost-of-property__input"
@@ -336,9 +348,9 @@
             value="${costOfPropertyToLine} рублей"
             required
           />
-          <span class="operator plus">+</span>
+          <img id="plus-operator" src="img/plus-operator.svg" alt="plus" width="17px" height="17px">
         </div>
-        <p>От ${setActualFeaturesNames(typeOfCredit).minPuschaseCost} до ${setActualFeaturesNames(typeOfCredit).maxPuschaseCost} рублей</p>
+        <p>От ${getTransformedNumber(setActualFeaturesNames(typeOfCredit).minPuschaseCost)} до ${getTransformedNumber(setActualFeaturesNames(typeOfCredit).maxPuschaseCost)} рублей</p>
       </div>
 
       ${typeOfCredit === `consumer`
@@ -479,10 +491,20 @@ ${typeOfCredit === `consumer`
         evt.preventDefault();
       });
 
-      form.querySelector(`#type-of-credit`)
-          .addEventListener(`change`, (evt) => {
 
-            this._typeOfCredit = evt.target.value;
+      const creditsType = form.querySelector(`#type-of-credit`);
+      creditsType.addEventListener(`click`, (evt) => {
+        if (evt.target.id === `select-reverse-arrow` || evt.target.id === `select-arrow`) {
+          creditsType.querySelector(`.undisclosed--list`).classList.toggle(`visually-hidden`);
+          creditsType.querySelector(`#select-reverse-arrow`).classList.toggle(`visually-hidden`);
+          creditsType.querySelector(`.expanded--list`).classList.toggle(`visually-hidden`);
+          creditsType.querySelector(`#select-arrow`).classList.toggle(`visually-hidden`);
+        }
+      });
+
+      creditsType.querySelector(`.expanded--list`)
+          .addEventListener(`click`, (evt) => {
+            this._typeOfCredit = creditTypes.find((it) => it[1] === evt.target.textContent)[0];
             this._costOfProperty = START_COST_OF_PROPERTY;
             this._periodOfCredit = setActualFeaturesNames(this._typeOfCredit).minCreditPeriod;
             this.reset();
@@ -540,11 +562,11 @@ ${typeOfCredit === `consumer`
       form.querySelector(`.cost-of-property__scale`)
           .addEventListener(`click`, (evt) => {
             evt.preventDefault();
-            if (evt.target.className !== `operator minus` && evt.target.className !== `operator plus`) {
+            if (evt.target.id !== `minus-operator` && evt.target.id !== `plus-operator`) {
               return;
             }
 
-            if (evt.target.className === `operator minus`) {
+            if (evt.target.id === `minus-operator`) {
               this._costOfProperty -= setActualFeaturesNames(this._typeOfCredit).opertorsStepCost;
               this._costOfProperty = this._costOfProperty >= setActualFeaturesNames(this._typeOfCredit).minPuschaseCost
                 ? this._costOfProperty
@@ -1632,8 +1654,11 @@ ${typeOfCredit === `consumer`
       ? document.querySelector(`#participant__input`).hasAttribute(`checked`)
       : null;
 
+    let creditType = document.querySelector(`.undisclosed--list`).textContent.trim();
+    creditType = creditTypes.find((it) => it[1] === creditType)[0];
+
     return {
-      'creditType': formData.get(`credit-type`),
+      creditType,
       propertyCost,
       firstPayment,
       firstPayPercent,

@@ -14,10 +14,14 @@ const createOurOfferTemplate = (options = {}) => {
       ${costOfMortgage >= minCreditRequired
       ? `<div class="calculation__result">
           <h3>Наше предложение</h3>
-          <div><p><span>${costOfMortgageToLine} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p></div>
-          <div><p><span>${annualPercentRate}%</span></br>Процентная ставка</p></div>
-          <div><p><span>${mounthlyPaymentToLine} рублей</span></br>Ежемесячный платеж</p></div>
-          <div><p><span>${requiredIncomeToLine} рублей</span></br>Необходимый доход</p></div>
+          <div class="top--part">
+            <p><span>${costOfMortgageToLine} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p>
+            <p class="right--part"><span>${annualPercentRate}%</span></br>Процентная ставка</p>
+          </div>
+          <div class="bottom--part">
+            <p><span>${mounthlyPaymentToLine} рублей</span></br>Ежемесячный платеж</p>
+            <p class="right--part"><span>${requiredIncomeToLine} рублей</span></br>Необходимый доход</p>
+          </div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>
         </div>`

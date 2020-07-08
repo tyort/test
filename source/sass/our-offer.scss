@@ -1,7 +1,7 @@
 .page-calculation__our-offer {
   // border: $bred;
   height: 389px;
-  max-width: 500px;
+  width: 500px;
   margin-left: auto;
   margin-top: 99px;
   padding: 60px;
@@ -22,94 +22,98 @@
     margin-top: 32px;
     min-width: 350px;
   }
+}
 
-  .calculation__result--unwanted {
-    // border: $bred;
+.calculation__result--unwanted {
+  // border: $bred;
+  width: 100%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 140%;
+
+  span {
+    margin-bottom: 25px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 140%;
+  }
+}
+
+.calculation__result {
+  // border: $bred;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  h3 {
     width: 100%;
     font-family: Roboto;
     font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 140%;
+    font-weight: 500;
+    line-height: 70%;
+    margin-bottom: 40px;
+
+    @media (min-width: 1024px) {
+      font-size: 22px;
+    }
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
+  }
+
+  div {
+    // border: $bred;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+    p {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 150%;
+      width: 50%;
+    }
 
     span {
-      margin-bottom: 25px;
       font-family: Roboto;
       font-style: normal;
       font-weight: 500;
       font-size: 22px;
-      line-height: 140%;
-    }
-  }
-
-  .calculation__result {
-    // border: $bred;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-
-    h3 {
-      width: 100%;
-      // border: $bred;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
       line-height: 70%;
-      margin-bottom: auto;
-      @media (min-width: 1024px) {
-        font-size: 22px;
-      }
+
       @media (max-width: 767px) {
         font-size: 18px;
       }
     }
+  }
 
-    div {
-      width: 50%;
-      // border: $bred;
-      display: flex;
-      align-items: center;
-      padding-right: 5px;
-      @media (max-width: 767px) {
-        width: 100%;
-      }
+  .right--part {
+    padding-left: 32px;
+  }
 
-      p {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 150%;
-        @media (max-width: 767px) {
-          line-height: 140%;
-        }
+  .bottom--part {
+    margin-top: 32px;
+  }
 
-        span {
-          font-family: Roboto;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 22px;
-          line-height: 70%;
-          @media (max-width: 767px) {
-            font-size: 18px;
-          }
-        }
-      }
-    }
-
-    .calculation__request-btn {
-      width: 100%;
-      // border: $bred;
-      height: 51px;
-      margin-top: auto;
-      background: #2C36F2;
-      border-radius: 4px;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 140%;
-      color: #F6F7FF;
-    }
+  .calculation__request-btn {
+    width: 100%;
+    // border: $bred;
+    height: 51px;
+    margin-top: auto;
+    background: #2C36F2;
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: #F6F7FF;
   }
 }

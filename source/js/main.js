@@ -8,7 +8,7 @@ import PopupGratitudeComponent from "./components/popup-gratitude.js";
 import RegistrationComponent from "./components/popup-registration.js";
 import HeaderComponent from "./components/header.js";
 import PresentationComponent from "./components/presentation.js";
-import {renderComponent, getTransformedLine} from './formulas.js';
+import {renderComponent, getTransformedLine, creditTypes} from './formulas.js';
 
 const headerComponent = new HeaderComponent();
 const pageCalculationComponent = new PageCalculationComponent();
@@ -74,8 +74,11 @@ const parseFormData = (formData) => {
     ? document.querySelector(`#participant__input`).hasAttribute(`checked`)
     : null;
 
+  let creditType = document.querySelector(`.undisclosed--list`).textContent.trim();
+  creditType = creditTypes.find((it) => it[1] === creditType)[0];
+
   return {
-    'creditType': formData.get(`credit-type`),
+    creditType,
     propertyCost,
     firstPayment,
     firstPayPercent,
