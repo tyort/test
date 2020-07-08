@@ -8,19 +8,18 @@
   display: flex;
   background: #F6F7FF;
   border-radius: 4px;
-  min-width: 450px;
 
-  @media (min-width: 768px) and (max-width: 1023px) {
-    max-width: 100%;
+  @media (max-width: 1023px) {
+    width: 100%;
     margin: 0 auto;
     margin-top: 43px;
   }
   @media (max-width: 767px) {
-    height: 433px;
+    height: auto;
     max-width: 100%;
     margin: 0 auto;
     margin-top: 32px;
-    min-width: 350px;
+    padding: 40px 15px;
   }
 }
 
@@ -58,11 +57,12 @@
     line-height: 70%;
     margin-bottom: 40px;
 
-    @media (min-width: 1024px) {
+    @media (max-width: 1023px) {
       font-size: 22px;
     }
     @media (max-width: 767px) {
       font-size: 18px;
+      margin-bottom: 30px;
     }
   }
 
@@ -72,6 +72,10 @@
     display: flex;
     justify-content: flex-start;
 
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+
     p {
       font-family: Roboto;
       font-style: normal;
@@ -79,6 +83,15 @@
       font-size: 16px;
       line-height: 150%;
       width: 50%;
+
+      @media (max-width: 1023px) {
+        width: 40%;
+      }
+      
+      @media (max-width: 767px) {
+        width: 100%;
+        margin-bottom: 10px;
+      }
     }
 
     span {
@@ -96,10 +109,24 @@
 
   .right--part {
     padding-left: 32px;
+
+    @media (max-width: 1023px) {
+      padding-left: 0px;
+    }
   }
 
   .bottom--part {
     margin-top: 32px;
+
+    @media (max-width: 767px) {
+      margin-top: 5px;
+    }
+  }
+
+  .bottom--part p {
+    @media (max-width: 767px) {
+      margin-bottom: 15px;
+    }
   }
 
   .calculation__request-btn {
@@ -115,5 +142,10 @@
     font-size: 16px;
     line-height: 140%;
     color: #F6F7FF;
+
+    @media (max-width: 767px) {
+      font-size: 14px;
+      margin-top: 10px;
+    }
   }
 }

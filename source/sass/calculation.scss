@@ -1,21 +1,16 @@
 .page-calculation {
   // border: $bred;
   display: flex;
-  justify-content: space-between;
   max-width: 1366px;
   margin: 0 auto;
   padding: 110px 98px 0;
 
-  @media (min-width: 768px) and (max-width: 1023px) {
-    min-height: 245px;
-    max-height: 1294px;
+  @media (max-width: 1023px) {
+    width: 100%;
     padding: 80px 45px 0;
     flex-wrap: wrap;
   }
   @media (max-width: 767px) {
-    min-height: 202px;
-    max-height: 1252px;
-    min-width: 350px;
     padding: 60px 15px 0;
     flex-wrap: wrap;
   }
@@ -83,10 +78,10 @@
 }
 
 .page-calculation__parameters {
+  // border: $bred;
   display: flex;
   flex-direction: column;
   width: 600px;
-  min-width: 500px;
   justify-content: flex-start;
 
   @media (max-width: 1023px) {
@@ -125,6 +120,7 @@
     }
     @media (max-width: 767px) {
       font-size: 22px;
+      margin: 0 0 36px;
     }
   }
 
@@ -133,6 +129,10 @@
 
     @media (max-width: 1023px) {
       margin: 0 0 24px;
+    }
+
+    @media (max-width: 767px) {
+      margin: 0 0 19px;
     }
   }
 
@@ -160,6 +160,10 @@
     padding-top: 21px;
     padding-left: 23px;
     border-bottom: 1px solid #C1C2CA;
+
+    @media (max-width: 767px) {
+      padding-left: 15px;
+    }
   }
 
   .expanded--list li {
@@ -181,6 +185,10 @@
     right: 22px;
     cursor: pointer;
     z-index: 19;
+
+    @media (max-width: 767px) {
+      right: 13px;
+    }
   }
 }
 
@@ -192,6 +200,10 @@
   justify-content: flex-start;
   margin-top: 103px;
 
+  @media (max-width: 1023px) {
+    margin-top: 41px;
+  }
+
   @media (max-width: 767px) {
     margin-top: 30px;
   }
@@ -202,6 +214,14 @@
 
   h3 {
     margin-bottom: 30px;
+
+    @media (max-width: 1023px) {
+      margin-bottom: 25px;
+    }
+
+    @media (max-width: 767px) {
+      margin-bottom: 20px;
+    }
   }
 
   label {
@@ -342,7 +362,7 @@
     margin-top: 15px;
   }
   @media (max-width: 767px) {
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
   &.visually-hidden {
@@ -357,12 +377,17 @@
     margin-top: 10px;
 
     input {
-      height: 20px;
-      width: 20px;
+      height: 16px;
+      width: 16px;
     }
 
     label {
       margin-left: 5px;
+
+      @media (max-width: 767px) {
+        margin-left: 10px;
+        font-size: 14px;
+      }
     }
   }
 }

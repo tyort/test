@@ -88,9 +88,7 @@ const createRequestTemplate = (options = {}) => {
                 autocomplete="off"
                 required
               />
-              <div class="btn-section">
-                <button class="calculation__send-btn" type="submit">Отправить</button>
-              </div>
+              <button class="calculation__send-btn" type="submit">Отправить</button>
             </form>
           </div>`);
 };
