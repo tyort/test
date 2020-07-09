@@ -1,29 +1,27 @@
 .page-calculation__our-offer {
   // border: $bred;
-  height: 389px;
   width: 500px;
   margin-left: auto;
-  margin-top: 99px;
+  margin-top: 100px;
   padding: 60px;
   display: flex;
   background: #F6F7FF;
   border-radius: 4px;
-
+  align-self: flex-start;
   @media (max-width: 1023px) {
     width: 100%;
     margin: 0 auto;
-    margin-top: 43px;
+    margin-top: 45px;
   }
   @media (max-width: 767px) {
     height: auto;
     max-width: 100%;
-    margin: 0 auto;
     margin-top: 32px;
     padding: 40px 15px;
   }
 }
 
-.calculation__result--unwanted {
+.calculation__results--unwanted {
   // border: $bred;
   width: 100%;
   font-family: Roboto;
@@ -34,118 +32,96 @@
 
   span {
     margin-bottom: 25px;
-    font-family: Roboto;
-    font-style: normal;
     font-weight: 500;
     font-size: 22px;
-    line-height: 140%;
+  }
+}
+
+.calculation__results {
+  // border: $bred;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.calculation__results h3 {
+  width: 100%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 70%;
+  margin-bottom: 38px;
+
+  @media (max-width: 1023px) {
+    font-size: 22px;
+  }
+  @media (max-width: 767px) {
+    font-size: 18px;
+    margin-bottom: 35px;
   }
 }
 
 .calculation__result {
   // border: $bred;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 70%;
+  width: 50%;
+  height: 42px;
+  margin-bottom: 40px;
 
-  h3 {
+  @media (max-width: 1023px) {
+    width: 40.5%;
+  }
+  @media (max-width: 767px) {
     width: 100%;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 70%;
-    margin-bottom: 40px;
-
-    @media (max-width: 1023px) {
-      font-size: 22px;
-    }
-    @media (max-width: 767px) {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
+    height: 35px;
+    margin-bottom: 26px;
   }
+}
 
-  div {
-    // border: $bred;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
+.calculation__result p:first-child {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 70%;
 
-    @media (max-width: 767px) {
-      flex-direction: column;
-    }
-
-    p {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 150%;
-      width: 50%;
-
-      @media (max-width: 1023px) {
-        width: 40%;
-      }
-      
-      @media (max-width: 767px) {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-    }
-
-    span {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 22px;
-      line-height: 70%;
-
-      @media (max-width: 767px) {
-        font-size: 18px;
-      }
-    }
+  @media (max-width: 767px) {
+    font-size: 18px;
   }
+}
 
-  .right--part {
-    padding-left: 32px;
+.calculated--percent,
+.calculated--income {
+  padding-left: 33px;
 
-    @media (max-width: 1023px) {
-      padding-left: 0px;
-    }
+  @media (max-width: 1023px) {
+    padding-left: 0px;
   }
+}
 
-  .bottom--part {
-    margin-top: 32px;
+.calculation__request-btn {
+  width: 100%;
+  // border: $bred;
+  height: 51px;
+  background: #2C36F2;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 70%;
+  color: #F6F7FF;
 
-    @media (max-width: 767px) {
-      margin-top: 5px;
-    }
-  }
-
-  .bottom--part p {
-    @media (max-width: 767px) {
-      margin-bottom: 15px;
-    }
-  }
-
-  .calculation__request-btn {
-    width: 100%;
-    // border: $bred;
-    height: 51px;
-    margin-top: auto;
-    background: #2C36F2;
-    border-radius: 4px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 140%;
-    color: #F6F7FF;
-
-    @media (max-width: 767px) {
-      font-size: 14px;
-      margin-top: 10px;
-    }
+  @media (max-width: 767px) {
+    font-size: 14px;
+    margin-top: 9px;
   }
 }

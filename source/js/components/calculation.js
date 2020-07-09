@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import AbstractSmartComponent from './abstract-smart-component.js';
 import {START_COST_OF_PROPERTY, ENTER_KEY_CODE, creditTypes, setActualFeaturesNames, getTransformedNumber} from '../formulas.js';
 
@@ -291,7 +290,6 @@ export default class Calculation extends AbstractSmartComponent {
     const firstPayment = form.querySelector(`#first-payment`);
     const onChangeCostHandler = (evt) => {
       if (isNaN(Number(evt.target.value))) {
-        alert(`Введите числовое значение`);
         evt.target.value = this._firstPayment;
         this.reRender();
 
@@ -347,7 +345,6 @@ export default class Calculation extends AbstractSmartComponent {
     const periodOfCredit = form.querySelector(`#credit-period`);
     const onChangePeriodHandler = (evt) => {
       if (isNaN(Number(evt.target.value))) {
-        alert(`Введите числовое значение`);
         evt.target.value = this._periodOfCredit;
         this.reRender();
 

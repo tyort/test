@@ -10,6 +10,7 @@
     padding: 80px 45px 0;
     flex-wrap: wrap;
   }
+
   @media (max-width: 767px) {
     padding: 60px 15px 0;
     flex-wrap: wrap;
@@ -18,32 +19,41 @@
   .percent-slider,
   .years-slider {
     width: 100%;
-    // border: $bred;
     position: relative;
     height: 32px;
-
-    input[type="range"] {
-      width: 100%;
-      position: absolute;
-      top: -23px;
-    }
-
-    output {
-      position: absolute;
-    }
   }
 
   input {
     border: none;
-    height: 100%;
+    height: 60px;
     text-align: center;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 140%;
+    border: 1px solid #1F1E25;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 15px;
+
     @media (max-width: 1023px) {
       font-size: 16px;
+    }
+  }
+
+  input[type="checkbox"] {
+    margin-top: 0px;
+    height: 16px;
+    width: 16px;
+  }
+
+  input[type="checkbox"] ~ label {
+    margin-left: 8px;
+
+    @media (max-width: 767px) {
+      margin-left: 10px;
+      font-size: 14px;
     }
   }
 
@@ -58,6 +68,25 @@
     line-height: 70%;
   }
 
+  output {
+    position: absolute;
+    top: 33px;
+
+    @media (max-width: 1023px) {
+      font-size: 14px;
+      top: 35px;
+    }
+  }
+
+  .percent-slider output {
+    top: 38px;
+
+    @media (max-width: 1023px) {
+      font-size: 14px;
+      top: 40px;
+    }
+  }
+
   h3 {
     margin: 0;
     // border: $bred;
@@ -68,11 +97,15 @@
     font-size: 22px;
     line-height: 70%;
     flex-shrink: 0;
-    @media (min-width: 768px) and (max-width: 1023px) {
+    margin-bottom: 30px;
+
+    @media (max-width: 1023px) {
       font-size: 18px;
+      margin-bottom: 25px;
     }
     @media (max-width: 767px) {
       font-size: 16px;
+      margin-bottom: 20px;
     }
   }
 }
@@ -121,18 +154,6 @@
     @media (max-width: 767px) {
       font-size: 22px;
       margin: 0 0 36px;
-    }
-  }
-
-  h3 {
-    margin: 0 0 30px;
-
-    @media (max-width: 1023px) {
-      margin: 0 0 24px;
-    }
-
-    @media (max-width: 767px) {
-      margin: 0 0 19px;
     }
   }
 
@@ -212,32 +233,17 @@
     display: none;
   }
 
-  h3 {
-    margin-bottom: 30px;
-
-    @media (max-width: 1023px) {
-      margin-bottom: 25px;
-    }
-
-    @media (max-width: 767px) {
-      margin-bottom: 20px;
-    }
-  }
-
   label {
     margin-bottom: 15px;
   }
 
   .cost-of-property__scale {
-    margin-bottom: 11px;
-  }
-
-  .cost-of-property__scale {
+    // border: $bred;
     width: 100%;
     height: 60px;
     display: flex;
     align-items: center;
-    margin-top: auto;
+    margin-bottom: 11px;
     position: relative;
 
     img {
@@ -258,8 +264,7 @@
 
     input {
       flex-grow: 2;
-      border: 1px solid #1F1E25;
-      border-radius: 4px;  
+      margin-top: 0px;
     }
 
     &.error input {
@@ -298,23 +303,12 @@
   &.visually-hidden {
     display: none;
   }
-
-  input {
-    margin-top: 15px;
-    height: 60px;
-    border: 1px solid #1F1E25;
-    box-sizing: border-box;
-    border-radius: 4px;
-  }
-
-  input[type="range"] {
-    margin-top: 15px;
-  }
-
-  output {
-    top: 37px;
-  }
 }
+
+.page-calculation__initial--fee input[type="range"] {
+  margin-top: -8px;
+}
+
 
 .page-calculation__credit--term {
   // border: $bred;
@@ -324,7 +318,7 @@
   flex-direction: column;
   margin-top: 30px;
 
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (max-width: 1023px) {
     margin-top: 25px;
   }
   @media (max-width: 767px) {
@@ -334,23 +328,12 @@
   &.visually-hidden {
     display: none;
   }
-
-  input {
-    height: 60px;
-    border: 1px solid #1F1E25;
-    box-sizing: border-box;
-    border-radius: 4px;
-    margin-top: 15px;
-  }
-
-  input[type="range"] {
-    margin-top: 11px;
-  }
-
-  output {
-    top: 33px;
-  }
 }
+
+.page-calculation__credit--term input[type="range"] {
+  margin-top: -12px;
+}
+
 
 .page-calculation__checkboxes {
   // border: $bred;
@@ -373,22 +356,7 @@
     // border: $bred;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     margin-top: 10px;
-
-    input {
-      height: 16px;
-      width: 16px;
-    }
-
-    label {
-      margin-left: 5px;
-
-      @media (max-width: 767px) {
-        margin-left: 10px;
-        font-size: 14px;
-      }
-    }
   }
 }
 

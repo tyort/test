@@ -158,20 +158,28 @@
     return (
       `<div class="page-calculation__our-offer ${isElementHidden}">
       ${costOfMortgage >= minCreditRequired
-      ? `<div class="calculation__result">
+      ? `<div class="calculation__results">
           <h3>Наше предложение</h3>
-          <div class="top--part">
-            <p><span>${costOfMortgageToLine} рублей</span></br>${setActualFeaturesNames(creditType).sumCreditName}</p>
-            <p class="right--part"><span>${annualPercentRate}%</span></br>Процентная ставка</p>
+          <div class="calculation__result calculated--cost">
+            <p>${costOfMortgageToLine} рублей</p>
+            <p>${setActualFeaturesNames(creditType).sumCreditName}</p>
           </div>
-          <div class="bottom--part">
-            <p><span>${mounthlyPaymentToLine} рублей</span></br>Ежемесячный платеж</p>
-            <p class="right--part"><span>${requiredIncomeToLine} рублей</span></br>Необходимый доход</p>
+          <div class="calculation__result calculated--percent">
+            <p>${annualPercentRate}%</p>
+            <p>Процентная ставка</p>
+          </div>
+          <div class="calculation__result calculated--payment">
+            <p>${mounthlyPaymentToLine} рублей</p>
+            <p>Ежемесячный платеж</p>
+          </div>
+          <div class="calculation__result calculated--income">
+            <p>${requiredIncomeToLine} рублей</p>
+            <p>Необходимый доход</p>
           </div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>
         </div>`
-      : `<div class="calculation__result--unwanted">
+      : `<div class="calculation__results--unwanted">
           <p><span>Наш банк не выдает ${setActualFeaturesNames(creditType).messageInsert}
             меньше ${minCreditRequired} рублей.</span>
           </p></br>
@@ -293,8 +301,6 @@
       }
     }
   }
-
-  /* eslint-disable no-alert */
 
   const createOptions = (options) => {
     return options
@@ -585,7 +591,6 @@ ${typeOfCredit === `consumer`
       const firstPayment = form.querySelector(`#first-payment`);
       const onChangeCostHandler = (evt) => {
         if (isNaN(Number(evt.target.value))) {
-          alert(`Введите числовое значение`);
           evt.target.value = this._firstPayment;
           this.reRender();
 
@@ -641,7 +646,6 @@ ${typeOfCredit === `consumer`
       const periodOfCredit = form.querySelector(`#credit-period`);
       const onChangePeriodHandler = (evt) => {
         if (isNaN(Number(evt.target.value))) {
-          alert(`Введите числовое значение`);
           evt.target.value = this._periodOfCredit;
           this.reRender();
 
