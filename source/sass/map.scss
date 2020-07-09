@@ -1,16 +1,13 @@
 .page-map {
   display: flex;
-  height: 863px;
   // border: $bred;
   margin: 0 auto;
   padding: 110px 98px;
   max-width: 1366px;
   @media (min-width: 768px) and (max-width: 1023px) {
-    height: 771px;
     padding: 80px 45px;
   }
   @media (max-width: 767px) {
-    height: 608px;
     padding: 60px 0;
     min-width: 250px;
   }
@@ -21,23 +18,25 @@
   flex-direction: column;
   // border: $bred;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: flex-start;
 
-  .page-map__title {
+  h3 {
     width: 100%;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 41px;
     line-height: 70%;
-    // border: $bred;
-    margin-bottom: auto;
-    @media (min-width: 768px) and (max-width: 1023px) {
+    margin: 0 0 70px;
+
+    @media (max-width: 1023px) {
       font-size: 32px;
+      margin: 0 0 44px;
     }
+
     @media (max-width: 767px) {
       font-size: 22px;
-      margin-left: 15px;
+      margin: 1px 0 35px 15px;
     }
   }
 
@@ -45,7 +44,6 @@
     width: 100%;
     // border: $bred;
     background-color: #F6F7FF;
-    height: 82px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,8 +53,10 @@
     font-size: 14px;
     line-height: 70%;
     border-bottom: 1px solid #C1C2CA;
+    padding: 35px 0  30px;
+
     @media (max-width: 767px) {
-      height: 56px;
+      padding: 20px 0;
     }
 
     .page-map__country {
