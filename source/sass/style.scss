@@ -33,9 +33,9 @@
 }
 
 
-// input:valid {
-//   border-color: green;
-// }
+input:valid {
+  border-color: green;
+}
 
 input:not(:placeholder-shown):invalid{
   border-color: red

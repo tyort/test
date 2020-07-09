@@ -127,6 +127,8 @@ export default class Request extends AbstractSmartComponent {
   }
 
   reRender(request) {
+
+    console.log(request);
     this._creditType = request.creditType;
     this._propertyCost = request.propertyCost;
     this._firstPayment = request.firstPayment;
