@@ -225,6 +225,7 @@ export default class Calculation extends AbstractSmartComponent {
         parent.className = `cost-of-property__scale error`;
         ourOffer.className = `page-calculation__our-offer visually-hidden`;
         evt.target.value = `Некорректное значение`;
+        document.querySelector(`.page-calculation__request`).classList.toggle(`visually-hidden`, true);
         costOfProperty.blur();
         return;
       }
@@ -239,6 +240,7 @@ export default class Calculation extends AbstractSmartComponent {
         parent.className = `cost-of-property__scale error`;
         ourOffer.className = `page-calculation__our-offer visually-hidden`;
         evt.target.value = `Некорректное значение`;
+        document.querySelector(`.page-calculation__request`).classList.toggle(`visually-hidden`, true);
         costOfProperty.blur();
       }
     });

@@ -33,12 +33,16 @@
 }
 
 
-input:valid {
-  border-color: green;
-}
+// input:valid {
+//   border-color: green;
+// }
 
 input:not(:placeholder-shown):invalid{
-  border-color: red
+  border-color: red;
+}
+
+input:invalid{
+  border-color: red;
 }
 
 .visually-hidden {

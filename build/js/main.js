@@ -526,6 +526,7 @@ ${typeOfCredit === `consumer`
           parent.className = `cost-of-property__scale error`;
           ourOffer.className = `page-calculation__our-offer visually-hidden`;
           evt.target.value = `Некорректное значение`;
+          document.querySelector(`.page-calculation__request`).classList.toggle(`visually-hidden`, true);
           costOfProperty.blur();
           return;
         }
@@ -540,6 +541,7 @@ ${typeOfCredit === `consumer`
           parent.className = `cost-of-property__scale error`;
           ourOffer.className = `page-calculation__our-offer visually-hidden`;
           evt.target.value = `Некорректное значение`;
+          document.querySelector(`.page-calculation__request`).classList.toggle(`visually-hidden`, true);
           costOfProperty.blur();
         }
       });
@@ -1209,8 +1211,6 @@ ${typeOfCredit === `consumer`
     }
 
     reRender(request) {
-
-      console.log(request);
       this._creditType = request.creditType;
       this._propertyCost = request.propertyCost;
       this._firstPayment = request.firstPayment;
