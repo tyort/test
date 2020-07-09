@@ -51,10 +51,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: 70%;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 
   @media (max-width: 1023px) {
     font-size: 22px;
+    margin-bottom: 40px;
   }
   @media (max-width: 767px) {
     font-size: 18px;
@@ -73,10 +74,11 @@
   font-size: 16px;
   line-height: 70%;
   width: 50%;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 
   @media (max-width: 1023px) {
     width: 40.5%;
+    margin-bottom: 40px;
   }
   @media (max-width: 767px) {
     width: 100%;
@@ -89,8 +91,12 @@
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
-  line-height: 70%;
+  line-height: 100%;
   margin-bottom: 15px;
+
+  @media (max-width: 1023px) {
+    line-height: 70%;
+  }
 
   @media (max-width: 767px) {
     font-size: 18px;
