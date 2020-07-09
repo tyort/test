@@ -116,9 +116,11 @@
   flex-direction: column;
   width: 600px;
   justify-content: flex-start;
+  margin-right: 70px;
 
   @media (max-width: 1023px) {
     width: 100%;
+    margin-right: 0;
   }
 }
 
@@ -306,6 +308,7 @@
 }
 
 .page-calculation__initial--fee input[type="range"] {
+  cursor: pointer;
   margin-top: -8px;
 }
 
@@ -331,6 +334,7 @@
 }
 
 .page-calculation__credit--term input[type="range"] {
+  cursor: pointer;
   margin-top: -12px;
 }
 

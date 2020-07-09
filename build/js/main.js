@@ -849,7 +849,7 @@ ${typeOfCredit === `consumer`
         window.ymaps.ready(() => {
           this._myMap = new window.ymaps.Map(`YMapsID`, {
             center: [55.76, 37.64],
-            zoom: 10,
+            zoom: 5,
           }, {
             searchControlProvider: `yandex#search`
           });

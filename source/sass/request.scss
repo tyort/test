@@ -141,6 +141,10 @@ line-height: 140%;
     line-height: 70%;
     color: #F6F7FF;
 
+    &:active {
+      box-shadow: inset 0 0 0 1px #1c05a1, inset 0 5px 40px #9fb5f1;
+    }
+
     @media (max-width: 1023px) {
       margin: 19px auto 0;
       width: 100%;

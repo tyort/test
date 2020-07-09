@@ -32,17 +32,8 @@
   font-weight: 500px;
 }
 
-
-// input:valid {
-//   border-color: green;
-// }
-
-input:not(:placeholder-shown):invalid{
-  border-color: red;
-}
-
-input:invalid{
-  border-color: red;
+input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: rgb(255, 0, 0);
 }
 
 .visually-hidden {
