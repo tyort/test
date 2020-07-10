@@ -1,7 +1,7 @@
 .page-footer {
   // border: $bred;
   width: 100%;
-  padding: 60px 0;
+  padding: 60px 98px;
   background: #F6F7FF;
 
   @media (max-width: 1023px) {
@@ -14,14 +14,11 @@
 
 .page-footer__inner {
   // border: $bred;
+  width: 100%;
   max-width: 1170px;
   margin: 0 auto;
   display: flex;
   justify-content: flex-start;
-
-  @media (max-width: 1023px) {
-    width: 100%;
-  }
 
   @media (max-width: 767px) {
     flex-wrap: wrap;
@@ -79,8 +76,10 @@
   line-height: 70%;
   display: flex;
   flex-direction: column;
+  margin-left: 15px;
 
   @media (max-width: 1023px) {
+    margin-left: 0px;
     margin-top: 35px;
   }
   @media (max-width: 767px) {
@@ -166,7 +165,7 @@
 
   .page-footer__contacts--russia {
     margin-right: auto;
-    margin-left: 35px;
+    margin-left: 50px;
 
     @media (max-width: 1023px) {
       margin-left: 5px;
@@ -246,7 +245,9 @@
   }
 
   .page-footer__socials a:first-child {
-    margin-left: 0;
+    @media (max-width: 1023px) {
+      margin-left: 0;
+    }
   }
 }
 
