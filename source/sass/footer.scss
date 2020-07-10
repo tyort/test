@@ -36,6 +36,7 @@
   font-size: 20px;
   line-height: 70%;
   width: 475px;
+  margin-right: 110px;
 
   @media (max-width: 1023px) {
     display: flex;
@@ -121,9 +122,8 @@
 .page-footer__contacts {
   // border: $bred;
   display: flex;
-  width: 584px;
-  margin-left: auto;
-  justify-content: flex-end;
+  flex-grow: 1;
+  justify-content: flex-start;
   
   @media (max-width: 1023px) {
     flex-direction: column;
@@ -165,7 +165,8 @@
   }
 
   .page-footer__contacts--russia {
-    margin-left: 115px;
+    margin-right: auto;
+    margin-left: 35px;
 
     @media (max-width: 1023px) {
       margin-left: 5px;
@@ -177,6 +178,8 @@
   }
 
   .page-footer__contacts--sub {
+    margin-right: auto;
+
     @media (max-width: 1023px) {
       margin-bottom: 20px;
     }
@@ -215,7 +218,6 @@
     justify-content: space-between;
     width: 102px;
     flex-shrink: 0;
-    margin-left: 85px;
 
     @media (max-width: 1023px) {
       margin-top: 20px;
@@ -226,7 +228,6 @@
     @media (max-width: 767px) {
       margin-top: 15px;
       margin-left: 0px;
-
     }
   }
 }
