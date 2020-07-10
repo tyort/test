@@ -223,8 +223,6 @@
   .page-footer__socials {
     // border: $bred;
     display: flex;
-    justify-content: space-between;
-    width: 102px;
     flex-shrink: 0;
 
     @media (max-width: 1023px) {
@@ -237,6 +235,18 @@
       margin-top: 15px;
       margin-left: 0px;
     }
+  }
+
+  .page-footer__socials a {
+    margin-left: 15px;
+
+    @media (max-width: 1023px) {
+      margin-left: 20px;
+    }
+  }
+
+  .page-footer__socials a:first-child {
+    margin-left: 0;
   }
 }
 
