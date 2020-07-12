@@ -1378,6 +1378,7 @@ ${typeOfCredit === `consumer`
                 <a href="#" class="field--password__control"></a>
               </div>
               <button class="popup-registration__btn" type="submit">Войти</button>
+              <a href="#" class="field--password__forgotten">Забыли пароль?</a>
             </form>
           </div>`);
   };

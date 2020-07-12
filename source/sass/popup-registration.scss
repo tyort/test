@@ -8,133 +8,201 @@
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.719);
+}
 
-  .popup-registration__form {
-    display: flex;
-    flex-direction: column;
-    width: 493px;
-    height: 544px;
-    padding: 60px;
-    background-color: #F6F7FF;
-    border-radius: 4px;
+.popup-registration__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 544px;
+  padding: 56px 55px;
+  background-color: #F6F7FF;
+  border: 4px solid #2C36F2;
+  border-radius: 4px;
 
-    .popup-registration__content-header {
-      display: flex;
-      width: 100%;
-      align-items: flex-start;
-      justify-content: space-between;
-      // border: $bred;
-      margin-bottom: auto;
+  @media (max-width: 1023px) {
+    margin: 0 45px;
+    width: 100%;
+    padding: 56px 85px;
+  }
 
-      img {
-        // border: $bred;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      .popup-registration__close {
-        width: 20px;
-        height: 20px;
-        border-radius: 40px;
-        position: relative;
-        z-index: 1;
-        cursor: pointer;
-        // border: $bred;
-        top: 3px;
-      }
-
-      .popup-registration__close:before {
-        content: '+';
-        color: #337AB7;
-        position: absolute;
-        z-index: 2;
-        transform: rotate(45deg);
-        font-size: 30px;
-        line-height: 1;
-        top: -5px;
-        left: 2px;
-        transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
-      }
-
-      .popup-registration__close:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 100%;
-        background: #337AB7;
-        z-index: 1;
-        transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
-        transform: scale(0.01);
-      }
-
-      .popup-registration__close:hover:after {
-        transform: scale(1);
-      }
-      
-      .popup-registration__close:hover:before {
-        transform: scale(0.8) rotate(45deg);
-        color: #fff;
-      }
-    }
-
-    .field--login__field,
-    .field--password__field {
-      // border: $bred;
-      display: flex;
-      flex-wrap: wrap;
-      margin: 15px 0;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 140%;
-      color: #707C87;
-
-      input {
-        width: 100%;
-        height: 60px;
-      }
-
-      .field--password__forgotten {
-        margin-left: auto;
-        color: #707C87;
-      }
-    }
-
-    .field--password__field {
-      position: relative;
-
-      .field--password__control {
-        position: absolute;
-        // border: $bred;
-        top: 35px;
-        right: 16px;
-        width: 30px;
-        height: 30px;
-        background: url(../img/eye-closed.png) 0 0 no-repeat;
-        background-size: cover;
-      }
-      .field--password__control.eye-opened {
-        top: 38px;
-        right: 13px;
-        background: url(../img/eye-opened.png) 0 0 no-repeat;
-      }
-    }
-
-    .popup-registration__btn {
-      height: 60px;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 18px;
-      line-height: 21px;
-      color: #F6F7FF;
-      background: #2C36F2;
-      border-radius: 4px;
-      margin-top: auto;
-    }
+  @media (max-width: 767px) {
+    margin: 0 23px;
+    width: 100%;
+    padding: 46px 15px;
   }
 }
+
+.popup-registration__form label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 70%;
+  margin-bottom: 10px;
+}
+
+
+
+.popup-registration__content-header {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 37px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 28px;
+  }
+
+  img {
+    width: 150px;
+    height: 29px;
+    object-fit: cover;
+
+    @media (max-width: 767px) {
+      margin-left: -5px;
+    }
+  }
+
+  .popup-registration__close {
+    width: 35px;
+    height: 35px;
+    border-radius: 40px;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    top: -8px;
+    right: -9px;
+  }
+
+  .popup-registration__close:before {
+    content: '+';
+    color: #1F1E25;
+    position: absolute;
+    z-index: 2;
+    transform: rotate(45deg);
+    font-size: 45px;
+    line-height: 1;
+    top: -5px;
+    left: 5px;
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+  }
+
+  .popup-registration__close:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background: #337AB7;
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+    transform: scale(0.01);
+  }
+
+  .popup-registration__close:hover:after {
+    transform: scale(1);
+  }
+  
+  .popup-registration__close:hover:before {
+    transform: scale(0.8) rotate(45deg);
+    color: #fff;
+  }
+}
+
+.field--login__field,
+.field--password__field {
+  // border: $bred;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 140%;
+  color: #707C87;
+  margin-bottom: 30px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 25px;
+  }
+
+  input {
+    width: 100%;
+    height: 60px;
+  }
+}
+
+.field--password__field > .field--password__forgotten {
+  margin-left: auto;
+  margin-top: 10px;
+  color: #707C87;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 70%;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.field--password__field ~ .field--password__forgotten {
+  margin: 15px auto 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 70%;
+  color: #707C87;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.field--password__field {
+  position: relative;
+
+  .field--password__control {
+    position: absolute;
+    // border: $bred;
+    top: 35px;
+    right: 23px;
+    width: 25px;
+    height: 25px;
+    background: url(../img/eye-closed.png) 0 0 no-repeat;
+    background-size: cover;
+
+    @media (max-width: 767px) {
+      right: 13px;
+    }
+  }
+
+  .field--password__control.eye-opened {
+    background: url(../img/eye-opened.png) 0 0 no-repeat;
+  }
+}
+
+.popup-registration__btn {
+  height: 60px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #F6F7FF;
+  background: #2C36F2;
+  border-radius: 4px;
+
+  @media (max-width: 767px) {
+    height: 51px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+}
+

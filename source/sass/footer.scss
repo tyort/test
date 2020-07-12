@@ -98,6 +98,11 @@
     
 .page-footer__menu--item a {
   color: #1F1E25;
+
+  &:hover {
+    color: #7a6ada;
+    text-shadow: 1px 2px 3px rgba(33, 29, 83, 0.452);
+  }
 }
 
 
@@ -242,6 +247,10 @@
     @media (max-width: 1023px) {
       margin-left: 20px;
     }
+  }
+
+  .page-footer__socials a img:hover {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
   }
 
   .page-footer__socials a:first-child {
