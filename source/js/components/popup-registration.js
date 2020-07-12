@@ -77,6 +77,7 @@ export default class Popup extends AbstractSmartComponent {
     element.querySelector(`.popup-registration__close`)
         .addEventListener(`click`, () => {
           this.reRender({isPopupHidden: true});
+          document.querySelector(`body`).style.overflow = `visible`;
         });
 
     element.querySelector(`.field--password__control`)
@@ -94,6 +95,7 @@ export default class Popup extends AbstractSmartComponent {
   _onEscKeyDown(evt) {
     if (evt.key === `Escape` || evt.key === `Esc`) {
       this.reRender({isPopupHidden: true});
+      document.querySelector(`body`).style.overflow = `visible`;
       document.removeEventListener(`keydown`, this._onEscKeyDown);
     }
   }

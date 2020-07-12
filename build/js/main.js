@@ -1415,6 +1415,7 @@ ${typeOfCredit === `consumer`
       element.querySelector(`.popup-registration__close`)
           .addEventListener(`click`, () => {
             this.reRender({isPopupHidden: true});
+            document.querySelector(`body`).style.overflow = `visible`;
           });
 
       element.querySelector(`.field--password__control`)
@@ -1432,6 +1433,7 @@ ${typeOfCredit === `consumer`
     _onEscKeyDown(evt) {
       if (evt.key === `Escape` || evt.key === `Esc`) {
         this.reRender({isPopupHidden: true});
+        document.querySelector(`body`).style.overflow = `visible`;
         document.removeEventListener(`keydown`, this._onEscKeyDown);
       }
     }
@@ -1501,6 +1503,8 @@ ${typeOfCredit === `consumer`
       element.querySelector(`.btn-page-header__login`)
           .addEventListener(`click`, () => {
             this._showRegistration();
+            document.querySelector(`.field--login__input`).focus();
+            document.querySelector(`body`).style.overflow = `hidden`;
           });
 
       element.querySelector(`.page-header__menu-icon`)

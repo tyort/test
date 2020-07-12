@@ -65,6 +65,8 @@ export default class Header extends AbstractSmartComponent {
     element.querySelector(`.btn-page-header__login`)
         .addEventListener(`click`, () => {
           this._showRegistration();
+          document.querySelector(`.field--login__input`).focus();
+          document.querySelector(`body`).style.overflow = `hidden`;
         });
 
     element.querySelector(`.page-header__menu-icon`)
