@@ -1356,7 +1356,7 @@ ${typeOfCredit === `consumer`
                   name="login"
                   value=""
                   id="block-login"
-                  placeholder="Login"
+                  placeholder=" "
                   autocomplete="off"
                   autofocus
                   required
@@ -1370,7 +1370,7 @@ ${typeOfCredit === `consumer`
                   name="password"
                   value=""
                   id="block-password"
-                  placeholder="Password"
+                  placeholder=" "
                   autocomplete="off"
                   required
                 />

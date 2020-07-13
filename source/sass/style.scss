@@ -12,21 +12,21 @@
 @import "footer.scss";
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   src: url("../fonts/Roboto.woff2") format("woff2"),
        url("../fonts/Roboto.woff") format("woff");
   font-weight: normal;
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   src: url("../fonts/RobotoBold.woff2") format("woff2"),
        url("../fonts/RobotoBold.woff") format("woff");
   font-weight: bold;
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   src: url("../fonts/RobotoMedium.woff2") format("woff2"),
        url("../fonts/RobotoMedium.woff") format("woff");
   font-weight: 500px;

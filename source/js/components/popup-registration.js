@@ -18,7 +18,7 @@ const createPopupTemplate = (options = {}) => {
                   name="login"
                   value=""
                   id="block-login"
-                  placeholder="Login"
+                  placeholder=" "
                   autocomplete="off"
                   autofocus
                   required
@@ -32,7 +32,7 @@ const createPopupTemplate = (options = {}) => {
                   name="password"
                   value=""
                   id="block-password"
-                  placeholder="Password"
+                  placeholder=" "
                   autocomplete="off"
                   required
                 />
