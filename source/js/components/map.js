@@ -48,7 +48,7 @@ const createMapTemplate = () => {
   return (
     `<div class="page-map" id="branches-map">
       <div class="page-map__inner">
-        <h3>Отделения Лига Банка</h3>
+        <h2>Отделения Лига Банка</h2>
         <div class="page-map__contries">
           ${worldsPart}
         </div>

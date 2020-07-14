@@ -6,7 +6,7 @@ const createPresentationTemplate = () => {
       <div class="page-presentation-item__view first-slide">
         <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer-title">Лига Банк</p>
+            <h2 class="page-presentation__offer-title">Лига Банк</h2>
             <p class="page-presentation__offer-comment">Кредиты на любой случай</p>
             <a class="page-presentation__offer-btn" href="#page-calculator">Рассчитать кредит</a>
           </div>
@@ -19,7 +19,7 @@ const createPresentationTemplate = () => {
       <div class="page-presentation-item__view second-slide">
         <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer-title">Лига Банк</p>
+            <h2 class="page-presentation__offer-title">Лига Банк</h2>
             <p class="page-presentation__offer-comment">Ваша уверенность в завтрашнем дне</p>
           </div>
         </div>
@@ -27,7 +27,7 @@ const createPresentationTemplate = () => {
       <div class="page-presentation-item__view third-slide">
         <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer-title">Лига Банк</p>
+            <h2 class="page-presentation__offer-title">Лига Банк</h2>
             <p class="page-presentation__offer-comment">Всегда рядом</p>
             <a class="page-presentation__offer-btn" href="#branches-map">Найти отделение</a>
           </div>

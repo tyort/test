@@ -51,9 +51,9 @@ const createOffersMenuTemplate = () => {
         <div class="page-offers-item__view first-item">
           <div class="page-offers-item__view-inner">
             <div class="page-offers__service-description">
-              <p class="page-offers__service-title">
+              <h3 class="page-offers__service-title">
                 Вклады Лига Банка &ndash; это выгодная</br>инвестиция в свое будущее
-              </p>
+              </h3>
               <ul class="page-offers__service-advantages">
                 <li>Проценты по вкладам до 7%</li>
                 <li>Разнообразные условия</li>
@@ -70,9 +70,9 @@ const createOffersMenuTemplate = () => {
         <div class="page-offers-item__view second-item">
           <div class="page-offers-item__view-inner">
             <div class="page-offers__service-description">
-              <p class="page-offers__service-title">
+              <h3 class="page-offers__service-title">
                 Лига Банк выдает кредиты</br>под любые цели
-              </p>
+              </h3>
               <ul class="page-offers__service-advantages">
                 <li>Ипотечный кредит</li>
                 <li>Автокредит</li>
@@ -93,9 +93,9 @@ const createOffersMenuTemplate = () => {
         <div class="page-offers-item__view third-item">
           <div class="page-offers-item__view-inner">
             <div class="page-offers__service-description">
-              <p class="page-offers__service-title">
+              <h3 class="page-offers__service-title">
                 Лига Страхование &ndash; застрахуем</br>все что захотите
-              </p>
+              </h3>
               <ul class="page-offers__service-advantages">
                 <li>Автомобильное страхование</li>
                 <li>Страхование жизни и здоровья</li>
@@ -112,9 +112,9 @@ const createOffersMenuTemplate = () => {
         <div class="page-offers-item__view forth-item">
           <div class="page-offers-item__view-inner">
             <div class="page-offers__service-description">
-              <p class="page-offers__service-title">
+              <h3 class="page-offers__service-title">
                 Лига Банк &ndash; это огромное количество онлайн-сервисов для вашего удобства
-              </p>
+              </h3>
               <ul class="page-offers__service-advantages">
                 <li>Мобильный банк,</br>который всегда под рукой</li>
                 <li>Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>

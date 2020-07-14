@@ -788,7 +788,7 @@ ${typeOfCredit === `consumer`
     return (
       `<div class="page-map" id="branches-map">
       <div class="page-map__inner">
-        <h3>Отделения Лига Банка</h3>
+        <h2>Отделения Лига Банка</h2>
         <div class="page-map__contries">
           ${worldsPart}
         </div>
@@ -924,9 +924,9 @@ ${typeOfCredit === `consumer`
         <div class="page-offers-item__view first-item">
           <div class="page-offers-item__view-inner">
             <div class="page-offers__service-description">
-              <p class="page-offers__service-title">
+              <h3 class="page-offers__service-title">
                 Вклады Лига Банка &ndash; это выгодная</br>инвестиция в свое будущее
-              </p>
+              </h3>
               <ul class="page-offers__service-advantages">
                 <li>Проценты по вкладам до 7%</li>
                 <li>Разнообразные условия</li>
@@ -943,9 +943,9 @@ ${typeOfCredit === `consumer`
         <div class="page-offers-item__view second-item">
           <div class="page-offers-item__view-inner">
             <div class="page-offers__service-description">
-              <p class="page-offers__service-title">
+              <h3 class="page-offers__service-title">
                 Лига Банк выдает кредиты</br>под любые цели
-              </p>
+              </h3>
               <ul class="page-offers__service-advantages">
                 <li>Ипотечный кредит</li>
                 <li>Автокредит</li>
@@ -966,9 +966,9 @@ ${typeOfCredit === `consumer`
         <div class="page-offers-item__view third-item">
           <div class="page-offers-item__view-inner">
             <div class="page-offers__service-description">
-              <p class="page-offers__service-title">
+              <h3 class="page-offers__service-title">
                 Лига Страхование &ndash; застрахуем</br>все что захотите
-              </p>
+              </h3>
               <ul class="page-offers__service-advantages">
                 <li>Автомобильное страхование</li>
                 <li>Страхование жизни и здоровья</li>
@@ -985,9 +985,9 @@ ${typeOfCredit === `consumer`
         <div class="page-offers-item__view forth-item">
           <div class="page-offers-item__view-inner">
             <div class="page-offers__service-description">
-              <p class="page-offers__service-title">
+              <h3 class="page-offers__service-title">
                 Лига Банк &ndash; это огромное количество онлайн-сервисов для вашего удобства
-              </p>
+              </h3>
               <ul class="page-offers__service-advantages">
                 <li>Мобильный банк,</br>который всегда под рукой</li>
                 <li>Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>
@@ -1536,7 +1536,7 @@ ${typeOfCredit === `consumer`
       <div class="page-presentation-item__view first-slide">
         <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer-title">Лига Банк</p>
+            <h2 class="page-presentation__offer-title">Лига Банк</h2>
             <p class="page-presentation__offer-comment">Кредиты на любой случай</p>
             <a class="page-presentation__offer-btn" href="#page-calculator">Рассчитать кредит</a>
           </div>
@@ -1549,7 +1549,7 @@ ${typeOfCredit === `consumer`
       <div class="page-presentation-item__view second-slide">
         <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer-title">Лига Банк</p>
+            <h2 class="page-presentation__offer-title">Лига Банк</h2>
             <p class="page-presentation__offer-comment">Ваша уверенность в завтрашнем дне</p>
           </div>
         </div>
@@ -1557,7 +1557,7 @@ ${typeOfCredit === `consumer`
       <div class="page-presentation-item__view third-slide">
         <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer-title">Лига Банк</p>
+            <h2 class="page-presentation__offer-title">Лига Банк</h2>
             <p class="page-presentation__offer-comment">Всегда рядом</p>
             <a class="page-presentation__offer-btn" href="#branches-map">Найти отделение</a>
           </div>
