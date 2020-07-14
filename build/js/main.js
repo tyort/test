@@ -1606,15 +1606,15 @@ ${typeOfCredit === `consumer`
   const registrationComponent = new Popup$1();
   const presentationComponent = new OffersMenu$1();
 
-  renderComponent(document.querySelector(`body`), headerComponent, `afterBegin`);
-  renderComponent(document.querySelector(`body`), popupGratitudeComponent);
-  renderComponent(document.querySelector(`body`), registrationComponent);
+  renderComponent(document.querySelector(`.page-content__inner`), headerComponent, `afterBegin`);
+  renderComponent(document.querySelector(`.page-content__inner`), popupGratitudeComponent);
+  renderComponent(document.querySelector(`.page-content__inner`), registrationComponent);
 
   const pageHeader = document.querySelector(`.page-header`);
   renderComponent(pageHeader, presentationComponent, `afterEnd`);
 
-  const promo = document.querySelector(`.page-promo`);
-  renderComponent(promo, offersMenuComponent, `afterEnd`);
+  const pagePresentation = document.querySelector(`.page-presentation`);
+  renderComponent(pagePresentation, offersMenuComponent, `afterEnd`);
 
   const pageOffersMenu = document.querySelector(`.page-offers-menu`);
   renderComponent(pageOffersMenu, pageCalculationComponent, `afterEnd`);
