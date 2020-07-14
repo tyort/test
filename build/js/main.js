@@ -325,14 +325,14 @@
     return (
       `<form class="page-calculation__parameters" id="page-calculator">
       
-      <div class="page-calculation__main--choice">
+      <div class="page-calculation__main-choice">
         <h2>Кредитный калькулятор</h2>
         <h3>Шаг 1. Цель кредита</h3>
         <div id="type-of-credit" name="credit-type">
-          <ul class="credit--types__list undisclosed--list">
+          <ul class="undisclosed-list">
             <li value="${typeOfCredit}">${creditTypesMap.get(typeOfCredit)}</li>
           </ul>
-          <ul class="credit--types__list expanded--list visually-hidden">
+          <ul class="expanded-list visually-hidden">
             ${addOptions}
           </ul>
           <img id="select-reverse-arrow" src="img/select-reverse.svg" alt="logo" width="18px" height="11px">
@@ -340,7 +340,7 @@
         </div>
       </div>
     
-      <div class="${isElementHidden} page-calculation__type--cost">
+      <div class="${isElementHidden} page-calculation__type-cost">
         <h3>Шаг 2. Введите параметры кредита</h3>
         <label for="cost-of-property">${setActualFeaturesNames(typeOfCredit).creditTypeTitle}</label>
         <div class="cost-of-property__scale">
@@ -361,7 +361,7 @@
 
       ${typeOfCredit === `consumer`
       ? ``
-      : `<div class="${isElementHidden} page-calculation__initial--fee">
+      : `<div class="${isElementHidden} page-calculation__initial-fee">
           <label for="first-payment">Первоначальный взнос</label>
           <input
             autocomplete="off"
@@ -389,7 +389,7 @@
         </div>`
     }
 
-      <div class="${isElementHidden} page-calculation__credit--term">
+      <div class="${isElementHidden} page-calculation__credit-term">
         <label for="credit-period">Срок кредитования</label>
         <input
           autocomplete="off"
@@ -501,14 +501,14 @@ ${typeOfCredit === `consumer`
       const creditsType = form.querySelector(`#type-of-credit`);
       creditsType.addEventListener(`click`, (evt) => {
         if (evt.target.id === `select-reverse-arrow` || evt.target.id === `select-arrow`) {
-          creditsType.querySelector(`.undisclosed--list`).classList.toggle(`visually-hidden`);
+          creditsType.querySelector(`.undisclosed-list`).classList.toggle(`visually-hidden`);
           creditsType.querySelector(`#select-reverse-arrow`).classList.toggle(`visually-hidden`);
-          creditsType.querySelector(`.expanded--list`).classList.toggle(`visually-hidden`);
+          creditsType.querySelector(`.expanded-list`).classList.toggle(`visually-hidden`);
           creditsType.querySelector(`#select-arrow`).classList.toggle(`visually-hidden`);
         }
       });
 
-      creditsType.querySelector(`.expanded--list`)
+      creditsType.querySelector(`.expanded-list`)
           .addEventListener(`click`, (evt) => {
             this._typeOfCredit = creditTypes.find((it) => it[1] === evt.target.textContent)[0];
             this._costOfProperty = START_COST_OF_PROPERTY;
@@ -1659,7 +1659,7 @@ ${typeOfCredit === `consumer`
       ? document.querySelector(`#participant__input`).hasAttribute(`checked`)
       : null;
 
-    let creditType = document.querySelector(`.undisclosed--list`).textContent.trim();
+    let creditType = document.querySelector(`.undisclosed-list`).textContent.trim();
     creditType = creditTypes.find((it) => it[1] === creditType)[0];
 
     return {

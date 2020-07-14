@@ -74,7 +74,7 @@ const parseFormData = (formData) => {
     ? document.querySelector(`#participant__input`).hasAttribute(`checked`)
     : null;
 
-  let creditType = document.querySelector(`.undisclosed--list`).textContent.trim();
+  let creditType = document.querySelector(`.undisclosed-list`).textContent.trim();
   creditType = creditTypes.find((it) => it[1] === creditType)[0];
 
   return {

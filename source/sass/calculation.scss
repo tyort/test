@@ -124,7 +124,7 @@
   }
 }
 
-.page-calculation__main--choice {
+.page-calculation__main-choice {
   // border: $bred;
   width: 100%;
   display: flex;
@@ -215,7 +215,7 @@
   }
 }
 
-.page-calculation__type--cost {
+.page-calculation__type-cost {
   // border: $bred;
   width: 100%;
   display: flex;
@@ -288,7 +288,7 @@
   }
 }
 
-.page-calculation__initial--fee {
+.page-calculation__initial-fee {
   // border: $bred;
   width: 100%;
   height: 133px;
@@ -307,13 +307,13 @@
   }
 }
 
-.page-calculation__initial--fee input[type="range"] {
+.page-calculation__initial-fee input[type="range"] {
   cursor: pointer;
   margin-top: -8px;
 }
 
 
-.page-calculation__credit--term {
+.page-calculation__credit-term {
   // border: $bred;
   width: 100%;
   height: 129px;
@@ -333,7 +333,7 @@
   }
 }
 
-.page-calculation__credit--term input[type="range"] {
+.page-calculation__credit-term input[type="range"] {
   cursor: pointer;
   margin-top: -12px;
 }
