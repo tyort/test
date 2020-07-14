@@ -14,6 +14,7 @@ $bred: 0.5px solid red;
 
 * {
   box-sizing: border-box;
+  // border: $bred;
 }
 
 html {
@@ -22,6 +23,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 a {

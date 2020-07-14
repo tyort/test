@@ -906,7 +906,7 @@ ${typeOfCredit === `consumer`
         .map((item, index) => {
           const isElementChecked = index === 0 ? `#F6F7FF` : ``;
           return (
-            `<button class="menu__nav-item--${item}" style="background: ${isElementChecked}"><p>${pointersNames[index]}</p></button>`
+            `<button class="menu__nav-item--${item}" style="background: ${isElementChecked}">${pointersNames[index]}</button>`
           );
         })
         .join(``);

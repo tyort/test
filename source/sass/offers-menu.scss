@@ -23,56 +23,49 @@
 
   button {
     // border: $bred;
+    position: relative;
     border-radius: 4px 4px 0 0;
     font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 70%;
-    padding: 41px 0 40px 0;
-    width: 293px;
-    min-width: 270px;
+    padding: 41px 0 40px 35px;
+    width: 25%;
   }
 
-  button p {
-    // border: $bred;
-    position: relative;
-    margin-right: -15%;
+  button.menu__nav-item--forth {
+    padding-left: 10px;
   }
 
-  .menu__nav-item--forth p {
-    margin-right: -10%;
-  }
-
-
-  button p::before {
+  button::before {
     content: '';
     position: absolute;
     background-size: contain;
     background-repeat: no-repeat;
     height: 33px;
     width: 34px;
-    left: 27%;
-    top: -10px;
+    top: 30px;
   }
 
-  .menu__nav-item--first p::before {
+  .menu__nav-item--first::before {
     background-image: url(../img/vault.svg);
+    left: 31%;
   }
 
-  .menu__nav-item--second p::before {
+  .menu__nav-item--second::before {
     background-image: url(../img/cards.svg);
-    left: 26%;
+    left: 30%;
   }
 
-  .menu__nav-item--third p::before {
+  .menu__nav-item--third::before {
     background-image: url(../img/security.svg);
-    left: 22%;
+    left: 25%;
   }
 
-  .menu__nav-item--forth p::before {
+  .menu__nav-item--forth::before {
     background-image: url(../img/phone-blue.svg);
-    left: 18.5%;
+    left: 20%;
   }
 }
 
