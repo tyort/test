@@ -160,26 +160,26 @@
       ${costOfMortgage >= minCreditRequired
       ? `<div class="calculation__results">
           <h3>Наше предложение</h3>
-          <div class="calculation__result calculated--cost">
+          <div class="calculation__result calculated-cost">
             <p>${costOfMortgageToLine} рублей</p>
             <p>${setActualFeaturesNames(creditType).sumCreditName}</p>
           </div>
-          <div class="calculation__result calculated--percent">
+          <div class="calculation__result calculated-percent">
             <p>${annualPercentRate}%</p>
             <p>Процентная ставка</p>
           </div>
-          <div class="calculation__result calculated--payment">
+          <div class="calculation__result calculated-payment">
             <p>${mounthlyPaymentToLine} рублей</p>
             <p>Ежемесячный платеж</p>
           </div>
-          <div class="calculation__result calculated--income">
+          <div class="calculation__result calculated-income">
             <p>${requiredIncomeToLine} рублей</p>
             <p>Необходимый доход</p>
           </div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>
         </div>`
-      : `<div class="calculation__results--unwanted">
+      : `<div class="calculation__results-unwanted">
           <p><span>Наш банк не выдает ${setActualFeaturesNames(creditType).messageInsert}
             меньше ${minCreditRequired} рублей.</span>
           </p></br>
@@ -296,7 +296,7 @@
         element.querySelector(`.calculation__request-btn`)
             .addEventListener(`click`, () => {
               this._createRequestHandler();
-              document.querySelector(`.field--name__input`).focus();
+              document.querySelector(`.field-name__input`).focus();
             });
       }
     }
@@ -880,22 +880,22 @@ ${typeOfCredit === `consumer`
     const pageOffersMenu = document.querySelector(`.page-offers-menu`);
 
     switch (element) {
-      case `menu__nav-item--first`:
+      case `menu__nav-item-first`:
         return pageOffersMenu.querySelector(`#slick-slide-control00`);
-      case `menu__nav-item--second`:
+      case `menu__nav-item-second`:
         return pageOffersMenu.querySelector(`#slick-slide-control01`);
-      case `menu__nav-item--third`:
+      case `menu__nav-item-third`:
         return pageOffersMenu.querySelector(`#slick-slide-control02`);
-      case `menu__nav-item--forth`:
+      case `menu__nav-item-forth`:
         return pageOffersMenu.querySelector(`#slick-slide-control03`);
       case 0:
-        return pageOffersMenu.querySelector(`.menu__nav-item--first`);
+        return pageOffersMenu.querySelector(`.menu__nav-item-first`);
       case 1:
-        return pageOffersMenu.querySelector(`.menu__nav-item--second`);
+        return pageOffersMenu.querySelector(`.menu__nav-item-second`);
       case 2:
-        return pageOffersMenu.querySelector(`.menu__nav-item--third`);
+        return pageOffersMenu.querySelector(`.menu__nav-item-third`);
       case 3:
-        return pageOffersMenu.querySelector(`.menu__nav-item--forth`);
+        return pageOffersMenu.querySelector(`.menu__nav-item-forth`);
       default:
         return null;
     }
@@ -906,7 +906,7 @@ ${typeOfCredit === `consumer`
         .map((item, index) => {
           const isElementChecked = index === 0 ? `#F6F7FF` : ``;
           return (
-            `<button class="menu__nav-item--${item}" style="background: ${isElementChecked}">${pointersNames[index]}</button>`
+            `<button class="menu__nav-item-${item}" style="background: ${isElementChecked}">${pointersNames[index]}</button>`
           );
         })
         .join(``);
@@ -921,80 +921,80 @@ ${typeOfCredit === `consumer`
 
       <div class="page-offers__slider">
 
-        <div class="page-offers-item__view first--item">
-          <div class="page-offers-item__view--inner">
-            <div class="page-offers__service--description">
-              <p class="page-offers__service--title">
+        <div class="page-offers-item__view first-item">
+          <div class="page-offers-item__view-inner">
+            <div class="page-offers__service-description">
+              <p class="page-offers__service-title">
                 Вклады Лига Банка &ndash; это выгодная</br>инвестиция в свое будущее
               </p>
-              <ul class="page-offers__service--advantages">
+              <ul class="page-offers__service-advantages">
                 <li>Проценты по вкладам до 7%</li>
                 <li>Разнообразные условия</li>
                 <li>Возможность ежемесячной капитализации или вывод процентов на банковскую карту</li>
               </ul>
-              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
+              <a class="page-offers__service-btn" href="#">Узнать подробнее</a>
             </div>
-            <div class="page-offers__service--photo piggy-pic">
+            <div class="page-offers__service-photo piggy-pic">
               <img src="img/piggybank.svg" alt="piggybank">
             </div>
           </div>
         </div>
 
-        <div class="page-offers-item__view second--item">
-          <div class="page-offers-item__view--inner">
-            <div class="page-offers__service--description">
-              <p class="page-offers__service--title">
+        <div class="page-offers-item__view second-item">
+          <div class="page-offers-item__view-inner">
+            <div class="page-offers__service-description">
+              <p class="page-offers__service-title">
                 Лига Банк выдает кредиты</br>под любые цели
               </p>
-              <ul class="page-offers__service--advantages">
+              <ul class="page-offers__service-advantages">
                 <li>Ипотечный кредит</li>
                 <li>Автокредит</li>
                 <li>Потребительский кредит</li>
               </ul>
-              <div class="page-offers__service--link">
+              <div class="page-offers__service-link">
                 <p>Рассчитайте ежемесячный платеж</p>
                 <p>и ставку по кредиту воспользовавшись</p>
                 <p>нашим <a href="#page-calculator">кредитным калькулятором</a></p>
               </div>
             </div>
-            <div class="page-offers__service--photo car-pic">
+            <div class="page-offers__service-photo car-pic">
               <img src="img/car.svg" alt="car">
             </div>
           </div>
         </div>
 
-        <div class="page-offers-item__view third--item">
-          <div class="page-offers-item__view--inner">
-            <div class="page-offers__service--description">
-              <p class="page-offers__service--title">
+        <div class="page-offers-item__view third-item">
+          <div class="page-offers-item__view-inner">
+            <div class="page-offers__service-description">
+              <p class="page-offers__service-title">
                 Лига Страхование &ndash; застрахуем</br>все что захотите
               </p>
-              <ul class="page-offers__service--advantages">
+              <ul class="page-offers__service-advantages">
                 <li>Автомобильное страхование</li>
                 <li>Страхование жизни и здоровья</li>
                 <li>Страхование недвижимости</li>
               </ul>
-              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
+              <a class="page-offers__service-btn" href="#">Узнать подробнее</a>
             </div>
-            <div class="page-offers__service--photo lock-pic">
+            <div class="page-offers__service-photo lock-pic">
               <img src="img/lock.svg" alt="lock">
             </div>
           </div>
         </div>
 
-        <div class="page-offers-item__view forth--item">
-          <div class="page-offers-item__view--inner">
-            <div class="page-offers__service--description">
-              <p class="page-offers__service--title">
+        <div class="page-offers-item__view forth-item">
+          <div class="page-offers-item__view-inner">
+            <div class="page-offers__service-description">
+              <p class="page-offers__service-title">
                 Лига Банк &ndash; это огромное количество онлайн-сервисов для вашего удобства
               </p>
-              <ul class="page-offers__service--advantages">
+              <ul class="page-offers__service-advantages">
                 <li>Мобильный банк,</br>который всегда под рукой</li>
                 <li>Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>
               </ul>
-              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
+              <a class="page-offers__service-btn" href="#">Узнать подробнее</a>
             </div>
-            <div class="page-offers__service--photo device-pic">
+            <div class="page-offers__service-photo device-pic">
               <img src="img/device.svg" alt="device">
             </div>
           </div>
@@ -1114,32 +1114,32 @@ ${typeOfCredit === `consumer`
     return (`<div class="page-calculation__request ${showElement}">
             <h3>Шаг 3. Оформление заявки</h3>
             <div class="page-calculation__request-information">
-              <div class="page-calculation__request--line">
+              <div class="page-calculation__request-line">
                 <p class="request-article">Номер заявки</p>
                 <p>${requestNumberView}</p>
               </div>
-              <div class="page-calculation__request--line">
+              <div class="page-calculation__request-line">
                 <p class="request-article">Цель кредита</p>
                 <p>${creditNames.get(creditType)}</p>
               </div>
-              <div class="page-calculation__request--line">
+              <div class="page-calculation__request-line">
                 <p class="request-article">${setActualFeaturesNames(creditType).creditTypeTitle}</p>
                 <p>${propertyCostToLine} рублей</p>
               </div>
     ${firstPayment
-      ? `<div class="page-calculation__request--line">
+      ? `<div class="page-calculation__request-line">
           <p class="request-article">Первоначальный взнос</p>
           <p>${firstPaymentToLine} рублей</p>
         </div>`
       : ``}
-              <div class="page-calculation__request--line">
+              <div class="page-calculation__request-line">
                 <p class="request-article">Срок кредитования</p>
                 <p>${yearsCount} лет</p>
               </div>
             </div>
             <form class="page-calculation__form">
               <input 
-                class="field--name__input"
+                class="field-name__input"
                 type="text"
                 name="name"
                 value=""
@@ -1149,7 +1149,7 @@ ${typeOfCredit === `consumer`
                 required
               />
               <input
-                class="field--phone__input"
+                class="field-phone__input"
                 type="tel"
                 name="phone"
                 value=""
@@ -1159,7 +1159,7 @@ ${typeOfCredit === `consumer`
                 required
               />
               <input
-                class="field--email__input"
+                class="field-email__input"
                 type="text"
                 name="email"
                 value=""
@@ -1233,7 +1233,7 @@ ${typeOfCredit === `consumer`
             const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
             const mailSample = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
-            if (evt.target.className === `field--phone__input`) {
+            if (evt.target.className === `field-phone__input`) {
               if (!phoneSample.test(evt.target.value)) {
                 evt.target.setCustomValidity(`Напиши номер правильно`);
 
@@ -1241,7 +1241,7 @@ ${typeOfCredit === `consumer`
                 evt.target.setCustomValidity(``);
               }
 
-            } else if (evt.target.className === `field--email__input`) {
+            } else if (evt.target.className === `field-email__input`) {
               if (!mailSample.test(evt.target.value)) {
                 evt.target.setCustomValidity(`Напиши email правильно`);
 
@@ -1348,10 +1348,10 @@ ${typeOfCredit === `consumer`
                 <img src="img/reglogo.svg" alt="ЛИГА Банк" width="150" height="27">
                 <a href="#" class="popup-registration__close"></a>
               </div>
-              <div class="field--login__field">
+              <div class="field-login__field">
                 <label for="block-login">Логин</label>
                 <input 
-                  class="field--login__input"
+                  class="field-login__input"
                   type="text"
                   name="login"
                   value=""
@@ -1362,10 +1362,10 @@ ${typeOfCredit === `consumer`
                   required
                 />
               </div>
-              <div class="field--password__field">
+              <div class="field-password__field">
                 <label for="block-password">Пароль</label>
                 <input 
-                  class="field--password__input"
+                  class="field-password__input"
                   type="password"
                   name="password"
                   value=""
@@ -1374,11 +1374,11 @@ ${typeOfCredit === `consumer`
                   autocomplete="off"
                   required
                 />
-                <a href="#" class="field--password__forgotten">Забыли пароль?</a>
-                <a href="#" class="field--password__control"></a>
+                <a href="#" class="field-password__forgotten">Забыли пароль?</a>
+                <a href="#" class="field-password__control"></a>
               </div>
               <button class="popup-registration__btn" type="submit">Войти</button>
-              <a href="#" class="field--password__forgotten">Забыли пароль?</a>
+              <a href="#" class="field-password__forgotten">Забыли пароль?</a>
             </form>
           </div>`);
   };
@@ -1418,14 +1418,14 @@ ${typeOfCredit === `consumer`
             document.querySelector(`body`).style.overflow = `visible`;
           });
 
-      element.querySelector(`.field--password__control`)
+      element.querySelector(`.field-password__control`)
           .addEventListener(`click`, () => {
-            if (element.querySelector(`.field--password__input`).getAttribute(`type`) === `password`) {
-              element.querySelector(`.field--password__control`).classList.add(`eye-opened`);
-              element.querySelector(`.field--password__input`).setAttribute(`type`, `text`);
+            if (element.querySelector(`.field-password__input`).getAttribute(`type`) === `password`) {
+              element.querySelector(`.field-password__control`).classList.add(`eye-opened`);
+              element.querySelector(`.field-password__input`).setAttribute(`type`, `text`);
             } else {
-              element.querySelector(`.field--password__control`).classList.remove(`eye-opened`);
-              element.querySelector(`.field--password__input`).setAttribute(`type`, `password`);
+              element.querySelector(`.field-password__control`).classList.remove(`eye-opened`);
+              element.querySelector(`.field-password__input`).setAttribute(`type`, `password`);
             }
           });
     }
@@ -1444,25 +1444,25 @@ ${typeOfCredit === `consumer`
     return (`<header class="page-header" id="head-of-page">
             <div class="container">
               <div class="page-header__menu-icon">
-                <div class="page-header__menu-icon--lines"></div>
+                <div class="page-header__menu-icon-lines"></div>
               </div>
               <div class="page-header__logo">
-                <a class="page-header__logo--link"><img src="img/logo.svg" alt="logo"></a>
+                <a class="page-header__logo-link"><img src="img/logo.svg" alt="logo"></a>
               </div>
               <div class="main-nav">
                 <ul class="main-nav__list">
-                  <li class="main-nav__item"><a class="main-nav__item--link" href="#">Услуги</a></li>
-                  <li class="main-nav__item"><a class="main-nav__item--link" href="#">Рассчитать кредит</a></li>
-                  <li class="main-nav__item"><a class="main-nav__item--link" href="#">Контакты</a></li>
-                  <li class="main-nav__item"><a class="main-nav__item--link" href="#">Задать вопрос</a></li>
+                  <li class="main-nav__item"><a class="main-nav__item-link" href="#">Услуги</a></li>
+                  <li class="main-nav__item"><a class="main-nav__item-link" href="#">Рассчитать кредит</a></li>
+                  <li class="main-nav__item"><a class="main-nav__item-link" href="#">Контакты</a></li>
+                  <li class="main-nav__item"><a class="main-nav__item-link" href="#">Задать вопрос</a></li>
                 </ul>
               </div>
-              <div class="main-nav--mobile">
-                <ul class="main-nav--mobile__list">
-                  <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Услуги</a></li>
-                  <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Рассчитать кредит</a></li>
-                  <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Контакты</a></li>
-                  <li class="main-nav--mobile__item"><a class="main-nav--mobile__item--link" href="#">Задать вопрос</a></li>
+              <div class="main-nav-mobile">
+                <ul class="main-nav-mobile__list">
+                  <li class="main-nav-mobile__item"><a class="main-nav-mobile__item-link" href="#">Услуги</a></li>
+                  <li class="main-nav-mobile__item"><a class="main-nav-mobile__item-link" href="#">Рассчитать кредит</a></li>
+                  <li class="main-nav-mobile__item"><a class="main-nav-mobile__item-link" href="#">Контакты</a></li>
+                  <li class="main-nav-mobile__item"><a class="main-nav-mobile__item-link" href="#">Задать вопрос</a></li>
                 </ul>
               </div>
               <button class="btn-page-header__login">
@@ -1503,7 +1503,7 @@ ${typeOfCredit === `consumer`
       element.querySelector(`.btn-page-header__login`)
           .addEventListener(`click`, () => {
             this._showRegistration();
-            document.querySelector(`.field--login__input`).focus();
+            document.querySelector(`.field-login__input`).focus();
             document.querySelector(`body`).style.overflow = `hidden`;
           });
 
@@ -1511,20 +1511,20 @@ ${typeOfCredit === `consumer`
           .addEventListener(`click`, () => {
             document.addEventListener(`keydown`, this._onEscKeyDown);
 
-            if (element.querySelector(`.page-header__menu-icon--lines`).classList.contains(`lines__active`)) {
+            if (element.querySelector(`.page-header__menu-icon-lines`).classList.contains(`lines__active`)) {
               document.removeEventListener(`keydown`, this._onEscKeyDown);
             }
 
-            element.querySelector(`.main-nav--mobile`).classList.toggle(`main-nav--mobile-active`);
-            element.querySelector(`.page-header__menu-icon--lines`).classList.toggle(`lines__active`);
+            element.querySelector(`.main-nav-mobile`).classList.toggle(`main-nav-mobile-active`);
+            element.querySelector(`.page-header__menu-icon-lines`).classList.toggle(`lines__active`);
           });
     }
 
     _onEscKeyDown(evt) {
       if (evt.key === `Escape` || evt.key === `Esc`) {
         const element = this.getElement();
-        element.querySelector(`.main-nav--mobile`).classList.toggle(`main-nav--mobile-active`, false);
-        element.querySelector(`.page-header__menu-icon--lines`).classList.toggle(`lines__active`, false);
+        element.querySelector(`.main-nav-mobile`).classList.toggle(`main-nav-mobile-active`, false);
+        element.querySelector(`.page-header__menu-icon-lines`).classList.toggle(`lines__active`, false);
         document.removeEventListener(`keydown`, this._onEscKeyDown);
       }
     }
@@ -1534,11 +1534,11 @@ ${typeOfCredit === `consumer`
     return (
       `<div class="page-presentation">
       <div class="page-presentation-item__view first-slide">
-        <div class="page-presentation-item__view--inner">
+        <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer--title">Лига Банк</p>
-            <p class="page-presentation__offer--comment">Кредиты на любой случай</p>
-            <a class="page-presentation__offer--btn" href="#page-calculator">Рассчитать кредит</a>
+            <p class="page-presentation__offer-title">Лига Банк</p>
+            <p class="page-presentation__offer-comment">Кредиты на любой случай</p>
+            <a class="page-presentation__offer-btn" href="#page-calculator">Рассчитать кредит</a>
           </div>
           <picture>
             <source srcset="img/black-card.svg" media="(max-width: 767px)">
@@ -1547,19 +1547,19 @@ ${typeOfCredit === `consumer`
         </div>
       </div>
       <div class="page-presentation-item__view second-slide">
-        <div class="page-presentation-item__view--inner">
+        <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer--title">Лига Банк</p>
-            <p class="page-presentation__offer--comment">Ваша уверенность в завтрашнем дне</p>
+            <p class="page-presentation__offer-title">Лига Банк</p>
+            <p class="page-presentation__offer-comment">Ваша уверенность в завтрашнем дне</p>
           </div>
         </div>
       </div>
       <div class="page-presentation-item__view third-slide">
-        <div class="page-presentation-item__view--inner">
+        <div class="page-presentation-item__view-inner">
           <div class="page-presentation__essence">
-            <p class="page-presentation__offer--title">Лига Банк</p>
-            <p class="page-presentation__offer--comment">Всегда рядом</p>
-            <a class="page-presentation__offer--btn" href="#branches-map">Найти отделение</a>
+            <p class="page-presentation__offer-title">Лига Банк</p>
+            <p class="page-presentation__offer-comment">Всегда рядом</p>
+            <a class="page-presentation__offer-btn" href="#branches-map">Найти отделение</a>
           </div>
         </div>
       </div>

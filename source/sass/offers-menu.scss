@@ -34,7 +34,7 @@
     width: 25%;
   }
 
-  button.menu__nav-item--forth {
+  button.menu__nav-item-forth {
     padding-left: 10px;
   }
 
@@ -48,29 +48,29 @@
     top: 30px;
   }
 
-  .menu__nav-item--first::before {
+  .menu__nav-item-first::before {
     background-image: url(../img/vault.svg);
     left: 31%;
   }
 
-  .menu__nav-item--second::before {
+  .menu__nav-item-second::before {
     background-image: url(../img/cards.svg);
     left: 30%;
   }
 
-  .menu__nav-item--third::before {
+  .menu__nav-item-third::before {
     background-image: url(../img/security.svg);
     left: 25%;
   }
 
-  .menu__nav-item--forth::before {
+  .menu__nav-item-forth::before {
     background-image: url(../img/phone-blue.svg);
     left: 20%;
   }
 }
 
 
-.page-offers-item__view--inner {
+.page-offers-item__view-inner {
   // border: $bred;
   display: flex;
   padding: 60px 0 60px 70px;
@@ -86,7 +86,7 @@
   }
 }
 
-.page-offers__service--description {
+.page-offers__service-description {
   // border: $bred;
   display: flex;
   flex-direction: column;
@@ -98,18 +98,18 @@
   }
 }
 
-.forth--item .page-offers__service--description {
-  .page-offers__service--advantages {
+.forth-item .page-offers__service-description {
+  .page-offers__service-advantages {
     max-width: 390px;
   }
 
-  .page-offers__service--title {
+  .page-offers__service-title {
     max-width: 410px;
   }
 
 
-  .page-offers__service--title,
-  .page-offers__service--advantages {
+  .page-offers__service-title,
+  .page-offers__service-advantages {
     @media (max-width: 1023px) {
       max-width: 340px;
     }
@@ -120,7 +120,7 @@
   }
 }
 
-.page-offers__service--title {
+.page-offers__service-title {
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
@@ -136,7 +136,7 @@
   }
 }
 
-.third--item .page-offers__service--title {
+.third-item .page-offers__service-title {
   margin-top: 0px;
 
   @media (max-width: 1023px) {
@@ -144,7 +144,7 @@
   }
 }
 
-.page-offers__service--advantages {
+.page-offers__service-advantages {
   // border: $bred;
   font-family: Roboto;
   font-style: normal;
@@ -191,7 +191,7 @@
   }
 }
 
-.page-offers__service--btn {
+.page-offers__service-btn {
   outline: none;
   width: 198px;
   height: 51px;
@@ -226,19 +226,19 @@
   }
 }
 
-.third--item .page-offers__service--btn {
+.third-item .page-offers__service-btn {
   @media (max-width: 767px) {
     margin-bottom: 36px;
   }
 }
 
-.forth--item .page-offers__service--btn {
+.forth-item .page-offers__service-btn {
   @media (max-width: 767px) {
     margin-bottom: -10px;
   }
 }
 
-.page-offers__service--link {
+.page-offers__service-link {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -266,7 +266,7 @@
   }
 }
 
-.page-offers__service--photo {
+.page-offers__service-photo {
   // border: $bred;
   margin: 0 auto;
   z-index: 9;
@@ -310,7 +310,7 @@
   }
 }
 
-.page-offers__service--photo.lock-pic img {
+.page-offers__service-photo.lock-pic img {
   object-position: 10px;
   margin-top: -5px;
   margin-left: 20px;
@@ -332,7 +332,7 @@
   }
 }
 
-.page-offers__service--photo.device-pic img {
+.page-offers__service-photo.device-pic img {
   object-position: -30px;
   margin-top: -5px;
   margin-left: 20px;
@@ -350,7 +350,7 @@
   }
 }
 
-.page-offers__service--photo.car-pic img {
+.page-offers__service-photo.car-pic img {
   margin-top: -5px;
   margin-left: 20px;
 

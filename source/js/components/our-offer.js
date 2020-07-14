@@ -14,26 +14,26 @@ const createOurOfferTemplate = (options = {}) => {
       ${costOfMortgage >= minCreditRequired
       ? `<div class="calculation__results">
           <h3>Наше предложение</h3>
-          <div class="calculation__result calculated--cost">
+          <div class="calculation__result calculated-cost">
             <p>${costOfMortgageToLine} рублей</p>
             <p>${setActualFeaturesNames(creditType).sumCreditName}</p>
           </div>
-          <div class="calculation__result calculated--percent">
+          <div class="calculation__result calculated-percent">
             <p>${annualPercentRate}%</p>
             <p>Процентная ставка</p>
           </div>
-          <div class="calculation__result calculated--payment">
+          <div class="calculation__result calculated-payment">
             <p>${mounthlyPaymentToLine} рублей</p>
             <p>Ежемесячный платеж</p>
           </div>
-          <div class="calculation__result calculated--income">
+          <div class="calculation__result calculated-income">
             <p>${requiredIncomeToLine} рублей</p>
             <p>Необходимый доход</p>
           </div>
           <button class="calculation__request-btn" type="button">Оформить заявку</button>
         </div>
         </div>`
-      : `<div class="calculation__results--unwanted">
+      : `<div class="calculation__results-unwanted">
           <p><span>Наш банк не выдает ${setActualFeaturesNames(creditType).messageInsert}
             меньше ${minCreditRequired} рублей.</span>
           </p></br>
@@ -150,7 +150,7 @@ export default class OurOffer extends AbstractSmartComponent {
       element.querySelector(`.calculation__request-btn`)
           .addEventListener(`click`, () => {
             this._createRequestHandler();
-            document.querySelector(`.field--name__input`).focus();
+            document.querySelector(`.field-name__input`).focus();
           });
     }
   }

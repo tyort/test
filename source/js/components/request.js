@@ -34,32 +34,32 @@ const createRequestTemplate = (options = {}) => {
   return (`<div class="page-calculation__request ${showElement}">
             <h3>Шаг 3. Оформление заявки</h3>
             <div class="page-calculation__request-information">
-              <div class="page-calculation__request--line">
+              <div class="page-calculation__request-line">
                 <p class="request-article">Номер заявки</p>
                 <p>${requestNumberView}</p>
               </div>
-              <div class="page-calculation__request--line">
+              <div class="page-calculation__request-line">
                 <p class="request-article">Цель кредита</p>
                 <p>${creditNames.get(creditType)}</p>
               </div>
-              <div class="page-calculation__request--line">
+              <div class="page-calculation__request-line">
                 <p class="request-article">${setActualFeaturesNames(creditType).creditTypeTitle}</p>
                 <p>${propertyCostToLine} рублей</p>
               </div>
     ${firstPayment
-      ? `<div class="page-calculation__request--line">
+      ? `<div class="page-calculation__request-line">
           <p class="request-article">Первоначальный взнос</p>
           <p>${firstPaymentToLine} рублей</p>
         </div>`
       : ``}
-              <div class="page-calculation__request--line">
+              <div class="page-calculation__request-line">
                 <p class="request-article">Срок кредитования</p>
                 <p>${yearsCount} лет</p>
               </div>
             </div>
             <form class="page-calculation__form">
               <input 
-                class="field--name__input"
+                class="field-name__input"
                 type="text"
                 name="name"
                 value=""
@@ -69,7 +69,7 @@ const createRequestTemplate = (options = {}) => {
                 required
               />
               <input
-                class="field--phone__input"
+                class="field-phone__input"
                 type="tel"
                 name="phone"
                 value=""
@@ -79,7 +79,7 @@ const createRequestTemplate = (options = {}) => {
                 required
               />
               <input
-                class="field--email__input"
+                class="field-email__input"
                 type="text"
                 name="email"
                 value=""
@@ -153,7 +153,7 @@ export default class Request extends AbstractSmartComponent {
           const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
           const mailSample = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
-          if (evt.target.className === `field--phone__input`) {
+          if (evt.target.className === `field-phone__input`) {
             if (!phoneSample.test(evt.target.value)) {
               evt.target.setCustomValidity(`Напиши номер правильно`);
 
@@ -161,7 +161,7 @@ export default class Request extends AbstractSmartComponent {
               evt.target.setCustomValidity(``);
             }
 
-          } else if (evt.target.className === `field--email__input`) {
+          } else if (evt.target.className === `field-email__input`) {
             if (!mailSample.test(evt.target.value)) {
               evt.target.setCustomValidity(`Напиши email правильно`);
 

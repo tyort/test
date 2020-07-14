@@ -21,7 +21,7 @@
   }
 }
 
-.calculation__results--unwanted {
+.calculation__results-unwanted {
   // border: $bred;
   width: 100%;
   font-family: Roboto;
@@ -104,8 +104,8 @@
   }
 }
 
-.calculated--percent,
-.calculated--income {
+.calculated-percent,
+.calculated-income {
   padding-left: 33px;
 
   @media (max-width: 1023px) {

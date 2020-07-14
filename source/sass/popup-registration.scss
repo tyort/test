@@ -110,8 +110,8 @@
   color: #fff;
 }
 
-.field--login__field,
-.field--password__field {
+.field-login__field,
+.field-password__field {
   // border: $bred;
   display: flex;
   flex-wrap: wrap;
@@ -134,7 +134,7 @@
   }
 }
 
-.field--password__field > .field--password__forgotten {
+.field-password__field > .field-password__forgotten {
   margin-left: auto;
   margin-top: 10px;
   color: #707C87;
@@ -149,7 +149,7 @@
   }
 }
 
-.field--password__field ~ .field--password__forgotten {
+.field-password__field ~ .field-password__forgotten {
   margin: 15px auto 0;
   font-family: Roboto;
   font-style: normal;
@@ -163,10 +163,10 @@
   }
 }
 
-.field--password__field {
+.field-password__field {
   position: relative;
 
-  .field--password__control {
+  .field-password__control {
     position: absolute;
     // border: $bred;
     top: 35px;
@@ -181,7 +181,7 @@
     }
   }
 
-  .field--password__control.eye-opened {
+  .field-password__control.eye-opened {
     background: url(../img/eye-opened.png) 0 0 no-repeat;
   }
 }

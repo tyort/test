@@ -7,22 +7,22 @@ const getCheckedSlickSlide = (element) => {
   const pageOffersMenu = document.querySelector(`.page-offers-menu`);
 
   switch (element) {
-    case `menu__nav-item--first`:
+    case `menu__nav-item-first`:
       return pageOffersMenu.querySelector(`#slick-slide-control00`);
-    case `menu__nav-item--second`:
+    case `menu__nav-item-second`:
       return pageOffersMenu.querySelector(`#slick-slide-control01`);
-    case `menu__nav-item--third`:
+    case `menu__nav-item-third`:
       return pageOffersMenu.querySelector(`#slick-slide-control02`);
-    case `menu__nav-item--forth`:
+    case `menu__nav-item-forth`:
       return pageOffersMenu.querySelector(`#slick-slide-control03`);
     case 0:
-      return pageOffersMenu.querySelector(`.menu__nav-item--first`);
+      return pageOffersMenu.querySelector(`.menu__nav-item-first`);
     case 1:
-      return pageOffersMenu.querySelector(`.menu__nav-item--second`);
+      return pageOffersMenu.querySelector(`.menu__nav-item-second`);
     case 2:
-      return pageOffersMenu.querySelector(`.menu__nav-item--third`);
+      return pageOffersMenu.querySelector(`.menu__nav-item-third`);
     case 3:
-      return pageOffersMenu.querySelector(`.menu__nav-item--forth`);
+      return pageOffersMenu.querySelector(`.menu__nav-item-forth`);
     default:
       return null;
   }
@@ -33,7 +33,7 @@ const createButtons = () => {
       .map((item, index) => {
         const isElementChecked = index === 0 ? `#F6F7FF` : ``;
         return (
-          `<button class="menu__nav-item--${item}" style="background: ${isElementChecked}">${pointersNames[index]}</button>`
+          `<button class="menu__nav-item-${item}" style="background: ${isElementChecked}">${pointersNames[index]}</button>`
         );
       })
       .join(``);
@@ -48,80 +48,80 @@ const createOffersMenuTemplate = () => {
 
       <div class="page-offers__slider">
 
-        <div class="page-offers-item__view first--item">
-          <div class="page-offers-item__view--inner">
-            <div class="page-offers__service--description">
-              <p class="page-offers__service--title">
+        <div class="page-offers-item__view first-item">
+          <div class="page-offers-item__view-inner">
+            <div class="page-offers__service-description">
+              <p class="page-offers__service-title">
                 Вклады Лига Банка &ndash; это выгодная</br>инвестиция в свое будущее
               </p>
-              <ul class="page-offers__service--advantages">
+              <ul class="page-offers__service-advantages">
                 <li>Проценты по вкладам до 7%</li>
                 <li>Разнообразные условия</li>
                 <li>Возможность ежемесячной капитализации или вывод процентов на банковскую карту</li>
               </ul>
-              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
+              <a class="page-offers__service-btn" href="#">Узнать подробнее</a>
             </div>
-            <div class="page-offers__service--photo piggy-pic">
+            <div class="page-offers__service-photo piggy-pic">
               <img src="img/piggybank.svg" alt="piggybank">
             </div>
           </div>
         </div>
 
-        <div class="page-offers-item__view second--item">
-          <div class="page-offers-item__view--inner">
-            <div class="page-offers__service--description">
-              <p class="page-offers__service--title">
+        <div class="page-offers-item__view second-item">
+          <div class="page-offers-item__view-inner">
+            <div class="page-offers__service-description">
+              <p class="page-offers__service-title">
                 Лига Банк выдает кредиты</br>под любые цели
               </p>
-              <ul class="page-offers__service--advantages">
+              <ul class="page-offers__service-advantages">
                 <li>Ипотечный кредит</li>
                 <li>Автокредит</li>
                 <li>Потребительский кредит</li>
               </ul>
-              <div class="page-offers__service--link">
+              <div class="page-offers__service-link">
                 <p>Рассчитайте ежемесячный платеж</p>
                 <p>и ставку по кредиту воспользовавшись</p>
                 <p>нашим <a href="#page-calculator">кредитным калькулятором</a></p>
               </div>
             </div>
-            <div class="page-offers__service--photo car-pic">
+            <div class="page-offers__service-photo car-pic">
               <img src="img/car.svg" alt="car">
             </div>
           </div>
         </div>
 
-        <div class="page-offers-item__view third--item">
-          <div class="page-offers-item__view--inner">
-            <div class="page-offers__service--description">
-              <p class="page-offers__service--title">
+        <div class="page-offers-item__view third-item">
+          <div class="page-offers-item__view-inner">
+            <div class="page-offers__service-description">
+              <p class="page-offers__service-title">
                 Лига Страхование &ndash; застрахуем</br>все что захотите
               </p>
-              <ul class="page-offers__service--advantages">
+              <ul class="page-offers__service-advantages">
                 <li>Автомобильное страхование</li>
                 <li>Страхование жизни и здоровья</li>
                 <li>Страхование недвижимости</li>
               </ul>
-              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
+              <a class="page-offers__service-btn" href="#">Узнать подробнее</a>
             </div>
-            <div class="page-offers__service--photo lock-pic">
+            <div class="page-offers__service-photo lock-pic">
               <img src="img/lock.svg" alt="lock">
             </div>
           </div>
         </div>
 
-        <div class="page-offers-item__view forth--item">
-          <div class="page-offers-item__view--inner">
-            <div class="page-offers__service--description">
-              <p class="page-offers__service--title">
+        <div class="page-offers-item__view forth-item">
+          <div class="page-offers-item__view-inner">
+            <div class="page-offers__service-description">
+              <p class="page-offers__service-title">
                 Лига Банк &ndash; это огромное количество онлайн-сервисов для вашего удобства
               </p>
-              <ul class="page-offers__service--advantages">
+              <ul class="page-offers__service-advantages">
                 <li>Мобильный банк,</br>который всегда под рукой</li>
                 <li>Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>
               </ul>
-              <a class="page-offers__service--btn" href="#">Узнать подробнее</a>
+              <a class="page-offers__service-btn" href="#">Узнать подробнее</a>
             </div>
-            <div class="page-offers__service--photo device-pic">
+            <div class="page-offers__service-photo device-pic">
               <img src="img/device.svg" alt="device">
             </div>
           </div>

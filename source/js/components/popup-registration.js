@@ -10,10 +10,10 @@ const createPopupTemplate = (options = {}) => {
                 <img src="img/reglogo.svg" alt="ЛИГА Банк" width="150" height="27">
                 <a href="#" class="popup-registration__close"></a>
               </div>
-              <div class="field--login__field">
+              <div class="field-login__field">
                 <label for="block-login">Логин</label>
                 <input 
-                  class="field--login__input"
+                  class="field-login__input"
                   type="text"
                   name="login"
                   value=""
@@ -24,10 +24,10 @@ const createPopupTemplate = (options = {}) => {
                   required
                 />
               </div>
-              <div class="field--password__field">
+              <div class="field-password__field">
                 <label for="block-password">Пароль</label>
                 <input 
-                  class="field--password__input"
+                  class="field-password__input"
                   type="password"
                   name="password"
                   value=""
@@ -36,11 +36,11 @@ const createPopupTemplate = (options = {}) => {
                   autocomplete="off"
                   required
                 />
-                <a href="#" class="field--password__forgotten">Забыли пароль?</a>
-                <a href="#" class="field--password__control"></a>
+                <a href="#" class="field-password__forgotten">Забыли пароль?</a>
+                <a href="#" class="field-password__control"></a>
               </div>
               <button class="popup-registration__btn" type="submit">Войти</button>
-              <a href="#" class="field--password__forgotten">Забыли пароль?</a>
+              <a href="#" class="field-password__forgotten">Забыли пароль?</a>
             </form>
           </div>`);
 };
@@ -80,14 +80,14 @@ export default class Popup extends AbstractSmartComponent {
           document.querySelector(`body`).style.overflow = `visible`;
         });
 
-    element.querySelector(`.field--password__control`)
+    element.querySelector(`.field-password__control`)
         .addEventListener(`click`, () => {
-          if (element.querySelector(`.field--password__input`).getAttribute(`type`) === `password`) {
-            element.querySelector(`.field--password__control`).classList.add(`eye-opened`);
-            element.querySelector(`.field--password__input`).setAttribute(`type`, `text`);
+          if (element.querySelector(`.field-password__input`).getAttribute(`type`) === `password`) {
+            element.querySelector(`.field-password__control`).classList.add(`eye-opened`);
+            element.querySelector(`.field-password__input`).setAttribute(`type`, `text`);
           } else {
-            element.querySelector(`.field--password__control`).classList.remove(`eye-opened`);
-            element.querySelector(`.field--password__input`).setAttribute(`type`, `password`);
+            element.querySelector(`.field-password__control`).classList.remove(`eye-opened`);
+            element.querySelector(`.field-password__input`).setAttribute(`type`, `password`);
           }
         });
   }

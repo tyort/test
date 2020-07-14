@@ -3,7 +3,7 @@
   // border: $bred;
 }
 
-.page-presentation-item__view--inner {
+.page-presentation-item__view-inner {
   // border: $bred;
   display: flex;
   justify-content: space-between;
@@ -39,7 +39,7 @@
   }
 }
 
-.page-presentation__offer--title {
+.page-presentation__offer-title {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -58,7 +58,7 @@
   }
 }
 
-.page-presentation__offer--comment {
+.page-presentation__offer-comment {
   // border: $bred;
   font-family: Roboto;
   font-style: normal;
@@ -78,7 +78,7 @@
   }
 }
 
-.page-presentation__offer--btn {
+.page-presentation__offer-btn {
   // border: $bred;
   width: 234px;
   height: 53px;
@@ -115,7 +115,7 @@
   }
 }
 
-/*---------------------- Для первой фотографии -----------------------------*/
+/*- Для первой фотографии --*/
 .page-presentation-item__view.first-slide {
   background: #2C36F2;
   // border: $bred;
@@ -143,7 +143,7 @@
   }
 }
 
-/*---------------------- Для второй фотографии -----------------------------*/
+/*- Для второй фотографии --*/
 .page-presentation-item__view.second-slide {
   background: url(../img/slide-confidence.svg) center no-repeat, linear-gradient(90deg, #DDE2EC 50%, #F2F9FF 40%);
 
@@ -156,11 +156,11 @@
     background-position: 65.5%;
   }
 
-  .page-presentation__offer--title {
+  .page-presentation__offer-title {
     color: #1F1E25;
   }
 
-  .page-presentation__offer--comment {
+  .page-presentation__offer-comment {
     color: #2B3C4F;
     margin-bottom: 128px;
 
@@ -177,7 +177,7 @@
   }
 }
 
-/*---------------------- Для третьей фотографии -----------------------------*/
+/*- Для третьей фотографии --*/
 .page-presentation-item__view.third-slide {
   background: url(../img/slide-girl.svg) center no-repeat, linear-gradient(90deg, #E6F1FE 50%, #E6F1FE 40%);
 
@@ -191,15 +191,15 @@
     background-size: cover;
   }
 
-  .page-presentation__offer--title {
+  .page-presentation__offer-title {
     color: #1F1E25;
   }
 
-  .page-presentation__offer--comment {
+  .page-presentation__offer-comment {
     color: #1F1E25;
   }
 
-  .page-presentation__offer--btn {
+  .page-presentation__offer-btn {
     // border: $bred;
     width: 243px;
     background: #2C36F2;
