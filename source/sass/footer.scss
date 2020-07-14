@@ -27,7 +27,6 @@
 
 .page-footer__address {
   // border: $bred;
-  font-family: Work Sans;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -47,7 +46,7 @@
   }
 }
 
-.page-footer__logo--link img {
+.page-footer__logo-link img {
   // border: $bred;
   width: 149px;
   height: 25px;
@@ -66,10 +65,9 @@
   }
 }
 
-.page-footer__menu--list {
+.page-footer__menu-list {
   // border: $bred;
   float: right;
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -88,7 +86,7 @@
   }
 }
 
-.page-footer__menu--item {
+.page-footer__menu-item {
   margin-bottom: 20px;
 
   @media (max-width: 767px) {
@@ -96,7 +94,7 @@
   }
 }
     
-.page-footer__menu--item a {
+.page-footer__menu-item a {
   color: #1F1E25;
 
   &:hover {
@@ -106,9 +104,8 @@
 }
 
 
-.page-footer__address--description {
+.page-footer__address-description {
   // border: $bred;
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -139,8 +136,8 @@
     margin-top: 10px;
   }
 
-  .page-footer__contacts--sub,
-  .page-footer__contacts--russia {
+  .page-footer__contacts-sub,
+  .page-footer__contacts-russia {
     // border: $bred;
     display: flex;
     flex-direction: column;
@@ -148,7 +145,6 @@
     flex-shrink: 0;
 
     p {
-      font-family: Roboto;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
@@ -159,7 +155,6 @@
 
     a {
       position: relative;
-      font-family: Roboto;
       font-style: normal;
       font-weight: 500;
       font-size: 16px;
@@ -168,7 +163,7 @@
     }
   }
 
-  .page-footer__contacts--russia {
+  .page-footer__contacts-russia {
     margin-right: auto;
     margin-left: 50px;
 
@@ -181,7 +176,7 @@
     }
   }
 
-  .page-footer__contacts--sub {
+  .page-footer__contacts-sub {
     margin-right: auto;
 
     @media (max-width: 1023px) {
@@ -194,7 +189,7 @@
     }
   }
 
-  .page-footer__contacts--sub a::before {
+  .page-footer__contacts-sub a::before {
     content: '';
     position: absolute;
     background-image: url(../img/phone.svg);
@@ -205,7 +200,7 @@
     left: -28px;
   }
 
-  .page-footer__contacts--russia a::before {
+  .page-footer__contacts-russia a::before {
     content: '';
     position: absolute;
     background-image: url(../img/phone2.svg);

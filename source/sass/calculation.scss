@@ -27,7 +27,6 @@
     border: none;
     height: 60px;
     text-align: center;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -61,7 +60,6 @@
   output {
     // border: $bred;
     width: 100%;
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -91,7 +89,6 @@
     margin: 0;
     // border: $bred;
     width: 100%;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
@@ -141,7 +138,6 @@
   h2 {
     // border: $bred;
     width: 100%;
-    font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 41px;
@@ -161,7 +157,6 @@
 
   #type-of-credit {
     width: 100%;
-    font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -189,7 +184,7 @@
     }
   }
 
-  .expanded--list li {
+  .expanded-list li {
     cursor: pointer;
   }
 
@@ -280,7 +275,6 @@
     // border: $bred;
     width: 100%;
     margin-top: auto;
-    font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

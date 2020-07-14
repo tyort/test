@@ -33,7 +33,6 @@
 }
 
 .popup-registration__form label {
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -64,6 +63,7 @@
 }
 
 .popup-registration__close {
+  font-family: 'Times New Roman', Times, serif;
   width: 35px;
   height: 35px;
   border-radius: 40px;
@@ -115,7 +115,6 @@
   // border: $bred;
   display: flex;
   flex-wrap: wrap;
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -138,7 +137,6 @@
   margin-left: auto;
   margin-top: 10px;
   color: #707C87;
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -151,7 +149,6 @@
 
 .field-password__field ~ .field-password__forgotten {
   margin: 15px auto 0;
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -188,7 +185,6 @@
 
 .popup-registration__btn {
   height: 60px;
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
