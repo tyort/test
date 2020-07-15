@@ -263,7 +263,7 @@
 }
 
 .page-offers__service-photo {
-  border: $bred;
+  // border: $bred;
   object-fit: cover;
   width: 440px;
   height: 290px;
@@ -283,26 +283,49 @@
     margin-right: 0;
     right: calc((100% - 320px) / 3);
     top: 100px;
+    overflow: hidden;
   }
 }
 
 .page-offers__service-photo img {
+  // border: $bred;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: right;
-}
 
-img.lock-love {
   @media (max-width: 1023px) {
-    object-position: center;
-    padding: 15px;
+    &.lock-love {
+      object-position: center;
+      padding: 15px;
+    }
+
+    &.device-mobile {
+      object-position: center;
+    }
   }
-}
 
-img.device-mobile {
-  @media (max-width: 1023px) {
-    object-position: center;
+  @media (max-width: 767px) {
+    height: 150%;
+    object-position: -130px -55px;
+
+    &.car-on-coins {
+      height: 110%;
+      object-position: -43px -10px;
+    }
+
+    &.lock-love {
+      height: 90%;
+      max-width: 160px;
+      padding: 0;
+      object-position: center;
+    }
+  
+    &.device-mobile {
+      height: 100%;
+      max-width: 185px;
+      object-position: center;
+    }
   }
 }
 

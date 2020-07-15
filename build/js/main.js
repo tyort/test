@@ -958,7 +958,7 @@ ${typeOfCredit === `consumer`
               </div>
             </div>
             <div class="page-offers__service-photo car-pic">
-              <img src="img/car.svg" alt="car">
+              <img class="car-on-coins" src="img/car.svg" alt="car">
             </div>
           </div>
         </div>
