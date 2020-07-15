@@ -103,8 +103,8 @@ const createOffersMenuTemplate = () => {
               </ul>
               <a class="page-offers__service-btn" href="#">Узнать подробнее</a>
             </div>
-            <div class="page-offers__service-photo lock-pic">
-              <img src="img/lock.svg" alt="lock">
+            <div class="page-offers__service-photo">
+              <img class="lock-love" src="img/lock.svg" alt="lock">
             </div>
           </div>
         </div>
@@ -121,8 +121,8 @@ const createOffersMenuTemplate = () => {
               </ul>
               <a class="page-offers__service-btn" href="#">Узнать подробнее</a>
             </div>
-            <div class="page-offers__service-photo device-pic">
-              <img src="img/device.svg" alt="device">
+            <div class="page-offers__service-photo">
+              <img class="device-mobile" src="img/device.svg" alt="device">
             </div>
           </div>
         </div>
