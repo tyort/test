@@ -1,41 +1,21 @@
+@import "fonts.scss";
+
 $bred: 0.5px solid red;
 
 * {
   box-sizing: border-box;
 }
 
-@import "header.scss";
-
-
 body {
+  margin: 0;
   color: black;
+  font-family: "Montserrat", "Arial", sans-serif;
 }
 
-h1 { // так можно подключать стили на перспективу из папки dist
-  font-family: "Roboto-LightItalic";
-  font-style: normal;
+ul,
+h1,
+p {
+  margin: 0;
 }
 
-.page-footer__menu-item {
-  font-size: 20px;
-  @media (max-width: 767px) {
-    font-size: 15px;
-  }
-}
-
-// .page-footer__inner {
-//   background: url("../img/keisha.jpg") 0 0 no-repeat;
-// }
-
-.social {
-  font-size: 25px;
-  @media (max-width: 767px) {
-    font-size: 20px;
-  }
-}
-
-.page-map__view {
-  width: 100%;
-  height: 200px;
-  z-index: 9;
-}
+@import "header.scss";
