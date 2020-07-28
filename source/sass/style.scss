@@ -4,9 +4,8 @@ $bred: 0.5px solid red;
   box-sizing: border-box;
 }
 
-@import 'header';
-@import 'fonts';
-@import 'holy-grail';
+@import "header.scss";
+
 
 body {
   color: black;
