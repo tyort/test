@@ -4,6 +4,8 @@
   background: blue;
   width: 100%;
   padding: 0 15px;
+  position: relative;
+  overflow: hidden;
 
   @media (max-width: 1023px) {
     padding: 0 45px;
@@ -40,15 +42,21 @@ h1 {
   width: 100%;
   font-weight: bold;
   font-size: 54px;
-  line-height: 70%;
+  line-height: 125%;
   margin-left: 95px;
-  margin-top: 208px;
+  margin-top: 193px;
   color: #F9FBFD;
 
   @media (max-width: 1023px) {
     margin-left: 0;
-    margin-top: 228px;
+    margin-top: 215px;
     font-size: 50px;
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 130px;
+    font-size: 36px;
+    white-space: pre;
   }
 }
 
@@ -58,16 +66,22 @@ h1 + p {
   width: 100%;
   font-weight: normal;
   font-size: 20px;
-  line-height: 70%;
+  line-height: 140%;
   margin-left: 95px;
-  margin-top: 33px;
-  margin-bottom: 282px;
+  margin-top: 10px;
+  margin-bottom: 276px;
 
   @media (max-width: 1023px) {
     font-size: 18px;
     margin-left: 0;
-    margin-top: 30px;
-    margin-bottom: 280px;
+    margin-bottom: 273px;
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 11px;
+    font-size: 16px;
+    white-space: pre;
+    margin-bottom: 179px;
   }
 }
 
