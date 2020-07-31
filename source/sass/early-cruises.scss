@@ -2,6 +2,10 @@
   // border: $bred;
   width: 100%;
   padding: 122px 15px 105px;
+
+  @media (max-width: 1023px) {
+    padding: 100px 45px 105px;
+  }
 }
 
 .page-cruises__inner {
@@ -17,6 +21,10 @@
   line-height: 70%;
   text-align: center;
   margin-bottom: 45px;
+
+  @media (max-width: 1023px) {
+    font-size: 26px;
+  }
 }
 
 .cruises__list {
@@ -32,18 +40,24 @@
   justify-content: flex-end;
   position: relative;
   width: calc((100% - 120px) / 4);
+  height: 386px;
   margin: 15px;
   padding: 35px 25px 30px 30px;
   color: #F9FBFD;
   background-blend-mode: multiply;
+
+  @media (max-width: 1023px) {
+    width: calc((100% - 60px) / 2);
+    padding: 35px 25px 35px 35px;
+  }
 }
 
 .cruises__item h3 {
   font-weight: 500;
   font-size: 18px;
   line-height: 70%;
-  margin-top: 309px;
 }
+
 .cruises__item h4 {
   font-weight: 500;
   font-size: 14px;
@@ -73,7 +87,11 @@
 .aline__item {
   background: #011C40;
   justify-content: flex-start;
-  padding-left: 25px;
+  padding: 35px 25px 30px;
+
+  @media (max-width: 1023px) {
+    padding: 35px 35px 30px;
+  }
 
   h3 {
     margin-top: 0px;
