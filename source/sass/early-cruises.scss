@@ -1,7 +1,7 @@
 .page-cruises {
   // border: $bred;
   width: 100%;
-  padding: 120px 15px 0;
+  padding: 122px 15px 105px;
 }
 
 .page-cruises__inner {
@@ -14,7 +14,7 @@
 .page-cruises__inner h2 {
   font-weight: 600;
   font-size: 28px;
-  line-height: 80%;
+  line-height: 70%;
   text-align: center;
   margin-bottom: 45px;
 }
@@ -27,11 +27,42 @@
 
 .cruises__item {
   // border: $bred;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   position: relative;
   width: calc((100% - 120px) / 4);
   margin: 15px;
+  padding: 35px 25px 30px 30px;
   color: #F9FBFD;
   background-blend-mode: multiply;
+}
+
+.cruises__item h3 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 70%;
+  margin-top: 309px;
+}
+.cruises__item h4 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 175%;
+}
+
+.cruises__item p {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 140%;
+  margin-bottom: 9px;
+}
+
+.cruises__item button {
+  margin-top: 17px;
+  height: 40px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 70%;
 }
 
 .astoria__item {
@@ -41,6 +72,13 @@
 
 .aline__item {
   background: #011C40;
+  justify-content: flex-start;
+  padding-left: 25px;
+
+  h3 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
 }
 
 .atlantis__item {
@@ -73,9 +111,3 @@
   background-size: 267%;
 }
 
-.cruises__item h3 {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 70%;
-  margin: 343px 30px 30px;
-}
