@@ -6,6 +6,9 @@ $bred: 0.5px solid red;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border-radius: 0%;
+  border: none;
+  outline: none;
 }
 
 body {
@@ -22,10 +25,38 @@ a {
   text-decoration: none;
 }
 
-button {
-  border-radius: 0%;
-  border: none;
-  outline: none;
+input[type="checkbox"] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+input[type="checkbox"] + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+input[type="checkbox"] + label::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-right: 5px;
+  background: #F9FBFD;
+}
+
+input[type="checkbox"]:checked + label::before {
+  background: url(../img/tick-checkbox.svg) center no-repeat;
+  background-color: #F9FBFD;
+  background-size: auto;
+}
+
+input[type="checkbox"] + label:hover::before {
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 0 0 2px 4px rgba(201, 236, 245, 0.473);
 }
 
 .visually-hidden {
@@ -36,3 +67,4 @@ button {
 @import "acquaintance.scss";
 @import "advantages.scss";
 @import "early-cruises.scss";
+@import "booking.scss";

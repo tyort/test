@@ -1,0 +1,72 @@
+.page-booking {
+  width: 100%;
+  padding: 50px 163px;
+  background: url(../img/booking-bg.jpg) center no-repeat;
+  background-size: cover;
+}
+
+.page-booking__inner {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-booking__title h2 {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.page-booking__title p {
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.page-booking__form {
+  padding: 50px;
+  width: 403px;
+  background-color: #011C40;
+  color: #F9FBFD;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.page-booking__form h3 {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.page-booking__form > input {
+  height: 43px;
+  margin-bottom: 20px;
+  padding-left: 16px;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.field-agreement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.field-agreement input[type="checkbox"] {
+  height: 18px;
+  width: 18px;
+}
+
+
+.field-agreement label {
+  font-weight: normal;
+  font-size: 10px;
+}
+
+.page-booking__form > button {
+  height: 43px;
+  font-weight: 600;
+  font-size: 14px;
+}

@@ -4,7 +4,11 @@
   padding: 122px 15px 105px;
 
   @media (max-width: 1023px) {
-    padding: 100px 45px 105px;
+    padding: 100px 45px 85px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 67px 10px 50px;
   }
 }
 
@@ -25,6 +29,11 @@
   @media (max-width: 1023px) {
     font-size: 26px;
   }
+
+  @media (max-width: 767px) {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
 }
 
 .cruises__list {
@@ -40,6 +49,7 @@
   justify-content: flex-end;
   position: relative;
   width: calc((100% - 120px) / 4);
+  min-width: 260px;
   height: 386px;
   margin: 15px;
   padding: 35px 25px 30px 30px;
@@ -49,6 +59,11 @@
   @media (max-width: 1023px) {
     width: calc((100% - 60px) / 2);
     padding: 35px 25px 35px 35px;
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+    padding: 35px 25px 25px;
   }
 }
 
@@ -80,7 +95,7 @@
 }
 
 .astoria__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/astoria-cruise.jpg") 56% center no-repeat;
+  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/astoria-cruise.jpg") center no-repeat;
   background-size: cover;
 }
 
@@ -93,6 +108,10 @@
     padding: 35px 35px 30px;
   }
 
+  @media (max-width: 767px) {
+    padding: 35px 25px 30px;
+  }
+
   h3 {
     margin-top: 0px;
     margin-bottom: 20px;
@@ -100,32 +119,32 @@
 }
 
 .atlantis__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/atlantis-cruise.jpg") 50% center no-repeat;
+  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/atlantis-cruise.jpg") center no-repeat;
   background-size: cover;
 }
 
 .odissey__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/odissey-cruise.jpg") 40% 0% no-repeat;
-  background-size: 215%;
+  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/odissey-cruise.jpg") center no-repeat;
+  background-size: cover;
 }
 
 .olimpia__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/olimpia-cruise.jpg") 40% 0% no-repeat;
-  background-size: 213%;
+  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/olimpia-cruise.jpg") center no-repeat;
+  background-size: cover;
 }
 
 .avrora__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/avrora-cruise.jpg") 42% center no-repeat;
+  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/avrora-cruise.jpg") center no-repeat;
   background-size: cover;
 }
 
 .leonor__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/leonor-cruise.jpg") 58% center no-repeat;
+  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/leonor-cruise.jpg") center no-repeat;
   background-size: cover;
 }
 
 .minion-one__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/minion-one-cruise.jpg") 41% 0% no-repeat;
-  background-size: 267%;
+  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/minion-one-cruise.jpg") center no-repeat;
+  background-size: cover;
 }
 
