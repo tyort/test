@@ -23,6 +23,31 @@
     }
   }
 
+  window.addEventListener(`mapWasLoaded`, () => {
+    window.ymaps.ready(init);
+  });
+
+  function init() {
+    let myMap = new window.ymaps.Map(`YMapsID`, {
+      center: [59.938635, 30.323118],
+      zoom: 15,
+    }, {
+      searchControlProvider: `yandex#search`
+    });
+
+    const myPlacemark = new window.ymaps.Placemark([59.938635, 30.323118], {
+      hintContent: `Круизы в Антарктику`,
+    }, {
+      iconLayout: `default#image`,
+      iconImageHref: `img/map-marker.svg`,
+      iconImageSize: [18, 22],
+      iconImageOffset: [-9, -22],
+    });
+
+    myMap.geoObjects
+        .add(myPlacemark);
+  }
+
 }());
 
 //# sourceMappingURL=main.js.map
