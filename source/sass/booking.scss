@@ -1,7 +1,7 @@
 .page-booking {
   width: 100%;
   padding: 50px 163px;
-  background: url(../img/booking-bg.jpg) center no-repeat;
+  background: url(../img/booking-bg.jpg) center 5% no-repeat;
   background-size: cover;
 
   @media (max-width: 767px) {
@@ -19,7 +19,6 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   @media (max-width: 767px) {
     flex-direction: column;
@@ -30,6 +29,8 @@
   font-weight: bold;
   font-size: 40px;
   line-height: 133%;
+  margin-top: 166px;
+  margin-bottom: 12px;
 
   @media (max-width: 767px) {
     font-size: 24px;
@@ -41,7 +42,8 @@
 .page-booking__title p {
   font-weight: normal;
   font-size: 18px;
-  line-height: 140%;
+  line-height: 150%;
+  width: 70%;
 
   @media (max-width: 767px) {
     font-size: 16px;
@@ -52,8 +54,9 @@
 }
 
 .page-booking__form {
-  padding: 50px;
+  padding: 45px 50px 50px;
   width: 403px;
+  flex-shrink: 0;
   background-color: #011C40;
   color: #F9FBFD;
   display: flex;
@@ -69,8 +72,9 @@
 .page-booking__form h3 {
   font-weight: 500;
   font-size: 18px;
-  text-align: center;
-  line-height: 140%;
+  text-align: left;
+  line-height: 145%;
+  margin-bottom: 28px;
 
   @media (max-width: 767px) {
     font-size: 18px;
@@ -79,7 +83,7 @@
   }
 }
 
-.page-booking__form input {
+.page-booking__form > input {
   height: 43px;
   margin-bottom: 20px;
   padding-left: 16px;
@@ -87,7 +91,7 @@
   font-size: 14px;
 }
 
-.page-booking__form input.field-email__input {
+.page-booking__form > input.field-email__input {
   margin-bottom: 0;
 }
 
@@ -114,6 +118,7 @@
   font-weight: normal;
   font-size: 10px;
   line-height: 120%;
+  margin-top: 20px;
 
   @media (max-width: 767px) {
     margin-top: 19px;
