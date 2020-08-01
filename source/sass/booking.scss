@@ -1,8 +1,12 @@
 .page-booking {
   width: 100%;
-  padding: 50px 163px;
+  padding: 50px 15px;
   background: url(../img/booking-bg.jpg) center 5% no-repeat;
   background-size: cover;
+
+  @media (max-width: 1023px) {
+    padding: 91px 45px 100px;
+  }
 
   @media (max-width: 767px) {
     padding: 59px 15px 65px;
@@ -20,8 +24,19 @@
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1023px) {
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+.page-booking__title {
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 1023px) {
+    align-items: center;
   }
 }
 
@@ -32,23 +47,36 @@
   margin-top: 166px;
   margin-bottom: 12px;
 
+  @media (max-width: 1023px) {
+    text-align: center;
+    font-size: 34px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
   @media (max-width: 767px) {
     font-size: 24px;
-    text-align: center;
     margin-bottom: 15px;
   }
 }
 
 .page-booking__title p {
+  // border: $bred;
   font-weight: normal;
   font-size: 18px;
   line-height: 150%;
   width: 70%;
 
-  @media (max-width: 767px) {
-    font-size: 16px;
+  @media (max-width: 1023px) {
     text-align: center;
-    padding: 0 10px;
+    width: 60%;
+    margin-bottom: 50px;
+  }
+
+  @media (max-width: 767px) {
+    line-height: 140%;
+    font-size: 16px;
+    width: 90%;
     margin-bottom: 33px;
   }
 }
@@ -77,9 +105,9 @@
   margin-bottom: 28px;
 
   @media (max-width: 767px) {
-    font-size: 18px;
+    line-height: 140%;
+    text-align: center;
     padding: 0 5px;
-    margin-bottom: 28px;
   }
 }
 
@@ -96,13 +124,16 @@
 }
 
 .field-agreement {
+  // border: $bred;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
+  margin-top: 20px;
 
   @media (max-width: 767px) {
-    margin-bottom: 27px;
+    margin-bottom: 28px;
+    margin-top: 18px;
   }
 }
 
@@ -114,14 +145,12 @@
   }
 }
 
-.field-agreement label {
+.field-agreement input[type="checkbox"] + label {
   font-weight: normal;
   font-size: 10px;
   line-height: 120%;
-  margin-top: 20px;
 
   @media (max-width: 767px) {
-    margin-top: 19px;
     width: 80%;
   }
 }

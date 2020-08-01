@@ -1,7 +1,8 @@
 .page-header {
   // border: $bred;
   display: block;
-  background: blue;
+  background: url(../img/header-bg.jpg) center no-repeat;
+  background-size: cover;
   width: 100%;
   padding: 0 15px;
   position: relative;
