@@ -3,6 +3,14 @@
   padding: 50px 163px;
   background: url(../img/booking-bg.jpg) center no-repeat;
   background-size: cover;
+
+  @media (max-width: 767px) {
+    padding: 59px 15px 65px;
+  }
+}
+
+.page-booking span {
+  white-space: nowrap;
 }
 
 .page-booking__inner {
@@ -12,16 +20,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .page-booking__title h2 {
   font-weight: bold;
   font-size: 40px;
+  line-height: 133%;
+
+  @media (max-width: 767px) {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
 }
 
 .page-booking__title p {
   font-weight: normal;
   font-size: 18px;
+  line-height: 140%;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    text-align: center;
+    padding: 0 10px;
+    margin-bottom: 33px;
+  }
 }
 
 .page-booking__form {
@@ -32,14 +59,27 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  @media (max-width: 767px) {
+    padding: 35px 30px 40px;
+    width: 100%;
+  }
 }
 
 .page-booking__form h3 {
   font-weight: 500;
   font-size: 18px;
+  text-align: center;
+  line-height: 140%;
+
+  @media (max-width: 767px) {
+    font-size: 18px;
+    padding: 0 5px;
+    margin-bottom: 28px;
+  }
 }
 
-.page-booking__form > input {
+.page-booking__form input {
   height: 43px;
   margin-bottom: 20px;
   padding-left: 16px;
@@ -47,22 +87,38 @@
   font-size: 14px;
 }
 
+.page-booking__form input.field-email__input {
+  margin-bottom: 0;
+}
+
 .field-agreement {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 27px;
+  }
 }
 
-.field-agreement input[type="checkbox"] {
-  height: 18px;
-  width: 18px;
+.field-agreement input[type="checkbox"] + label::before {
+  @media (max-width: 767px) {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
 }
-
 
 .field-agreement label {
   font-weight: normal;
   font-size: 10px;
+  line-height: 120%;
+
+  @media (max-width: 767px) {
+    margin-top: 19px;
+    width: 80%;
+  }
 }
 
 .page-booking__form > button {
