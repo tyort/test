@@ -1,0 +1,140 @@
+.page-footer {
+  width: 100%;
+  background: #011C40;
+  padding: 50px 15px 46px;
+
+  @media (max-width: 1023px) {
+    padding: 50px 45px 46px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 40px 15px 36px;
+  }
+}
+
+.page-footer__inner {
+  // border: $bred;
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.page-footer__logo img {
+  // border: $bred;
+  margin-right: 7px;
+  width: 70px;
+  height: 38px;
+
+  @media (max-width: 1023px) {
+    margin-right: 2px;
+    width: 38px;
+    height: 20px;
+  }
+
+  @media (max-width: 767px) {
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 42px;
+    height: 22px;
+  }
+}
+
+.footer-navigation__list {
+  display: flex;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+.footer-navigation__list li {
+  // border: $bred;
+  margin-left: 33px;
+  margin-bottom: 3px;
+
+  @media (max-width: 1023px) {
+    margin-left: 23px;
+    margin-bottom: 5px;
+  }
+
+  @media (max-width: 767px) {
+    margin-left: 0px;
+    margin-bottom: 13px;
+  }
+}
+
+.footer-navigation__list li a {
+  // border: $bred;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  color: #F9FBFD;
+
+  @media (max-width: 1023px) {
+    font-size: 12px;
+  }
+}
+
+.page-footer__socials {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+    margin-top: 13px;
+  }
+}
+
+.page-footer__socials a {
+  margin-left: 33px;
+
+  @media (max-width: 1023px) {
+    margin-left: 23px;
+  }
+
+  @media (max-width: 767px) {
+    margin-left: 23px;
+  }
+
+  &:first-child {
+    margin-left: 0px;
+  }
+}
+
+.social img {
+  object-fit: contain;
+  object-position: center;
+  height: 20px;
+
+  @media (max-width: 1023px) {
+    height: 16px;
+  }
+}
+
+.social-facebook img {
+  width: 11px;
+
+  @media (max-width: 1023px) {
+    width: 9px;
+  }
+}
+
+.social-instagram img,
+.social-twitter img {
+  width: 20px;
+
+  @media (max-width: 1023px) {
+    width: 16px;
+  }
+}
+
+

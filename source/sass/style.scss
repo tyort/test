@@ -13,7 +13,7 @@ $bred: 0.5px solid red;
 
 body {
   // border: $bred;
-  color: black;
+  color: #011C40;
   font-family: "Montserrat", "Arial", sans-serif;
 }
 
@@ -69,3 +69,4 @@ input[type="checkbox"] + label:hover::before {
 @import "early-cruises.scss";
 @import "booking.scss";
 @import "address.scss";
+@import "footer.scss";
