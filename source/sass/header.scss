@@ -98,7 +98,12 @@ h1 + p {
 
 .page-header__logo {
   margin-right: auto;
-  z-index: 9;
+
+  @media (min-width: 768px) {
+    &.logo__mobile {
+      display: none;
+    }
+  }
 }
 
 .page-header__logo img{
@@ -184,21 +189,28 @@ h1 + p {
 //------------------Конец-------------------//
 
 .main-navigation {
+
   @media (max-width: 767px) {
     // border: $bred;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     position: absolute;
     top: 0;
     width: 100%;
     left: 100%;
     background: #E5E5E5;
     transition: transform 0.4s ease-in;
+    padding: 20px 15px 0;
   }
 }
 
 
 #check-menu:checked ~ .page-header__top-line .main-navigation {
-  transform: translateX(-100%);
+  @media (max-width: 767px) {
+    transform: translateX(-100%);
+  }
 }
 
 .main-navigation__list {
@@ -207,14 +219,14 @@ h1 + p {
 
   @media (max-width: 767px) {
     flex-direction: column;
-    padding-top: 90px;
+    margin-top: 45px;
 
     li {
       margin-bottom: 24px;
     }
 
     li:last-child {
-      margin-bottom: 61px;
+      margin-bottom: 60px;
     }
   }
 }
@@ -235,7 +247,7 @@ h1 + p {
   @media (max-width: 767px) {
     color: #011C40;
     font-size: 18px;
-    margin-left: 15px;
+    margin-left: 0;
     margin-top: 24px;
   }
 }
