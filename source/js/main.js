@@ -1,4 +1,14 @@
 const menu = document.querySelector(`#check-menu`);
+const agreement = document.querySelector(`.field-agreement`).querySelector(`input`);
+const btn = document.querySelector(`.page-booking__form`).querySelector(`button`);
+
+agreement.addEventListener(`change`, (evt) => {
+  if (evt.target.checked) {
+    btn.removeAttribute(`disabled`);
+    return;
+  }
+  btn.setAttribute(`disabled`, `disabled`);
+});
 
 menu.addEventListener(`change`, () => {
   if (menu.checked === true) {
