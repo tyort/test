@@ -242,6 +242,16 @@ h1 + p {
   font-size: 16px;
   margin-left: 33px;
 
+  &:hover {
+    color: #ad9bcc;
+    text-shadow: 3px 2px 5px #080007;
+  }
+
+  &:active {
+    color: #cabeddb0;
+    text-shadow: none;
+  }
+
   @media (max-width: 1023px) {
     font-size: 14px;
     margin-left: 24px;
