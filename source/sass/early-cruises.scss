@@ -116,6 +116,7 @@
 }
 
 .cruises__item .item-background--description {
+  position: static;
   background: #011C40;
   padding: 35px 25px;
 
@@ -124,7 +125,6 @@
   }
 
   @media (max-width: 767px) {
-    position: static;
     padding: 35px 25px;
   }
 
