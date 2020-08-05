@@ -45,29 +45,50 @@
 .cruises__item {
   // border: $bred;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   position: relative;
   width: calc((100% - 120px) / 4);
   min-width: 260px;
-  height: 386px;
   margin: 15px;
-  padding: 35px 25px 30px 30px;
   color: #F9FBFD;
-  background-blend-mode: multiply;
 
   @media (max-width: 1023px) {
     width: calc((100% - 60px) / 2);
-    padding: 35px 25px 35px 35px;
   }
 
   @media (max-width: 767px) {
     width: 100%;
-    padding: 35px 25px 25px;
   }
 }
 
-.cruises__item h3 {
+.cruises__item img {
+  // border: $bred;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cruises__item .item-background {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 0 30px 30px;
+  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%);
+
+  @media (max-width: 1023px) {
+    padding: 0 0 35px 35px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 0 0 25px 25px;
+  }
+}
+
+.cruises__item .item-background h3 {
   font-weight: 500;
   font-size: 18px;
   line-height: 70%;
@@ -94,57 +115,26 @@
   line-height: 70%;
 }
 
-.astoria__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/astoria-cruise.jpg") center no-repeat;
-  background-size: cover;
-}
-
-.aline__item {
+.cruises__item .item-background--description {
   background: #011C40;
-  justify-content: flex-start;
-  padding: 35px 25px 30px;
+  padding: 35px 25px;
 
   @media (max-width: 1023px) {
-    padding: 35px 35px 30px;
+    padding: 35px 35px;
   }
 
   @media (max-width: 767px) {
-    padding: 35px 25px 30px;
+    position: static;
+    padding: 35px 25px;
   }
 
   h3 {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 70%;
     margin-top: 0px;
     margin-bottom: 20px;
   }
 }
 
-.atlantis__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/atlantis-cruise.jpg") center no-repeat;
-  background-size: cover;
-}
-
-.odissey__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/odissey-cruise.jpg") center no-repeat;
-  background-size: cover;
-}
-
-.olimpia__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/olimpia-cruise.jpg") center no-repeat;
-  background-size: cover;
-}
-
-.avrora__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/avrora-cruise.jpg") center no-repeat;
-  background-size: cover;
-}
-
-.leonor__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/leonor-cruise.jpg") center no-repeat;
-  background-size: cover;
-}
-
-.minion-one__item {
-  background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%), url("../img/minion-one-cruise.jpg") center no-repeat;
-  background-size: cover;
-}
 
