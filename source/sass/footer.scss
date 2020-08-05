@@ -27,11 +27,10 @@
   }
 }
 
-.page-footer__logo img {
+.page-footer__logo-image {
   // border: $bred;
   margin-right: 7px;
-  width: 70px;
-  height: 38px;
+  fill: #F9FBFD;
 
   @media (max-width: 1023px) {
     margin-right: 2px;
@@ -110,30 +109,24 @@
   }
 }
 
-.social img {
-  object-fit: contain;
-  object-position: center;
-  height: 20px;
-
+.social-facebook__image {
   @media (max-width: 1023px) {
+    width: 9px;
     height: 16px;
   }
 }
 
-.social-facebook img {
-  width: 11px;
-
+.social-instagram__image {
   @media (max-width: 1023px) {
-    width: 9px;
+    width: 16px;
+    height: 16px;
   }
 }
 
-.social-instagram img,
-.social-twitter img {
-  width: 20px;
-
+.social-twitter__image {
   @media (max-width: 1023px) {
     width: 16px;
+    height: 13px;
   }
 }
 
