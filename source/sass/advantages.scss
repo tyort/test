@@ -90,7 +90,7 @@
     width: 100%;
   }
 
-  img {
+  svg {
     // border: $bred;
     height: 32px;
     object-fit: contain;
@@ -126,7 +126,7 @@
 }
 
 .advantages__item.item__ship {
-  img {
+  svg {
     width: 27px;
 
     @media (max-width: 1023px) {
@@ -150,7 +150,7 @@
 }
 
 .advantages__item.item__all-inclusive {
-  img {
+  svg {
     width: 38px;
     
     @media (max-width: 1023px) {
@@ -193,7 +193,7 @@
   margin-right: 0;
   margin-bottom: 0;
 
-  img {
+  svg {
     width: 42px;
 
     @media (max-width: 1023px) {
