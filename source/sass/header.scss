@@ -49,17 +49,17 @@ h1 {
   font-size: 54px;
   line-height: 125%;
   margin-left: 95px;
-  margin-top: 193px;
+  margin-top: 197px;
   color: #F9FBFD;
 
   @media (max-width: 1023px) {
     margin-left: 0;
-    margin-top: 215px;
+    margin-top: 219px;
     font-size: 50px;
   }
 
   @media (max-width: 767px) {
-    margin-top: 130px;
+    margin-top: 134px;
     font-size: 36px;
     white-space: pre-line;
   }
@@ -98,6 +98,7 @@ h1 + p {
 
 .page-header__logo {
   margin-right: auto;
+  z-index: 9;
 
   @media (min-width: 768px) {
     &.logo__mobile {
@@ -106,9 +107,12 @@ h1 + p {
   }
 }
 
-.page-header__logo img{
+.page-header__logo-image {
+  display: block;
   width: 70px;
   height: 38px;
+  fill: #F9FBFD;
+  transition: fill 0.4s;
 
   @media (max-width: 1023px) {
     width: 38px;
@@ -118,6 +122,12 @@ h1 + p {
   @media (max-width: 767px) {
     width: 42px;
     height: 22px;
+  }
+}
+
+#check-menu:checked ~ .page-header__top-line .page-header__logo-image {
+  @media (max-width: 767px) {
+    fill: #011C40;
   }
 }
 
@@ -137,7 +147,6 @@ h1 + p {
 
 .menu-icon__lines {
   position: relative;
-  margin-bottom: 5px;
   width: 24px;
   height: 2px;
   background-color: #F9FBFD;
@@ -202,7 +211,7 @@ h1 + p {
     left: 100%;
     background: #E5E5E5;
     transition: transform 0.4s ease-in;
-    padding: 20px 15px 0;
+    padding: 45px 15px 37px;
   }
 }
 
@@ -223,10 +232,6 @@ h1 + p {
 
     li {
       margin-bottom: 24px;
-    }
-
-    li:last-child {
-      margin-bottom: 60px;
     }
   }
 }
