@@ -4,11 +4,11 @@
   padding: 50px 15px 46px;
 
   @media (max-width: 1023px) {
-    padding: 50px 45px 46px;
+    padding: 45px;
   }
 
   @media (max-width: 767px) {
-    padding: 40px 15px 36px;
+    padding: 40px 15px 30px;
   }
 }
 
@@ -47,7 +47,9 @@
 }
 
 .footer-navigation__list {
+  // border: $bred;
   display: flex;
+  margin-right: 15px;
 
   @media (max-width: 767px) {
     flex-direction: column;
@@ -93,29 +95,27 @@
 }
 
 .page-footer__socials {
+  // border: $bred;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-left: auto;
 
   @media (max-width: 767px) {
     margin-left: 0;
-    margin-top: 13px;
+    margin-top: 8px;
   }
 }
 
 .page-footer__socials a {
-  margin-left: 33px;
+  margin: 5px 33px 5px 0px;
 
   @media (max-width: 1023px) {
-    margin-left: 23px;
+    margin: 5px 23px 5px 0px;
   }
 
-  @media (max-width: 767px) {
-    margin-left: 23px;
-  }
-
-  &:first-child {
-    margin-left: 0px;
+  &:last-child {
+    margin: 5px 0px;
   }
 }
 
