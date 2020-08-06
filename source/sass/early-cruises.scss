@@ -127,6 +127,15 @@
   width: 100%;
   height: 100%;
   transition: transform 0.4s ease-in;
+}
+
+.cruises__item .item-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(180deg, rgba(1, 28, 64, 0) 50%, #011C40 100%);
 }
 
