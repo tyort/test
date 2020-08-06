@@ -186,12 +186,12 @@
 
 .field-agreement input[type="checkbox"] + label:hover::before {
   /* offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: 0 0 2px 4px rgba(201, 236, 245, 0.473);
+  box-shadow: 0 0 4px 4px rgba(201, 236, 245, 0.582);
 }
 
 .field-agreement input[type="checkbox"] + label:focus::before {
   /* offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: 0 0 2px 4px rgba(201, 236, 245, 0.473);
+  box-shadow: 0 0 4px 4px rgba(201, 236, 245, 0.582);
 }
 
 .page-booking__form > button {
