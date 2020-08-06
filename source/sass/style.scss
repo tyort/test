@@ -29,14 +29,19 @@ a {
   display: none;
 }
 
-button:active {
-  color: #7b6be4;
-  /* offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: inset 2px 2px 3px 2px rgba(45, 39, 124, 0.425), inset -2px -2px 3px 2px rgba(45, 39, 124, 0.425);
-}
-
 button:focus {
   border: 5px double rgba(45, 39, 124, 0.425);
+}
+
+button:hover {
+  color: #7b6be4;
+}
+
+button:active {
+  color: #7b6be4;
+  border: 1px solid rgba(0, 0, 0, 0.658);
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425), inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425);
 }
 
 @import "header.scss";
