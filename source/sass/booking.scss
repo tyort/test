@@ -119,6 +119,11 @@
   font-size: 14px;
 }
 
+.page-booking__form > input:focus {
+  border: 3px solid rgba(60, 255, 0, 0.726);
+  background-color: rgb(210, 252, 197);
+}
+
 .page-booking__form > input.field-email__input {
   margin-bottom: 0;
 }
@@ -180,6 +185,11 @@
 }
 
 .field-agreement input[type="checkbox"] + label:hover::before {
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 0 0 2px 4px rgba(201, 236, 245, 0.473);
+}
+
+.field-agreement input[type="checkbox"] + label:focus::before {
   /* offset-x | offset-y | blur-radius | spread-radius | color */
   box-shadow: 0 0 2px 4px rgba(201, 236, 245, 0.473);
 }
