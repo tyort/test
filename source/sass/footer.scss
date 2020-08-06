@@ -49,6 +49,7 @@
 .footer-navigation__list {
   // border: $bred;
   display: flex;
+  flex-wrap: wrap;
   margin-right: 15px;
 
   @media (max-width: 767px) {
