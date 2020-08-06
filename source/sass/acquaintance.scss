@@ -1,13 +1,13 @@
 .page-acquaintance {
   // border: $bred;
-  padding: 0 15px;
+  padding: 120px 15px;
 
   @media (max-width: 1023px) {
-    padding: 0 45px;
+    padding: 91px 45px 92px;
   }
 
   @media (max-width: 767px) {
-    padding: 0 15px;
+    padding: 57px 15px 65px;
   }
 }
 
@@ -26,11 +26,6 @@
   }
 }
 
-.trip__description {
-  // border: $bred;
-  max-width: 512px;
-}
-
 .trip__description h2 {
   font-weight: 600;
   font-size: 28px;
@@ -46,7 +41,6 @@
 
   @media (max-width: 767px) {
     font-size: 24px;
-    margin-top: 58px;
   }
 }
 
@@ -66,20 +60,26 @@
 }
 
 .page-acquaintance__inner picture {
-  // border: $bred;
-  margin: 120px 0 120px 30px;
   width: 560px;
   height: 301px;
+  flex-shrink: 0;
+  margin-left: 65px;
 
   @media (max-width: 1023px) {
-    margin: 100px 0 100px 30px;
     width: 324px;
     height: 264px;
+    margin-left: 30px;
   }
 
   @media (max-width: 767px) {
-    margin: 32px 0 65px 0;
     width: 290px;
     height: 186px;
+    margin-left: 0;
+    margin-top: 33px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
