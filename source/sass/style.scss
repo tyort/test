@@ -30,7 +30,7 @@ a {
 }
 
 button:focus {
-  border: 5px double rgba(45, 39, 124, 0.425);
+  box-shadow: inset 0px 0px 1px 3px rgba(29, 65, 1, 0.753);
 }
 
 button:hover {
@@ -39,7 +39,6 @@ button:hover {
 
 button:active {
   color: #7b6be4;
-  border: 1px solid rgba(0, 0, 0, 0.658);
   /* offset-x | offset-y | blur-radius | spread-radius | color */
   box-shadow: inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425), inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425);
 }
