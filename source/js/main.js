@@ -1,7 +1,43 @@
+const pageHeader = document.querySelector(`.page-header`);
 const menu = document.querySelector(`#check-menu`);
 const agreement = document.querySelector(`.field-agreement`).querySelector(`input`);
 const btn = document.querySelector(`.page-booking__form`).querySelector(`button`);
 const form = document.querySelector(`.page-booking__form`);
+
+document.addEventListener(`DOMContentLoaded`, () => {
+  pageHeader.classList.add(`page-header--js-active`);
+});
+
+const pageHeaderActiveJS = document.querySelector(`.page-header--js-active`);
+const pageHeaderMenuIcon = pageHeaderActiveJS.querySelector(`.page-header__menu-icon`);
+const headerLogo = pageHeaderActiveJS.querySelector(`.page-header__logo-image`);
+
+
+pageHeaderMenuIcon.addEventListener(`click`, function () {
+  document.addEventListener(`keydown`, onEscKeyDown);
+  setTimeout(() => (headerLogo.src = `img/header-logo-black.svg`), 200);
+
+  if (pageHeader.querySelector(`.menu-icon__lines`).classList.contains(`lines__active`)) {
+    document.removeEventListener(`keydown`, onEscKeyDown);
+
+    setTimeout(() => (headerLogo.src = `img/logo.svg`), 200);
+  }
+
+  pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`);
+  pageHeader.querySelector(`.menu-icon__lines`).classList.toggle(`lines__active`);
+});
+
+function onEscKeyDown(evt) {
+  if (evt.key === `Escape` || evt.key === `Esc`) {
+    pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`, false);
+    pageHeader.querySelector(`.menu-icon__lines`).classList.toggle(`lines__active`, false);
+    document.removeEventListener(`keydown`, onEscKeyDown);
+    setTimeout(() => (headerLogo.src = `img/logo.svg`), 200);
+  }
+}
+
+
+
 
 
 form.addEventListener(`input`, (evt) => {
