@@ -1,30 +1,35 @@
 const pageHeader = document.querySelector(`.page-header`);
-const menu = document.querySelector(`#check-menu`);
+const pageHeaderMenuIcon = pageHeader.querySelector(`.page-header__menu-icon`);
+const headerLogo = pageHeader.querySelector(`.page-header__logo-image`);
 const agreement = document.querySelector(`.field-agreement`).querySelector(`input`);
 const btn = document.querySelector(`.page-booking__form`).querySelector(`button`);
 const form = document.querySelector(`.page-booking__form`);
 
 document.addEventListener(`DOMContentLoaded`, () => {
   pageHeader.classList.add(`page-header--js-active`);
+  pageHeader.querySelector(`.page-header__menu-icon`).classList.toggle(`visually-hidden`, false);
 });
-
-const pageHeaderActiveJS = document.querySelector(`.page-header--js-active`);
-const pageHeaderMenuIcon = pageHeaderActiveJS.querySelector(`.page-header__menu-icon`);
-const headerLogo = pageHeaderActiveJS.querySelector(`.page-header__logo-image`);
-
 
 pageHeaderMenuIcon.addEventListener(`click`, function () {
   document.addEventListener(`keydown`, onEscKeyDown);
-  setTimeout(() => (headerLogo.src = `img/header-logo-black.svg`), 200);
+  setTimeout(() => (headerLogo.style.fill = `#011C40`), 200);
 
-  if (pageHeader.querySelector(`.menu-icon__lines`).classList.contains(`lines__active`)) {
+  if (pageHeaderMenuIcon.querySelector(`.menu-icon__lines`).classList.contains(`lines__active`)) {
     document.removeEventListener(`keydown`, onEscKeyDown);
-
-    setTimeout(() => (headerLogo.src = `img/logo.svg`), 200);
+    setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
   }
 
   pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`);
   pageHeader.querySelector(`.menu-icon__lines`).classList.toggle(`lines__active`);
+});
+
+window.addEventListener(`resize`, () => {
+  if (window.innerWidth >= 728) {
+    pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`, false);
+    pageHeader.querySelector(`.menu-icon__lines`).classList.toggle(`lines__active`, false);
+    document.removeEventListener(`keydown`, onEscKeyDown);
+    setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
+  }
 });
 
 function onEscKeyDown(evt) {
@@ -32,13 +37,9 @@ function onEscKeyDown(evt) {
     pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`, false);
     pageHeader.querySelector(`.menu-icon__lines`).classList.toggle(`lines__active`, false);
     document.removeEventListener(`keydown`, onEscKeyDown);
-    setTimeout(() => (headerLogo.src = `img/logo.svg`), 200);
+    setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
   }
 }
-
-
-
-
 
 form.addEventListener(`input`, (evt) => {
   const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
@@ -77,19 +78,6 @@ agreement.addEventListener(`change`, (evt) => {
   }
   btn.setAttribute(`disabled`, `disabled`);
 });
-
-menu.addEventListener(`change`, () => {
-  if (menu.checked === true) {
-    document.addEventListener(`keydown`, onEscKeyDown);
-  }
-});
-
-function onEscKeyDown(evt) {
-  if (evt.key === `Escape` || evt.key === `Esc`) {
-    menu.checked = false;
-    document.removeEventListener(`keydown`, onEscKeyDown);
-  }
-}
 
 window.addEventListener(`mapWasLoaded`, () => {
   window.ymaps.ready(init);
