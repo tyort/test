@@ -11,6 +11,9 @@
     </div>
 
     <picture>
+      <source media="(min-width: 1024px)" 
+        srcset="img/penguins-desktop_1x.webp 1x, img/penguins-desktop_2x.webp 2x"
+        type="image/webp">
       <source media="(max-width: 1023px) and (min-width: 768px)" 
         srcset="img/penguins-tablet_1x.webp 1x, img/penguins-tablet_2x.webp 2x"
         type="image/webp">
@@ -18,7 +21,7 @@
         srcset="img/penguins-phone_1x.webp 1x, img/penguins-phone_2x.webp 2x"
         type="image/webp">
       <!-- 1х: 560px; 2x: 1120px -->
-      <img src="img/penguins-desktop_1x.webp" srcset="img/penguins-desktop_2x.webp 2x"
+      <img src="img/penguins-desktop_1x.png" srcset="img/penguins-desktop_2x.png 2x"
         width="560" height="301" alt="penguins">
     </picture>
 

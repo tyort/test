@@ -138,7 +138,7 @@
 }
 
 .cruises__item .cruises__item-btn:focus + .item-bg,
-.cruises__item .item-bg:hover {
+.cruises__item:hover .item-bg {
   transform: translateX(100%);
 }
 
