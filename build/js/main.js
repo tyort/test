@@ -17,19 +17,19 @@
     document.addEventListener(`keydown`, onEscKeyDown);
     setTimeout(() => (headerLogo.style.fill = `#011C40`), 200);
 
-    if (pageHeaderMenuIcon.querySelector(`.menu-icon__lines`).classList.contains(`lines__active`)) {
+    if (pageHeaderMenuIcon.querySelector(`.menu-icon-lines`).classList.contains(`lines__active`)) {
       document.removeEventListener(`keydown`, onEscKeyDown);
       setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
     }
 
     pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`);
-    pageHeader.querySelector(`.menu-icon__lines`).classList.toggle(`lines__active`);
+    pageHeader.querySelector(`.menu-icon-lines`).classList.toggle(`lines__active`);
   });
 
   window.addEventListener(`resize`, () => {
     if (window.innerWidth >= 728) {
       pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`, false);
-      pageHeader.querySelector(`.menu-icon__lines`).classList.toggle(`lines__active`, false);
+      pageHeader.querySelector(`.menu-icon-lines`).classList.toggle(`lines__active`, false);
       document.removeEventListener(`keydown`, onEscKeyDown);
       setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
     }
@@ -38,7 +38,7 @@
   function onEscKeyDown(evt) {
     if (evt.key === `Escape` || evt.key === `Esc`) {
       pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`, false);
-      pageHeader.querySelector(`.menu-icon__lines`).classList.toggle(`lines__active`, false);
+      pageHeader.querySelector(`.menu-icon-lines`).classList.toggle(`lines__active`, false);
       document.removeEventListener(`keydown`, onEscKeyDown);
       setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
     }

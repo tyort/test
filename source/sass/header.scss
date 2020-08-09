@@ -124,25 +124,26 @@ h1 + p {
   align-items: center;
   justify-content: center;
   z-index: 19;
+  cursor: pointer;
 
   @media (min-width: 768px) {
     display: none;
   }
 }
 
-.menu-icon__lines {
+.menu-icon-lines {
   position: relative;
   width: 24px;
   height: 2px;
   background-color: #F9FBFD;
 }
 
-.menu-icon__lines.lines__active {
+.menu-icon-lines.lines__active {
   background-color: transparent;
   width: 15px;
 }
 
-.menu-icon__lines::after {
+.menu-icon-lines::after {
   content: "";
   position: absolute;
   display: block;
@@ -153,7 +154,7 @@ h1 + p {
   transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
 }
   
-.menu-icon__lines::before {
+.menu-icon-lines::before {
   content: "";
   position: absolute;
   display: block;
@@ -164,7 +165,7 @@ h1 + p {
   transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
 }
 
-.menu-icon__lines.lines__active::after {
+.menu-icon-lines.lines__active::after {
   width: 18px;
   transform: rotate(-45deg);
   top: 0;
@@ -172,7 +173,7 @@ h1 + p {
   transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
 }
 
-.menu-icon__lines.lines__active::before {
+.menu-icon-lines.lines__active::before {
   width: 18px;
   transform: rotate(45deg);
   top: 0;
