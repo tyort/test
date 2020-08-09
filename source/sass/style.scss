@@ -43,6 +43,12 @@ button:active {
   box-shadow: inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425), inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425);
 }
 
+button:disabled {
+  background: rgba(130, 134, 125, 0.301);
+  color: #353538;
+}
+
+
 @import "header.scss";
 @import "acquaintance.scss";
 @import "advantages.scss";
