@@ -52,7 +52,7 @@
 }
 
 
-.advantages__list {
+.advantages-list {
   // border: $bred;
   display: flex;
 
@@ -61,7 +61,7 @@
   }
 }
 
-.advantages__item {
+.advantages-item {
   // border: $bred;
   display: flex;
   align-items: flex-start;
@@ -114,7 +114,7 @@
   }
 }
 
-.advantages__item .ship__icon {
+.advantages-item .ship-icon {
   margin-bottom: 20px;
 
   @media (max-width: 1023px) {
@@ -137,7 +137,7 @@
   }
 }
 
-.advantages__item .all-inclusive__icon {
+.advantages-item .all-inclusive-icon {
   margin-top: 5px;
   margin-bottom: 25px;
 
@@ -178,7 +178,7 @@
   }
 }
 
-.advantages__item .zodiac__icon {
+.advantages-item .zodiac-icon {
   margin-top: 10px;
   margin-bottom: 30px;
 
