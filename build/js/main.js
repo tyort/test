@@ -49,7 +49,7 @@
     const mailSample = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
     const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
 
-    if (evt.target.className === `field-phone__input`) {
+    if (evt.target.className === `field-phone`) {
       if (!phoneSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши номер правильно`);
 
@@ -57,14 +57,14 @@
         evt.target.setCustomValidity(``);
       }
 
-    } else if (evt.target.className === `field-email__input`) {
+    } else if (evt.target.className === `field-email`) {
       if (!mailSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши email правильно`);
 
       } else {
         evt.target.setCustomValidity(``);
       }
-    } else if (evt.target.className === `field-name__input`) {
+    } else if (evt.target.className === `field-name`) {
       if (!nameSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши ФИО правильно`);
 
