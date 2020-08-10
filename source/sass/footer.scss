@@ -124,21 +124,21 @@
   }
 }
 
-.social-facebook__image {
+.social--facebook .social__image {
   @media (max-width: 1023px) {
     width: 9px;
     height: 16px;
   }
 }
 
-.social-instagram__image {
+.social--instagram .social__image {
   @media (max-width: 1023px) {
     width: 16px;
     height: 16px;
   }
 }
 
-.social-twitter__image {
+.social--twitter .social__image {
   @media (max-width: 1023px) {
     width: 16px;
     height: 13px;
@@ -148,7 +148,7 @@
 .social {
   fill: #F9FBFD;
 
-  &:hover, {
+  &:hover {
     fill: rgb(206, 206, 224);
     filter: drop-shadow(0px 0px 5px rgb(186, 212, 233));
   }
