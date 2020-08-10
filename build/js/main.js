@@ -98,7 +98,7 @@
       hintContent: `Круизы в Антарктику`,
     }, {
       iconLayout: `default#image`,
-      iconImageHref: `img/map-marker.svg`,
+      iconImageHref: `img/icon-map-marker.svg`,
       iconImageSize: [18, 22],
       iconImageOffset: [-9, -22],
     });
