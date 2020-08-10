@@ -121,19 +121,19 @@
     width: 21px;
     height: 26px;
   }
+}
 
-  & ~ p {
+.ship-icon ~ p {
+  white-space: normal;
+
+  @media (max-width: 1023px) {
+    white-space: pre-line;
+    padding-right: 15px;
+  }
+
+  @media (max-width: 767px) {
     white-space: normal;
-
-    @media (max-width: 1023px) {
-      white-space: pre-line;
-      padding-right: 15px;
-    }
-
-    @media (max-width: 767px) {
-      white-space: normal;
-      padding-right: 10px;
-    }
+    padding-right: 10px;
   }
 }
 
@@ -146,35 +146,30 @@
     width: 33px;
     height: 19px;
   }
+}
 
-  & ~ p {
-    white-space: normal;
+.all-inclusive-icon ~ p {
+  white-space: normal;
 
-    @media (max-width: 1023px) {
-      white-space: pre-line;
-    }
+  @media (max-width: 1023px) {
+    white-space: pre-line;
+    padding-right: 5px;
   }
 
-  & ~ h3 + p {
-    padding-right: 80px;
+  @media (max-width: 767px) {
+    padding-right: 15px;
+  }
+}
 
-    @media (max-width: 1023px) {
-      padding-right: 0;
-    }
+.all-inclusive-icon + p {
+  padding-right: 80px;
 
-    @media (max-width: 767px) {
-      padding-right: 40px;
-    }
+  @media (max-width: 1023px) {
+    padding-right: 0;
   }
 
-  & ~ h3 + p + p {
-    @media (max-width: 1023px) {
-      padding-right: 5px;
-    }
-
-    @media (max-width: 767px) {
-      padding-right: 15px;
-    }
+  @media (max-width: 767px) {
+    padding-right: 40px;
   }
 }
 
@@ -188,27 +183,28 @@
     width: 38px;
     height: 13px;
   }
+}
 
-  & ~ p {
-    padding-right: 50px;
-    white-space: pre-line;
 
-    @media (max-width: 1023px) {
-      white-space: normal;
-      padding-right: 8px;
-    }
+.zodiac-icon ~ p {
+  padding-right: 50px;
+  white-space: pre-line;
 
-    @media (max-width: 767px) {
-      white-space: pre-line;
-      padding-right: 10px;
-    }
+  @media (max-width: 1023px) {
+    white-space: normal;
+    padding-right: 8px;
   }
 
-  & ~ p span {
-    white-space: normal;
+  @media (max-width: 767px) {
+    white-space: pre-line;
+    padding-right: 10px;
+  }
+}
 
-    @media (max-width: 1023px) {
-      white-space: nowrap;
-    }
+.zodiac-icon ~ p span {
+  white-space: normal;
+
+  @media (max-width: 1023px) {
+    white-space: nowrap;
   }
 }
