@@ -13,10 +13,12 @@ document.addEventListener(`DOMContentLoaded`, () => {
 pageHeaderMenuIcon.addEventListener(`click`, function () {
   document.addEventListener(`keydown`, onEscKeyDown);
   setTimeout(() => (headerLogo.style.fill = `#011C40`), 200);
+  document.querySelector(`body`).style.overflow = `hidden`;
 
   if (pageHeaderMenuIcon.querySelector(`.menu-icon-lines`).classList.contains(`lines__active`)) {
     document.removeEventListener(`keydown`, onEscKeyDown);
     setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
+    document.querySelector(`body`).style.overflow = `visible`;
   }
 
   pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`);
@@ -28,6 +30,7 @@ window.addEventListener(`resize`, () => {
     pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`, false);
     pageHeader.querySelector(`.menu-icon-lines`).classList.toggle(`lines__active`, false);
     document.removeEventListener(`keydown`, onEscKeyDown);
+    document.querySelector(`body`).style.overflow = `visible`;
     setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
   }
 });
@@ -37,6 +40,7 @@ function onEscKeyDown(evt) {
     pageHeader.querySelector(`.main-navigation`).classList.toggle(`navigation-active`, false);
     pageHeader.querySelector(`.menu-icon-lines`).classList.toggle(`lines__active`, false);
     document.removeEventListener(`keydown`, onEscKeyDown);
+    document.querySelector(`body`).style.overflow = `visible`;
     setTimeout(() => (headerLogo.style.fill = `#F9FBFD`), 200);
   }
 }
