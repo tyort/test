@@ -56,17 +56,17 @@
   overflow: hidden;
   position: relative;
   background: #011C40;
-  padding: 35px 25px;
+  padding: 35px 25px 33px;
 
   @media (max-width: 1023px) {
     width: calc((100% - 60px) / 2);
-    padding: 35px;
+    padding: 35px 35px 33px;
     min-width: 309px;
   }
 
   @media (max-width: 767px) {
     width: 100%;
-    padding: 35px 25px;
+    padding: 35px 25px 33px;
     min-width: 270px;
   }
 }
@@ -82,18 +82,18 @@
 .cruises-item h4 {
   font-weight: 500;
   font-size: 14px;
-  line-height: 175%;
+  line-height: 190%;
 }
 
 .cruises-item p {
   font-weight: normal;
   font-size: 14px;
   line-height: 140%;
-  margin-bottom: 9px;
+  margin-bottom: 7px;
 }
 
 .cruises-item .cruises-item__btn {
-  margin-top: 17px;
+  margin-top: auto;
   height: 40px;
   font-weight: 600;
   font-size: 14px;
