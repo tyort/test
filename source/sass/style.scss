@@ -15,6 +15,7 @@ body {
   // border: $bred;
   color: #011C40;
   font-family: "Montserrat", "Arial", sans-serif;
+  background: rgb(113, 187, 113);
 }
 
 li {
@@ -31,32 +32,12 @@ a {
 
 button {
   cursor: pointer;
-
-  &:focus {
-    box-shadow: inset 0px 0px 1px 3px rgba(29, 65, 1, 0.753);
-  }
-
-  &:hover {
-    color: #7b6be4;
-  }
-
-  &:active {
-    color: #7b6be4;
-    /* offset-x | offset-y | blur-radius | spread-radius | color */
-    box-shadow: inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425), inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425);
-  }
-
-  &:disabled {
-    background: rgba(130, 134, 125, 0.301);
-    color: #353538;
-    cursor: default;
-  }
 }
-
-@import "catalogue.scss";
-
 
 input:invalid:not(:focus):not(:placeholder-shown) {
   background-color: rgba(238, 121, 121, 0.89);
 }
+
+@import "header.scss";
+@import "catalogue.scss";
 

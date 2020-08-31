@@ -1,7 +1,25 @@
-import AbstractComponent from './abstract-component.js';
+import AbstractSmartComponent from './abstract-smart-component.js';
+import {catalogueItems, ProgramsDescriptions} from '../formulas.js';
 
-const createCatalogueTemplate = () =>
-  (
+
+const createItemDescription = (currentProgram) => {
+  return catalogueItems
+      .map((program, index) => {
+        const isElementHidden = program[0] === currentProgram ? `` : `visually-hidden`;
+        return (
+          `<li class="catalogue-details__item-description ${isElementHidden}">
+            <h3>${program[0]}</h3>
+            <p>${ProgramsDescriptions[index]}</p>
+          </li>`
+        );
+      })
+      .join(``);
+};
+
+
+const createCatalogueTemplate = (currentProgram) => {
+
+  return (
     `<div class="page-catalogue">
       <div class="page-catalogue__inner">
         <h2>Программы</h2>
@@ -38,15 +56,43 @@ const createCatalogueTemplate = () =>
               Религиозные
             </li>
           </ul>
-          <div class="catalogue-details__description">
+          <div class="catalogue-details__descriptions">
+            ${createItemDescription(currentProgram)}
           </div>
         </div>
       </div>
     </div>`
   );
+};
 
-export default class Catalogue extends AbstractComponent {
+export default class Catalogue extends AbstractSmartComponent {
+  constructor() {
+    super();
+    this._currentItem = `Общие`;
+    this._subscribeOnEvents();
+  }
+
   getTemplate() {
-    return createCatalogueTemplate();
+    return createCatalogueTemplate(this._currentItem);
+  }
+
+  recoveryListeners() {
+    this._subscribeOnEvents();
+  }
+
+  reRender() {
+    super.reRender();
+  }
+
+  _subscribeOnEvents() {
+    const element = this.getElement();
+    const list = element.querySelector(`.catalogue-details__list`);
+    list.addEventListener(`click`, (evt) => {
+      if (this._currentItem === evt.target.textContent.trim()) {
+        return;
+      }
+      this._currentItem = evt.target.textContent.trim();
+      this.reRender();
+    });
   }
 }
