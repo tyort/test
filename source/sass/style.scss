@@ -17,41 +17,41 @@ body {
   font-family: "Montserrat", "Arial", sans-serif;
 }
 
-// li {
-//   list-style-type: none;
-// }
+li {
+  list-style-type: none;
+}
 
-// a {
-//   text-decoration: none;
-// }
+a {
+  text-decoration: none;
+}
 
-// .visually-hidden {
-//   display: none;
-// }
+.visually-hidden {
+  display: none;
+}
 
-// button {
-//   cursor: pointer;
+button {
+  cursor: pointer;
 
-//   &:focus {
-//     box-shadow: inset 0px 0px 1px 3px rgba(29, 65, 1, 0.753);
-//   }
+  &:focus {
+    box-shadow: inset 0px 0px 1px 3px rgba(29, 65, 1, 0.753);
+  }
 
-//   &:hover {
-//     color: #7b6be4;
-//   }
+  &:hover {
+    color: #7b6be4;
+  }
 
-//   &:active {
-//     color: #7b6be4;
-//     /* offset-x | offset-y | blur-radius | spread-radius | color */
-//     box-shadow: inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425), inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425);
-//   }
+  &:active {
+    color: #7b6be4;
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425), inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425);
+  }
 
-//   &:disabled {
-//     background: rgba(130, 134, 125, 0.301);
-//     color: #353538;
-//     cursor: default;
-//   }
-// }
+  &:disabled {
+    background: rgba(130, 134, 125, 0.301);
+    color: #353538;
+    cursor: default;
+  }
+}
 
 @import "catalogue.scss";
 
