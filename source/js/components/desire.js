@@ -10,16 +10,18 @@ const createDesireTemplate = () =>
           подберём куратора и ответим на все вопросы!
         </p>
         <form>
-          <input
-            type="tel"
-            name="phone"
-            value=""
-            id="block-phone"
-            placeholder="Телефон"
-            autocomplete="off"
-            required
-          />
-          <p class="error__message">Ошибка: неверный формат</p>
+          <div class="input-container">
+            <input
+              type="tel"
+              name="phone"
+              value=""
+              id="block-phone"
+              placeholder="Телефон"
+              autocomplete="off"
+              required
+            />
+            <p class="error__message">Ошибка: неверный формат</p>
+          </div>
           <button class="recall__btn" type="submit">Перезвоните мне</button>
         </form>
       </div>
