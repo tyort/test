@@ -196,43 +196,6 @@
     (
       `<div class="page-header">
       <div class="page-header__inner">
-        <h2>Программы</h2>
-        <div class="catalogue-details">
-          <ul class="catalogue-details__list">
-            <li class="catalogue-details__item">
-              <svg width="28" height="33">
-                <use xlink:href="img/sprite_auto.svg#icon-star"></use>
-              </svg>
-              Общие
-            </li>
-            <li class="catalogue-details__item">
-              <svg width="36" height="35">
-                <use xlink:href="img/sprite_auto.svg#icon-cap"></use>
-              </svg>
-              Академические
-            </li>
-            <li class="catalogue-details__item">
-              <svg width="32" height="25">
-                <use xlink:href="img/sprite_auto.svg#icon-portfolio"></use>
-              </svg>
-              Стажировки
-            </li>
-            <li class="catalogue-details__item">
-              <svg width="32" height="29">
-                <use xlink:href="img/sprite_auto.svg#icon-heart"></use>
-              </svg>
-              Волонтёрство
-            </li>
-            <li class="catalogue-details__item">
-              <svg width="28" height="33">
-                <use xlink:href="img/sprite_auto.svg#icon-candles"></use>
-              </svg>
-              Религиозные
-            </li>
-          </ul>
-          <div class="catalogue-details__description">
-          </div>
-        </div>
       </div>
     </div>`
     );
@@ -243,12 +206,80 @@
     }
   }
 
+  const createDesireTemplate = () =>
+    (
+      `<div class="page-desire">
+      <div class="page-desire__inner">
+        <h2>Хочу поехать!</h2>
+        <p>
+          Оставьте свой телефон и мы свяжемся с вами,
+          подберём куратора и ответим на все вопросы!
+        </p>
+        <form>
+          <input
+            type="tel"
+            name="phone"
+            value=""
+            id="block-phone"
+            placeholder="Телефон"
+            autocomplete="off"
+            required
+          />
+          <p class="error__message">Ошибка: неверный формат</p>
+          <button class="recall__btn" type="submit">Перезвоните мне</button>
+        </form>
+      </div>
+    </div>`
+    );
+
+  class Desire extends AbstractSmartComponent {
+    constructor() {
+      super();
+      this._subscribeOnEvents();
+    }
+
+    getTemplate() {
+      return createDesireTemplate();
+    }
+
+    recoveryListeners() {
+      this._subscribeOnEvents();
+    }
+
+    reRender() {
+      super.reRender();
+    }
+
+    _subscribeOnEvents() {
+      const element = this.getElement();
+      const form = element.querySelector(`form`);
+      const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+
+      form.addEventListener(`submit`, (evt) => {
+        evt.preventDefault();
+        form.reset();
+      });
+
+      form.addEventListener(`input`, (evt) => {
+        if (!phoneSample.test(evt.target.value)) {
+          evt.target.setCustomValidity(`Напиши номер правильно`);
+
+        } else {
+          evt.target.setCustomValidity(``);
+        }
+      });
+    }
+
+  }
+
   const body = document.querySelector(`body`);
   const main = document.querySelector(`main`);
   const catalogue = new Catalogue();
   const header = new Header();
+  const desire = new Desire();
   renderComponent(body, header, `afterBegin`);
   renderComponent(main, catalogue);
+  renderComponent(main, desire);
 
 }());
 
