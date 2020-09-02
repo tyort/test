@@ -87,7 +87,7 @@ a {
   text-decoration: none;
 }
 
-.visually-hidden {
+body div.visually-hidden {
   display: none;
 }
 
@@ -100,4 +100,5 @@ button {
 @import "desire.scss";
 @import "footer.scss";
 @import "feedback.scss";
+@import "call-request.scss";
 

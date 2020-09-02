@@ -196,13 +196,44 @@
     (
       `<div class="page-header">
       <div class="page-header__inner">
+        <div class="page-header__inner-top">
+          <a href="tel:88001112233">8 800 111 22 33</a>
+          <div class="page-header__btn">Заказать звонок</div>
+        </div>
       </div>
     </div>`
     );
 
-  class Header extends AbstractComponent {
+  class Header extends AbstractSmartComponent {
+    constructor() {
+      super();
+      this._callRequest = null;
+      this._subscribeOnEvents();
+    }
+
     getTemplate() {
       return createHeaderTemplate();
+    }
+
+    setCallRequestHandler(handler) {
+      this._callRequest = handler;
+    }
+
+    recoveryListeners() {
+      this._subscribeOnEvents();
+    }
+
+    reRender() {
+      super.reRender();
+    }
+
+    _subscribeOnEvents() {
+      const element = this.getElement();
+
+      element.querySelector(`.page-header__btn`)
+          .addEventListener(`click`, () => {
+            this._callRequest();
+          });
     }
   }
 
@@ -369,16 +400,61 @@
 
   }
 
+  const createHeaderTemplate$1 = (isElementHidden) => {
+    const doesElementHide = isElementHidden ? `visually-hidden` : ``;
+    return (
+      `<div class="page-request-popup ${doesElementHide}">
+      <div class="page-request-popup__inner">
+        
+      </div>
+    </div>`
+    );
+  };
+
+  class Header$1 extends AbstractSmartComponent {
+    constructor() {
+      super();
+      this._callRequest = null;
+      this._isElementHidden = true;
+      this._subscribeOnEvents();
+    }
+
+    getTemplate() {
+      return createHeaderTemplate$1(this._isElementHidden);
+    }
+
+    recoveryListeners() {
+      this._subscribeOnEvents();
+    }
+
+    reRender(properties) {
+      const element = this.getElement();
+      this._isElementHidden = properties.isPopupHidden;
+      element.classList.toggle(`visually-hidden`, false);
+    }
+
+    _subscribeOnEvents() {
+      // const element = this.getElement();
+    }
+  }
+
   const body = document.querySelector(`body`);
   const main = document.querySelector(`main`);
   const catalogue = new Catalogue();
   const header = new Header();
   const desire = new Desire();
   const feedback = new Feedback();
+  const callRequest = new Header$1();
   renderComponent(body, header, `afterBegin`);
   renderComponent(main, catalogue);
   renderComponent(main, desire);
   renderComponent(main, feedback);
+  renderComponent(body, callRequest, `afterBegin`);
+
+  header.setCallRequestHandler(() => {
+    callRequest.reRender({isPopupHidden: false});
+    body.style.overflow = `hidden`;
+  });
 
 }());
 
