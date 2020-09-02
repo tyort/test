@@ -1,10 +1,10 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
 
-const createHeaderTemplate = (isElementHidden) => {
-  const doesElementHide = isElementHidden ? `visually-hidden` : ``;
+const createHeaderTemplate = () => {
   return (
-    `<div class="page-request-popup ${doesElementHide}">
+    `<div class="page-request-popup visually-hidden">
       <div class="page-request-popup__inner">
+        <a href="#" class="page-request-popup__close"></a>
         <h3>Заказать звонок</h2>
         <p>Оставьте ваши контактные данные, мы свяжемся с вами
         в течение рабочего дня и обязательно поможем найти ответ
@@ -49,26 +49,83 @@ const createHeaderTemplate = (isElementHidden) => {
 export default class Header extends AbstractSmartComponent {
   constructor() {
     super();
-    this._callRequest = null;
-    this._isElementHidden = true;
+    this._onEscKeyDown = this._onEscKeyDown.bind(this);
     this._subscribeOnEvents();
   }
 
   getTemplate() {
-    return createHeaderTemplate(this._isElementHidden);
+    return createHeaderTemplate();
   }
 
-  recoveryListeners() {
-    this._subscribeOnEvents();
-  }
-
-  reRender(properties) {
+  showElement() {
     const element = this.getElement();
-    this._isElementHidden = properties.isPopupHidden;
     element.classList.toggle(`visually-hidden`, false);
+    document.addEventListener(`keydown`, this._onEscKeyDown);
+  }
+
+  hideElement() {
+    const element = this.getElement();
+    const form = element.querySelector(`form`);
+    const btn = element.querySelector(`button`);
+
+    element.classList.toggle(`visually-hidden`, true);
+    document.querySelector(`body`).style.overflow = `visible`;
+    document.removeEventListener(`keydown`, this._onEscKeyDown);
+    form.reset();
+    btn.setAttribute(`disabled`, `disabled`);
   }
 
   _subscribeOnEvents() {
-    // const element = this.getElement();
+    const element = this.getElement();
+    const form = element.querySelector(`form`);
+    const agreement = element.querySelector(`.field-agreement`);
+    const btn = element.querySelector(`button`);
+    const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+    const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
+
+    document.addEventListener(`keydown`, this._onEscKeyDown);
+
+    element.querySelector(`.page-request-popup__close`).addEventListener(`click`, () => {
+      this.hideElement();
+    });
+
+    form.addEventListener(`submit`, (evt) => {
+      evt.preventDefault();
+      form.reset();
+      btn.setAttribute(`disabled`, `disabled`);
+    });
+
+    form.addEventListener(`input`, (evt) => {
+      if (evt.target.id === `block-phone`) {
+        if (!phoneSample.test(evt.target.value)) {
+          evt.target.setCustomValidity(`Напиши номер правильно`);
+
+        } else {
+          evt.target.setCustomValidity(``);
+        }
+
+      } else if (evt.target.id === `block-name`) {
+        if (!nameSample.test(evt.target.value)) {
+          evt.target.setCustomValidity(`Напиши ФИО правильно`);
+
+        } else {
+          evt.target.setCustomValidity(``);
+        }
+      }
+    });
+
+    agreement.addEventListener(`change`, (evt) => {
+      if (evt.target.checked) {
+        btn.removeAttribute(`disabled`);
+        return;
+      }
+      btn.setAttribute(`disabled`, `disabled`);
+    });
+  }
+
+  _onEscKeyDown(evt) {
+    if (evt.key === `Escape` || evt.key === `Esc`) {
+      this.hideElement();
+    }
   }
 }

@@ -115,8 +115,15 @@ button {
   text-transform: uppercase;
   border-radius: 80px;
   background: linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%);
+
+  &:disabled {
+    background: #E3E3E3;
+    color: #4b424242;
+    cursor: default;
+  }
 }
 
+@import "cross.scss";
 @import "header.scss";
 @import "catalogue.scss";
 @import "desire.scss";

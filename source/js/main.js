@@ -20,6 +20,11 @@ renderComponent(main, feedback);
 renderComponent(body, callRequest, `afterBegin`);
 
 header.setCallRequestHandler(() => {
-  callRequest.reRender({isPopupHidden: false});
+  callRequest.showElement();
+  body.style.overflow = `hidden`;
+});
+
+header.setCallRequestHandler(() => {
+  callRequest.showElement();
   body.style.overflow = `hidden`;
 });
