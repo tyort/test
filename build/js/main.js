@@ -197,9 +197,15 @@
       `<div class="page-header">
       <div class="page-header__inner">
         <div class="page-header__inner-top">
-          <a href="tel:88001112233">8 800 111 22 33</a>
+          <a href="tel:+97226216581">+ (972) 2 – 621 – 6581</a>
+          <a class="page-header__logo">
+            <img src="img/logo.png" alt="логотип компании" width="137" height="48">
+          </a>
           <div class="page-header__btn">Заказать звонок</div>
         </div>
+
+        <p>Учёба, путешествие и карьера
+        для еврейской молодёжи</p>
       </div>
     </div>`
     );
@@ -405,6 +411,41 @@
     return (
       `<div class="page-request-popup ${doesElementHide}">
       <div class="page-request-popup__inner">
+        <h3>Заказать звонок</h2>
+        <p>Оставьте ваши контактные данные, мы свяжемся с вами
+        в течение рабочего дня и обязательно поможем найти ответ
+        на ваш вопрос!</p>
+
+        <form>
+          <div class="input-container">
+            <input 
+              type="text"
+              name="name"
+              value=""
+              id="block-name"
+              placeholder="ИМЯ"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <input
+              type="tel"
+              name="phone"
+              value=""
+              id="block-phone"
+              placeholder="ТЕЛЕФОН"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <button disabled>Перезвоните мне</button>
+
+          <div class="field-agreement">
+            <input type="checkbox" name="agreement" id="agreement-inform">
+            <label for="agreement-inform" tabindex="0">Нажимая на кнопку, вы даёте согласие на обработку персональных данных</label>
+          </div>
+        </form>
         
       </div>
     </div>`

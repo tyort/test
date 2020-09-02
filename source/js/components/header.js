@@ -5,9 +5,15 @@ const createHeaderTemplate = () =>
     `<div class="page-header">
       <div class="page-header__inner">
         <div class="page-header__inner-top">
-          <a href="tel:88001112233">8 800 111 22 33</a>
+          <a href="tel:+97226216581">+ (972) 2 – 621 – 6581</a>
+          <a class="page-header__logo">
+            <img src="img/logo.png" alt="логотип компании" width="137" height="48">
+          </a>
           <div class="page-header__btn">Заказать звонок</div>
         </div>
+
+        <p>Учёба, путешествие и карьера
+        для еврейской молодёжи</p>
       </div>
     </div>`
   );
