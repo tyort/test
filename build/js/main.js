@@ -196,8 +196,8 @@
     (
       `<div class="page-header">
       <div class="page-header__inner">
-        <div class="page-header__inner-top">
-          <a href="tel:+97226216581">+ (972) 2 – 621 – 6581</a>
+        <div class="page-header__inner-top clearfix">
+          <a class="page-header__phone" href="tel:+97226216581">+ (972) 2 – 621 – 6581</a>
           <a class="page-header__logo">
             <img src="img/logo.png" alt="логотип компании" width="137" height="48">
           </a>
@@ -620,9 +620,9 @@
   const callRequest = new Header$1();
   const successPopup = new Success();
   renderComponent(body, header, `afterBegin`);
-  renderComponent(main, catalogue);
-  renderComponent(main, desire);
-  renderComponent(main, feedback);
+  // renderComponent(main, catalogue);
+  // renderComponent(main, desire);
+  // renderComponent(main, feedback);
   renderComponent(body, callRequest, `afterBegin`);
   renderComponent(body, successPopup, `afterBegin`);
 

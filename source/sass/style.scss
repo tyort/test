@@ -10,6 +10,7 @@ $dual-border: 4px;
   border-radius: 0%;
   border: none;
   outline: none;
+  // border: $bred;
 }
 
 body {
@@ -18,6 +19,7 @@ body {
   font-family: "FiraSans", "Arial", sans-serif;
   font-style: normal;
   background: #FFFFFF;
+  overflow-x: hidden;
 }
 
 .error__message {
