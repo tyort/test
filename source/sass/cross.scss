@@ -8,6 +8,11 @@
   cursor: pointer;
   z-index: 1;
   margin-left: auto;
+
+  @media (max-width: 767px) {
+    top: 15px;
+    right: 16px;
+  }
 }
 
 .popup__close:before {

@@ -24,10 +24,28 @@ renderComponent(body, successPopup, `afterBegin`);
 
 header.setCallRequestHandler(() => {
   callRequest.showElement();
-  body.style.overflow = `hidden`;
+  if (window.innerWidth >= 728) {
+    body.style.overflow = `hidden`;
+  }
 });
 
 callRequest.setSuccessPopupHandler(() => {
   successPopup.showElement();
-  body.style.overflow = `hidden`;
+  if (window.innerWidth >= 728) {
+    body.style.overflow = `hidden`;
+  }
 });
+
+window.addEventListener(`resize`, () => {
+  if (window.innerWidth >= 728) {
+    if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
+      body.style.overflow = `hidden`;
+    }
+
+  } else if (window.innerWidth < 728) {
+    if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
+      body.style.overflow = `visible`;
+    }
+  }
+});
+
