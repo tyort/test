@@ -213,7 +213,7 @@
   class Header extends AbstractSmartComponent {
     constructor() {
       super();
-      this._callRequest = null;
+      this._showCallRequest = null;
       this._subscribeOnEvents();
     }
 
@@ -222,7 +222,7 @@
     }
 
     setCallRequestHandler(handler) {
-      this._callRequest = handler;
+      this._showCallRequest = handler;
     }
 
     recoveryListeners() {
@@ -238,7 +238,7 @@
 
       element.querySelector(`.page-header__btn`)
           .addEventListener(`click`, () => {
-            this._callRequest();
+            this._showCallRequest();
           });
     }
   }
@@ -410,8 +410,8 @@
     return (
       `<div class="page-request-popup visually-hidden">
       <div class="page-request-popup__inner">
-        <a href="#" class="page-request-popup__close"></a>
-        <h3>Заказать звонок</h2>
+        <a href="#" class="popup__close"></a>
+        <h3>Заказать звонок</h3>
         <p>Оставьте ваши контактные данные, мы свяжемся с вами
         в течение рабочего дня и обязательно поможем найти ответ
         на ваш вопрос!</p>
@@ -439,7 +439,7 @@
               required
             />
           </div>
-          <button disabled>Перезвоните мне</button>
+          <button type="submit" disabled>Перезвоните мне</button>
 
           <div class="field-agreement">
             <input type="checkbox" name="agreement" id="agreement-inform">
@@ -455,12 +455,17 @@
   class Header$1 extends AbstractSmartComponent {
     constructor() {
       super();
+      this._showSuccessPopup = null;
       this._onEscKeyDown = this._onEscKeyDown.bind(this);
       this._subscribeOnEvents();
     }
 
     getTemplate() {
       return createHeaderTemplate$1();
+    }
+
+    setSuccessPopupHandler(handler) {
+      this._showSuccessPopup = handler;
     }
 
     showElement() {
@@ -491,14 +496,18 @@
 
       document.addEventListener(`keydown`, this._onEscKeyDown);
 
-      element.querySelector(`.page-request-popup__close`).addEventListener(`click`, () => {
-        this.hideElement();
+      element.addEventListener(`click`, (evt) => {
+        if (evt.target === element || evt.target.className === `popup__close`) {
+          this.hideElement();
+        } else if (evt.target.className === `page-request-popup__inner`) {
+          evt.stopPropagation();
+        }
       });
 
       form.addEventListener(`submit`, (evt) => {
         evt.preventDefault();
-        form.reset();
-        btn.setAttribute(`disabled`, `disabled`);
+        this.hideElement();
+        this._showSuccessPopup();
       });
 
       form.addEventListener(`input`, (evt) => {
@@ -536,6 +545,72 @@
     }
   }
 
+  const createSuccessTemplate = () => {
+    return (
+      `<div class="page-success-popup visually-hidden">
+      <div class="page-success-popup__inner">
+        <a href="#" class="popup__close"></a>
+
+        <img src="./img/icon-ok.png" alt="логотип успеха" width="71" height="64">
+
+        <h3>Заявка принята</h3>
+
+        <p>Мы приняли ваши данные и вскоре мы перезвоним
+          вам для уточнения деталей!</p>
+
+        <button>Перезвоните мне</button>
+        
+      </div>
+    </div>`
+    );
+  };
+
+  class Success extends AbstractSmartComponent {
+    constructor() {
+      super();
+      this._onEscKeyDown = this._onEscKeyDown.bind(this);
+      this._subscribeOnEvents();
+    }
+
+    getTemplate() {
+      return createSuccessTemplate();
+    }
+
+    showElement() {
+      const element = this.getElement();
+      element.classList.toggle(`visually-hidden`, false);
+      document.addEventListener(`keydown`, this._onEscKeyDown);
+    }
+
+    hideElement() {
+      const element = this.getElement();
+
+      element.classList.toggle(`visually-hidden`, true);
+      document.querySelector(`body`).style.overflow = `visible`;
+      document.removeEventListener(`keydown`, this._onEscKeyDown);
+    }
+
+    _subscribeOnEvents() {
+      const element = this.getElement();
+
+      document.addEventListener(`keydown`, this._onEscKeyDown);
+
+      element.addEventListener(`click`, (evt) => {
+        if (evt.target === element || evt.target.className === `popup__close` || evt.target.tagName === `button`) {
+          this.hideElement();
+        } else if (evt.target.className === `page-success-popup__inner`) {
+          evt.stopPropagation();
+        }
+      });
+    }
+
+    _onEscKeyDown(evt) {
+      if (evt.key === `Escape` || evt.key === `Esc`) {
+        this.hideElement();
+      }
+    }
+  }
+
   const body = document.querySelector(`body`);
   const main = document.querySelector(`main`);
   const catalogue = new Catalogue();
@@ -543,19 +618,21 @@
   const desire = new Desire();
   const feedback = new Feedback();
   const callRequest = new Header$1();
+  const successPopup = new Success();
   renderComponent(body, header, `afterBegin`);
   renderComponent(main, catalogue);
   renderComponent(main, desire);
   renderComponent(main, feedback);
   renderComponent(body, callRequest, `afterBegin`);
+  renderComponent(body, successPopup, `afterBegin`);
 
   header.setCallRequestHandler(() => {
     callRequest.showElement();
     body.style.overflow = `hidden`;
   });
 
-  header.setCallRequestHandler(() => {
-    callRequest.showElement();
+  callRequest.setSuccessPopupHandler(() => {
+    successPopup.showElement();
     body.style.overflow = `hidden`;
   });
 

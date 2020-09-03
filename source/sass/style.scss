@@ -98,7 +98,7 @@ li {
 
 a {
   text-decoration: none;
-  cursor: pointer;
+  cursor: url(../img/Pointer.svg), pointer;
 }
 
 body .visually-hidden {
@@ -106,7 +106,7 @@ body .visually-hidden {
 }
 
 button {
-  cursor: pointer;
+  cursor: url(../img/Pointer.svg), pointer;
   height: 59px;
   font-family: inherit;
   font-weight: 500;
@@ -121,6 +121,15 @@ button {
     color: #4b424242;
     cursor: default;
   }
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(109.15deg, #FFC341 -50.3%, #FFD701 63.1%);
+  }
+
+  &:active {
+    background: radial-gradient(150% 119.49% at 50% 50.85%, rgba(0, 0, 0, 0) 30.67%, rgba(3, 3, 3, 0.24) 100%), linear-gradient(109.15deg, #FFC341 -50.3%, #FFD701 63.1%);
+  }
 }
 
 @import "cross.scss";
@@ -130,4 +139,5 @@ button {
 @import "footer.scss";
 @import "feedback.scss";
 @import "call-request.scss";
+@import "success-popup.scss";
 

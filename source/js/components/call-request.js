@@ -4,8 +4,8 @@ const createHeaderTemplate = () => {
   return (
     `<div class="page-request-popup visually-hidden">
       <div class="page-request-popup__inner">
-        <a href="#" class="page-request-popup__close"></a>
-        <h3>Заказать звонок</h2>
+        <a href="#" class="popup__close"></a>
+        <h3>Заказать звонок</h3>
         <p>Оставьте ваши контактные данные, мы свяжемся с вами
         в течение рабочего дня и обязательно поможем найти ответ
         на ваш вопрос!</p>
@@ -33,7 +33,7 @@ const createHeaderTemplate = () => {
               required
             />
           </div>
-          <button disabled>Перезвоните мне</button>
+          <button type="submit" disabled>Перезвоните мне</button>
 
           <div class="field-agreement">
             <input type="checkbox" name="agreement" id="agreement-inform">
@@ -49,12 +49,17 @@ const createHeaderTemplate = () => {
 export default class Header extends AbstractSmartComponent {
   constructor() {
     super();
+    this._showSuccessPopup = null;
     this._onEscKeyDown = this._onEscKeyDown.bind(this);
     this._subscribeOnEvents();
   }
 
   getTemplate() {
     return createHeaderTemplate();
+  }
+
+  setSuccessPopupHandler(handler) {
+    this._showSuccessPopup = handler;
   }
 
   showElement() {
@@ -85,14 +90,18 @@ export default class Header extends AbstractSmartComponent {
 
     document.addEventListener(`keydown`, this._onEscKeyDown);
 
-    element.querySelector(`.page-request-popup__close`).addEventListener(`click`, () => {
-      this.hideElement();
+    element.addEventListener(`click`, (evt) => {
+      if (evt.target === element || evt.target.className === `popup__close`) {
+        this.hideElement();
+      } else if (evt.target.className === `page-request-popup__inner`) {
+        evt.stopPropagation();
+      }
     });
 
     form.addEventListener(`submit`, (evt) => {
       evt.preventDefault();
-      form.reset();
-      btn.setAttribute(`disabled`, `disabled`);
+      this.hideElement();
+      this._showSuccessPopup();
     });
 
     form.addEventListener(`input`, (evt) => {

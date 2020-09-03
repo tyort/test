@@ -7,8 +7,21 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(83, 106, 109, 0.719);
+  background-color: #ebebebe7;
   z-index: 19;
+}
+
+.page-request-popup::before {
+  content: "";
+  position: absolute;
+  width: 456px;
+  height: 497px;
+  left: calc((100% - 435px) / 2);
+  top: 70px;
+  background: #484848;
+  filter: blur(24px);
+  border-radius: 8px;
+  z-index: 29;
 }
 
 .page-request-popup__inner {
@@ -19,10 +32,7 @@
   border-radius: 8px;
   padding: 64px 72px 42px 48px;
   position: relative;
-}
-
-.page-request-popup__close {
-  margin-left: auto;
+  z-index: 39;
 }
 
 .page-request-popup__inner > p {

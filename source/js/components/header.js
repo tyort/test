@@ -21,7 +21,7 @@ const createHeaderTemplate = () =>
 export default class Header extends AbstractSmartComponent {
   constructor() {
     super();
-    this._callRequest = null;
+    this._showCallRequest = null;
     this._subscribeOnEvents();
   }
 
@@ -30,7 +30,7 @@ export default class Header extends AbstractSmartComponent {
   }
 
   setCallRequestHandler(handler) {
-    this._callRequest = handler;
+    this._showCallRequest = handler;
   }
 
   recoveryListeners() {
@@ -46,7 +46,7 @@ export default class Header extends AbstractSmartComponent {
 
     element.querySelector(`.page-header__btn`)
         .addEventListener(`click`, () => {
-          this._callRequest();
+          this._showCallRequest();
         });
   }
 }

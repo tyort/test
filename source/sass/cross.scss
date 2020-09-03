@@ -1,4 +1,4 @@
-.page-request-popup__close {
+.popup__close {
   // border: $bred;
   width: 35px;
   height: 35px;
@@ -7,9 +7,10 @@
   right: 24px;
   cursor: pointer;
   z-index: 1;
+  margin-left: auto;
 }
 
-.page-request-popup__close:before {
+.popup__close:before {
   content: '';
   // border: $bred;
   background: url(../img/cross.svg) center no-repeat;
@@ -23,7 +24,7 @@
   transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
 }
 
-.page-request-popup__close:after {
+.popup__close:after {
   content: '';
   position: absolute;
   top: 0;
@@ -37,10 +38,10 @@
   transform: scale(0.01);
 }
 
-.page-request-popup__close:hover:after {
+.popup__close:hover:after {
   transform: scale(1);
 }
   
-.page-request-popup__close:hover:before {
+.popup__close:hover:before {
   transform: scale(0.7) rotate(180deg);
 }
