@@ -4,6 +4,10 @@
   background: url(../img/bg-header.png) center no-repeat;
   background-size: cover;
   padding: 0 16px;
+
+  @media (max-width: 767px) {
+    background: url(../img/bg-header-mobile.png) center 100% no-repeat;
+  }
 }
 
 .page-header__inner {
@@ -67,6 +71,7 @@
   letter-spacing: 1px;
 
   @media (max-width: 767px) {
+    clear: right;
     float: right;
     font-size: 11.1px;
     margin-top: 13px;
