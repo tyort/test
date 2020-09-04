@@ -104,6 +104,8 @@ export default class Catalogue extends AbstractSmartComponent {
         return;
       }
 
+      console.log(window.innerWidth);
+
       this._currentItem = evt.target.textContent.trim();
       this.reRender();
     });
