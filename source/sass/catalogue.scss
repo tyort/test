@@ -34,6 +34,11 @@
   color: #484848;
   text-transform: none;
   clip-path: polygon(0% 0%, 87% 0%, 100% 50%, 87% 100%, 0% 100%);
+  background: #FFFFFF;
+}
+
+.catalogue-details__item.btn__isChecked {
+  background: linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%);
 }
 
 .catalogue-details__descriptions {

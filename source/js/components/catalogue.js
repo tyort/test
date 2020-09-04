@@ -24,13 +24,13 @@ const createItemsDescriptions = (currentProgram) => {
 const createItemsButtons = (currentProgram) => {
   return catalogueItems
       .map((program) => {
-        const isElementColorful = program[0] === currentProgram
-          ? `linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%)`
-          : `#FFFFFF`;
+        const isButtonChecked = program[0] === currentProgram
+          ? `btn__isChecked`
+          : ``;
 
         return (
           `<li>
-            <button class="catalogue-details__item ${program[1]}" style="background: ${isElementColorful}" tabindex="0">
+            <button class="catalogue-details__item ${program[1]} ${isButtonChecked}">
               ${program[0]}
             </button>
           </li>`
