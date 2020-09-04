@@ -16,7 +16,7 @@ const feedback = new Feedback();
 const callRequest = new CallRequest();
 const successPopup = new SuccessPopup();
 renderComponent(body, header, `afterBegin`);
-// renderComponent(main, catalogue);
+renderComponent(main, catalogue);
 // renderComponent(main, desire);
 // renderComponent(main, feedback);
 renderComponent(body, callRequest, `afterBegin`);
