@@ -558,7 +558,7 @@
         <p>Мы приняли ваши данные и вскоре мы перезвоним
           вам для уточнения деталей!</p>
 
-        <button>Перезвоните мне</button>
+        <button>Понятно</button>
         
       </div>
     </div>`
@@ -596,8 +596,9 @@
       document.addEventListener(`keydown`, this._onEscKeyDown);
 
       element.addEventListener(`click`, (evt) => {
-        if (evt.target === element || evt.target.className === `popup__close` || evt.target.tagName === `button`) {
+        if (evt.target === element || evt.target.className === `popup__close` || evt.target.tagName === `BUTTON`) {
           this.hideElement();
+
         } else if (evt.target.className === `page-success-popup__inner`) {
           evt.stopPropagation();
         }
