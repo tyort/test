@@ -66,11 +66,25 @@ export default class Catalogue extends AbstractSmartComponent {
   constructor() {
     super();
     this._currentItem = `Академические`;
+    this._getInitSlider();
     this._subscribeOnEvents();
   }
 
   getTemplate() {
     return createCatalogueTemplate(this._currentItem);
+  }
+
+  _getInitSlider() {
+    window.$(document).ready(() => {
+      window.$(`.catalogue-details__list`).slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: true,
+        variableWidth: true
+      });
+    });
   }
 
   recoveryListeners() {
@@ -92,6 +106,10 @@ export default class Catalogue extends AbstractSmartComponent {
 
       this._currentItem = evt.target.textContent.trim();
       this.reRender();
+    });
+
+    list.addEventListener(`click`, () => {
+      this._getInitSlider();
     });
   }
 }

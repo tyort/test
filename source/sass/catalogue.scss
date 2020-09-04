@@ -19,6 +19,10 @@
   margin-top: 77px;
 }
 
+.catalogue-details__list {
+  display: flex;
+}
+
 .catalogue-details__item {
   cursor: pointer;
   height: 68px;
@@ -37,13 +41,61 @@
   background: #FFFFFF;
 }
 
-.item-star::before {
+.catalogue-details__item::before {
   content: '';
-  background: url(../img/star.png) center no-repeat;
   background-size: contain;
   width: 36px;
-  height: 33px;
   margin-right: 16px;
+}
+
+.item-star::before {
+  background: url(../img/star.png) center no-repeat;
+  height: 33px;
+}
+
+.btn__isChecked.item-star::before {
+  background: url(../img/star-white.png) center no-repeat;
+  height: 33px;
+}
+
+.item-cap::before {
+  background: url(../img/cap.png) center no-repeat;
+  height: 35px;
+}
+
+.btn__isChecked.item-cap::before {
+  background: url(../img/cap-white.png) center no-repeat;
+  height: 35px;
+}
+
+.item-portfolio::before {
+  background: url(../img/portfolio.png) center no-repeat;
+  height: 25px;
+}
+
+.btn__isChecked.item-portfolio::before {
+  background: url(../img/portfolio-white.png) center no-repeat;
+  height: 25px;
+}
+
+.item-heart::before {
+  background: url(../img/heart-hand.png) center no-repeat;
+  height: 29px;
+}
+
+.btn__isChecked.item-heart::before {
+  background: url(../img/heart-hand-white.png) center no-repeat;
+  height: 29px;
+}
+
+.item-candles::before {
+  background: url(../img/candles.png) center no-repeat;
+  height: 25px;
+}
+
+.btn__isChecked.item-candles::before {
+  background: url(../img/candles-white.png) center no-repeat;
+  height: 25px;
 }
 
 .catalogue-details__item.btn__isChecked {
