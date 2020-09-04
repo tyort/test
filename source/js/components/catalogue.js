@@ -24,11 +24,15 @@ const createItemsDescriptions = (currentProgram) => {
 const createItemsButtons = (currentProgram) => {
   return catalogueItems
       .map((program) => {
-        const isElementColorful = program[0] === currentProgram ? `linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%)` : `#FFFFFF`;
+        const isElementColorful = program[0] === currentProgram
+          ? `linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%)`
+          : `#FFFFFF`;
 
         return (
-          `<li class="catalogue-details__item item-common" style="background-color: ${isElementColorful}">
-            ${program[0]}
+          `<li>
+            <button class="catalogue-details__item ${program[1]}" style="background: ${isElementColorful}" tabindex="0">
+              ${program[0]}
+            </button>
           </li>`
         );
       })
@@ -61,7 +65,7 @@ const createCatalogueTemplate = (currentProgram) => {
 export default class Catalogue extends AbstractSmartComponent {
   constructor() {
     super();
-    this._currentItem = `Общие`;
+    this._currentItem = `Академические`;
     this._subscribeOnEvents();
   }
 
@@ -85,14 +89,6 @@ export default class Catalogue extends AbstractSmartComponent {
       if (this._currentItem === evt.target.textContent.trim() || !evt.target.classList.contains(`catalogue-details__item`)) {
         return;
       }
-
-      const checkedElement = list.querySelector(`.${evt.target.classList[1]}`);
-
-      [...list.children].forEach((program) => {
-        program.style.background = `white`;
-      });
-
-      checkedElement.style.background = `linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%)`;
 
       this._currentItem = evt.target.textContent.trim();
       this.reRender();

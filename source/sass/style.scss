@@ -128,8 +128,8 @@ button {
     cursor: default;
   }
 
-  &:hover,
-  &:focus {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     background: linear-gradient(109.15deg, #FFC341 -50.3%, #FFD701 63.1%);
   }
 

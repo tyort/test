@@ -4,11 +4,11 @@ export const MIN_CREDIT_PERIOD = 5;
 export const CAPITAL_OF_MOTHER = 470000;
 
 export const catalogueItems = [
-  [`Общие`, `icon-star`],
-  [`Академические`, `icon-cap`],
-  [`Стажировки`, `icon-portfolio`],
-  [`Волонтёрство`, `icon-heart`],
-  [`Религиозные`, `icon-candles`],
+  [`Общие`, `item-star`],
+  [`Академические`, `item-cap`],
+  [`Стажировки`, `item-portfolio`],
+  [`Волонтёрство`, `item-heart`],
+  [`Религиозные`, `item-candles`],
 ];
 
 export const ProgramsDescriptions = [
