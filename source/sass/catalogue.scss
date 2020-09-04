@@ -25,7 +25,7 @@
   width: 228px;
   display: flex;
   align-items: center;
-  padding-left: 73px;
+  padding-left: 20px;
   margin-bottom: 5px;
   font-weight: normal;
   font-size: 15px;
@@ -37,7 +37,20 @@
   background: #FFFFFF;
 }
 
+.item-star::before {
+  content: '';
+  background: url(../img/star.png) center no-repeat;
+  background-size: contain;
+  width: 36px;
+  height: 33px;
+  margin-right: 16px;
+}
+
 .catalogue-details__item.btn__isChecked {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
   background: linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%);
 }
 
