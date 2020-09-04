@@ -17,10 +17,12 @@
 .catalogue-details {
   display: flex;
   margin-top: 77px;
+  width: 100%;
 }
 
 .catalogue-details__list {
   display: flex;
+  flex-direction: column;
 }
 
 .catalogue-details__item {

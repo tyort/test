@@ -66,7 +66,7 @@ export default class Catalogue extends AbstractSmartComponent {
   constructor() {
     super();
     this._currentItem = `Академические`;
-    this._getInitSlider();
+    // this._getInitSlider();
     this._subscribeOnEvents();
   }
 
@@ -106,10 +106,6 @@ export default class Catalogue extends AbstractSmartComponent {
 
       this._currentItem = evt.target.textContent.trim();
       this.reRender();
-    });
-
-    list.addEventListener(`click`, () => {
-      this._getInitSlider();
     });
   }
 }
