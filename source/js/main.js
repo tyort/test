@@ -24,25 +24,25 @@ renderComponent(body, successPopup, `afterBegin`);
 
 header.setCallRequestHandler(() => {
   callRequest.showElement();
-  if (window.innerWidth >= 728) {
+  if (window.innerWidth >= 768) {
     body.style.overflow = `hidden`;
   }
 });
 
 callRequest.setSuccessPopupHandler(() => {
   successPopup.showElement();
-  if (window.innerWidth >= 728) {
+  if (window.innerWidth >= 768) {
     body.style.overflow = `hidden`;
   }
 });
 
 window.addEventListener(`resize`, () => {
-  if (window.innerWidth >= 728) {
+  if (window.innerWidth >= 768) {
     if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
       body.style.overflow = `hidden`;
     }
 
-  } else if (window.innerWidth < 728) {
+  } else if (window.innerWidth < 768) {
     if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
       body.style.overflow = `visible`;
     }

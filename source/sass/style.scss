@@ -83,6 +83,11 @@ h2 {
   color: #1FC0FC;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+
+  @media (max-width: 767px) {
+    font-size: 32px;
+    line-height: 39px;
+  }
 }
 
 h3 {

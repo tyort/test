@@ -142,8 +142,6 @@
       <div class="page-catalogue__inner">
         <h2>Программы</h2>
 
-        <div class="block"></div>
-
         <div class="catalogue-details">
           <ul class="catalogue-details__list">
             ${createItemsButtons(currentProgram)}
@@ -161,7 +159,8 @@
     constructor() {
       super();
       this._currentItem = `Академические`;
-      // this._getInitSlider();
+      this._getInitSlider();
+      this._onButtonClick = this._onButtonClick.bind(this);
       this._subscribeOnEvents();
     }
 
@@ -170,16 +169,19 @@
     }
 
     _getInitSlider() {
-      window.$(document).ready(() => {
-        window.$(`.catalogue-details__list`).slick({
-          dots: true,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          centerMode: true,
-          variableWidth: true
+      if (window.innerWidth < 768) {
+        window.$(document).ready(() => {
+          window.$(`.catalogue-details__list`).slick({
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            centerMode: true,
+            variableWidth: false,
+            swipe: true,
+          });
         });
-      });
+      }
     }
 
     recoveryListeners() {
@@ -194,16 +196,30 @@
       const element = this.getElement();
       const list = element.querySelector(`.catalogue-details__list`);
 
-      list.addEventListener(`click`, (evt) => {
-        if (this._currentItem === evt.target.textContent.trim() || !evt.target.classList.contains(`catalogue-details__item`)) {
-          return;
+      list.addEventListener(`click`, this._onButtonClick);
+
+      window.addEventListener(`resize`, () => {
+        if (window.innerWidth >= 768) {
+          list.addEventListener(`click`, this.__onButtonClick);
+
+        } else {
+          list.removeEventListener(`click`, this.__onButtonClick);
         }
-
-        console.log(window.innerWidth);
-
-        this._currentItem = evt.target.textContent.trim();
-        this.reRender();
       });
+    }
+
+
+    _onButtonClick(evt) {
+      if (this._currentItem === evt.target.textContent.trim() || !evt.target.classList.contains(`catalogue-details__item`)) {
+        return;
+      }
+
+      if (window.innerWidth < 768) {
+        return;
+      }
+
+      this._currentItem = evt.target.textContent.trim();
+      this.reRender();
     }
   }
 
@@ -644,25 +660,25 @@
 
   header.setCallRequestHandler(() => {
     callRequest.showElement();
-    if (window.innerWidth >= 728) {
+    if (window.innerWidth >= 768) {
       body.style.overflow = `hidden`;
     }
   });
 
   callRequest.setSuccessPopupHandler(() => {
     successPopup.showElement();
-    if (window.innerWidth >= 728) {
+    if (window.innerWidth >= 768) {
       body.style.overflow = `hidden`;
     }
   });
 
   window.addEventListener(`resize`, () => {
-    if (window.innerWidth >= 728) {
+    if (window.innerWidth >= 768) {
       if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
         body.style.overflow = `hidden`;
       }
 
-    } else if (window.innerWidth < 728) {
+    } else if (window.innerWidth < 768) {
       if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
         body.style.overflow = `visible`;
       }
