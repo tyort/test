@@ -134,6 +134,20 @@
         .join(``);
   };
 
+  const createItemsButtonsMobile = () => {
+    return catalogueItems
+        .map((program) => {
+          return (
+            `<li>
+            <button class="catalogue-details__item ${program[1]}">
+              ${program[0]}
+            </button>
+          </li>`
+          );
+        })
+        .join(``);
+  };
+
 
   const createCatalogueTemplate = (currentProgram) => {
 
@@ -143,8 +157,11 @@
         <h2>Программы</h2>
 
         <div class="catalogue-details">
-          <ul class="catalogue-details__list">
+          <ul class="catalogue-details__list ${window.innerWidth >= 768 ? `` : `visually-hidden`}">
             ${createItemsButtons(currentProgram)}
+          </ul>
+          <ul class="catalogue-details__list catalogue-details__list--mobile ${window.innerWidth >= 768 ? `visually-hidden` : ``}">
+            ${createItemsButtonsMobile()}
           </ul>
           <ul class="catalogue-details__descriptions">
             ${createItemsDescriptions(currentProgram)}
@@ -158,7 +175,7 @@
   class Catalogue extends AbstractSmartComponent {
     constructor() {
       super();
-      this._currentItem = `Академические`;
+      this._currentItem = `Общие`;
       this._getInitSlider();
       this._onButtonClick = this._onButtonClick.bind(this);
       this._subscribeOnEvents();
@@ -169,19 +186,38 @@
     }
 
     _getInitSlider() {
-      if (window.innerWidth < 768) {
-        window.$(document).ready(() => {
-          window.$(`.catalogue-details__list`).slick({
-            dots: false,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            centerMode: true,
-            variableWidth: false,
-            swipe: true,
-          });
+      window.$(document).ready(() => {
+        window.$(`.catalogue-details__list--mobile`).slick({
+          dots: false,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          centerMode: true,
+          variableWidth: false,
+          swipe: true,
+          focusOnSelect: true,
+          centerPadding: `20%`,
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                arrows: false,
+              }
+            }
+          ]
         });
-      }
+
+        window.$(`.catalogue-details__list--mobile`).on(`afterChange`, (event, slick, _currentSlide) => {
+          const activeButton = [...slick.$slides].find((it) => {
+            return it.classList.contains(`slick-active`);
+          });
+
+          activeButton.querySelector(`button`).textContent.trim();
+          this._currentItem = activeButton.querySelector(`button`).textContent.trim();
+
+          this.reRender();
+        });
+      });
     }
 
     recoveryListeners() {
@@ -189,21 +225,30 @@
     }
 
     reRender() {
-      super.reRender();
+      const element = this.getElement();
+
+      const list = element.querySelector(`.catalogue-details__list`);
+      list.innerHTML = createItemsButtons(this._currentItem);
+
+      const actualDescriptions = element.querySelector(`.catalogue-details__descriptions`);
+      actualDescriptions.innerHTML = createItemsDescriptions(this._currentItem);
     }
 
     _subscribeOnEvents() {
       const element = this.getElement();
       const list = element.querySelector(`.catalogue-details__list`);
+      const listMobile = element.querySelector(`.catalogue-details__list--mobile`);
 
       list.addEventListener(`click`, this._onButtonClick);
 
       window.addEventListener(`resize`, () => {
         if (window.innerWidth >= 768) {
-          list.addEventListener(`click`, this.__onButtonClick);
+          list.classList.toggle(`visually-hidden`, false);
+          listMobile.classList.toggle(`visually-hidden`, true);
 
         } else {
-          list.removeEventListener(`click`, this.__onButtonClick);
+          list.classList.toggle(`visually-hidden`, true);
+          listMobile.classList.toggle(`visually-hidden`, false);
         }
       });
     }
@@ -211,10 +256,6 @@
 
     _onButtonClick(evt) {
       if (this._currentItem === evt.target.textContent.trim() || !evt.target.classList.contains(`catalogue-details__item`)) {
-        return;
-      }
-
-      if (window.innerWidth < 768) {
         return;
       }
 
