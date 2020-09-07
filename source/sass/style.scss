@@ -54,6 +54,7 @@ input {
   font-size: 17px;
   line-height: 70%;
   font-weight: 500;
+  color: #4848488c;
 
   &:invalid:not(:focus):not(:placeholder-shown) {
     border: 2px solid #FF0000;
