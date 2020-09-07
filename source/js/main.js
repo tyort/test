@@ -9,6 +9,7 @@ import {renderComponent} from './formulas.js';
 
 const body = document.querySelector(`body`);
 const main = document.querySelector(`main`);
+const about = body.querySelector(`.page-about`);
 const catalogue = new Catalogue();
 const header = new Header();
 const desire = new Desire();
@@ -16,8 +17,8 @@ const feedback = new Feedback();
 const callRequest = new CallRequest();
 const successPopup = new SuccessPopup();
 renderComponent(body, header, `afterBegin`);
-renderComponent(main, catalogue);
-renderComponent(main, desire);
+renderComponent(about, desire, `afterEnd`);
+renderComponent(about, catalogue, `afterEnd`);
 // renderComponent(main, feedback);
 renderComponent(body, callRequest, `afterBegin`);
 renderComponent(body, successPopup, `afterBegin`);
