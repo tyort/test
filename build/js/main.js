@@ -689,7 +689,7 @@
 
   window.$(document).ready(() => {
     window.$(`.live-pictures--mobile`).slick({
-      dots: false,
+      dots: true,
       infinite: true,
       speed: 300,
       slidesToShow: 1,
@@ -697,7 +697,8 @@
       variableWidth: false,
       swipe: true,
       focusOnSelect: true,
-      centerPadding: `20%`,
+      centerPadding: `0%`,
+      adaptiveHeight: true,
       responsive: [
         {
           breakpoint: 768,
