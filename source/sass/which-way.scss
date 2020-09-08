@@ -1,6 +1,6 @@
 .page-which-way {
   background: url(../img/couple_1x.png) top left 1.5% no-repeat;
-  background-size: 43%;
+  background-size: 42.5%;
   width: 100%;
   margin-top: 150px;
   display: flex;
@@ -23,6 +23,11 @@
   max-width: 536px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 220px;
+
+  @media (max-width: 767px) {
+    padding-bottom: 80px;
+  }
 }
 
 .page-which-way__inner h2 {
