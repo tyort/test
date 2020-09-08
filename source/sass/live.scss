@@ -43,7 +43,6 @@
 
 .live-pictures picture::before {
   // border: $bred;
-  content: 'Изучение иврита Изучение иврита Изучение иврита Изучение иврита Изучение иврита ';
   position: absolute;
   left: 0;
   bottom: 0;
@@ -63,23 +62,50 @@
   // border: $bred;
   overflow: visible;
   margin-right: 15px;
-}
 
-.live-picture-tours img {
-  // border: $bred;
-  object-position: center bottom;
-  object-fit: cover;
-  margin-top: -70px;
+  &::before {
+    content: 'Экскурсии по Израилю и знакомство с его историей';
+    width: 80%;
+  }
+
+  img {
+    // border: $bred;
+    object-position: center bottom;
+    object-fit: cover;
+    margin-top: -70px;
+  }
 }
 
 .live-picture-hebrew {
   margin-right: 25px;
+
+  &::before {
+    content: 'Изучение иврита';
+    width: 80%;
+  }
 }
 
 .live-picture-education {
   margin-bottom: 25px;
+
+  &::before {
+    content: 'Обучение современным навыкам и профессиям';
+    width: 80%;
+  }
 }
 
 .live-picture-youth {
   margin-right: 25px;
+
+  &::before {
+    content: 'Совместные творческие проекты с израильской молодёжью';
+    width: 90%;
+  }
+}
+
+.live-picture-improvements {
+  &::before {
+    content: 'Развитие лидерства';
+    width: 80%;
+  }
 }

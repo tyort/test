@@ -25,3 +25,10 @@
        url("../fonts/Montserrat-Bold.woff") format("woff");
   font-weight: bold;
 }
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/Raleway-ExtraBold.woff2") format("woff2"),
+       url("../fonts/Raleway-ExtraBold.woff") format("woff");
+  font-weight: 800;
+}

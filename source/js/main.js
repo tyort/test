@@ -5,7 +5,7 @@ import Feedback from "./components/feedback";
 import CallRequest from "./components/call-request";
 import SuccessPopup from "./components/success-popup";
 import {renderComponent} from './formulas.js';
-
+import './components/live';
 
 const body = document.querySelector(`body`);
 const main = document.querySelector(`main`);
@@ -36,6 +36,9 @@ callRequest.setSuccessPopupHandler(() => {
     body.style.overflow = `hidden`;
   }
 });
+
+
+
 
 window.addEventListener(`resize`, () => {
   if (window.innerWidth >= 768) {
