@@ -31,14 +31,30 @@
 }
 
 .live-pictures {
-  // border: $bred;
+  border: $bred;
   margin: 0 auto;
+  width: 100%; // без этого слайдер глючит
 }
 
 .live-pictures picture {
-  // border: $bred;
+  border: $bred;
   float: left;
   position: relative;
+
+  @media (max-width: 767px) {
+    width: 200px;
+    height: 300px;
+    float: none;
+  }
+
+  img {
+    @media (max-width: 767px) {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      margin: 0;
+    }
+  }
 }
 
 .live-pictures picture::before {
