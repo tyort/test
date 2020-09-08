@@ -24,14 +24,14 @@
 }
 
 .page-live__inner p {
-  border: $bred;
+  // border: $bred;
   font-weight: normal;
   font-size: 17px;
   line-height: 29px;
   text-align: right;
   color: #484848;
   opacity: 0.87;
-  max-width: 710px;
+  max-width: 720px;
   margin-bottom: 50px;
 
   @media (max-width: 767px) {
