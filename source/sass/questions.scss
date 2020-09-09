@@ -62,6 +62,8 @@
   @media (max-width: 767px) {
     font-size: 16px;
     line-height: 26px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   &:first-child {
@@ -112,6 +114,12 @@
   opacity: 0.74;
   margin-top: 25px;
   margin-left: -30px;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+    line-height: 22px;
+    margin-left: -25px;
+  }
 }
 
 .page-questions__inner picture {
