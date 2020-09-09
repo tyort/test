@@ -6,6 +6,7 @@ import CallRequest from "./components/call-request";
 import SuccessPopup from "./components/success-popup";
 import {renderComponent} from './formulas.js';
 import './components/live';
+import './components/questions';
 
 const body = document.querySelector(`body`);
 const main = document.querySelector(`main`);

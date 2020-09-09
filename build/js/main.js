@@ -732,6 +732,26 @@
     }
   });
 
+  const faq = document.querySelector(`.page-questions__faq`);
+  const list$1 = faq.querySelector(`ol`);
+
+  const questions = [...list$1.querySelectorAll(`li`)];
+
+  questions.forEach((question) => {
+    question.addEventListener(`click`, () => {
+      question.classList.toggle(`active`);
+
+      const paragraph = question.querySelector(`p`);
+
+      if (question.classList.contains(`active`)) {
+        paragraph.classList.toggle(`visually-hidden`, false);
+
+      } else {
+        paragraph.classList.toggle(`visually-hidden`, true);
+      }
+    });
+  });
+
   const body = document.querySelector(`body`);
   const main = document.querySelector(`main`);
   const about = body.querySelector(`.page-about`);
