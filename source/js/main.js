@@ -7,6 +7,7 @@ import SuccessPopup from "./components/success-popup";
 import {renderComponent} from './formulas.js';
 import './components/live';
 import './components/questions';
+import './components/reviews';
 
 const body = document.querySelector(`body`);
 const main = document.querySelector(`main`);

@@ -1,0 +1,58 @@
+.page-reviews {
+  width: 100%;
+  padding: 0 16px 0 98px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;;
+}
+
+.page-reviews__inner {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1084px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.page-reviews__list {
+  width: 100%;
+}
+
+.page-reviews__item picture {
+  float: left;
+}
+
+
+.review-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-reviews__counter {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+
+.slick-arrow {
+  position: absolute;
+  bottom: 0;
+  left: 50;
+  border-radius: 0;
+  background: none;
+  height: 15px;
+  width: 8px;
+  z-index: 9;
+}
+
+.slick-next {
+  background: url(../img/next.svg) center no-repeat;
+  left: 80px;
+}
+
+.slick-prev {
+  background: url(../img/prev.svg) center no-repeat;
+  left: 60px;
+}
