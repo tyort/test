@@ -4,7 +4,7 @@
   background: url(../img/bg-about.png) top 72% center no-repeat;
 
   @media (max-width: 767px) {
-    height: 535px;
+    background: url(../img/bg-about-mimi.png) top 56% center no-repeat;
   }
 }
 
@@ -18,7 +18,12 @@
 }
 
 .page-about__inner h2 {
-  margin: 0 16px 35px;
+  margin-bottom: 35px;
+  padding: 0 16px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 23px;
+  }
 }
 
 .page-about__inner p {
@@ -28,11 +33,27 @@
   line-height: 29px;
   color: #484848;
   width: 85%;
-  margin: 0 16px 47px;
+  margin-bottom: 47px;
+  padding: 0 16px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 48px;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: left;
+    width: 100%;
+  }
 }
 
 .page-about__inner img {
-  margin-bottom: 153px;
+  // border: $bred;
+  margin-bottom: 149px;
   max-width: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center top;
+
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+    height: 100%;
+  }
 }
