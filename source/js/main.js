@@ -18,21 +18,17 @@ renderComponent(about, desire, `afterEnd`);
 renderComponent(about, catalogue, `afterEnd`);
 // renderComponent(main, feedback);
 
-callRequest.setSuccessPopupHandler(() => {
-  successPopup.showElement();
-  if (window.innerWidth >= 768) {
-    body.style.overflow = `hidden`;
-  }
-});
+const requestPopup = document.querySelector(`.page-request-popup`);
+const successPopup = document.querySelector(`.page-success-popup`);
 
 window.addEventListener(`resize`, () => {
   if (window.innerWidth >= 768) {
-    if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
+    if (!requestPopup.classList.contains(`visually-hidden`) || !successPopup.classList.contains(`visually-hidden`)) {
       body.style.overflow = `hidden`;
     }
 
   } else if (window.innerWidth < 768) {
-    if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
+    if (!requestPopup.classList.contains(`visually-hidden`) || !successPopup.classList.contains(`visually-hidden`)) {
       body.style.overflow = `visible`;
     }
   }
