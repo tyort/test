@@ -1,9 +1,38 @@
 .page-about {
   // border: $bred;
   width: 100%;
-  height: 810px;
+  background: url(../img/bg-about.png) top 72% center no-repeat;
 
   @media (max-width: 767px) {
     height: 535px;
   }
+}
+
+.page-about__inner {
+  width: 100%;
+  max-width: 870px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-about__inner h2 {
+  margin: 0 16px 35px;
+}
+
+.page-about__inner p {
+  text-align: center;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 29px;
+  color: #484848;
+  width: 85%;
+  margin: 0 16px 47px;
+}
+
+.page-about__inner img {
+  margin-bottom: 153px;
+  max-width: 100%;
+  object-fit: cover;
 }
