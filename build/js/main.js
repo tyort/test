@@ -312,6 +312,11 @@
           <button class="recall__btn" type="submit">Перезвоните мне</button>
         </form>
       </div>
+
+      <picture>
+        <source srcset="../img/girl-flag-bg.webp" type="image/webp">
+        <img src="../img/girl-flag-bg.png" alt="девушка с флагом" width="818" height="594">
+      </picture>
     </div>`
     );
 
