@@ -1,3 +1,5 @@
+const body = document.querySelector(`body`);
+const pageHeader = document.querySelector(`.page-header`);
 const requestPopup = document.querySelector(`.page-request-popup`);
 const successPopup = document.querySelector(`.page-success-popup`);
 const form = requestPopup.querySelector(`form`);
@@ -5,6 +7,17 @@ const agreement = requestPopup.querySelector(`.field-agreement`);
 const btn = requestPopup.querySelector(`button`);
 const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
+import {hideElement, onEscKeyDown} from '../formulas';
+
+pageHeader.querySelector(`.page-header__btn`)
+    .addEventListener(`click`, () => {
+      requestPopup.classList.toggle(`visually-hidden`, false);
+      document.addEventListener(`keydown`, onEscKeyDown);
+
+      if (window.innerWidth >= 768) {
+        body.style.overflow = `hidden`;
+      }
+    });
 
 requestPopup.addEventListener(`click`, (evt) => {
   if (evt.target === requestPopup || evt.target.className === `popup__close`) {
@@ -22,7 +35,7 @@ form.addEventListener(`submit`, (evt) => {
   document.addEventListener(`keydown`, onEscKeyDown);
 
   if (window.innerWidth >= 768) {
-    document.querySelector(`body`).style.overflow = `hidden`;
+    body.style.overflow = `hidden`;
   }
 });
 
@@ -61,23 +74,4 @@ successPopup.addEventListener(`click`, (evt) => {
     evt.stopPropagation();
   }
 });
-
-function onEscKeyDown(evt) {
-  if (evt.key === `Escape` || evt.key === `Esc`) {
-    hideElement();
-  }
-}
-
-function hideElement() {
-  successPopup.classList.toggle(`visually-hidden`, true);
-  requestPopup.classList.toggle(`visually-hidden`, true);
-  document.removeEventListener(`keydown`, onEscKeyDown);
-  document.querySelector(`body`).style.overflow = `visible`;
-  form.reset();
-
-  if (!btn.hasAttribute(`disabled`)) {
-    btn.setAttribute(`disabled`, `disabled`);
-  }
-}
-
 
