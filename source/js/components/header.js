@@ -1,52 +1,30 @@
-import AbstractSmartComponent from './abstract-smart-component.js';
+const body = document.querySelector(`body`);
+const pageHeader = document.querySelector(`.page-header`);
+const popup = document.querySelector(`.page-request-popup`);
+const form = popup.querySelector(`form`);
+const button = popup.querySelector(`button`);
 
-const createHeaderTemplate = () =>
-  (
-    `<div class="page-header">
-      <div class="page-header__inner">
-        <div class="page-header__inner-top clearfix">
-          <a class="page-header__phone" href="tel:+97226216581">+ (972) 2 – 621 – 6581</a>
-          <a class="page-header__logo">
-            <img src="img/logo.png" alt="логотип компании" width="137" height="48">
-          </a>
-          <div class="page-header__btn">Заказать звонок</div>
-        </div>
+pageHeader.querySelector(`.page-header__btn`)
+    .addEventListener(`click`, () => {
+      popup.classList.toggle(`visually-hidden`, false);
+      document.addEventListener(`keydown`, onEscKeyDown);
 
-        <p>Учёба, путешествие и карьера
-        для еврейской молодёжи</p>
-      </div>
-    </div>`
-  );
+      if (window.innerWidth >= 768) {
+        body.style.overflow = `hidden`;
+      }
+    });
 
-export default class Header extends AbstractSmartComponent {
-  constructor() {
-    super();
-    this._showCallRequest = null;
-    this._subscribeOnEvents();
+
+function onEscKeyDown(evt) {
+  if (evt.key === `Escape` || evt.key === `Esc`) {
+    hideElement();
   }
+}
 
-  getTemplate() {
-    return createHeaderTemplate();
-  }
-
-  setCallRequestHandler(handler) {
-    this._showCallRequest = handler;
-  }
-
-  recoveryListeners() {
-    this._subscribeOnEvents();
-  }
-
-  reRender() {
-    super.reRender();
-  }
-
-  _subscribeOnEvents() {
-    const element = this.getElement();
-
-    element.querySelector(`.page-header__btn`)
-        .addEventListener(`click`, () => {
-          this._showCallRequest();
-        });
-  }
+function hideElement() {
+  popup.classList.toggle(`visually-hidden`, true);
+  document.removeEventListener(`keydown`, onEscKeyDown);
+  body.style.overflow = `visible`;
+  form.reset();
+  button.setAttribute(`disabled`, `disabled`);
 }

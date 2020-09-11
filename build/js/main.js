@@ -264,55 +264,35 @@
     }
   }
 
-  const createHeaderTemplate = () =>
-    (
-      `<div class="page-header">
-      <div class="page-header__inner">
-        <div class="page-header__inner-top clearfix">
-          <a class="page-header__phone" href="tel:+97226216581">+ (972) 2 – 621 – 6581</a>
-          <a class="page-header__logo">
-            <img src="img/logo.png" alt="логотип компании" width="137" height="48">
-          </a>
-          <div class="page-header__btn">Заказать звонок</div>
-        </div>
+  const body = document.querySelector(`body`);
+  const pageHeader = document.querySelector(`.page-header`);
+  const popup = document.querySelector(`.page-request-popup`);
+  const form = popup.querySelector(`form`);
+  const button = popup.querySelector(`button`);
 
-        <p>Учёба, путешествие и карьера
-        для еврейской молодёжи</p>
-      </div>
-    </div>`
-    );
+  pageHeader.querySelector(`.page-header__btn`)
+      .addEventListener(`click`, () => {
+        popup.classList.toggle(`visually-hidden`, false);
+        document.addEventListener(`keydown`, onEscKeyDown);
 
-  class Header extends AbstractSmartComponent {
-    constructor() {
-      super();
-      this._showCallRequest = null;
-      this._subscribeOnEvents();
+        if (window.innerWidth >= 768) {
+          body.style.overflow = `hidden`;
+        }
+      });
+
+
+  function onEscKeyDown(evt) {
+    if (evt.key === `Escape` || evt.key === `Esc`) {
+      hideElement();
     }
+  }
 
-    getTemplate() {
-      return createHeaderTemplate();
-    }
-
-    setCallRequestHandler(handler) {
-      this._showCallRequest = handler;
-    }
-
-    recoveryListeners() {
-      this._subscribeOnEvents();
-    }
-
-    reRender() {
-      super.reRender();
-    }
-
-    _subscribeOnEvents() {
-      const element = this.getElement();
-
-      element.querySelector(`.page-header__btn`)
-          .addEventListener(`click`, () => {
-            this._showCallRequest();
-          });
-    }
+  function hideElement() {
+    popup.classList.toggle(`visually-hidden`, true);
+    document.removeEventListener(`keydown`, onEscKeyDown);
+    body.style.overflow = `visible`;
+    form.reset();
+    button.setAttribute(`disabled`, `disabled`);
   }
 
   const createDesireTemplate = () =>
@@ -381,307 +361,6 @@
       });
     }
 
-  }
-
-  const createFeedbackTemplate = () =>
-    (
-      `<div class="page-feedback">
-      <div class="page-feedback-safety">
-        <p class="page-feedback-safety__top">
-          Оставьте ваши контакты, если у вас остались
-          вопросы — мы на них ответим!
-        </p>
-        <p class="page-feedback-safety__addition">
-          Мы не передаём данные третьим лицам. Ваши данные
-          будут в безопасности и вам не придёт спам от нас!
-        </p>
-      </div>
-      
-      <form>
-        <div class="input-container">
-          <input
-            type="text"
-            name="name"
-            value=""
-            id="block-name"
-            placeholder="ИМЯ"
-            autocomplete="off"
-            required
-            />
-          <p class="error__message">Ошибка: неверный формат</p>
-        </div>
-        <div class="input-container">
-          <input
-            type="tel"
-            name="phone"
-            value=""
-            id="block-phone"
-            placeholder="Телефон"
-            autocomplete="off"
-            required
-          />
-          <p class="error__message">Ошибка: неверный формат</p>
-        </div>
-        <button class="recall__btn" type="submit">Перезвоните мне</button>
-      </form>
-    </div>`
-    );
-
-  class Feedback extends AbstractSmartComponent {
-    constructor() {
-      super();
-      this._subscribeOnEvents();
-    }
-
-    getTemplate() {
-      return createFeedbackTemplate();
-    }
-
-    recoveryListeners() {
-      this._subscribeOnEvents();
-    }
-
-    reRender() {
-      super.reRender();
-    }
-
-    _subscribeOnEvents() {
-      const element = this.getElement();
-      const form = element.querySelector(`form`);
-      const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-      const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
-
-      form.addEventListener(`submit`, (evt) => {
-        evt.preventDefault();
-        form.reset();
-      });
-
-      form.addEventListener(`input`, (evt) => {
-        if (evt.target.id === `block-phone`) {
-          if (!phoneSample.test(evt.target.value)) {
-            evt.target.setCustomValidity(`Напиши номер правильно`);
-
-          } else {
-            evt.target.setCustomValidity(``);
-          }
-
-        } else if (evt.target.id === `block-name`) {
-          if (!nameSample.test(evt.target.value)) {
-            evt.target.setCustomValidity(`Напиши ФИО правильно`);
-
-          } else {
-            evt.target.setCustomValidity(``);
-          }
-        }
-      });
-    }
-
-  }
-
-  const createHeaderTemplate$1 = () => {
-    return (
-      `<div class="page-request-popup visually-hidden">
-      <div class="page-request-popup__inner">
-        <a href="#" class="popup__close"></a>
-        <h3>Заказать звонок</h3>
-        <p>Оставьте ваши контактные данные, мы свяжемся с вами
-        в течение рабочего дня и обязательно поможем найти ответ
-        на ваш вопрос!</p>
-
-        <form>
-          <div class="input-container">
-            <input 
-              type="text"
-              name="name"
-              value=""
-              id="block-name"
-              placeholder="ИМЯ"
-              autocomplete="off"
-              required
-            />
-          </div>
-          <div class="input-container">
-            <input
-              type="tel"
-              name="phone"
-              value=""
-              id="block-phone"
-              placeholder="ТЕЛЕФОН"
-              autocomplete="off"
-              required
-            />
-          </div>
-          <button type="submit" disabled>Перезвоните мне</button>
-
-          <div class="field-agreement">
-            <input type="checkbox" name="agreement" id="agreement-inform">
-            <label for="agreement-inform" tabindex="0">Нажимая на кнопку, вы даёте согласие на обработку персональных данных</label>
-          </div>
-        </form>
-        
-      </div>
-    </div>`
-    );
-  };
-
-  class Header$1 extends AbstractSmartComponent {
-    constructor() {
-      super();
-      this._showSuccessPopup = null;
-      this._onEscKeyDown = this._onEscKeyDown.bind(this);
-      this._subscribeOnEvents();
-    }
-
-    getTemplate() {
-      return createHeaderTemplate$1();
-    }
-
-    setSuccessPopupHandler(handler) {
-      this._showSuccessPopup = handler;
-    }
-
-    showElement() {
-      const element = this.getElement();
-      element.classList.toggle(`visually-hidden`, false);
-      document.addEventListener(`keydown`, this._onEscKeyDown);
-    }
-
-    hideElement() {
-      const element = this.getElement();
-      const form = element.querySelector(`form`);
-      const btn = element.querySelector(`button`);
-
-      element.classList.toggle(`visually-hidden`, true);
-      document.querySelector(`body`).style.overflow = `visible`;
-      document.removeEventListener(`keydown`, this._onEscKeyDown);
-      form.reset();
-      btn.setAttribute(`disabled`, `disabled`);
-    }
-
-    _subscribeOnEvents() {
-      const element = this.getElement();
-      const form = element.querySelector(`form`);
-      const agreement = element.querySelector(`.field-agreement`);
-      const btn = element.querySelector(`button`);
-      const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-      const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
-
-      document.addEventListener(`keydown`, this._onEscKeyDown);
-
-      element.addEventListener(`click`, (evt) => {
-        if (evt.target === element || evt.target.className === `popup__close`) {
-          this.hideElement();
-        } else if (evt.target.className === `page-request-popup__inner`) {
-          evt.stopPropagation();
-        }
-      });
-
-      form.addEventListener(`submit`, (evt) => {
-        evt.preventDefault();
-        this.hideElement();
-        this._showSuccessPopup();
-      });
-
-      form.addEventListener(`input`, (evt) => {
-        if (evt.target.id === `block-phone`) {
-          if (!phoneSample.test(evt.target.value)) {
-            evt.target.setCustomValidity(`Напиши номер правильно`);
-
-          } else {
-            evt.target.setCustomValidity(``);
-          }
-
-        } else if (evt.target.id === `block-name`) {
-          if (!nameSample.test(evt.target.value)) {
-            evt.target.setCustomValidity(`Напиши ФИО правильно`);
-
-          } else {
-            evt.target.setCustomValidity(``);
-          }
-        }
-      });
-
-      agreement.addEventListener(`change`, (evt) => {
-        if (evt.target.checked) {
-          btn.removeAttribute(`disabled`);
-          return;
-        }
-        btn.setAttribute(`disabled`, `disabled`);
-      });
-    }
-
-    _onEscKeyDown(evt) {
-      if (evt.key === `Escape` || evt.key === `Esc`) {
-        this.hideElement();
-      }
-    }
-  }
-
-  const createSuccessTemplate = () => {
-    return (
-      `<div class="page-success-popup visually-hidden">
-      <div class="page-success-popup__inner">
-        <a href="#" class="popup__close"></a>
-
-        <img src="./img/icon-ok.png" alt="логотип успеха" width="71" height="64">
-
-        <h3>Заявка принята</h3>
-
-        <p>Мы приняли ваши данные и вскоре мы перезвоним
-          вам для уточнения деталей!</p>
-
-        <button>Понятно</button>
-        
-      </div>
-    </div>`
-    );
-  };
-
-  class Success extends AbstractSmartComponent {
-    constructor() {
-      super();
-      this._onEscKeyDown = this._onEscKeyDown.bind(this);
-      this._subscribeOnEvents();
-    }
-
-    getTemplate() {
-      return createSuccessTemplate();
-    }
-
-    showElement() {
-      const element = this.getElement();
-      element.classList.toggle(`visually-hidden`, false);
-      document.addEventListener(`keydown`, this._onEscKeyDown);
-    }
-
-    hideElement() {
-      const element = this.getElement();
-
-      element.classList.toggle(`visually-hidden`, true);
-      document.querySelector(`body`).style.overflow = `visible`;
-      document.removeEventListener(`keydown`, this._onEscKeyDown);
-    }
-
-    _subscribeOnEvents() {
-      const element = this.getElement();
-
-      document.addEventListener(`keydown`, this._onEscKeyDown);
-
-      element.addEventListener(`click`, (evt) => {
-        if (evt.target === element || evt.target.className === `popup__close` || evt.target.tagName === `BUTTON`) {
-          this.hideElement();
-
-        } else if (evt.target.className === `page-success-popup__inner`) {
-          evt.stopPropagation();
-        }
-      });
-    }
-
-    _onEscKeyDown(evt) {
-      if (evt.key === `Escape` || evt.key === `Esc`) {
-        this.hideElement();
-      }
-    }
   }
 
   const list = document.querySelector(`.live-pictures`);
@@ -784,48 +463,31 @@
     });
   });
 
-  const body = document.querySelector(`body`);
-  const main = document.querySelector(`main`);
-  const about = body.querySelector(`.page-about`);
+  const body$1 = document.querySelector(`body`);
+  const about = body$1.querySelector(`.page-about`);
   const catalogue = new Catalogue();
-  const header = new Header();
   const desire = new Desire();
-  const feedback = new Feedback();
-  const callRequest = new Header$1();
-  const successPopup = new Success();
-  renderComponent(body, header, `afterBegin`);
+  // const feedback = new Feedback();
   renderComponent(about, desire, `afterEnd`);
   renderComponent(about, catalogue, `afterEnd`);
   // renderComponent(main, feedback);
-  renderComponent(body, callRequest, `afterBegin`);
-  renderComponent(body, successPopup, `afterBegin`);
-
-  header.setCallRequestHandler(() => {
-    callRequest.showElement();
-    if (window.innerWidth >= 768) {
-      body.style.overflow = `hidden`;
-    }
-  });
 
   callRequest.setSuccessPopupHandler(() => {
     successPopup.showElement();
     if (window.innerWidth >= 768) {
-      body.style.overflow = `hidden`;
+      body$1.style.overflow = `hidden`;
     }
   });
-
-
-
 
   window.addEventListener(`resize`, () => {
     if (window.innerWidth >= 768) {
       if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
-        body.style.overflow = `hidden`;
+        body$1.style.overflow = `hidden`;
       }
 
     } else if (window.innerWidth < 768) {
       if (!callRequest.getElement().classList.contains(`visually-hidden`) || !successPopup.getElement().classList.contains(`visually-hidden`)) {
-        body.style.overflow = `visible`;
+        body$1.style.overflow = `visible`;
       }
     }
   });
