@@ -112,6 +112,20 @@ li {
 a {
   text-decoration: none;
   cursor: url(../img/Pointer.svg), pointer;
+
+  &:hover {
+    text-shadow: 3px 2px 5px #0800076c;
+  }
+
+  &:active {
+    text-shadow: none;
+  }
+
+  &:focus {
+    box-shadow:
+      0px 0px 0px 8px rgb(255, 255, 255),
+      2px 3px 5px 10px rgba(199, 170, 170, 0.822);
+  }
 }
 
 body .visually-hidden {
