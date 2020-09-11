@@ -369,10 +369,7 @@
       .addEventListener(`click`, () => {
         requestPopup.classList.toggle(`visually-hidden`, false);
         document.addEventListener(`keydown`, onEscKeyDown);
-
-        if (window.innerWidth >= 768) {
-          body.style.overflow = `hidden`;
-        }
+        body.style.overflow = `hidden`;
       });
 
   requestPopup.addEventListener(`click`, (evt) => {
@@ -389,10 +386,7 @@
 
     successPopup.classList.toggle(`visually-hidden`, false);
     document.addEventListener(`keydown`, onEscKeyDown);
-
-    if (window.innerWidth >= 768) {
-      body.style.overflow = `hidden`;
-    }
+    body.style.overflow = `hidden`;
   });
 
   form.addEventListener(`input`, (evt) => {
@@ -539,22 +533,6 @@
   renderComponent(about, desire, `afterEnd`);
   renderComponent(about, catalogue, `afterEnd`);
   // renderComponent(main, feedback);
-
-  const requestPopup$1 = document.querySelector(`.page-request-popup`);
-  const successPopup$1 = document.querySelector(`.page-success-popup`);
-
-  window.addEventListener(`resize`, () => {
-    if (window.innerWidth >= 768) {
-      if (!requestPopup$1.classList.contains(`visually-hidden`) || !successPopup$1.classList.contains(`visually-hidden`)) {
-        body$1.style.overflow = `hidden`;
-      }
-
-    } else if (window.innerWidth < 768) {
-      if (!requestPopup$1.classList.contains(`visually-hidden`) || !successPopup$1.classList.contains(`visually-hidden`)) {
-        body$1.style.overflow = `visible`;
-      }
-    }
-  });
 
 }());
 

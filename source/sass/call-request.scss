@@ -9,10 +9,8 @@
   left: 0;
   background-color: #ebebebe7;
   z-index: 19;
-
-  @media (max-width: 767px) {
-    position: static;
-  }
+  flex-wrap: wrap;
+  overflow: auto;
 }
 
 .page-request-popup::before {
@@ -74,7 +72,11 @@
 }
 
 .page-request-popup__inner .input-container {
-  margin-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.page-request-popup__inner .error__message {
+  top: 60px;
 }
 
 .page-request-popup__inner button {

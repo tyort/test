@@ -13,10 +13,7 @@ pageHeader.querySelector(`.page-header__btn`)
     .addEventListener(`click`, () => {
       requestPopup.classList.toggle(`visually-hidden`, false);
       document.addEventListener(`keydown`, onEscKeyDown);
-
-      if (window.innerWidth >= 768) {
-        body.style.overflow = `hidden`;
-      }
+      body.style.overflow = `hidden`;
     });
 
 requestPopup.addEventListener(`click`, (evt) => {
@@ -33,10 +30,7 @@ form.addEventListener(`submit`, (evt) => {
 
   successPopup.classList.toggle(`visually-hidden`, false);
   document.addEventListener(`keydown`, onEscKeyDown);
-
-  if (window.innerWidth >= 768) {
-    body.style.overflow = `hidden`;
-  }
+  body.style.overflow = `hidden`;
 });
 
 form.addEventListener(`input`, (evt) => {
