@@ -96,10 +96,9 @@
   }
 }
 
-
 .page-header__inner p {
   margin-top: 456px;
-  margin-bottom: 308px;
+  margin-bottom: 30px;
   font-weight: bold;
   font-size: 24px;
   line-height: 29px;
@@ -112,6 +111,20 @@
     line-height: 24px;
     width: 100%;
     margin-top: 270px;
-    margin-bottom: 254px;
+    margin-bottom: 32px;
+  }
+}
+
+.page-header__inner .scroll-down {
+  margin-bottom: 142.5px;
+  cursor: pointer;
+
+
+  &:focus {
+    box-shadow: none
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 86.5px;
   }
 }
