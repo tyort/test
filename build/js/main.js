@@ -219,7 +219,7 @@
           variableWidth: false,
           swipe: true,
           focusOnSelect: true,
-          centerPadding: `20%`,
+          centerPadding: `21%`,
           responsive: [
             {
               breakpoint: 768,

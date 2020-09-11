@@ -1,7 +1,6 @@
 import AbstractSmartComponent from './abstract-smart-component.js';
 import {catalogueItems, ProgramsDescriptions} from '../formulas.js';
 
-
 const createItemsDescriptions = (currentProgram) => {
   return catalogueItems
       .map((program, index) => {
@@ -101,7 +100,7 @@ export default class Catalogue extends AbstractSmartComponent {
         variableWidth: false,
         swipe: true,
         focusOnSelect: true,
-        centerPadding: `20%`,
+        centerPadding: `21%`,
         responsive: [
           {
             breakpoint: 768,
