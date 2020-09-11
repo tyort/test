@@ -14,6 +14,10 @@ $dual-border: 4px;
   // border: $bred;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   // border: $bred;
   color: #484848;
@@ -54,7 +58,11 @@ input {
   font-size: 17px;
   line-height: 70%;
   font-weight: 500;
-  color: #4848488c;
+  color: #484848;
+
+  &::placeholder {
+    color: #48484862;
+  }
 
   &:invalid:not(:focus):not(:placeholder-shown) {
     border: 2px solid #FF0000;
