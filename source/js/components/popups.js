@@ -5,9 +5,7 @@ const successPopup = document.querySelector(`.page-success-popup`);
 const form = requestPopup.querySelector(`form`);
 const agreement = requestPopup.querySelector(`.field-agreement`);
 const btn = requestPopup.querySelector(`button`);
-const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
-import {hideElement, onEscKeyDown} from '../formulas';
+import {hideElement, onEscKeyDown, phoneSample, nameSample} from '../formulas';
 
 pageHeader.querySelector(`.page-header__btn`)
     .addEventListener(`click`, () => {

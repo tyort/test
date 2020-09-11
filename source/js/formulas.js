@@ -54,15 +54,6 @@ export const createElement = (template) => {
   return newElement.firstChild;
 };
 
-export const getTransformedNumber = (number) => {
-  const numberAsString = number.toString();
-  return numberAsString.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, `$1` + ` `);
-};
-
-export const getTransformedLine = (numberAsLine) => {
-  return Number(numberAsLine.replace(/\s+/g, ``).trim());
-};
-
 export const onEscKeyDown = (evt) => {
   if (evt.key === `Escape` || evt.key === `Esc`) {
     hideElement();
@@ -86,4 +77,5 @@ export const hideElement = () => {
   }
 };
 
-
+export const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+export const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;

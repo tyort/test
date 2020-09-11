@@ -80,6 +80,9 @@
     }
   };
 
+  const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+  const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
+
   class AbstractComponent {
     constructor() {
       if (new.target === AbstractComponent) {
@@ -287,88 +290,30 @@
     }
   }
 
-  const createDesireTemplate = () =>
-    (
-      `<div class="page-desire">
-      <div class="page-desire__inner">
-        <h2>Хочу поехать!</h2>
-        <p>
-          Оставьте свой телефон и мы свяжемся с вами,
-          подберём куратора и ответим на все вопросы!
-        </p>
-        <form>
-          <div class="input-container">
-            <input
-              type="tel"
-              name="phone"
-              value=""
-              id="block-phone"
-              placeholder="Телефон"
-              autocomplete="off"
-              required
-            />
-            <p class="error__message">Ошибка: неверный формат</p>
-          </div>
-          <button class="recall__btn" type="submit">Перезвоните мне</button>
-        </form>
-      </div>
+  const pageDesire = document.querySelector(`.page-desire`);
+  const form = pageDesire.querySelector(`form`);
 
-      <picture>
-        <source srcset="../img/girl-flag-bg.webp" type="image/webp">
-        <img src="../img/girl-flag-bg.png" alt="девушка с флагом" width="818" height="594">
-      </picture>
-    </div>`
-    );
+  form.addEventListener(`submit`, (evt) => {
+    evt.preventDefault();
+    form.reset();
+  });
 
-  class Desire extends AbstractSmartComponent {
-    constructor() {
-      super();
-      this._subscribeOnEvents();
+  form.addEventListener(`input`, (evt) => {
+    if (!phoneSample.test(evt.target.value)) {
+      evt.target.setCustomValidity(`Напиши номер правильно`);
+
+    } else {
+      evt.target.setCustomValidity(``);
     }
-
-    getTemplate() {
-      return createDesireTemplate();
-    }
-
-    recoveryListeners() {
-      this._subscribeOnEvents();
-    }
-
-    reRender() {
-      super.reRender();
-    }
-
-    _subscribeOnEvents() {
-      const element = this.getElement();
-      const form = element.querySelector(`form`);
-      const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-
-      form.addEventListener(`submit`, (evt) => {
-        evt.preventDefault();
-        form.reset();
-      });
-
-      form.addEventListener(`input`, (evt) => {
-        if (!phoneSample.test(evt.target.value)) {
-          evt.target.setCustomValidity(`Напиши номер правильно`);
-
-        } else {
-          evt.target.setCustomValidity(``);
-        }
-      });
-    }
-
-  }
+  });
 
   const body = document.querySelector(`body`);
   const pageHeader = document.querySelector(`.page-header`);
   const requestPopup = document.querySelector(`.page-request-popup`);
   const successPopup = document.querySelector(`.page-success-popup`);
-  const form = requestPopup.querySelector(`form`);
+  const form$1 = requestPopup.querySelector(`form`);
   const agreement = requestPopup.querySelector(`.field-agreement`);
   const btn = requestPopup.querySelector(`button`);
-  const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-  const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
 
   pageHeader.querySelector(`.page-header__btn`)
       .addEventListener(`click`, () => {
@@ -385,7 +330,7 @@
     }
   });
 
-  form.addEventListener(`submit`, (evt) => {
+  form$1.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
     hideElement();
 
@@ -394,7 +339,7 @@
     body.style.overflow = `hidden`;
   });
 
-  form.addEventListener(`input`, (evt) => {
+  form$1.addEventListener(`input`, (evt) => {
     if (evt.target.id === `block-phone`) {
       if (!phoneSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши номер правильно`);
@@ -533,9 +478,7 @@
   const body$1 = document.querySelector(`body`);
   const about = body$1.querySelector(`.page-about`);
   const catalogue = new Catalogue();
-  const desire = new Desire();
   // const feedback = new Feedback();
-  renderComponent(about, desire, `afterEnd`);
   renderComponent(about, catalogue, `afterEnd`);
   // renderComponent(main, feedback);
 
