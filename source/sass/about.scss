@@ -9,6 +9,7 @@
 }
 
 .page-about__inner {
+  position: relative;
   width: 100%;
   max-width: 870px;
   margin: 0 auto;
@@ -55,5 +56,30 @@
   @media (max-width: 767px) {
     margin-bottom: 20px;
     height: 100%;
+  }
+}
+
+button.btn-video-play {
+  // border: $bred;
+  position: absolute;
+  top: 376px;
+  width: 96px;
+  height: 96px;
+  background: url(../img/play-button.png) center no-repeat;
+  background-size: cover;
+
+  &:hover,
+  &:focus {
+    background: url(../img/play-button-hover.png) center no-repeat;
+  }
+
+  &:active {
+    background: url(../img/play-button-active.png) center no-repeat;
+  }
+
+  @media (max-width: 767px) {
+    width: 80px;
+    height: 80px;
+    top: 372px;
   }
 }
