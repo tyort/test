@@ -1,4 +1,40 @@
+.page-details {
+  border: $bred;
+  width: 100%;
+  padding-left: 110px;
+}
+
+.page-details__inner {
+  border: $bred;
+  width: 100%;
+  max-width: 1256px;
+  margin: 0 auto;
+}
+
+.page-details__top {
+  border: $bred;
+  margin-bottom: 64px;
+  display: flex;
+}
+
+.page-details__top-left {
+  border: $bred;
+}
+
+.curator-unit {
+  border: $bred;
+  display: flex;
+}
+
+.map-view {
+  border: $bred;
+  height: 448px;
+  width: 702px;
+  margin-left: 39px;
+}
+
 .page-details__feedback {
+  border: $bred;
   display: flex;
 }
 
@@ -7,6 +43,6 @@
   flex-direction: column;
 }
 
-.page-feedback form {
+.page-details__feedback form {
   display: flex;
 }

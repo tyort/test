@@ -307,7 +307,7 @@
     }
   });
 
-  const pageFeedback = document.querySelector(`.page-feedback`);
+  const pageFeedback = document.querySelector(`.page-details__feedback`);
   const form$1 = pageFeedback.querySelector(`form`);
 
 

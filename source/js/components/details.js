@@ -1,5 +1,5 @@
 
-const pageFeedback = document.querySelector(`.page-feedback`);
+const pageFeedback = document.querySelector(`.page-details__feedback`);
 const form = pageFeedback.querySelector(`form`);
 import {phoneSample, nameSample} from '../formulas';
 
