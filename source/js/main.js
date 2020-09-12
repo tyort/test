@@ -1,6 +1,6 @@
 import Catalogue from "./components/catalogue";
 import './components/desire';
-// import Feedback from "./components/feedback";
+import './components/details';
 import './components/popups';
 import './components/live';
 import './components/questions';
@@ -10,8 +10,6 @@ import {renderComponent} from './formulas.js';
 const body = document.querySelector(`body`);
 const about = body.querySelector(`.page-about`);
 const catalogue = new Catalogue();
-// const feedback = new Feedback();
 renderComponent(about, catalogue, `afterEnd`);
-// renderComponent(main, feedback);
 
 

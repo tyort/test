@@ -307,11 +307,39 @@
     }
   });
 
+  const pageFeedback = document.querySelector(`.page-feedback`);
+  const form$1 = pageFeedback.querySelector(`form`);
+
+
+  form$1.addEventListener(`submit`, (evt) => {
+    evt.preventDefault();
+    form$1.reset();
+  });
+
+  form$1.addEventListener(`input`, (evt) => {
+    if (evt.target.id === `block-phone`) {
+      if (!phoneSample.test(evt.target.value)) {
+        evt.target.setCustomValidity(`Напиши номер правильно`);
+
+      } else {
+        evt.target.setCustomValidity(``);
+      }
+
+    } else if (evt.target.id === `block-name`) {
+      if (!nameSample.test(evt.target.value)) {
+        evt.target.setCustomValidity(`Напиши ФИО правильно`);
+
+      } else {
+        evt.target.setCustomValidity(``);
+      }
+    }
+  });
+
   const body = document.querySelector(`body`);
   const pageHeader = document.querySelector(`.page-header`);
   const requestPopup = document.querySelector(`.page-request-popup`);
   const successPopup = document.querySelector(`.page-success-popup`);
-  const form$1 = requestPopup.querySelector(`form`);
+  const form$2 = requestPopup.querySelector(`form`);
   const agreement = requestPopup.querySelector(`.field-agreement`);
   const btn = requestPopup.querySelector(`button`);
 
@@ -330,7 +358,7 @@
     }
   });
 
-  form$1.addEventListener(`submit`, (evt) => {
+  form$2.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
     hideElement();
 
@@ -339,7 +367,7 @@
     body.style.overflow = `hidden`;
   });
 
-  form$1.addEventListener(`input`, (evt) => {
+  form$2.addEventListener(`input`, (evt) => {
     if (evt.target.id === `block-phone`) {
       if (!phoneSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши номер правильно`);
@@ -478,9 +506,7 @@
   const body$1 = document.querySelector(`body`);
   const about = body$1.querySelector(`.page-about`);
   const catalogue = new Catalogue();
-  // const feedback = new Feedback();
   renderComponent(about, catalogue, `afterEnd`);
-  // renderComponent(main, feedback);
 
 }());
 
