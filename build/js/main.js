@@ -1,61 +1,86 @@
 (function () {
   'use strict';
 
-  const catalogueItems = [
-    [`Общие`, `item-star`],
-    [`Академические`, `item-cap`],
-    [`Стажировки`, `item-portfolio`],
-    [`Волонтёрство`, `item-heart`],
-    [`Религиозные`, `item-candles`],
-  ];
+  const programs = document.querySelector(`.page-catalogue`);
+  const list = programs.querySelector(`.catalogue-details__list`);
+  const listMobile = programs.querySelector(`.catalogue-details__list--mobile`);
+  const actualDescriptions = programs.querySelector(`.catalogue-details__descriptions`);
+  let CURRENT_ITEM = `Общие`;
 
-  const ProgramsDescriptions = [
-    `Жаркий Израиль для каждого приготовил занятие по душе: пляжный отдых на
-  Средиземном и Красном море, паломнические туры по святыням сразу трех религий,
-  мощную «экскурсионку» по следам древнейших цивилизаций и, конечно, лечение на Мертвом море.`,
-    `Провести семестр или год за рубежом, знакомясь с различными культурами
-  и идеями, традициями и стилем жизни — вот что такое учеба за границей!
-  Израиль — это не только центр религиозного мира, это также академический
-  центр, живая лаборатория идей и творческого исследования.`,
-    `Более 400 русскоязычных студентов, участников различных программ Маса компании Тлалим в 
-  течение года получают возможность пройти стажировку в израильских компаниях.
-  Стажировка дает с возможность оказаться внутри профессионального мира своей специальности
-  в Израиле, получить новые знания и опыт, установить личные и деловые контакты.
-  При успешном завершении стажировки у студентов получают рекомендации.`,
-    `Маса предлагает уникальные возможности для волонтерской деятельности по всему Израилю.
-  Вы сможете внести свой неоценимый вклад в развитие  израильского общества, сотрудничая
-  с различными общинами и социально уязвимыми группами населения. Программы волонтерства
-  фокусируются на создании и укреплении общин; помощи молодежи, находящейся в группе риска;
-  поддержке мирного сосуществования евреев, арабов и других местных общин.`,
-    `Евреи придают большое значение браку, полагая, что именно брак способствует развитию
-  личности. Сексуальные связи вне брака, как и разводы, не поощряются.Смешанные браки
-  иудаизм не запрещает, но и не одобряет. Причина этого не только в том, что подобные
-  союзы сложны из-за различия культур, но и потому, что национальность у евреев передается
-  по матери, то есть евреем считается ребенок матери-еврейки. Существует ряд религиозных
-  предписаний, регулирующих семейную жизнь - правило семейной чистоты, правила развода и так далее.`,
-    `Может быть, Вы заинтересованы в изучении социологии, мира, юриспруденции, биологии,
-  сравнительной религии, законодательного и делового администрирования или искусства?
-  Здесь, в Израиле, Вы сможете изучить все это в удивительной университетской среде.`
-  ];
+  window.$(document).ready(() => {
+    window.$(`.catalogue-details__list--mobile`).slick({
+      dots: false,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      centerMode: true,
+      variableWidth: false,
+      swipe: true,
+      focusOnSelect: true,
+      centerPadding: `21%`,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+          }
+        }
+      ]
+    });
 
-  const renderComponent = (container, element, place) => {
-    switch (place) {
-      case `afterBegin`:
-        container.prepend(element.getElement());
-        break;
-      case `afterEnd`:
-        container.after(element.getElement());
-        break;
-      default:
-        container.append(element.getElement());
+    window.$(`.catalogue-details__list--mobile`).on(`afterChange`, (event, slick, _currentSlide) => {
+      const activeButton = [...slick.$slides].find((it) => {
+        return it.classList.contains(`slick-active`);
+      });
+
+      activeButton.querySelector(`button`).textContent.trim();
+      CURRENT_ITEM = activeButton.querySelector(`button`).textContent.trim();
+      reRender();
+    });
+  });
+
+  list.addEventListener(`click`, onButtonClick);
+
+  window.addEventListener(`resize`, () => {
+    if (window.innerWidth >= 768) {
+      list.classList.toggle(`visually-hidden`, false);
+      listMobile.classList.toggle(`visually-hidden`, true);
+
+    } else {
+      list.classList.toggle(`visually-hidden`, true);
+      listMobile.classList.toggle(`visually-hidden`, false);
     }
+  });
+
+  const createItemsDescriptions = (currentProgram) => {
+    [...actualDescriptions.children].forEach((item) => {
+      item.classList.toggle(`visually-hidden`, true);
+      if (item.querySelector(`h3`).textContent.trim() === currentProgram) {
+        item.classList.toggle(`visually-hidden`, false);
+      }
+    });
   };
 
-  const createElement = (template) => {
-    const newElement = document.createElement(`div`);
-    newElement.innerHTML = template;
-    return newElement.firstChild;
+  const createItemsButtons = (currentProgram) => {
+    [...list.children].forEach((item) => {
+      item.querySelector(`button`).classList.toggle(`btn__isChecked`, false);
+      if (item.querySelector(`button`).textContent.trim() === currentProgram) {
+        item.querySelector(`button`).classList.toggle(`btn__isChecked`, true);
+      }
+    });
   };
+
+  function onButtonClick(evt) {
+    if (CURRENT_ITEM !== evt.target.textContent.trim() && evt.target.classList.contains(`catalogue-details__item`)) {
+      CURRENT_ITEM = evt.target.textContent.trim();
+      reRender();
+    }
+  }
+
+  function reRender() {
+    createItemsButtons(CURRENT_ITEM);
+    createItemsDescriptions(CURRENT_ITEM);
+  }
 
   const onEscKeyDown = (evt) => {
     if (evt.key === `Escape` || evt.key === `Esc`) {
@@ -82,213 +107,6 @@
 
   const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
   const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
-
-  class AbstractComponent {
-    constructor() {
-      if (new.target === AbstractComponent) {
-        throw new Error(`Can't instantiate AbstractComponent, only concrete one.`);
-      }
-
-      this._element = null;
-    }
-
-    getTemplate() {
-      throw new Error(`Abstract method not implemented: getTemplate`);
-    }
-
-    getElement() {
-      if (!this._element) {
-        this._element = createElement(this.getTemplate());
-      }
-      return this._element;
-    }
-
-    removeElement() {
-      this._element = null;
-    }
-  }
-
-  class AbstractSmartComponent extends AbstractComponent {
-    recoveryListeners() {
-      throw new Error(`Abstract method not implemented: recoveryListeners`);
-    }
-
-    reRender() {
-      const oldElement = this.getElement();
-      const parent = oldElement.parentElement;
-      this.removeElement();
-      const newElement = this.getElement();
-      parent.replaceChild(newElement, oldElement);
-      this.recoveryListeners();
-    }
-  }
-
-  const createItemsDescriptions = (currentProgram) => {
-    return catalogueItems
-        .map((program, index) => {
-          const isElementHidden = program[0] === currentProgram ? `` : `visually-hidden`;
-          const addition = program[0] === `Академические`
-            ? `<p>${ProgramsDescriptions[5]}</p>`
-            : ``;
-
-          return (
-            `<li class="catalogue-details__item-description ${isElementHidden}">
-            <h3>${program[0]}</h3>
-            <p>${ProgramsDescriptions[index]}</p>
-            ${addition}
-          </li>`
-          );
-        })
-        .join(``);
-  };
-
-  const createItemsButtons = (currentProgram) => {
-    return catalogueItems
-        .map((program) => {
-          const isButtonChecked = program[0] === currentProgram
-            ? `btn__isChecked`
-            : ``;
-
-          return (
-            `<li>
-            <button class="catalogue-details__item ${program[1]} ${isButtonChecked}">
-              ${program[0]}
-            </button>
-          </li>`
-          );
-        })
-        .join(``);
-  };
-
-  const createItemsButtonsMobile = () => {
-    return catalogueItems
-        .map((program) => {
-          return (
-            `<li>
-            <button class="catalogue-details__item ${program[1]}">
-              ${program[0]}
-            </button>
-          </li>`
-          );
-        })
-        .join(``);
-  };
-
-
-  const createCatalogueTemplate = (currentProgram) => {
-
-    return (
-      `<div class="page-catalogue">
-      <div class="page-catalogue__inner">
-        <h2>Программы</h2>
-
-        <div class="catalogue-details">
-          <ul class="catalogue-details__list ${window.innerWidth >= 768 ? `` : `visually-hidden`}">
-            ${createItemsButtons(currentProgram)}
-          </ul>
-          <ul class="catalogue-details__list catalogue-details__list--mobile ${window.innerWidth >= 768 ? `visually-hidden` : ``}">
-            ${createItemsButtonsMobile()}
-          </ul>
-          <ul class="catalogue-details__descriptions">
-            ${createItemsDescriptions(currentProgram)}
-          </ul>
-        </div>
-      </div>
-    </div>`
-    );
-  };
-
-  class Catalogue extends AbstractSmartComponent {
-    constructor() {
-      super();
-      this._currentItem = `Общие`;
-      this._getInitSlider();
-      this._onButtonClick = this._onButtonClick.bind(this);
-      this._subscribeOnEvents();
-    }
-
-    getTemplate() {
-      return createCatalogueTemplate(this._currentItem);
-    }
-
-    _getInitSlider() {
-      window.$(document).ready(() => {
-        window.$(`.catalogue-details__list--mobile`).slick({
-          dots: false,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          centerMode: true,
-          variableWidth: false,
-          swipe: true,
-          focusOnSelect: true,
-          centerPadding: `21%`,
-          responsive: [
-            {
-              breakpoint: 768,
-              settings: {
-                arrows: false,
-              }
-            }
-          ]
-        });
-
-        window.$(`.catalogue-details__list--mobile`).on(`afterChange`, (event, slick, _currentSlide) => {
-          const activeButton = [...slick.$slides].find((it) => {
-            return it.classList.contains(`slick-active`);
-          });
-
-          activeButton.querySelector(`button`).textContent.trim();
-          this._currentItem = activeButton.querySelector(`button`).textContent.trim();
-
-          this.reRender();
-        });
-      });
-    }
-
-    recoveryListeners() {
-      this._subscribeOnEvents();
-    }
-
-    reRender() {
-      const element = this.getElement();
-
-      const list = element.querySelector(`.catalogue-details__list`);
-      list.innerHTML = createItemsButtons(this._currentItem);
-
-      const actualDescriptions = element.querySelector(`.catalogue-details__descriptions`);
-      actualDescriptions.innerHTML = createItemsDescriptions(this._currentItem);
-    }
-
-    _subscribeOnEvents() {
-      const element = this.getElement();
-      const list = element.querySelector(`.catalogue-details__list`);
-      const listMobile = element.querySelector(`.catalogue-details__list--mobile`);
-
-      list.addEventListener(`click`, this._onButtonClick);
-
-      window.addEventListener(`resize`, () => {
-        if (window.innerWidth >= 768) {
-          list.classList.toggle(`visually-hidden`, false);
-          listMobile.classList.toggle(`visually-hidden`, true);
-
-        } else {
-          list.classList.toggle(`visually-hidden`, true);
-          listMobile.classList.toggle(`visually-hidden`, false);
-        }
-      });
-    }
-
-
-    _onButtonClick(evt) {
-      if (this._currentItem === evt.target.textContent.trim() || !evt.target.classList.contains(`catalogue-details__item`)) {
-        return;
-      }
-
-      this._currentItem = evt.target.textContent.trim();
-      this.reRender();
-    }
-  }
 
   const pageDesire = document.querySelector(`.page-desire`);
   const form = pageDesire.querySelector(`form`);
@@ -427,8 +245,8 @@
     }
   });
 
-  const list = document.querySelector(`.live-pictures`);
-  const listMobile = document.querySelector(`.live-pictures--mobile`);
+  const list$1 = document.querySelector(`.live-pictures`);
+  const listMobile$1 = document.querySelector(`.live-pictures--mobile`);
 
   window.$(document).ready(() => {
     window.$(`.live-pictures--mobile`).slick({
@@ -455,30 +273,30 @@
 
   document.addEventListener(`DOMContentLoaded`, function () {
     if (window.innerWidth >= 768) {
-      list.classList.toggle(`visually-hidden`, false);
-      listMobile.classList.toggle(`visually-hidden`, true);
+      list$1.classList.toggle(`visually-hidden`, false);
+      listMobile$1.classList.toggle(`visually-hidden`, true);
 
     } else {
-      list.classList.toggle(`visually-hidden`, true);
-      listMobile.classList.toggle(`visually-hidden`, false);
+      list$1.classList.toggle(`visually-hidden`, true);
+      listMobile$1.classList.toggle(`visually-hidden`, false);
     }
   });
 
   window.addEventListener(`resize`, () => {
     if (window.innerWidth >= 768) {
-      list.classList.toggle(`visually-hidden`, false);
-      listMobile.classList.toggle(`visually-hidden`, true);
+      list$1.classList.toggle(`visually-hidden`, false);
+      listMobile$1.classList.toggle(`visually-hidden`, true);
 
     } else {
-      list.classList.toggle(`visually-hidden`, true);
-      listMobile.classList.toggle(`visually-hidden`, false);
+      list$1.classList.toggle(`visually-hidden`, true);
+      listMobile$1.classList.toggle(`visually-hidden`, false);
     }
   });
 
   const faq = document.querySelector(`.page-questions__faq`);
-  const list$1 = faq.querySelector(`ol`);
+  const list$2 = faq.querySelector(`ol`);
 
-  const questions = [...list$1.querySelectorAll(`li`)];
+  const questions = [...list$2.querySelectorAll(`li`)];
 
   questions.forEach((question) => {
     question.addEventListener(`click`, () => {
@@ -526,11 +344,6 @@
       counter.textContent = `${currentSlide + 1} / ${length}`;
     });
   });
-
-  const body$1 = document.querySelector(`body`);
-  const about = body$1.querySelector(`.page-about`);
-  const catalogue = new Catalogue();
-  renderComponent(about, catalogue, `afterEnd`);
 
 }());
 
