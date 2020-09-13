@@ -1,8 +1,11 @@
 .page-details {
   // border: $bred;
   width: 100%;
-  padding-left: 110px;
-  padding-top: 120px;
+  padding: 120px 0 0 110px;
+
+  @media (max-width: 767px) {
+    padding: 75px 16px 0;
+  }
 }
 
 .page-details__inner {
@@ -14,20 +17,37 @@
 
 .page-details__top {
   // border: $bred;
-  margin-bottom: 64px;
+  margin-bottom: 59px;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    margin-bottom: 25px;
+  }
 }
 
 .page-details__top-left {
   // border: $bred;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+
+  @media (max-width: 767px) {
+    margin-bottom: 40px;
+  }
 }
 
 .page-details__top-left h2 {
   margin-bottom: 58px;
+
+  @media (max-width: 767px) {
+    text-align: center;
+    margin-bottom: 25px;
+  }
 }
 
-.page-details__top-left > p {
+.page-details__top-left h2 + p {
   // border: $bred;
   font-weight: normal;
   font-size: 15px;
@@ -37,17 +57,30 @@
   position: relative;
   padding-left: 21px;
   white-space: pre;
+  margin-bottom: 38px;
 
   &:before {
     // border: $bred;
     position: absolute;
     content: '';
     background: url(../img/icon-map-marker.png) center no-repeat;
-    background-size: contain;
+    background-size: 100%;
     width: 12px;
     height: 18px;
     left: 4px;
     top: 2px;
+  }
+
+  &:after {
+    // border: $bred;
+    position: absolute;
+    content: '';
+    background: url(../img/gps.png) center no-repeat;
+    background-size: contain;
+    width: 16px;
+    height: 15px;
+    left: 220px;
+    top: 5px;
   }
 }
 
@@ -65,24 +98,177 @@
 .curator-unit {
   // border: $bred;
   display: flex;
+  margin-bottom: 28px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+}
+
+.curator-unit__information {
+  margin-left: 25px;
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+.curator-unit__information > p {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 19px;
+  color: #484848;
+  opacity: 0.74;
+  width: 60%;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+p.curator-unit__name {
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 30px;
+  color: #484848;
+  opacity: 0.74;
+  white-space: pre;
+  margin-bottom: 8px;
+
+  & span {
+    color: #1FC0FC;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 8px;
+  }
+}
+
+.curator-unit__socials {
+  margin-top: 12px;
+
+  @media (max-width: 767px) {
+    margin-top: 15px;
+  }
+}
+
+.curator-unit__socials .social {
+  margin-right: 9px;
+}
+
+.social__image {
+  fill: #00000048;
+}
+
+.curator-unit + p {
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 29px;
+  color: #484848;
+  opacity: 0.87;
+  width: 95%;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 26px;
+  }
 }
 
 .map-view {
   height: 448px;
   width: 702px;
   margin-left: 39px;
+  flex-shrink: 0;
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+    height: 420px;
+    width: 100%;
+  }
 }
 
 .page-details__feedback {
   // border: $bred;
   display: flex;
+
+  @media (max-width: 1100px) {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .feedback-safety {
+  // border: $bred;
   display: flex;
   flex-direction: column;
+  width: 40%;
+  margin-right: 25px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 33px;
+  }
+}
+
+.feedback-safety__top {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 25px;
+  color: #484848;
+  opacity: 0.87;
+  margin-bottom: 10px;
+  margin-top: 5px;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 0;
+  }
+}
+
+.feedback-safety__addition {
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+  color: #484848;
+  opacity: 0.5;
 }
 
 .page-details__feedback form {
   display: flex;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.page-details__feedback .input-container {
+  width: 250px;
+  margin-right: 25px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+
+    & .error__message {
+      top: 60px;
+    }
+  }
+}
+
+.page-details__feedback .recall__btn {
+  width: 216px;
+
+  @media (max-width: 767px) {
+    width: 92%;
+  }
 }

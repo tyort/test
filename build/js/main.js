@@ -158,13 +158,13 @@
 
   function init() {
     let myMap = new window.ymaps.Map(`YMapsID`, {
-      center: [59.938635, 30.323118],
-      zoom: 15,
+      center: [55.028723, 82.926924],
+      zoom: 18,
     }, {
       searchControlProvider: `yandex#search`
     });
 
-    const myPlacemark = new window.ymaps.Placemark([59.938635, 30.323118], {
+    const myPlacemark = new window.ymaps.Placemark([55.028522, 82.928281], {
       hintContent: `Адрес куратора`,
     }, {
       iconLayout: `default#image`,
