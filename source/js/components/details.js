@@ -3,6 +3,9 @@ const pageFeedback = document.querySelector(`.page-details__feedback`);
 const form = pageFeedback.querySelector(`form`);
 import {phoneSample, nameSample} from '../formulas';
 
+window.addEventListener(`mapWasLoaded`, () => {
+  window.ymaps.ready(init);
+});
 
 form.addEventListener(`submit`, (evt) => {
   evt.preventDefault();
@@ -27,4 +30,26 @@ form.addEventListener(`input`, (evt) => {
     }
   }
 });
+
+function init() {
+  let myMap = new window.ymaps.Map(`YMapsID`, {
+    center: [59.938635, 30.323118],
+    zoom: 15,
+  }, {
+    searchControlProvider: `yandex#search`
+  });
+
+  const myPlacemark = new window.ymaps.Placemark([59.938635, 30.323118], {
+    hintContent: `Адрес куратора`,
+  }, {
+    iconLayout: `default#image`,
+    iconImageHref: `img/icon-map-marker.png`,
+    iconImageSize: [18, 28],
+    iconImageOffset: [-9, -28],
+  });
+
+  myMap.geoObjects
+      .add(myPlacemark);
+}
+
 

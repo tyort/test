@@ -310,6 +310,9 @@
   const pageFeedback = document.querySelector(`.page-details__feedback`);
   const form$1 = pageFeedback.querySelector(`form`);
 
+  window.addEventListener(`mapWasLoaded`, () => {
+    window.ymaps.ready(init);
+  });
 
   form$1.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
@@ -334,6 +337,27 @@
       }
     }
   });
+
+  function init() {
+    let myMap = new window.ymaps.Map(`YMapsID`, {
+      center: [59.938635, 30.323118],
+      zoom: 15,
+    }, {
+      searchControlProvider: `yandex#search`
+    });
+
+    const myPlacemark = new window.ymaps.Placemark([59.938635, 30.323118], {
+      hintContent: `Адрес куратора`,
+    }, {
+      iconLayout: `default#image`,
+      iconImageHref: `img/icon-map-marker.png`,
+      iconImageSize: [18, 28],
+      iconImageOffset: [-9, -28],
+    });
+
+    myMap.geoObjects
+        .add(myPlacemark);
+  }
 
   const body = document.querySelector(`body`);
   const pageHeader = document.querySelector(`.page-header`);
