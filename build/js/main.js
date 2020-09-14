@@ -136,11 +136,63 @@
     }
   });
 
+  const pageFeedback = document.querySelector(`.page-details__feedback`);
+  const form$1 = pageFeedback.querySelector(`form`);
+
+  window.addEventListener(`mapWasLoaded`, () => {
+    window.ymaps.ready(init);
+  });
+
+  form$1.addEventListener(`submit`, (evt) => {
+    evt.preventDefault();
+    form$1.reset();
+  });
+
+  form$1.addEventListener(`input`, (evt) => {
+    if (evt.target.id === `block-phone`) {
+      if (!phoneSample.test(evt.target.value)) {
+        evt.target.setCustomValidity(`Напиши номер правильно`);
+
+      } else {
+        evt.target.setCustomValidity(``);
+      }
+
+    } else if (evt.target.id === `block-name`) {
+      if (!nameSample.test(evt.target.value)) {
+        evt.target.setCustomValidity(`Напиши ФИО правильно`);
+
+      } else {
+        evt.target.setCustomValidity(``);
+      }
+    }
+  });
+
+  function init() {
+    let myMap = new window.ymaps.Map(`YMapsID`, {
+      center: [55.028723, 82.926924],
+      zoom: 18,
+    }, {
+      searchControlProvider: `yandex#search`
+    });
+
+    const myPlacemark = new window.ymaps.Placemark([55.028522, 82.928281], {
+      hintContent: `Адрес куратора`,
+    }, {
+      iconLayout: `default#image`,
+      iconImageHref: `img/icon-map-marker.png`,
+      iconImageSize: [18, 28],
+      iconImageOffset: [-9, -28],
+    });
+
+    myMap.geoObjects
+        .add(myPlacemark);
+  }
+
   const body = document.querySelector(`body`);
   const pageHeader = document.querySelector(`.page-header`);
   const requestPopup = document.querySelector(`.page-request-popup`);
   const successPopup = document.querySelector(`.page-success-popup`);
-  const form$1 = requestPopup.querySelector(`form`);
+  const form$2 = requestPopup.querySelector(`form`);
   const agreement = requestPopup.querySelector(`.field-agreement`);
   const btn = requestPopup.querySelector(`button`);
 
@@ -159,7 +211,7 @@
     }
   });
 
-  form$1.addEventListener(`submit`, (evt) => {
+  form$2.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
     hideElement();
 
@@ -168,7 +220,7 @@
     body.style.overflow = `hidden`;
   });
 
-  form$1.addEventListener(`input`, (evt) => {
+  form$2.addEventListener(`input`, (evt) => {
     if (evt.target.id === `block-phone`) {
       if (!phoneSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши номер правильно`);

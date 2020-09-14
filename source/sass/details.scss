@@ -1,7 +1,7 @@
 .page-details {
   // border: $bred;
   width: 100%;
-  padding: 106px 0 0 110px;
+  padding: 108px 0 0 110px;
 
   @media (max-width: 767px) {
     padding: 75px 16px 0;
@@ -10,8 +10,6 @@
 
 .page-details__inner {
   // border: $bred;
-  width: 100%;
-  max-width: 1256px;
   margin: 0 auto;
 }
 
@@ -19,7 +17,7 @@
   // border: $bred;
   margin-bottom: 70px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   @media (max-width: 767px) {
     flex-direction: column;
@@ -31,10 +29,15 @@
   // border: $bred;
   display: flex;
   flex-direction: column;
-  flex-shrink: 1;
+  width: 41%;
+  min-width: 340px;
+  margin-right: 39px;
 
   @media (max-width: 767px) {
+    min-width: 0;
+    margin-right: 0;
     margin-bottom: 40px;
+    width: 100%;
   }
 }
 
@@ -178,12 +181,9 @@ p.curator-unit__name {
 
 .map-view {
   height: 448px;
-  width: 702px;
-  margin-left: 39px;
-  flex-shrink: 0;
+  width: 55.9%;
 
   @media (max-width: 767px) {
-    margin-left: 0;
     height: 420px;
     width: 100%;
   }
