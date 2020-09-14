@@ -1,13 +1,13 @@
 .page-header { // высота при 767px должна быть 637px
   position: relative;
   width: 100%; 
-  background: url(../img/bg-header.png) center no-repeat;
+  background: url(../img/bg-header.png) top center no-repeat;
   background-size: cover;
   padding: 0 16px;
   
   @media (max-width: 767px) {
     background: url(../img/bg-header-mobile.png) center 110% no-repeat;
-  }
+    }
 }
 
 .page-header__inner {
@@ -116,7 +116,7 @@
 }
 
 .page-header__inner .scroll-down {
-  margin-bottom: 142.5px;
+  margin-bottom: 131.5px;
   cursor: pointer;
 
 

@@ -89,7 +89,7 @@ h2 {
   font-style: normal;
   font-weight: bold;
   font-size: 40px;
-  line-height: 70%;
+  line-height: 49px;
   color: #1FC0FC;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -171,7 +171,7 @@ button {
 @import "cross.scss";
 @import "header.scss";
 @import "about.scss";
-@import "catalogue.scss";
+@import "programs.scss";
 @import "desire.scss";
 @import "which-way.scss";
 @import "live.scss";
@@ -182,4 +182,3 @@ button {
 @import "footer.scss";
 @import "call-request.scss";
 @import "success-popup.scss";
-
