@@ -1,10 +1,8 @@
 .page-photo-diary {
   // border: $bred;
   width: 100%;
-  padding: 287px 16px 342px;
-  display: flex;
-  justify-content: flex-end;
-  background: url(../img/photo-diary.png) center no-repeat;
+  padding: 273px 16px 332px;
+  background: url(../img/photo-diary.png) top 53% center no-repeat;
 
   @media (max-width: 767px) {
     background-size: 200%;
@@ -17,6 +15,7 @@
   // border: $bred;
   width: 100%;
   max-width: 555px;
+  margin-left: calc(50% + 113px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -27,7 +26,7 @@
 }
 
 .page-photo-diary__inner h2 {
-  margin-bottom: 35px;
+  margin-bottom: 25px;
 
   @media (max-width: 767px) {
     font-size: 40px;

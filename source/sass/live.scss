@@ -16,11 +16,7 @@
 
 .page-live__inner h2 {
   text-align: center;
-  margin-bottom: 30px;
-
-  @media (max-width: 767px) {
-    margin-bottom: 25px;
-  }
+  margin-bottom: 25px;
 }
 
 .page-live__inner p {
@@ -32,7 +28,7 @@
   color: #484848;
   opacity: 0.87;
   max-width: 720px;
-  margin-bottom: 50px;
+  margin-bottom: 47px;
 
   @media (max-width: 767px) {
     text-align: left;
@@ -99,7 +95,7 @@
     // border: $bred;
     object-position: center bottom;
     object-fit: cover;
-    margin-top: -70px;
+    margin-top: -65px;
 
     @media (max-width: 767px) {
       object-fit: contain;

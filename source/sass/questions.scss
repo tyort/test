@@ -1,6 +1,6 @@
 .page-questions {
   width: 100%;
-  padding: 0 0 135px 16px;
+  padding: 0 0 124px 16px;
 
   @media (max-width: 767px) {
     padding: 0 16px 73px;
@@ -33,7 +33,7 @@
 }
 
 .page-questions__faq h2 {
-  margin-bottom: 25px;
+  margin-bottom: 13px;
 
   @media (max-width: 767px) {
     text-align: center;
@@ -58,8 +58,8 @@
 
   padding-left: 30px;
   padding-right: 80px;
-  padding-top: 34px;
-  padding-bottom: 34px;
+  padding-top: 35px;
+  padding-bottom: 32px;
 
   @media (max-width: 767px) {
     max-width: 100%;
@@ -135,7 +135,7 @@
 
 .page-questions__inner picture {
   // border: $bred;
-  max-width: 645px;
+  margin-top: 10px;
 
   @media (max-width: 767px) {
     display: none;

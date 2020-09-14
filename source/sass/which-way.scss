@@ -1,15 +1,9 @@
 .page-which-way {
-  background: url(../img/couple_1x.png) top left 1.5% no-repeat;
-  background-size: 42.5%;
   width: 100%;
   margin-top: 166px;
   display: flex;
   justify-content: flex-end;
-  padding-right: 130px;
-
-  @media (max-width: 1120px) {
-    background: none;
-  }
+  padding: 0 131px 156px 12px;
 
   @media (max-width: 767px) {
     margin-top: 35px;
@@ -18,21 +12,31 @@
 }
 
 .page-which-way__inner {
+  display: flex;
+  width: 100%;
+  max-width: 1223px;
+  margin: 0 auto;
+}
+
+.page-which-way__inner picture {
+  margin-right: 106px;
+}
+
+.page-which-way__description {
   // border: $bred;
   width: 100%;
   max-width: 536px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 220px;
 
   @media (max-width: 767px) {
     padding-bottom: 80px;
   }
 }
 
-.page-which-way__inner h2 {
-  margin-top: 42px;
-  margin-bottom: 35px;
+.page-which-way__description h2 {
+  margin-top: 32px;
+  margin-bottom: 24px;
   width: 100%;
 
   @media (max-width: 767px) {
@@ -41,7 +45,7 @@
   }
 }
 
-.page-which-way__inner h2 + p {
+.page-which-way__description h2 + p {
   font-weight: normal;
   font-size: 15px;
   line-height: 26px;
@@ -58,7 +62,7 @@
   }
 }
 
-.page-which-way__inner h4 {
+.page-which-way__description h4 {
   font-weight: 500;
   font-size: 17px;
   line-height: 29px;
@@ -73,11 +77,11 @@
   }
 }
 
-.page-which-way__inner ol {
+.page-which-way__description ol {
   position: relative;
   counter-reset: myCounter;
   width: 90%;
-  margin-bottom: 48px;
+  margin-bottom: 49px;
 
   @media (max-width: 767px) {
     width: 100%;
@@ -86,7 +90,7 @@
   }
 }
 
-.page-which-way__inner ol:before{
+.page-which-way__description ol:before{
   content: '';
   position: absolute;
   top: 0;
@@ -96,7 +100,7 @@
   border-left: 1px dashed #484848;
 }
 
-.page-which-way__inner li {
+.page-which-way__description li {
   // border: $bred;
   position: relative;
   padding-left: 45px;
@@ -119,7 +123,7 @@
   }
 }
 
-.page-which-way__inner li:before {
+.page-which-way__description li:before {
   counter-increment: myCounter;
   content: counter(myCounter);
 
@@ -145,7 +149,7 @@
   }
 }
 
-.page-which-way__inner ol + p {
+.page-which-way__description ol + p {
   position: relative;
   font-weight: normal;
   font-size: 15px;
@@ -163,7 +167,7 @@
   }
 }
 
-.page-which-way__inner ol + p:before {
+.page-which-way__description ol + p:before {
   content: '';
   position: absolute;
   width: 100%;

@@ -1,7 +1,7 @@
 .page-details {
   // border: $bred;
   width: 100%;
-  padding: 120px 0 0 110px;
+  padding: 106px 0 0 110px;
 
   @media (max-width: 767px) {
     padding: 75px 16px 0;
@@ -17,7 +17,7 @@
 
 .page-details__top {
   // border: $bred;
-  margin-bottom: 59px;
+  margin-bottom: 70px;
   display: flex;
   justify-content: space-between;
 
@@ -39,7 +39,7 @@
 }
 
 .page-details__top-left h2 {
-  margin-bottom: 58px;
+  margin-bottom: 50px;
 
   @media (max-width: 767px) {
     text-align: center;
