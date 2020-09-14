@@ -7,12 +7,13 @@
 
   @media (max-width: 767px) {
     margin-top: 35px;
-    padding: 0 16px;
+    padding: 0 16px 79px;
   }
 }
 
 .page-which-way__inner {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   max-width: 1223px;
   margin: 0 auto;
@@ -20,6 +21,10 @@
 
 .page-which-way__inner picture {
   margin-right: 106px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 }
 
 .page-which-way__description {
@@ -28,10 +33,6 @@
   max-width: 536px;
   display: flex;
   flex-direction: column;
-
-  @media (max-width: 767px) {
-    padding-bottom: 80px;
-  }
 }
 
 .page-which-way__description h2 {
@@ -41,7 +42,7 @@
 
   @media (max-width: 767px) {
     text-align: center;
-    margin-bottom: 25px;
+    margin-top: 43px;
   }
 }
 
@@ -58,7 +59,7 @@
     width: 100%;
     font-size: 14px;
     line-height: 22px;
-    margin-bottom: 25px;
+    margin-bottom: 23px;
   }
 }
 
@@ -86,7 +87,7 @@
   @media (max-width: 767px) {
     width: 100%;
     margin-left: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 23px;
   }
 }
 
@@ -118,7 +119,7 @@
   @media (max-width: 767px) {
     font-size: 14px;
     line-height: 22px;
-    margin-bottom: 40px;
+    margin-bottom: 41px;
     padding-left: 35px;
   }
 }
