@@ -71,9 +71,9 @@ const createItemsDescriptions = (currentProgram) => {
 
 const createItemsButtons = (currentProgram) => {
   [...list.children].forEach((item) => {
-    item.querySelector(`button`).classList.toggle(`btn__isChecked`, false);
+    item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
     if (item.querySelector(`button`).textContent.trim() === currentProgram) {
-      item.querySelector(`button`).classList.toggle(`btn__isChecked`, true);
+      item.querySelector(`button`).classList.toggle(`btn-isChecked`, true);
     }
   });
 };

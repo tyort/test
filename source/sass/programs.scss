@@ -97,7 +97,7 @@
   }
 }
 
-.catalogue-details__item.btn__isChecked {
+.catalogue-details__item.btn-isChecked {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -111,7 +111,7 @@
 }
 
 .slick-active .item-star::before,
-.btn__isChecked.item-star::before {
+.btn-isChecked.item-star::before {
   background: url(../img/star-white.png) center no-repeat;
   height: 33px;
 }
@@ -122,7 +122,7 @@
 }
 
 .slick-active .item-cap::before,
-.btn__isChecked.item-cap::before {
+.btn-isChecked.item-cap::before {
   background: url(../img/cap-white.png) center no-repeat;
   height: 35px;
 }
@@ -133,7 +133,7 @@
 }
 
 .slick-active .item-portfolio::before,
-.btn__isChecked.item-portfolio::before {
+.btn-isChecked.item-portfolio::before {
   background: url(../img/portfolio-white.png) center no-repeat;
   height: 25px;
 }
@@ -145,7 +145,7 @@
 
 
 .slick-active .item-heart::before,
-.btn__isChecked.item-heart::before {
+.btn-isChecked.item-heart::before {
   background: url(../img/heart-hand-white.png) center no-repeat;
   height: 29px;
 }
@@ -156,7 +156,7 @@
 }
 
 .slick-active .item-candles::before,
-.btn__isChecked.item-candles::before {
+.btn-isChecked.item-candles::before {
   background: url(../img/candles-white.png) center no-repeat;
   height: 25px;
 }
