@@ -1,11 +1,8 @@
+const body = document.querySelector(`body`);
 const pageDesire = document.querySelector(`.page-desire`);
 const form = pageDesire.querySelector(`form`);
-import {phoneSample} from '../formulas';
-
-form.addEventListener(`submit`, (evt) => {
-  evt.preventDefault();
-  form.reset();
-});
+const successPopup = document.querySelector(`.page-success-popup`);
+import {hideElement, onEscKeyDown, phoneSample} from '../formulas';
 
 form.addEventListener(`input`, (evt) => {
   if (!phoneSample.test(evt.target.value)) {
@@ -14,4 +11,14 @@ form.addEventListener(`input`, (evt) => {
   } else {
     evt.target.setCustomValidity(``);
   }
+});
+
+form.addEventListener(`submit`, (evt) => {
+  evt.preventDefault();
+  hideElement();
+  form.reset();
+
+  successPopup.classList.toggle(`visually-hidden`, false);
+  document.addEventListener(`keydown`, onEscKeyDown);
+  body.style.overflow = `hidden`;
 });

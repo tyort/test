@@ -102,30 +102,20 @@
   const hideElement = () => {
     const requestPopup = document.querySelector(`.page-request-popup`);
     const successPopup = document.querySelector(`.page-success-popup`);
-    const form = requestPopup.querySelector(`form`);
-    const btn = requestPopup.querySelector(`button`);
 
     successPopup.classList.toggle(`visually-hidden`, true);
     requestPopup.classList.toggle(`visually-hidden`, true);
     document.removeEventListener(`keydown`, onEscKeyDown);
     document.querySelector(`body`).style.overflow = `visible`;
-    form.reset();
-
-    if (!btn.hasAttribute(`disabled`)) {
-      btn.setAttribute(`disabled`, `disabled`);
-    }
   };
 
   const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
   const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
 
+  const body = document.querySelector(`body`);
   const pageDesire = document.querySelector(`.page-desire`);
   const form = pageDesire.querySelector(`form`);
-
-  form.addEventListener(`submit`, (evt) => {
-    evt.preventDefault();
-    form.reset();
-  });
+  const successPopup = document.querySelector(`.page-success-popup`);
 
   form.addEventListener(`input`, (evt) => {
     if (!phoneSample.test(evt.target.value)) {
@@ -136,8 +126,20 @@
     }
   });
 
+  form.addEventListener(`submit`, (evt) => {
+    evt.preventDefault();
+    hideElement();
+    form.reset();
+
+    successPopup.classList.toggle(`visually-hidden`, false);
+    document.addEventListener(`keydown`, onEscKeyDown);
+    body.style.overflow = `hidden`;
+  });
+
+  const body$1 = document.querySelector(`body`);
   const pageFeedback = document.querySelector(`.page-details__feedback`);
   const form$1 = pageFeedback.querySelector(`form`);
+  const successPopup$1 = document.querySelector(`.page-success-popup`);
 
   window.addEventListener(`mapWasLoaded`, () => {
     window.ymaps.ready(init);
@@ -145,7 +147,12 @@
 
   form$1.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
+    hideElement();
     form$1.reset();
+
+    successPopup$1.classList.toggle(`visually-hidden`, false);
+    document.addEventListener(`keydown`, onEscKeyDown);
+    body$1.style.overflow = `hidden`;
   });
 
   form$1.addEventListener(`input`, (evt) => {
@@ -188,10 +195,10 @@
         .add(myPlacemark);
   }
 
-  const body = document.querySelector(`body`);
+  const body$2 = document.querySelector(`body`);
   const pageHeader = document.querySelector(`.page-header`);
   const requestPopup = document.querySelector(`.page-request-popup`);
-  const successPopup = document.querySelector(`.page-success-popup`);
+  const successPopup$2 = document.querySelector(`.page-success-popup`);
   const form$2 = requestPopup.querySelector(`form`);
   const agreement = requestPopup.querySelector(`.field-agreement`);
   const btn = requestPopup.querySelector(`button`);
@@ -200,7 +207,7 @@
       .addEventListener(`click`, () => {
         requestPopup.classList.toggle(`visually-hidden`, false);
         document.addEventListener(`keydown`, onEscKeyDown);
-        body.style.overflow = `hidden`;
+        body$2.style.overflow = `hidden`;
       });
 
   requestPopup.addEventListener(`click`, (evt) => {
@@ -214,10 +221,15 @@
   form$2.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
     hideElement();
+    form$2.reset();
 
-    successPopup.classList.toggle(`visually-hidden`, false);
+    if (!btn.hasAttribute(`disabled`)) {
+      btn.setAttribute(`disabled`, `disabled`);
+    }
+
+    successPopup$2.classList.toggle(`visually-hidden`, false);
     document.addEventListener(`keydown`, onEscKeyDown);
-    body.style.overflow = `hidden`;
+    body$2.style.overflow = `hidden`;
   });
 
   form$2.addEventListener(`input`, (evt) => {
@@ -247,8 +259,8 @@
     btn.setAttribute(`disabled`, `disabled`);
   });
 
-  successPopup.addEventListener(`click`, (evt) => {
-    if (evt.target === successPopup || evt.target.className === `popup__close` || evt.target.tagName === `BUTTON`) {
+  successPopup$2.addEventListener(`click`, (evt) => {
+    if (evt.target === successPopup$2 || evt.target.className === `popup__close` || evt.target.tagName === `BUTTON`) {
       hideElement();
 
     } else if (evt.target.className === `page-success-popup__inner`) {

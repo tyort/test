@@ -25,6 +25,11 @@ requestPopup.addEventListener(`click`, (evt) => {
 form.addEventListener(`submit`, (evt) => {
   evt.preventDefault();
   hideElement();
+  form.reset();
+
+  if (!btn.hasAttribute(`disabled`)) {
+    btn.setAttribute(`disabled`, `disabled`);
+  }
 
   successPopup.classList.toggle(`visually-hidden`, false);
   document.addEventListener(`keydown`, onEscKeyDown);

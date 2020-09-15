@@ -1,7 +1,8 @@
-
+const body = document.querySelector(`body`);
 const pageFeedback = document.querySelector(`.page-details__feedback`);
 const form = pageFeedback.querySelector(`form`);
-import {phoneSample, nameSample} from '../formulas';
+const successPopup = document.querySelector(`.page-success-popup`);
+import {hideElement, onEscKeyDown, phoneSample, nameSample} from '../formulas';
 
 window.addEventListener(`mapWasLoaded`, () => {
   window.ymaps.ready(init);
@@ -9,7 +10,12 @@ window.addEventListener(`mapWasLoaded`, () => {
 
 form.addEventListener(`submit`, (evt) => {
   evt.preventDefault();
+  hideElement();
   form.reset();
+
+  successPopup.classList.toggle(`visually-hidden`, false);
+  document.addEventListener(`keydown`, onEscKeyDown);
+  body.style.overflow = `hidden`;
 });
 
 form.addEventListener(`input`, (evt) => {
