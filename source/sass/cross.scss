@@ -1,4 +1,4 @@
-.popup__close {
+.popup-close {
   // border: $bred;
   width: 35px;
   height: 35px;
@@ -15,7 +15,7 @@
   }
 }
 
-.popup__close:before {
+.popup-close:before {
   content: '';
   // border: $bred;
   background: url(../img/cross.svg) center no-repeat;
@@ -29,7 +29,7 @@
   transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
 }
 
-.popup__close:after {
+.popup-close:after {
   content: '';
   position: absolute;
   top: 0;
@@ -43,10 +43,10 @@
   transform: scale(0.01);
 }
 
-.popup__close:hover:after {
+.popup-close:hover:after {
   transform: scale(1);
 }
   
-.popup__close:hover:before {
+.popup-close:hover:before {
   transform: scale(0.7) rotate(180deg);
 }

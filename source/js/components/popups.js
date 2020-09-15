@@ -15,7 +15,7 @@ pageHeader.querySelector(`.page-header__btn`)
     });
 
 requestPopup.addEventListener(`click`, (evt) => {
-  if (evt.target === requestPopup || evt.target.className === `popup__close`) {
+  if (evt.target === requestPopup || evt.target.className === `popup-close`) {
     hideElement();
   } else if (evt.target.className === `page-request-popup__inner`) {
     evt.stopPropagation();
@@ -64,7 +64,7 @@ agreement.addEventListener(`change`, (evt) => {
 });
 
 successPopup.addEventListener(`click`, (evt) => {
-  if (evt.target === successPopup || evt.target.className === `popup__close` || evt.target.tagName === `BUTTON`) {
+  if (evt.target === successPopup || evt.target.className === `popup-close` || evt.target.tagName === `BUTTON`) {
     hideElement();
 
   } else if (evt.target.className === `page-success-popup__inner`) {
