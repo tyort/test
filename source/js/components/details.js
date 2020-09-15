@@ -19,7 +19,7 @@ form.addEventListener(`submit`, (evt) => {
 });
 
 form.addEventListener(`input`, (evt) => {
-  if (evt.target.id === `block-phone`) {
+  if (evt.target.className === `block-phone`) {
     if (!phoneSample.test(evt.target.value)) {
       evt.target.setCustomValidity(`Напиши номер правильно`);
 
@@ -27,7 +27,7 @@ form.addEventListener(`input`, (evt) => {
       evt.target.setCustomValidity(``);
     }
 
-  } else if (evt.target.id === `block-name`) {
+  } else if (evt.target.className === `block-name`) {
     if (!nameSample.test(evt.target.value)) {
       evt.target.setCustomValidity(`Напиши ФИО правильно`);
 

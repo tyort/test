@@ -156,7 +156,7 @@
   });
 
   form$1.addEventListener(`input`, (evt) => {
-    if (evt.target.id === `block-phone`) {
+    if (evt.target.className === `block-phone`) {
       if (!phoneSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши номер правильно`);
 
@@ -164,7 +164,7 @@
         evt.target.setCustomValidity(``);
       }
 
-    } else if (evt.target.id === `block-name`) {
+    } else if (evt.target.className === `block-name`) {
       if (!nameSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши ФИО правильно`);
 
@@ -233,7 +233,7 @@
   });
 
   form$2.addEventListener(`input`, (evt) => {
-    if (evt.target.id === `block-phone`) {
+    if (evt.target.className === `block-phone`) {
       if (!phoneSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши номер правильно`);
 
@@ -241,7 +241,7 @@
         evt.target.setCustomValidity(``);
       }
 
-    } else if (evt.target.id === `block-name`) {
+    } else if (evt.target.className === `block-name`) {
       if (!nameSample.test(evt.target.value)) {
         evt.target.setCustomValidity(`Напиши ФИО правильно`);
 
