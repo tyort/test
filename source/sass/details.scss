@@ -1,16 +1,18 @@
 .page-details {
   // border: $bred;
   width: 100%;
-  padding: 108px 0 0 110px;
+  padding: 108px 0 74px 110px;
 
   @media (max-width: 767px) {
-    padding: 75px 16px 0;
+    padding: 75px 16px 56px;
   }
 }
 
 .page-details__inner {
   // border: $bred;
   margin: 0 auto;
+  width: 100%;
+  max-width: 1256px;
 }
 
 .page-details__top {
