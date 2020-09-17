@@ -4,7 +4,7 @@
   padding: 108px 0 74px 110px;
 
   @media (max-width: 767px) {
-    padding: 75px 16px 56px;
+    padding: 75px 16px 64px;
   }
 }
 
@@ -259,11 +259,7 @@ p.curator-unit__name {
   @media (max-width: 767px) {
     width: 100%;
     margin-right: 0;
-    margin-bottom: 20px;
-
-    & .error-message {
-      top: 60px;
-    }
+    margin-bottom: 8px;
   }
 }
 
@@ -272,5 +268,6 @@ p.curator-unit__name {
 
   @media (max-width: 767px) {
     width: 92%;
+    margin-top: 16px;
   }
 }

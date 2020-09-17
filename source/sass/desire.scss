@@ -64,18 +64,10 @@
   }
 }
 
-.page-desire__inner .input-container {
-  width: 100%;
-
-  .error-message {
-    top: 60px;
-  }
-}
-
 .page-desire__inner .recall-btn {
   position: absolute;
   width: 216px;
-  height: 100%;
+  height: 59px;
   right: 0;
   top: 0;
 
@@ -83,7 +75,7 @@
     position: static;
     width: 264px;
     height: 59px;
-    margin-top: 25px;
+    margin-top: 8px;
   }
 }
 
@@ -105,9 +97,9 @@
     width: 174%;
 
     @media (max-width: 767px) {
-      margin-left: -67px;
-      margin-top: -17px;
-      width: 147%;
+      margin-left: -70px;
+      margin-top: 0px;
+      width: 148%;
       height: 100%;
     }
   }
