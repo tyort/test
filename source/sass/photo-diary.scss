@@ -2,7 +2,9 @@
   // border: $bred;
   width: 100%;
   padding: 273px 16px 332px;
-  background: url(../img/photo-diary.png) top 53% center no-repeat;
+  background:
+    url(../img/photo-diary.png) top 53% center no-repeat,
+    radial-gradient(farthest-corner at 900px, #B498AE 30%, #FFFFFF 40%,);
 
   @media (max-width: 767px) {
     background-size: 200%;

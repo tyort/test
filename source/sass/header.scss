@@ -1,10 +1,12 @@
 .page-header { // высота при 767px должна быть 637px
   position: relative;
   width: 100%; 
-  background: url(../img/bg-header.png) top center no-repeat;
+  background:
+    url(../img/bg-header.png) top center no-repeat,
+    radial-gradient(closest-side, #B6A49B 35%, #FFFFFF 80%,);
   background-size: cover;
   padding: 0 16px;
-  
+
   @media (max-width: 767px) {
     background: url(../img/bg-header-mobile.png) center 110% no-repeat;
     }
