@@ -269,6 +269,8 @@
     requestPopup.addEventListener(`click`, (evt) => {
       if (evt.target === requestPopup || evt.target.className === `popup-close`) {
         hideElement();
+        form$2.reset();
+
       } else if (evt.target.className === `page-request-popup__inner`) {
         evt.stopPropagation();
       }
