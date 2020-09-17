@@ -116,7 +116,7 @@ li {
 
 a {
   text-decoration: none;
-  cursor: url(../img/Pointer.svg), pointer;
+  cursor: pointer;
 
   &:hover {
     text-shadow: 3px 2px 5px #0800076c;
@@ -144,7 +144,7 @@ body .visually-hidden {
 }
 
 button {
-  cursor: url(../img/Pointer.svg), pointer;
+  cursor: pointer;
   height: 59px;
   font-family: inherit;
   font-weight: 500;
