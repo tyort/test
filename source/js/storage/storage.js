@@ -13,7 +13,7 @@ export default class LocalStorageUtil {
 
   putClient(clientInformation) {
     const clients = this.getClients();
-    const index = clients.findIndex((it) => it[`E-mail`] === clientInformation[`E-mail`]);
+    const index = clients.findIndex((it) => it[`Phone number`] === clientInformation[`Phone number`]);
 
     if (index === -1) {
       clients.push(clientInformation);

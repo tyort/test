@@ -5,7 +5,10 @@ const successPopup = document.querySelector(`.page-success-popup`);
 const form = requestPopup.querySelector(`form`);
 const agreement = requestPopup.querySelector(`.field-agreement`);
 const btn = requestPopup.querySelector(`button`);
+import ClientsStorage from '../storage/storage.js';
 import {hideElement, onEscKeyDown, phoneSample, nameSample} from '../formulas';
+
+const clientsStorage = new ClientsStorage();
 
 pageHeader.querySelector(`.page-header__btn`)
     .addEventListener(`click`, () => {
@@ -24,6 +27,12 @@ requestPopup.addEventListener(`click`, (evt) => {
 
 form.addEventListener(`submit`, (evt) => {
   evt.preventDefault();
+
+  clientsStorage.putClient({
+    'Full name': form.querySelector(`.block-name`).value,
+    'Phone number': form.querySelector(`.block-phone`).value.toString(),
+  });
+
   hideElement();
   form.reset();
 

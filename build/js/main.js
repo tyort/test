@@ -93,6 +93,34 @@
     createItemsDescriptions(CURRENT_ITEM);
   }
 
+  class LocalStorageUtil {
+    constructor() {
+      this.keyName = `clients`;
+    }
+
+    getClients() {
+      const clients = localStorage.getItem(this.keyName);
+      if (clients !== null) {
+        return JSON.parse(clients);
+      }
+      return [];
+    }
+
+    putClient(clientInformation) {
+      const clients = this.getClients();
+      const index = clients.findIndex((it) => it[`Phone number`] === clientInformation[`Phone number`]);
+
+      if (index === -1) {
+        clients.push(clientInformation);
+
+      } else {
+        clients.splice(index, 1, clientInformation);
+      }
+
+      localStorage.setItem(this.keyName, JSON.stringify(clients));
+    }
+  }
+
   const onEscKeyDown = (evt) => {
     if (evt.key === `Escape` || evt.key === `Esc`) {
       hideElement();
@@ -117,6 +145,8 @@
   const form = pageDesire.querySelector(`form`);
   const successPopup = document.querySelector(`.page-success-popup`);
 
+  const clientsStorage = new LocalStorageUtil();
+
   form.addEventListener(`input`, (evt) => {
     if (!phoneSample.test(evt.target.value)) {
       evt.target.setCustomValidity(`Напиши номер правильно`);
@@ -128,6 +158,12 @@
 
   form.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
+
+    clientsStorage.putClient({
+      'Full name': Date.now().toString(),
+      'Phone number': form.querySelector(`.block-phone`).value.toString(),
+    });
+
     hideElement();
     form.reset();
 
@@ -141,12 +177,20 @@
   const form$1 = pageFeedback.querySelector(`form`);
   const successPopup$1 = document.querySelector(`.page-success-popup`);
 
+  const clientsStorage$1 = new LocalStorageUtil();
+
   window.addEventListener(`mapWasLoaded`, () => {
     window.ymaps.ready(init);
   });
 
   form$1.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
+
+    clientsStorage$1.putClient({
+      'Full name': form$1.querySelector(`.block-name`).value,
+      'Phone number': form$1.querySelector(`.block-phone`).value.toString(),
+    });
+
     hideElement();
     form$1.reset();
 
@@ -203,6 +247,8 @@
   const agreement = requestPopup.querySelector(`.field-agreement`);
   const btn = requestPopup.querySelector(`button`);
 
+  const clientsStorage$2 = new LocalStorageUtil();
+
   pageHeader.querySelector(`.page-header__btn`)
       .addEventListener(`click`, () => {
         requestPopup.classList.toggle(`visually-hidden`, false);
@@ -220,6 +266,12 @@
 
   form$2.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
+
+    clientsStorage$2.putClient({
+      'Full name': form$2.querySelector(`.block-name`).value,
+      'Phone number': form$2.querySelector(`.block-phone`).value.toString(),
+    });
+
     hideElement();
     form$2.reset();
 

@@ -2,7 +2,10 @@ const body = document.querySelector(`body`);
 const pageDesire = document.querySelector(`.page-desire`);
 const form = pageDesire.querySelector(`form`);
 const successPopup = document.querySelector(`.page-success-popup`);
+import ClientsStorage from '../storage/storage.js';
 import {hideElement, onEscKeyDown, phoneSample} from '../formulas';
+
+const clientsStorage = new ClientsStorage();
 
 form.addEventListener(`input`, (evt) => {
   if (!phoneSample.test(evt.target.value)) {
@@ -15,6 +18,12 @@ form.addEventListener(`input`, (evt) => {
 
 form.addEventListener(`submit`, (evt) => {
   evt.preventDefault();
+
+  clientsStorage.putClient({
+    'Full name': Date.now().toString(),
+    'Phone number': form.querySelector(`.block-phone`).value.toString(),
+  });
+
   hideElement();
   form.reset();
 

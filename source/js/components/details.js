@@ -2,7 +2,10 @@ const body = document.querySelector(`body`);
 const pageFeedback = document.querySelector(`.page-details__feedback`);
 const form = pageFeedback.querySelector(`form`);
 const successPopup = document.querySelector(`.page-success-popup`);
+import ClientsStorage from '../storage/storage.js';
 import {hideElement, onEscKeyDown, phoneSample, nameSample} from '../formulas';
+
+const clientsStorage = new ClientsStorage();
 
 window.addEventListener(`mapWasLoaded`, () => {
   window.ymaps.ready(init);
@@ -10,6 +13,12 @@ window.addEventListener(`mapWasLoaded`, () => {
 
 form.addEventListener(`submit`, (evt) => {
   evt.preventDefault();
+
+  clientsStorage.putClient({
+    'Full name': form.querySelector(`.block-name`).value,
+    'Phone number': form.querySelector(`.block-phone`).value.toString(),
+  });
+
   hideElement();
   form.reset();
 
