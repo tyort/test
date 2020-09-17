@@ -1,7 +1,7 @@
 const programs = document.querySelector(`.page-catalogue`);
-const list = programs.querySelector(`.catalogue-details__list`);
-const listMobile = programs.querySelector(`.catalogue-details__list--mobile`);
-const actualDescriptions = programs.querySelector(`.catalogue-details__descriptions`);
+const list = programs === null ? null : programs.querySelector(`.catalogue-details__list`);
+const listMobile = programs === null ? null : programs.querySelector(`.catalogue-details__list--mobile`);
+const actualDescriptions = programs === null ? null : programs.querySelector(`.catalogue-details__descriptions`);
 let CURRENT_ITEM = `Общие`;
 
 window.$(document).ready(() => {
@@ -36,18 +36,20 @@ window.$(document).ready(() => {
   });
 });
 
-list.addEventListener(`click`, onButtonClick);
+if (list) {
+  list.addEventListener(`click`, onButtonClick);
 
-document.addEventListener(`DOMContentLoaded`, () => {
-  if (window.innerWidth >= 768) {
-    list.classList.toggle(`visually-hidden`, false);
-    listMobile.classList.toggle(`visually-hidden`, true);
+  document.addEventListener(`DOMContentLoaded`, () => {
+    if (window.innerWidth >= 768 && list) {
+      list.classList.toggle(`visually-hidden`, false);
+      listMobile.classList.toggle(`visually-hidden`, true);
+      return;
+    }
 
-  } else {
     list.classList.toggle(`visually-hidden`, true);
     listMobile.classList.toggle(`visually-hidden`, false);
-  }
-});
+  });
+}
 
 window.addEventListener(`resize`, () => {
   if (window.innerWidth >= 768) {

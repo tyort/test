@@ -1,20 +1,21 @@
 const faq = document.querySelector(`.page-questions__faq`);
-const list = faq.querySelector(`ol`);
+const list = faq === null ? null : faq.querySelector(`ol`);
 
-const questions = [...list.querySelectorAll(`li`)];
+if (list) {
+  const questions = [...list.querySelectorAll(`li`)];
 
-questions.forEach((question) => {
-  question.addEventListener(`click`, () => {
-    question.classList.toggle(`active`);
+  questions.forEach((question) => {
+    question.addEventListener(`click`, () => {
+      question.classList.toggle(`active`);
 
-    const paragraph = question.querySelector(`p`);
+      const paragraph = question.querySelector(`p`);
 
-    if (question.classList.contains(`active`)) {
-      paragraph.classList.toggle(`visually-hidden`, false);
+      if (question.classList.contains(`active`)) {
+        paragraph.classList.toggle(`visually-hidden`, false);
 
-    } else {
-      paragraph.classList.toggle(`visually-hidden`, true);
-    }
+      } else {
+        paragraph.classList.toggle(`visually-hidden`, true);
+      }
+    });
   });
-});
-
+}

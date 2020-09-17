@@ -24,24 +24,27 @@ window.$(document).ready(() => {
   });
 });
 
-document.addEventListener(`DOMContentLoaded`, function () {
-  if (window.innerWidth >= 768) {
-    list.classList.toggle(`visually-hidden`, false);
-    listMobile.classList.toggle(`visually-hidden`, true);
 
-  } else {
-    list.classList.toggle(`visually-hidden`, true);
-    listMobile.classList.toggle(`visually-hidden`, false);
-  }
-});
+if (list) {
+  document.addEventListener(`DOMContentLoaded`, function () {
+    if (window.innerWidth >= 768) {
+      list.classList.toggle(`visually-hidden`, false);
+      listMobile.classList.toggle(`visually-hidden`, true);
 
-window.addEventListener(`resize`, () => {
-  if (window.innerWidth >= 768) {
-    list.classList.toggle(`visually-hidden`, false);
-    listMobile.classList.toggle(`visually-hidden`, true);
+    } else {
+      list.classList.toggle(`visually-hidden`, true);
+      listMobile.classList.toggle(`visually-hidden`, false);
+    }
+  });
 
-  } else {
-    list.classList.toggle(`visually-hidden`, true);
-    listMobile.classList.toggle(`visually-hidden`, false);
-  }
-});
+  window.addEventListener(`resize`, () => {
+    if (window.innerWidth >= 768) {
+      list.classList.toggle(`visually-hidden`, false);
+      listMobile.classList.toggle(`visually-hidden`, true);
+
+    } else {
+      list.classList.toggle(`visually-hidden`, true);
+      listMobile.classList.toggle(`visually-hidden`, false);
+    }
+  });
+}

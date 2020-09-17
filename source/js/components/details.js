@@ -1,6 +1,6 @@
 const body = document.querySelector(`body`);
 const pageFeedback = document.querySelector(`.page-details__feedback`);
-const form = pageFeedback.querySelector(`form`);
+const form = pageFeedback === null ? null : pageFeedback.querySelector(`form`);
 const successPopup = document.querySelector(`.page-success-popup`);
 import ClientsStorage from '../storage/storage.js';
 import {hideElement, onEscKeyDown, phoneSample, nameSample} from '../formulas';
@@ -11,40 +11,42 @@ window.addEventListener(`mapWasLoaded`, () => {
   window.ymaps.ready(init);
 });
 
-form.addEventListener(`submit`, (evt) => {
-  evt.preventDefault();
+if (form) {
+  form.addEventListener(`submit`, (evt) => {
+    evt.preventDefault();
 
-  clientsStorage.putClient({
-    'Full name': form.querySelector(`.block-name`).value,
-    'Phone number': form.querySelector(`.block-phone`).value.toString(),
+    clientsStorage.putClient({
+      'Full name': form.querySelector(`.block-name`).value,
+      'Phone number': form.querySelector(`.block-phone`).value.toString(),
+    });
+
+    hideElement();
+    form.reset();
+
+    successPopup.classList.toggle(`visually-hidden`, false);
+    document.addEventListener(`keydown`, onEscKeyDown);
+    body.style.overflow = `hidden`;
   });
 
-  hideElement();
-  form.reset();
+  form.addEventListener(`input`, (evt) => {
+    if (evt.target.className === `block-phone`) {
+      if (!phoneSample.test(evt.target.value)) {
+        evt.target.setCustomValidity(`Напиши номер правильно`);
 
-  successPopup.classList.toggle(`visually-hidden`, false);
-  document.addEventListener(`keydown`, onEscKeyDown);
-  body.style.overflow = `hidden`;
-});
+      } else {
+        evt.target.setCustomValidity(``);
+      }
 
-form.addEventListener(`input`, (evt) => {
-  if (evt.target.className === `block-phone`) {
-    if (!phoneSample.test(evt.target.value)) {
-      evt.target.setCustomValidity(`Напиши номер правильно`);
+    } else if (evt.target.className === `block-name`) {
+      if (!nameSample.test(evt.target.value)) {
+        evt.target.setCustomValidity(`Напиши ФИО правильно`);
 
-    } else {
-      evt.target.setCustomValidity(``);
+      } else {
+        evt.target.setCustomValidity(``);
+      }
     }
-
-  } else if (evt.target.className === `block-name`) {
-    if (!nameSample.test(evt.target.value)) {
-      evt.target.setCustomValidity(`Напиши ФИО правильно`);
-
-    } else {
-      evt.target.setCustomValidity(``);
-    }
-  }
-});
+  });
+}
 
 function init() {
   let myMap = new window.ymaps.Map(`YMapsID`, {

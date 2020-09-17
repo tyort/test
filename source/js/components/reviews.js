@@ -15,19 +15,20 @@ window.$(document).ready(() => {
     adaptiveHeight: true
   });
 
-  const dots = reviews.querySelector(`.slick-dots`);
-  const length = [...dots.children].length;
-  const slickNext = reviews.querySelector(`.slick-next`);
-  const slickPrev = reviews.querySelector(`.slick-prev`);
+  const dots = reviews === null ? null : reviews.querySelector(`.slick-dots`);
+  const length = dots === null ? null : [...dots.children].length;
+  const slickNext = reviews === null ? null : reviews.querySelector(`.slick-next`);
+  const slickPrev = reviews === null ? null : reviews.querySelector(`.slick-prev`);
 
-  dots.classList.toggle(`visually-hidden`, true);
-  counter.textContent = `1 / ${length}`;
-  slickNext.textContent = ``;
-  slickPrev.textContent = ``;
+  if (dots) {
+    dots.classList.toggle(`visually-hidden`, true);
+    counter.textContent = `1 / ${length}`;
+    slickNext.textContent = ``;
+    slickPrev.textContent = ``;
 
-  window.$(`.page-reviews__list`).on(`afterChange`, function (event, slick, currentSlide) {
-    counter.textContent = `${currentSlide + 1} / ${length}`;
-  });
+    window.$(`.page-reviews__list`).on(`afterChange`, function (event, slick, currentSlide) {
+      counter.textContent = `${currentSlide + 1} / ${length}`;
+    });
+  }
 });
-
 
