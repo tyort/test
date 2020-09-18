@@ -33,13 +33,13 @@ window.$(document).ready(() => {
 
   window.$(`.catalogue-details__list`).on(`afterChange`, (event, slick, currentSlide) => {
     [...programs.querySelectorAll(`.slick-cloned`)].forEach((item) => {
-      item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
+      item.querySelector(`button`).classList.toggle(`catalogue-details__item--isChecked`, false);
     });
 
     [...slick.$slides].forEach((item, index) => {
-      item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
+      item.querySelector(`button`).classList.toggle(`catalogue-details__item--isChecked`, false);
       if (index === currentSlide) {
-        item.querySelector(`button`).classList.toggle(`btn-isChecked`, true);
+        item.querySelector(`button`).classList.toggle(`catalogue-details__item--isChecked`, true);
       }
     });
 

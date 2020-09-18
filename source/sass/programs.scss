@@ -63,7 +63,7 @@
   padding-left: 20px;
   clip-path: polygon(0% 0%, 87% 0%, 100% 50%, 87% 100%, 0% 100%);
 
-  &.btn-isChecked {
+  &.catalogue-details__item--isChecked {
     font-weight: bold;
     font-size: 13px;
     line-height: 19px;
@@ -83,7 +83,7 @@
     opacity: 0.4;
     background: none;
 
-    &.btn-isChecked {
+    &.catalogue-details__item--isChecked {
       font-weight: bold;
       font-size: 13px;
       text-shadow: 0px 1.01117px 4.04469px rgba(0, 0, 0, 0.12);
@@ -112,11 +112,11 @@
   display: none;
 }
 
-.btn-isChecked .catalogue-details__item-photo {
+.catalogue-details__item--isChecked .catalogue-details__item-photo {
   display: none;
 }
 
-.btn-isChecked .catalogue-details__item-photo-white {
+.catalogue-details__item--isChecked .catalogue-details__item-photo-white {
   display: block;
 }
 
