@@ -3,7 +3,6 @@
 
   const programs = document.querySelector(`.page-catalogue`);
   const list = programs === null ? null : programs.querySelector(`.catalogue-details__list`);
-  const listMobile = programs === null ? null : programs.querySelector(`.catalogue-details__list--mobile`);
   const actualDescriptions = programs === null ? null : programs.querySelector(`.catalogue-details__descriptions`);
   let CURRENT_ITEM = `Общие`;
 
@@ -17,7 +16,7 @@
       variableWidth: false,
       swipe: true,
       focusOnSelect: true,
-      centerPadding: `21%`,
+      centerPadding: `0`,
       responsive: [
         {
           breakpoint: 768,
@@ -37,14 +36,14 @@
       ]
     });
 
-    window.$(`.catalogue-details__list--mobile`).on(`afterChange`, (event, slick, _currentSlide) => {
-      const activeButton = [...slick.$slides].find((it) => {
-        return it.classList.contains(`slick-active`);
+    window.$(`.catalogue-details__list`).on(`afterChange`, (event, slick, currentSlide) => {
+      [...slick.$slides].forEach((item, index) => {
+        item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
+        if (index === currentSlide) {
+          item.querySelector(`button`).classList.toggle(`btn-isChecked`, true);
+        }
       });
 
-      activeButton.querySelector(`button`).textContent.trim();
-      CURRENT_ITEM = activeButton.querySelector(`button`).textContent.trim();
-      reRender();
     });
   });
 
@@ -52,34 +51,20 @@
     list.addEventListener(`click`, onButtonClick);
   }
 
-  const createItemsDescriptions = (currentProgram) => {
+  function onButtonClick(evt) {
+    if (CURRENT_ITEM !== evt.target.textContent.trim() && evt.target.classList.contains(`catalogue-details__item`)) {
+      CURRENT_ITEM = evt.target.textContent.trim();
+      reRender(CURRENT_ITEM);
+    }
+  }
+
+  function reRender(currentProgram) {
     [...actualDescriptions.children].forEach((item) => {
       item.classList.toggle(`visually-hidden`, true);
       if (item.querySelector(`h3`).textContent.trim() === currentProgram) {
         item.classList.toggle(`visually-hidden`, false);
       }
     });
-  };
-
-  const createItemsButtons = (currentProgram) => {
-    [...list.children].forEach((item) => {
-      item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
-      if (item.querySelector(`button`).textContent.trim() === currentProgram) {
-        item.querySelector(`button`).classList.toggle(`btn-isChecked`, true);
-      }
-    });
-  };
-
-  function onButtonClick(evt) {
-    if (CURRENT_ITEM !== evt.target.textContent.trim() && evt.target.classList.contains(`catalogue-details__item`)) {
-      CURRENT_ITEM = evt.target.textContent.trim();
-      reRender();
-    }
-  }
-
-  function reRender() {
-    createItemsButtons(CURRENT_ITEM);
-    createItemsDescriptions(CURRENT_ITEM);
   }
 
   class LocalStorageUtil {
@@ -323,7 +308,7 @@
   }
 
   const list$1 = document.querySelector(`.live-pictures`);
-  const listMobile$1 = document.querySelector(`.live-pictures--mobile`);
+  const listMobile = document.querySelector(`.live-pictures--mobile`);
 
   window.$(document).ready(() => {
     window.$(`.live-pictures--mobile`).slick({
@@ -353,22 +338,22 @@
     document.addEventListener(`DOMContentLoaded`, function () {
       if (window.innerWidth >= 768) {
         list$1.classList.toggle(`visually-hidden`, false);
-        listMobile$1.classList.toggle(`visually-hidden`, true);
+        listMobile.classList.toggle(`visually-hidden`, true);
 
       } else {
         list$1.classList.toggle(`visually-hidden`, true);
-        listMobile$1.classList.toggle(`visually-hidden`, false);
+        listMobile.classList.toggle(`visually-hidden`, false);
       }
     });
 
     window.addEventListener(`resize`, () => {
       if (window.innerWidth >= 768) {
         list$1.classList.toggle(`visually-hidden`, false);
-        listMobile$1.classList.toggle(`visually-hidden`, true);
+        listMobile.classList.toggle(`visually-hidden`, true);
 
       } else {
         list$1.classList.toggle(`visually-hidden`, true);
-        listMobile$1.classList.toggle(`visually-hidden`, false);
+        listMobile.classList.toggle(`visually-hidden`, false);
       }
     });
   }
