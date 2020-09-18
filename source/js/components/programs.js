@@ -9,7 +9,7 @@ window.$(document).ready(() => {
     dots: false,
     infinite: true,
     speed: 300,
-    slidesToShow: 1,
+    slidesToShow: 5,
     centerMode: true,
     variableWidth: false,
     swipe: true,
@@ -20,7 +20,16 @@ window.$(document).ready(() => {
         breakpoint: 768,
         settings: {
           arrows: false,
-        }
+          dots: false,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          centerMode: true,
+          variableWidth: false,
+          swipe: true,
+          focusOnSelect: true,
+          centerPadding: `21%`
+        },
       }
     ]
   });
@@ -38,29 +47,7 @@ window.$(document).ready(() => {
 
 if (list) {
   list.addEventListener(`click`, onButtonClick);
-
-  document.addEventListener(`DOMContentLoaded`, () => {
-    if (window.innerWidth >= 768 && list) {
-      list.classList.toggle(`visually-hidden`, false);
-      listMobile.classList.toggle(`visually-hidden`, true);
-      return;
-    }
-
-    list.classList.toggle(`visually-hidden`, true);
-    listMobile.classList.toggle(`visually-hidden`, false);
-  });
 }
-
-window.addEventListener(`resize`, () => {
-  if (window.innerWidth >= 768) {
-    list.classList.toggle(`visually-hidden`, false);
-    listMobile.classList.toggle(`visually-hidden`, true);
-
-  } else {
-    list.classList.toggle(`visually-hidden`, true);
-    listMobile.classList.toggle(`visually-hidden`, false);
-  }
-});
 
 const createItemsDescriptions = (currentProgram) => {
   [...actualDescriptions.children].forEach((item) => {
