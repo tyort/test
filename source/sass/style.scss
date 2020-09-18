@@ -27,7 +27,7 @@ body {
   overflow-x: hidden;
 }
 
-.error-message {
+.input-container__error-message {
   display: none;
   font-weight: normal;
   font-size: 13px;
@@ -68,7 +68,7 @@ input {
     border: 2px solid #484848;
   }
 
-  &:invalid:not(:focus):not(:placeholder-shown) ~ .error-message {
+  &:invalid:not(:focus):not(:placeholder-shown) ~ .input-container__error-message {
     display: block;
   }
 
