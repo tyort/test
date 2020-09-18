@@ -34,6 +34,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media (max-width: 767px) {
+    flex-direction: row;
+  }
 }
 
 .page-catalogue .slick-slide {
