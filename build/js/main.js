@@ -2,9 +2,7 @@
   'use strict';
 
   const programs = document.querySelector(`.page-catalogue`);
-  const list = programs === null ? null : programs.querySelector(`.catalogue-details__list`);
   const actualDescriptions = programs === null ? null : programs.querySelector(`.catalogue-details__descriptions`);
-  let CURRENT_ITEM = `Общие`;
 
   window.$(document).ready(() => {
     window.$(`.catalogue-details__list--mobile`).slick({
@@ -37,6 +35,10 @@
     });
 
     window.$(`.catalogue-details__list`).on(`afterChange`, (event, slick, currentSlide) => {
+      [...programs.querySelectorAll(`.slick-cloned`)].forEach((item) => {
+        item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
+      });
+
       [...slick.$slides].forEach((item, index) => {
         item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
         if (index === currentSlide) {
@@ -44,28 +46,15 @@
         }
       });
 
+      [...actualDescriptions.children].forEach((item, index) => {
+        item.classList.toggle(`visually-hidden`, true);
+        if (index === currentSlide) {
+          item.classList.toggle(`visually-hidden`, false);
+        }
+      });
     });
+
   });
-
-  if (list) {
-    list.addEventListener(`click`, onButtonClick);
-  }
-
-  function onButtonClick(evt) {
-    if (CURRENT_ITEM !== evt.target.textContent.trim() && evt.target.classList.contains(`catalogue-details__item`)) {
-      CURRENT_ITEM = evt.target.textContent.trim();
-      reRender(CURRENT_ITEM);
-    }
-  }
-
-  function reRender(currentProgram) {
-    [...actualDescriptions.children].forEach((item) => {
-      item.classList.toggle(`visually-hidden`, true);
-      if (item.querySelector(`h3`).textContent.trim() === currentProgram) {
-        item.classList.toggle(`visually-hidden`, false);
-      }
-    });
-  }
 
   class LocalStorageUtil {
     constructor() {
@@ -307,7 +296,7 @@
     });
   }
 
-  const list$1 = document.querySelector(`.live-pictures`);
+  const list = document.querySelector(`.live-pictures`);
   const listMobile = document.querySelector(`.live-pictures--mobile`);
 
   window.$(document).ready(() => {
@@ -334,35 +323,35 @@
   });
 
 
-  if (list$1) {
+  if (list) {
     document.addEventListener(`DOMContentLoaded`, function () {
       if (window.innerWidth >= 768) {
-        list$1.classList.toggle(`visually-hidden`, false);
+        list.classList.toggle(`visually-hidden`, false);
         listMobile.classList.toggle(`visually-hidden`, true);
 
       } else {
-        list$1.classList.toggle(`visually-hidden`, true);
+        list.classList.toggle(`visually-hidden`, true);
         listMobile.classList.toggle(`visually-hidden`, false);
       }
     });
 
     window.addEventListener(`resize`, () => {
       if (window.innerWidth >= 768) {
-        list$1.classList.toggle(`visually-hidden`, false);
+        list.classList.toggle(`visually-hidden`, false);
         listMobile.classList.toggle(`visually-hidden`, true);
 
       } else {
-        list$1.classList.toggle(`visually-hidden`, true);
+        list.classList.toggle(`visually-hidden`, true);
         listMobile.classList.toggle(`visually-hidden`, false);
       }
     });
   }
 
   const faq = document.querySelector(`.page-questions__faq`);
-  const list$2 = faq === null ? null : faq.querySelector(`ol`);
+  const list$1 = faq === null ? null : faq.querySelector(`ol`);
 
-  if (list$2) {
-    const questions = [...list$2.querySelectorAll(`li`)];
+  if (list$1) {
+    const questions = [...list$1.querySelectorAll(`li`)];
 
     questions.forEach((question) => {
       question.addEventListener(`click`, () => {

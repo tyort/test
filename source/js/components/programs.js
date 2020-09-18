@@ -1,7 +1,5 @@
 const programs = document.querySelector(`.page-catalogue`);
-const list = programs === null ? null : programs.querySelector(`.catalogue-details__list`);
 const actualDescriptions = programs === null ? null : programs.querySelector(`.catalogue-details__descriptions`);
-let CURRENT_ITEM = `Общие`;
 
 window.$(document).ready(() => {
   window.$(`.catalogue-details__list--mobile`).slick({
@@ -34,6 +32,10 @@ window.$(document).ready(() => {
   });
 
   window.$(`.catalogue-details__list`).on(`afterChange`, (event, slick, currentSlide) => {
+    [...programs.querySelectorAll(`.slick-cloned`)].forEach((item) => {
+      item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
+    });
+
     [...slick.$slides].forEach((item, index) => {
       item.querySelector(`button`).classList.toggle(`btn-isChecked`, false);
       if (index === currentSlide) {
@@ -41,25 +43,12 @@ window.$(document).ready(() => {
       }
     });
 
+    [...actualDescriptions.children].forEach((item, index) => {
+      item.classList.toggle(`visually-hidden`, true);
+      if (index === currentSlide) {
+        item.classList.toggle(`visually-hidden`, false);
+      }
+    });
   });
+
 });
-
-if (list) {
-  list.addEventListener(`click`, onButtonClick);
-}
-
-function onButtonClick(evt) {
-  if (CURRENT_ITEM !== evt.target.textContent.trim() && evt.target.classList.contains(`catalogue-details__item`)) {
-    CURRENT_ITEM = evt.target.textContent.trim();
-    reRender(CURRENT_ITEM);
-  }
-}
-
-function reRender(currentProgram) {
-  [...actualDescriptions.children].forEach((item) => {
-    item.classList.toggle(`visually-hidden`, true);
-    if (item.querySelector(`h3`).textContent.trim() === currentProgram) {
-      item.classList.toggle(`visually-hidden`, false);
-    }
-  });
-}
