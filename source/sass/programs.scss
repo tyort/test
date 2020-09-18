@@ -62,15 +62,34 @@
   background: #FFFFFF;
   padding-left: 20px;
   clip-path: polygon(0% 0%, 87% 0%, 100% 50%, 87% 100%, 0% 100%);
-}
 
-.page-catalogue .slick-track .slick-slide .btn-isChecked {
-  font-weight: bold;
-  font-size: 13px;
-  line-height: 19px;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  background: linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%);
+  &.btn-isChecked {
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    background: linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%);
+  }
+
+  @media (max-width: 767px) {
+    clip-path: none;
+    border-radius: 60.6704px;
+    margin: 0 auto;
+    width: 181px;
+    height: 48px;
+    justify-content: center;
+    padding-left: 0px;
+    opacity: 0.4;
+    background: none;
+
+    &.btn-isChecked {
+      font-weight: bold;
+      font-size: 13px;
+      text-shadow: 0px 1.01117px 4.04469px rgba(0, 0, 0, 0.12);
+      opacity: 1;
+    }
+  }
 }
 
 .catalogue-details__item img {
@@ -78,6 +97,11 @@
   margin-right: 16px;
   object-fit: contain;
   object-position: center;
+
+  @media (max-width: 767px) {
+    transform: scale(0.9);
+    margin-right: 7px;
+  }
 }
 
 .catalogue-details__item .catalogue-details__item-photo {
@@ -96,37 +120,8 @@
   display: block;
 }
 
-// .catalogue-details__list--mobile button.catalogue-details__item {
-//   background: none;
-//   border-radius: 60.6704px;
-//   width: 181px;
-//   margin-right: calc((100% - 181px)/2);
-//   margin-left: calc((100% - 181px)/2);
-//   height: 48px;
-//   font-weight: normal;
-//   font-size: 15px;
-//   line-height: 18px;
-//   color: #484848;
-//   opacity: 0.87;
-//   clip-path: none;
-//   padding-left: 0;
-//   display: flex;
-//   justify-content: center;
-// }
-
-// .catalogue-details__list--mobile .slick-active button.catalogue-details__item {
-//   background: linear-gradient(108.42deg, #FFC341 20.46%, #FFD701 65.31%);
-//   font-weight: 500;
-//   font-size: 16.1788px;
-//   line-height: 19px;
-//   font-variant: small-caps;
-//   color: #FFFFFF;
-//   text-shadow: 0px 1.01117px 4.04469px rgba(0, 0, 0, 0.12);
-// }
-
-
 .catalogue-details__descriptions {
-  margin-left: 47px;
+  margin-left: 62px;
   max-width: 550px;
 
   @media (max-width: 767px) {

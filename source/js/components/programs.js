@@ -27,7 +27,7 @@ window.$(document).ready(() => {
           variableWidth: false,
           swipe: true,
           focusOnSelect: true,
-          centerPadding: `21%`
+          centerPadding: `15%`
         },
       }
     ]
