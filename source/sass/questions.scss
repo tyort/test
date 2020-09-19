@@ -3,7 +3,7 @@
   padding: 0 0 124px 16px;
 
   @media (max-width: 767px) {
-    padding: 0 16px 73px;
+    padding: 0 16px 81px;
   }
 }
 
@@ -37,7 +37,7 @@
 
   @media (max-width: 767px) {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
   }
 }
 
@@ -65,13 +65,14 @@
 
   @media (max-width: 767px) {
     max-width: 100%;
+    min-height: 88px;
     font-size: 16px;
     line-height: 26px;
 
     padding-left: 25px;
     padding-right: 25px;
-    padding-top: 28px;
-    padding-bottom: 25px;
+    padding-top: 38px;
+    padding-bottom: 14px;
   }
 
   &:first-child {
@@ -90,10 +91,6 @@
   position: absolute;
   top: 24px;
   left: 0;
-
-  @media (max-width: 767px) {
-    top: 15px;
-  }
 }
 
 .page-questions__faq li:after {
@@ -109,7 +106,6 @@
   transition: transform 0.5s;
 
   @media (max-width: 767px) {
-    top: 35px;
     right: 0;
   }
 }
@@ -132,7 +128,9 @@
   @media (max-width: 767px) {
     font-size: 14px;
     line-height: 22px;
+    margin-top: 15px;
     margin-left: -25px;
+    margin-bottom: 0px;
   }
 }
 
