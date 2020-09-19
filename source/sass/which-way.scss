@@ -53,7 +53,7 @@
   color: #484848;
   opacity: 0.87;
   width: 90%;
-  margin-bottom: 32px;
+  margin-bottom: 33px;
 
   @media (max-width: 767px) {
     width: 100%;
@@ -75,6 +75,7 @@
     width: 100%;
     font-size: 16px;
     line-height: 26px;
+    margin-bottom: 10px;
   }
 }
 
@@ -87,7 +88,7 @@
   @media (max-width: 767px) {
     width: 100%;
     margin-left: 10px;
-    margin-bottom: 23px;
+    margin-bottom: 24px;
   }
 }
 
@@ -100,13 +101,17 @@
   width: 100%;
 
   border-image: url(../img/dashed.svg);
-  border-image-width: 0px 0px 0px 3px;
+  border-image-width: 0px 0px 0px 2px;
   border-image-slice: 0 0 0 2 fill;
-  border-image-repeat: space;
+  border-image-repeat: repeat;
+
+  @media (max-width: 767px) {
+    border-image-width: 30px 0px 30px 2px;
+  }
 }
 
 .page-which-way__description li {
-    // border: $bred;
+  // border: $bred;
   display: flex;
   align-items: center;
   position: relative;
@@ -123,9 +128,10 @@
   }
 
   @media (max-width: 767px) {
+    min-height: 66px;
     font-size: 14px;
     line-height: 22px;
-    margin-bottom: 41px;
+    margin-bottom: 26px;
     padding-left: 35px;
   }
 }
@@ -146,12 +152,13 @@
 
   width: 36px;
   height: 36px;
-  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.37);
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
   background: #FFFFFF;
   border-radius: 80px;
 
   @media (max-width: 767px) {
     left: -18px;
+    top: 15px;
   }
 }
 
