@@ -1,6 +1,6 @@
 .page-which-way {
   width: 100%;
-  margin-top: 166px;
+  margin-top: 175px;
   display: flex;
   justify-content: flex-end;
   padding: 0 131px 156px 12px;
@@ -98,19 +98,22 @@
   left: 0;
   height: 90%;
   width: 100%;
-  border-left: 1px dashed #484848;
+
+  border-image: url(../img/dashed.svg);
+  border-image-width: 0px 0px 0px 2px;
+  border-image-slice: 0 0 0 2 fill;
+  border-image-repeat: repeat;
 }
 
 .page-which-way__description li {
-  // border: $bred;
+  border: $bred;
   position: relative;
   padding-left: 45px;
-  margin-bottom: 46px;
   font-weight: normal;
   font-size: 15px;
   line-height: 21px;
-  color: #484848;
-  opacity: 0.87;
+  color: #484848c0;
+  min-height: 42px;
 
   &:last-child {
     margin-bottom: 0;
@@ -129,7 +132,7 @@
   content: counter(myCounter);
 
   position: absolute;
-  top: calc((100% - 36px) / 2);
+  top: 0;
   left: -18px;
 
   color: #FFC341;
@@ -148,6 +151,15 @@
   @media (max-width: 767px) {
     left: -18px;
   }
+}
+
+.page-which-way__description li:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .page-which-way__description ol + p {
