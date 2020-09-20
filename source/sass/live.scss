@@ -45,6 +45,7 @@ $over_height: 65px;
   width: 100%; // без этого слайдер глючит
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   &.live-pictures--mobile {
     display: block;
@@ -55,46 +56,24 @@ $over_height: 65px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  max-width: 652px;
+  max-width: 656px;
 }
 
-.live-pictures picture {
-  margin-bottom: 31px;
-  position: relative;
+.live-pictures picture::before {
+  // border: $bred;
+  position: absolute;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 21px;
+  line-height: 25px;
+  color: #FFFFFF;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
 
   @media (max-width: 767px) {
-    width: 288px;
-    height: 400px;
-    // padding-left: calc((100% - 288px) / 2);
-    margin: 0;
-  }
-
-  img {
-    @media (max-width: 767px) {
-      padding-left: calc((100% - 288px) / 2);
-    }
-  }
-
-  &::before {
-    // border: $bred;
-    position: absolute;
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 21px;
-    line-height: 25px;
-    color: #FFFFFF;
-    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
-
-    @media (max-width: 767px) {
-      font-size: 18px;
-      line-height: 21px;
-      text-align: center;
-      width: 220px;
-      // padding-left: calc((100% - 288px) / 2);
-      left: 36px;
-      bottom: 23px;
-    }
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
   }
 }
 
@@ -104,24 +83,39 @@ $over_height: 65px;
   margin-right: 15px;
   height: 732px - $over_height;
   width: 482px;
+  margin-bottom: 31px;
+  position: relative;
 
-  &::before {
-    content: 'Экскурсии по Израилю и знакомство с его историей';
-    width: 80%;
-    left: 37px;
-    bottom: 34px;
+  @media (max-width: 767px) {
+    width: 288px;
+    height: 400px;
+    margin: 0;
   }
+}
 
-  img {
-    // border: $bred;
-    object-position: center bottom;
-    object-fit: cover;
-    margin-top: -$over_height;
+.live-picture-tours img {
+  // border: $bred;
+  object-position: center bottom;
+  object-fit: cover;
+  margin-top: -$over_height;
 
-    @media (max-width: 767px) {
-      object-fit: contain;
-      margin-top: 0px;
-    }
+  @media (max-width: 767px) {
+    object-fit: contain;
+    margin-top: 0px;
+    width: 100%;
+  }
+}
+
+.live-picture-tours::before {
+  content: 'Экскурсии по Израилю и знакомство с его историей';
+  width: 75%;
+  left: 37px;
+  bottom: 34px;
+
+  @media (max-width: 767px) {
+    width: 220px;
+    left: calc((100% - 220px) / 2);
+    bottom: 24px;
   }
 }
 
@@ -129,37 +123,66 @@ $over_height: 65px;
   margin-right: 25px;
   height: 318px;
   width: 211px;
+  margin-bottom: 31px;
+  position: relative;
 
-  &::before {
-    content: 'Изучение иврита';
-    width: 80%;
-    left: 22px;
-    bottom: 32px;
-  }
-
-  img {
-    @media (max-width: 767px) {
-      object-fit: contain;
-    }
+  @media (max-width: 767px) {
+    width: 288px;
+    height: 400px;
+    margin: 0;
   }
 }
+
+.live-picture-hebrew img {
+  @media (max-width: 767px) {
+    object-fit: contain;
+    width: 100%;
+  }
+}
+
+.live-picture-hebrew::before {
+  content: 'Изучение иврита';
+  width: 80%;
+  left: 22px;
+  bottom: 32px;
+
+  @media (max-width: 767px) {
+    width: 220px;
+    left: calc((100% - 220px) / 2);
+  }
+}
+
 
 .live-picture-education {
   height: 318px;
   width: 411px;
+  margin-bottom: 31px;
+  position: relative;
 
-  &::before {
-    content: 'Обучение современным навыкам и профессиям';
-    width: 80%;
-    left: 35px;
-    bottom: 32px;
+  @media (max-width: 767px) {
+    width: 288px;
+    height: 400px;
+    margin: 0;
   }
+}
 
-  img {
-    @media (max-width: 767px) {
-      object-fit: cover;
-      object-position: right center;
-    }
+.live-picture-education img {
+  @media (max-width: 767px) {
+    object-fit: cover;
+    object-position: right center;
+    width: 100%;
+  }
+}
+
+.live-picture-education::before {
+  content: 'Обучение современным навыкам и профессиям';
+  width: 80%;
+  left: 35px;
+  bottom: 32px;
+
+  @media (max-width: 767px) {
+    width: 220px;
+    left: calc((100% - 220px) / 2);
   }
 }
 
@@ -167,17 +190,31 @@ $over_height: 65px;
   margin-right: 25px;
   height: 318px;
   width: 411px;
+  margin-bottom: 31px;
+  position: relative;
+
+  @media (max-width: 767px) {
+    width: 288px;
+    height: 400px;
+    margin: 0;
+  }
 
   &::before {
     content: 'Совместные творческие проекты с израильской молодёжью';
     width: 90%;
     left: 30px;
     bottom: 32px;
+
+    @media (max-width: 767px) {
+      width: 220px;
+      left: calc((100% - 220px) / 2);
+    }
   }
 
   img {
     @media (max-width: 767px) {
       object-fit: cover;
+      width: 100%;
     }
   }
 }
@@ -185,12 +222,32 @@ $over_height: 65px;
 .live-picture-improvements {
   height: 318px;
   width: 214px;
+  margin-bottom: 31px;
+  position: relative;
+
+  @media (max-width: 767px) {
+    width: 288px;
+    height: 400px;
+    margin: 0;
+  }
 
   &::before {
     content: 'Развитие лидерства';
     width: 80%;
     left: 27px;
     bottom: 33px;
+
+    @media (max-width: 767px) {
+      width: 220px;
+      left: calc((100% - 220px) / 2);
+    }
+  }
+
+  img {
+    @media (max-width: 767px) {
+      object-fit: contain;
+      width: 100%;
+    }
   }
 }
 
