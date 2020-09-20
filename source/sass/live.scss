@@ -36,7 +36,7 @@ $over_height: 65px;
     text-align: left;
     font-size: 16px;
     line-height: 26px;
-    margin-bottom: 25px;
+    margin-bottom: 23px;
   }
 }
 
@@ -45,7 +45,7 @@ $over_height: 65px;
   width: 100%; // без этого слайдер глючит
   display: flex;
 
-  @media (max-width: 767px) {
+  &.live-pictures--mobile {
     display: block;
   }
 }
@@ -54,38 +54,39 @@ $over_height: 65px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-
-  picture {
-    margin-bottom: 31px;
-  }
 }
 
 .live-pictures picture {
+  margin-bottom: 31px;
+  position: relative;
+
   @media (max-width: 767px) {
+    width: 288px;
+    height: 400px;
     padding-left: calc((100% - 288px) / 2);
     margin: 0;
   }
-}
 
-.live-pictures picture::before {
-  // border: $bred;
-  position: absolute;
-  font-family: Raleway;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 21px;
-  line-height: 25px;
-  color: #FFFFFF;
-  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+  &::before {
+    // border: $bred;
+    position: absolute;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 21px;
+    line-height: 25px;
+    color: #FFFFFF;
+    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
 
-  @media (max-width: 767px) {
-    width: 220px;
-    padding-left: 0;
-    margin-left: calc((100% - 220px) / 2);
-    font-size: 18px;
-    line-height: 21px;
-    text-align: center;
-    padding-bottom: 25px;
+    @media (max-width: 767px) {
+      font-size: 18px;
+      line-height: 21px;
+      text-align: center;
+      width: 220px;
+      padding-left: calc((100% - 288px) / 2);
+      left: 36px;
+      bottom: 23px;
+    }
   }
 }
 
@@ -93,7 +94,6 @@ $over_height: 65px;
   // border: $bred;
   overflow: visible;
   margin-right: 15px;
-  position: relative;
   height: 732px - $over_height;
   width: 482px;
 
@@ -119,7 +119,6 @@ $over_height: 65px;
 
 .live-picture-hebrew {
   margin-right: 25px;
-  position: relative;
   height: 318px;
   width: 211px;
 
@@ -138,7 +137,6 @@ $over_height: 65px;
 }
 
 .live-picture-education {
-  position: relative;
   height: 318px;
   width: 411px;
 
@@ -159,7 +157,6 @@ $over_height: 65px;
 
 .live-picture-youth {
   margin-right: 25px;
-  position: relative;
   height: 318px;
   width: 411px;
 
@@ -178,7 +175,6 @@ $over_height: 65px;
 }
 
 .live-picture-improvements {
-  position: relative;
   height: 318px;
   width: 214px;
 
@@ -194,7 +190,7 @@ $over_height: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 13px;
+  margin-top: 12px;
 }
 
 .slick-dots li {

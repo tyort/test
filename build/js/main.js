@@ -325,7 +325,7 @@
 
   if (list) {
     document.addEventListener(`DOMContentLoaded`, function () {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth > 767) {
         list.classList.toggle(`visually-hidden`, false);
         listMobile.classList.toggle(`visually-hidden`, true);
 
@@ -336,7 +336,7 @@
     });
 
     window.addEventListener(`resize`, () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth > 767) {
         list.classList.toggle(`visually-hidden`, false);
         listMobile.classList.toggle(`visually-hidden`, true);
 
