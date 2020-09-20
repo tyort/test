@@ -1,9 +1,9 @@
 .page-photo-diary {
   // border: $bred;
   width: 100%;
-  padding: 273px 16px 331px;
+  padding: 248px 16px 332px;
   background:
-    url(../img/photo-diary.png) top 53% center no-repeat,
+    url(../img/photo-diary.png) top 48% center no-repeat,
     radial-gradient(farthest-corner at 900px, #B498AE 30%, #FFFFFF 40%,);
 
   @media (max-width: 767px) {
@@ -45,7 +45,7 @@
   opacity: 0.87;
   text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
   width: 75%;
-  margin-bottom: 48px;
+  margin-bottom: 47px;
 
   @media (max-width: 767px) {
     font-size: 16px;

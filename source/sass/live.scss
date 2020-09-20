@@ -1,3 +1,5 @@
+$over_height: 65px;
+
 .page-live {
   width: 100%;
   padding: 0 16px;
@@ -28,7 +30,7 @@
   color: #484848;
   opacity: 0.87;
   max-width: 725px;
-  margin-bottom: 47px;
+  margin-bottom: 45px;
 
   @media (max-width: 767px) {
     text-align: left;
@@ -41,13 +43,24 @@
 .live-pictures {
   // border: $bred;
   width: 100%; // без этого слайдер глючит
+  display: flex;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
+
+.live-pictures__small {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  picture {
+    margin-bottom: 31px;
+  }
 }
 
 .live-pictures picture {
-  // border: $bred;
-  float: left;
-  position: relative;
-
   @media (max-width: 767px) {
     padding-left: calc((100% - 288px) / 2);
     margin: 0;
@@ -57,11 +70,6 @@
 .live-pictures picture::before {
   // border: $bred;
   position: absolute;
-  left: 0;
-  bottom: 0;
-  padding-left: 8%;
-  padding-bottom: 35px;
-
   font-family: Raleway;
   font-style: normal;
   font-weight: 800;
@@ -85,17 +93,22 @@
   // border: $bred;
   overflow: visible;
   margin-right: 15px;
+  position: relative;
+  height: 732px - $over_height;
+  width: 482px;
 
   &::before {
     content: 'Экскурсии по Израилю и знакомство с его историей';
     width: 80%;
+    left: 37px;
+    bottom: 34px;
   }
 
   img {
     // border: $bred;
     object-position: center bottom;
     object-fit: cover;
-    margin-top: -65px;
+    margin-top: -$over_height;
 
     @media (max-width: 767px) {
       object-fit: contain;
@@ -106,10 +119,15 @@
 
 .live-picture-hebrew {
   margin-right: 25px;
+  position: relative;
+  height: 318px;
+  width: 211px;
 
   &::before {
     content: 'Изучение иврита';
     width: 80%;
+    left: 22px;
+    bottom: 32px;
   }
 
   img {
@@ -120,11 +138,15 @@
 }
 
 .live-picture-education {
-  margin-bottom: 25px;
+  position: relative;
+  height: 318px;
+  width: 411px;
 
   &::before {
     content: 'Обучение современным навыкам и профессиям';
     width: 80%;
+    left: 35px;
+    bottom: 32px;
   }
 
   img {
@@ -137,10 +159,15 @@
 
 .live-picture-youth {
   margin-right: 25px;
+  position: relative;
+  height: 318px;
+  width: 411px;
 
   &::before {
     content: 'Совместные творческие проекты с израильской молодёжью';
     width: 90%;
+    left: 30px;
+    bottom: 32px;
   }
 
   img {
@@ -151,9 +178,15 @@
 }
 
 .live-picture-improvements {
+  position: relative;
+  height: 318px;
+  width: 214px;
+
   &::before {
     content: 'Развитие лидерства';
     width: 80%;
+    left: 27px;
+    bottom: 33px;
   }
 }
 
