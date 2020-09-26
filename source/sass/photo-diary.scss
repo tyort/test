@@ -1,15 +1,16 @@
 .page-photo-diary {
   // border: $bred;
   width: 100%;
-  padding: 248px 16px 332px;
+  padding: 250px 16px;
   background:
-    url(../img/photo-diary.png) top 48% center no-repeat,
+    url(../img/photo-diary.png) top 63% center no-repeat,
     radial-gradient(farthest-corner at 900px, #B498AE 30%, #FFFFFF 40%,);
+  margin-bottom: 60px;
 
   @media (max-width: 767px) {
     background-size: 200%;
-    background-position: left 22% top 44.6%;
-    padding: 80px 16px;
+    background-position: left 22% top 57%;
+    padding: 80px 16px 0;
   }
 }
 
@@ -61,6 +62,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 
   @media (max-width: 767px) {
     width: 264px;
