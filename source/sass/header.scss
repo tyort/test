@@ -6,10 +6,15 @@
     radial-gradient(closest-side, #B6A49B 35%, #FFFFFF 80%,);
   background-size: cover;
   padding: 0 16px;
+  margin-bottom: 64px;
+
+  @media (min-width: 2400px) {
+    background-size: contain;
+  }
 
   @media (max-width: 767px) {
     background: url(../img/bg-header-mobile.png) center 110% no-repeat;
-    }
+  }
 }
 
 .page-header__inner {
@@ -120,7 +125,7 @@
 }
 
 .page-header__inner .scroll-down {
-  margin-bottom: 132px;
+  margin-bottom: 68px;
   cursor: pointer;
 
 
@@ -134,6 +139,6 @@
   }
 
   @media (max-width: 767px) {
-    margin-bottom: 83px;
+    margin-bottom: 19px;
   }
 }
