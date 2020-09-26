@@ -404,10 +404,6 @@
     }
   });
 
-  document.addEventListener(`focus`, (evt) => {
-    console.log(evt.target);
-  }, true);
-
 }());
 
 //# sourceMappingURL=main.js.map
