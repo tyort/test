@@ -78,6 +78,7 @@
 .page-request-popup__inner .button-wide {
   width: 264px;
   margin: 15px 0 17px 24px;
+  order: 2;
 
   @media (max-width: 767px) {
     margin: 15px 0 17px;
@@ -88,6 +89,7 @@
   // border: $bred;
   width: 264px;
   margin-left: 24px;
+  order: 3;
 
   @media (max-width: 767px) {
     margin-left: 0;

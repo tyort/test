@@ -701,7 +701,7 @@
 
     <div class="page-request-popup visually-hidden">
   <div class="page-request-popup__inner">
-    <a href="#" class="popup-close" tabindex="3"></a>
+    <a href="#" class="popup-close"></a>
     <h3>Заказать звонок</h3>
     <p>Оставьте ваши контактные данные, мы свяжемся с вами
     в течение рабочего дня и обязательно поможем найти ответ
@@ -716,12 +716,13 @@
         <input type="tel" name="phone" value="" class="input-container__phone" placeholder="ТЕЛЕФОН" autocomplete="off" required="">
         <p class="input-container__error-message">Ошибка: неверный формат</p>
       </div>
-      <button class="button-wide" type="submit" tabindex="2" disabled="">Перезвоните мне</button>
 
       <div class="field-agreement">
         <input type="checkbox" name="agreement" id="agreement-inform" tabindex="-1">
-        <label for="agreement-inform" tabindex="1">Нажимая на кнопку, вы даёте согласие на обработку персональных данных</label>
+        <label for="agreement-inform" tabindex="0">Нажимая на кнопку, вы даёте согласие на обработку персональных данных</label>
       </div>
+
+      <button class="button-wide" type="submit" disabled="">Перезвоните мне</button>
     </form>
     
   </div>
