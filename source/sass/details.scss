@@ -3,7 +3,7 @@
   width: 100%;
   padding: 108px 0 74px 110px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1200px) {
     padding: 77px 16px 64px;
   }
 }
@@ -21,6 +21,11 @@
   display: flex;
   justify-content: flex-start;
 
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   @media (max-width: 767px) {
     flex-direction: column;
     margin-bottom: 25px;
@@ -31,7 +36,6 @@
   // border: $bred;
   display: flex;
   flex-direction: column;
-  width: 41%;
   min-width: 340px;
   margin-right: 39px;
 
@@ -179,9 +183,10 @@ p.curator-unit__name {
 
 .map-view {
   height: 448px;
-  width: 55.9%;
+  width: 702px;
+  flex-shrink: 0;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1200px) {
     height: 420px;
     width: 100%;
   }
