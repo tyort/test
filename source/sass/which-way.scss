@@ -3,10 +3,10 @@
   margin-top: 175px;
   display: flex;
   justify-content: flex-end;
-  padding: 0 131px 156px 12px;
+  padding: 0 131px 160px 12px;
   background: url(../img/stamp.png) right center no-repeat;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1200px) {
     margin-top: 32px;
     padding: 0 16px 79px;
   }
@@ -14,14 +14,26 @@
 
 .page-which-way__inner {
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
   max-width: 1223px;
   margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .page-which-way__inner picture {
   margin-right: 106px;
+  max-width: 581px;
+  height: 707px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
   @media (max-width: 767px) {
     display: none;
