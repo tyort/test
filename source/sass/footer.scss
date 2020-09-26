@@ -3,7 +3,6 @@
   width: 100%;
   padding: 24px 20px 24px 15px;
   border-top: 1px solid #484848;
-  opacity: 0.5;
 
   @media (max-width: 767px) {
     padding: 30px 15px;
@@ -26,6 +25,7 @@
 
 .page-footer__logo {
   margin-right: 43px;
+  filter: opacity(0.5);
 
   @media (max-width: 767px) {
     margin-right: 0;
@@ -48,6 +48,7 @@
   line-height: 25px;
   text-align: center;
   color: #484848;
+  opacity: 0.5;
 
   @media (max-width: 767px) {
     margin-bottom: 27px;
@@ -68,10 +69,6 @@
 .page-footer__socials .social {
   // border: $bred;
   margin-left: 22px;
-
-  .social__image {
-    fill: #484848;
-  }
 }
 
 .page-footer__socials .social--facebook {

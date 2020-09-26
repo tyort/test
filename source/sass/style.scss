@@ -171,6 +171,14 @@ body .visually-hidden {
   }
 }
 
+.social__image {
+  fill: #00000048;
+
+  &:hover {
+    fill: rgb(169, 236, 236);
+  }
+}
+
 @import "cross.scss";
 @import "header.scss";
 @import "about.scss";
