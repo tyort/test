@@ -165,6 +165,10 @@ p.curator-unit__name {
 
 .social__image {
   fill: #00000048;
+
+  &:hover {
+    fill: rgb(196, 247, 247);
+  }
 }
 
 .curator-unit + p {
