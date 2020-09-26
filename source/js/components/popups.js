@@ -14,6 +14,7 @@ if (pageHeader) {
   pageHeader.querySelector(`.page-header__btn`)
       .addEventListener(`click`, () => {
         requestPopup.classList.toggle(`visually-hidden`, false);
+        requestPopup.querySelector(`.input-container__name`).focus();
         document.addEventListener(`keydown`, onEscKeyDown);
         body.style.overflow = `hidden`;
       });

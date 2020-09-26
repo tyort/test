@@ -6,3 +6,7 @@ import './components/live';
 import './components/questions';
 import './components/reviews';
 
+document.querySelector(`body`).addEventListener(`focus`, (evt) => {
+  console.log(evt.target);
+}, true);
+
