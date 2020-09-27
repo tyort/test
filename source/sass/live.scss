@@ -21,7 +21,7 @@ $over_height: 65px;
   margin-bottom: 25px;
 }
 
-.page-live__inner p {
+.page-live__inner > p {
   // border: $bred;
   font-weight: normal;
   font-size: 17px;
@@ -74,6 +74,7 @@ $over_height: 65px;
   line-height: 25px;
   color: #FFFFFF;
   text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.12);
+  text-align: left;
 
   @media (max-width: 767px) {
     font-size: 18px;
