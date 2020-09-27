@@ -25,8 +25,38 @@ window.$(document).ready(() => {
           variableWidth: false,
           swipe: true,
           focusOnSelect: true,
-          centerPadding: `18%`
-        },
+          centerPadding: `35%`
+        }
+      },
+      {
+        breakpoint: 630,
+        settings: {
+          arrows: false,
+          dots: false,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          centerMode: true,
+          variableWidth: false,
+          swipe: true,
+          focusOnSelect: true,
+          centerPadding: `30%`
+        }
+      },
+      {
+        breakpoint: 450,
+        settings: {
+          arrows: false,
+          dots: false,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          centerMode: true,
+          variableWidth: false,
+          swipe: true,
+          focusOnSelect: true,
+          centerPadding: `20%`
+        }
       }
     ]
   });
