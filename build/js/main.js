@@ -3,6 +3,7 @@
 
   const programs = document.querySelector(`.page-catalogue`);
   const actualDescriptions = programs === null ? null : programs.querySelector(`.catalogue-details__descriptions`);
+  const programsList = document.querySelector(`.catalogue-details__list`);
 
   window.$(document).ready(() => {
     window.$(`.catalogue-details__list--mobile`).slick({
@@ -83,8 +84,19 @@
         }
       });
     });
-
   });
+
+  document.addEventListener(`keydown`, (evt) => {
+    const items = [...programsList.querySelectorAll(`li`)];
+
+    if (evt.key === `Enter`) {
+      items.forEach((program) => {
+        if (window.$(program).is(`:focus`)) {
+          program.querySelector(`button`).click();
+        }
+      });
+    }
+  }, true);
 
   class LocalStorageUtil {
     constructor() {
