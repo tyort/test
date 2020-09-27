@@ -186,9 +186,17 @@
   const successPopup$1 = document.querySelector(`.page-success-popup`);
 
   const clientsStorage$1 = new LocalStorageUtil();
+  let yaMapsShown = false;
 
   window.addEventListener(`mapWasLoaded`, () => {
-    window.ymaps.ready(init);
+    window.$(window).scroll(function () {
+      if (!yaMapsShown) {
+        if (window.$(window).height() + window.$(window).scrollTop() > window.$(`#YMapsID`).offset().top) {
+          yaMapsShown = true;
+          window.ymaps.ready(init);
+        }
+      }
+    });
   });
 
   if (form$1) {

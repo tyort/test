@@ -6,9 +6,17 @@ import ClientsStorage from '../storage/storage.js';
 import {hideElement, onEscKeyDown, phoneSample, nameSample} from '../formulas';
 
 const clientsStorage = new ClientsStorage();
+let yaMapsShown = false;
 
 window.addEventListener(`mapWasLoaded`, () => {
-  window.ymaps.ready(init);
+  window.$(window).scroll(function () {
+    if (!yaMapsShown) {
+      if (window.$(window).height() + window.$(window).scrollTop() > window.$(`#YMapsID`).offset().top) {
+        yaMapsShown = true;
+        window.ymaps.ready(init);
+      }
+    }
+  });
 });
 
 if (form) {
