@@ -64,6 +64,12 @@
   padding-top: 38px;
   padding-bottom: 23px;
 
+  &:focus:after {
+    box-shadow:
+      0px 0px 0px 8px rgb(255, 255, 255),
+      2px 3px 5px 10px rgba(199, 170, 170, 0.822);
+  }
+
   @media (max-width: 767px) {
     max-width: 100%;
     min-height: 88px;

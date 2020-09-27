@@ -412,6 +412,27 @@
     });
   }
 
+  document.addEventListener(`keydown`, (evt) => {
+    const questions = [...list$1.querySelectorAll(`li`)];
+
+    if (evt.key === `Enter`) {
+      questions.forEach((question) => {
+        if (window.$(question).is(`:focus`)) {
+          question.classList.toggle(`active`);
+        }
+
+        const paragraph = question.querySelector(`p`);
+
+        if (question.classList.contains(`active`)) {
+          paragraph.classList.toggle(`visually-hidden`, false);
+
+        } else {
+          paragraph.classList.toggle(`visually-hidden`, true);
+        }
+      });
+    }
+  }, true);
+
   const reviews = document.querySelector(`.page-reviews`);
   const counter = document.querySelector(`.page-reviews__counter`);
 

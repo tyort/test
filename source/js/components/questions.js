@@ -19,3 +19,24 @@ if (list) {
     });
   });
 }
+
+document.addEventListener(`keydown`, (evt) => {
+  const questions = [...list.querySelectorAll(`li`)];
+
+  if (evt.key === `Enter`) {
+    questions.forEach((question) => {
+      if (window.$(question).is(`:focus`)) {
+        question.classList.toggle(`active`);
+      }
+
+      const paragraph = question.querySelector(`p`);
+
+      if (question.classList.contains(`active`)) {
+        paragraph.classList.toggle(`visually-hidden`, false);
+
+      } else {
+        paragraph.classList.toggle(`visually-hidden`, true);
+      }
+    });
+  }
+}, true);
