@@ -156,7 +156,7 @@
 
       clientsStorage.putClient({
         'Full name': Date.now().toString(),
-        'Phone number': form.querySelector(`.input-container__phone`).value.toString(),
+        'Phone number': form.querySelector(`input[name="phone"]`).value.toString(),
       });
 
       hideElement();
@@ -184,8 +184,8 @@
       evt.preventDefault();
 
       clientsStorage$1.putClient({
-        'Full name': form$1.querySelector(`.input-container__name`).value,
-        'Phone number': form$1.querySelector(`.input-container__phone`).value.toString(),
+        'Full name': form$1.querySelector(`input[name="name"]`).value,
+        'Phone number': form$1.querySelector(`input[name="phone"]`).value.toString(),
       });
 
       hideElement();
@@ -197,7 +197,7 @@
     });
 
     form$1.addEventListener(`input`, (evt) => {
-      if (evt.target.className === `input-container__phone`) {
+      if (evt.target.name === `phone`) {
         if (!phoneSample.test(evt.target.value)) {
           evt.target.setCustomValidity(`Напиши номер правильно`);
 
@@ -205,7 +205,7 @@
           evt.target.setCustomValidity(``);
         }
 
-      } else if (evt.target.className === `input-container__name`) {
+      } else if (evt.target.name === `name`) {
         if (!nameSample.test(evt.target.value)) {
           evt.target.setCustomValidity(`Напиши ФИО правильно`);
 
@@ -251,7 +251,7 @@
     pageHeader.querySelector(`.page-header__btn`)
         .addEventListener(`click`, () => {
           requestPopup.classList.toggle(`visually-hidden`, false);
-          requestPopup.querySelector(`.input-container__name`).focus();
+          requestPopup.querySelector(`input[name="name"]`).focus();
           document.addEventListener(`keydown`, onEscKeyDown);
           body$2.style.overflow = `hidden`;
         });
@@ -272,8 +272,8 @@
       evt.preventDefault();
 
       clientsStorage$2.putClient({
-        'Full name': form$2.querySelector(`.input-container__name`).value,
-        'Phone number': form$2.querySelector(`.input-container__phone`).value.toString(),
+        'Full name': form$2.querySelector(`input[name="name"]`).value,
+        'Phone number': form$2.querySelector(`input[name="phone"]`).value.toString(),
       });
 
       hideElement();
@@ -289,7 +289,7 @@
     });
 
     form$2.addEventListener(`input`, (evt) => {
-      if (evt.target.className === `input-container__phone`) {
+      if (evt.target.name === `phone`) {
         if (!phoneSample.test(evt.target.value)) {
           evt.target.setCustomValidity(`Напиши номер правильно`);
 
@@ -297,7 +297,7 @@
           evt.target.setCustomValidity(``);
         }
 
-      } else if (evt.target.className === `input-container__name`) {
+      } else if (evt.target.name === `name`) {
         if (!nameSample.test(evt.target.value)) {
           evt.target.setCustomValidity(`Напиши ФИО правильно`);
 

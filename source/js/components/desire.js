@@ -23,7 +23,7 @@ if (form) {
 
     clientsStorage.putClient({
       'Full name': Date.now().toString(),
-      'Phone number': form.querySelector(`.input-container__phone`).value.toString(),
+      'Phone number': form.querySelector(`input[name="phone"]`).value.toString(),
     });
 
     hideElement();
