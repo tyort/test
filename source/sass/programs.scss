@@ -47,7 +47,7 @@
   }
 }
 
-.page-catalogue .slick-slide li:focus button {
+.page-catalogue .slick-slide .item-container:focus button {
   @media (min-width: 768px) {
     border-left: 5px solid #1FC0FC;
   }

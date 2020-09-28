@@ -84,7 +84,7 @@ window.$(document).ready(() => {
 });
 
 document.addEventListener(`keydown`, (evt) => {
-  const items = [...programsList.querySelectorAll(`li`)];
+  const items = [...programsList.querySelectorAll(`.item-container`)];
 
   if (evt.key === `Enter`) {
     items.forEach((program) => {
