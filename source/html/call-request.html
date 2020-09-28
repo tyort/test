@@ -8,7 +8,8 @@
 
     <form>
       <div class="input-container">
-        <input 
+        <input
+          id="request-name"
           type="text"
           name="name"
           value=""
@@ -17,9 +18,11 @@
           required
         />
         <p class="input-container__error-message">Ошибка: неверный формат</p>
+        <label for="request-name" class="visually-hidden">Оставьте свое имя</label>
       </div>
       <div class="input-container">
         <input
+          id="request-phone"
           type="tel"
           name="phone"
           value=""
@@ -28,6 +31,7 @@
           required
         />
         <p class="input-container__error-message">Ошибка: неверный формат</p>
+        <label for="request-phone" class="visually-hidden">Оставьте свой телефон</label>
       </div>
 
       <div class="field-agreement">

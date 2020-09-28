@@ -60,7 +60,7 @@
       <img class="lazyload" data-src="img/video-wallpaper.png" alt="Видео о нас" width="870" height="460">
     </picture>
 
-    <button class="btn-video-play"></button>
+    <button aria-label="Play video" class="btn-video-play"></button>
   </div>
 </div>
 
@@ -165,8 +165,9 @@
     </p>
     <form>
       <div class="input-container">
-        <input type="tel" name="phone" value="" placeholder="Телефон" autocomplete="off" required="">
+        <input id="desire-phone" type="tel" name="phone" value="" placeholder="Телефон" autocomplete="off" required="">
         <p class="input-container__error-message">Ошибка: неверный формат</p>
+        <label for="desire-phone" class="visually-hidden">Оставьте свой телефон</label>
       </div>
       <button class="button-wide button-wide--recall" type="submit">Перезвоните мне</button>
     </form>
@@ -188,6 +189,7 @@
 
     <div class="page-which-way__description">
       <h2>Как поехать</h2>
+      <h3 class="visually-hidden">Описание</h3>
       <p>Чтобы узнать подробнее о программе, свяжитесь с координатором
         в вашем городе. Вы получите актуальные сведения о доступных
         программах и городах, в которых можете пройти программу.</p>
@@ -404,6 +406,7 @@
         </picture>
 
         <div class="review-item">
+          <h3 class="visually-hidden">Отзыв</h3>
           <h4>Ольга Михайлова</h4>
           <p class="review-item__program"><span>Программа:</span>
             Арт-Тель, февраль-сентябрь 2017</p>
@@ -444,6 +447,7 @@
         </picture>
 
         <div class="review-item">
+          <h3 class="visually-hidden">Отзыв</h3>
           <h4>Ольга Михайлова</h4>
           <p class="review-item__program"><span>Программа:</span>
             Арт-Тель, февраль-сентябрь 2017</p>
@@ -484,6 +488,7 @@
         </picture>
 
         <div class="review-item">
+          <h3 class="visually-hidden">Отзыв</h3>
           <h4>Ольга Михайлова</h4>
           <p class="review-item__program"><span>Программа:</span>
             Арт-Тель, февраль-сентябрь 2017</p>
@@ -524,6 +529,7 @@
         </picture>
 
         <div class="review-item">
+          <h3 class="visually-hidden">Отзыв</h3>
           <h4>Ольга Михайлова</h4>
           <p class="review-item__program"><span>Программа:</span>
             Арт-Тель, февраль-сентябрь 2017</p>
@@ -564,6 +570,7 @@
         </picture>
 
         <div class="review-item">
+          <h3 class="visually-hidden">Отзыв</h3>
           <h4>Ольга Михайлова</h4>
           <p class="review-item__program"><span>Программа:</span>
             Арт-Тель, февраль-сентябрь 2017</p>
@@ -604,6 +611,7 @@
         </picture>
 
         <div class="review-item">
+          <h3 class="visually-hidden">Отзыв</h3>
           <h4>Ольга Михайлова</h4>
           <p class="review-item__program"><span>Программа:</span>
             Арт-Тель, февраль-сентябрь 2017</p>
@@ -700,12 +708,14 @@
       
       <form>
         <div class="input-container">
-          <input type="text" name="name" value="" placeholder="ИМЯ" autocomplete="off" required="">
+          <input id="feedback-name" type="text" name="name" value="" placeholder="ИМЯ" autocomplete="off" required="">
           <p class="input-container__error-message">Ошибка: неверный формат</p>
+          <label for="feedback-name" class="visually-hidden">Оставьте свое имя</label>
         </div>
         <div class="input-container">
-          <input type="tel" name="phone" value="" placeholder="Телефон" autocomplete="off" required="">
+          <input id="feedback-phone" type="tel" name="phone" value="" placeholder="Телефон" autocomplete="off" required="">
           <p class="input-container__error-message">Ошибка: неверный формат</p>
+          <label for="feedback-phone" class="visually-hidden">Оставьте свой телефон</label>
         </div>
         <button class="button-wide button-wide--recall" type="submit">Перезвоните мне</button>
       </form>
@@ -762,12 +772,14 @@
 
     <form>
       <div class="input-container">
-        <input type="text" name="name" value="" placeholder="ИМЯ" autocomplete="off" required="">
+        <input id="request-name" type="text" name="name" value="" placeholder="ИМЯ" autocomplete="off" required="">
         <p class="input-container__error-message">Ошибка: неверный формат</p>
+        <label for="request-name" class="visually-hidden">Оставьте свое имя</label>
       </div>
       <div class="input-container">
-        <input type="tel" name="phone" value="" placeholder="ТЕЛЕФОН" autocomplete="off" required="">
+        <input id="request-phone" type="tel" name="phone" value="" placeholder="ТЕЛЕФОН" autocomplete="off" required="">
         <p class="input-container__error-message">Ошибка: неверный формат</p>
+        <label for="request-phone" class="visually-hidden">Оставьте свой телефон</label>
       </div>
 
       <div class="field-agreement">
