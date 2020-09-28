@@ -19,10 +19,10 @@
     <div class="page-header">
 
   <picture>
-    <source media="(max-width: 767px)" srcset="img/bg-header-mobile.webp" type="image/webp">
-	  <source media="(max-width: 767px)" srcset="img/bg-header-mobile.png">
-    <source srcset="img/bg-header.webp" type="image/webp">
-    <img src="img/bg-header.png" alt="Обложка шапки">
+    <source media="(max-width: 767px)" data-srcset="img/bg-header-mobile.webp" type="image/webp">
+	  <source media="(max-width: 767px)" data-srcset="img/bg-header-mobile.png">
+    <source data-srcset="img/bg-header.webp" type="image/webp">
+    <img class="lazyload" data-src="img/bg-header.png" alt="Обложка шапки">
   </picture>
 
   <h1 class="visually-hidden">Путешествия в Израиль</h1>
@@ -172,8 +172,8 @@
   </div>
 
   <picture>
-    <source srcset="../img/girl-flag-bg.webp" type="image/webp">
-    <img src="../img/girl-flag-bg.png" alt="девушка с флагом" width="818" height="594">
+    <source data-srcset="../img/girl-flag-bg.webp" type="image/webp">
+    <img class="lazyload" data-src="../img/girl-flag-bg.png" alt="девушка с флагом" width="818" height="594">
   </picture>
 </div>
       <div class="page-which-way">
