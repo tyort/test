@@ -3,6 +3,7 @@
   src: url("../fonts/FiraSans-Regular.woff2") format("woff2"),
        url("../fonts/FiraSans-Regular.woff") format("woff");
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
   src: url("../fonts/FiraSans-Medium.woff2") format("woff2"),
        url("../fonts/FiraSans-Medium.woff") format("woff");
   font-weight: 500;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
   src: url("../fonts/FiraSans-Bold.woff2") format("woff2"),
        url("../fonts/FiraSans-Bold.woff") format("woff");
   font-weight: bold;
+  font-display: swap;
 }
 
 @font-face {
@@ -24,6 +27,7 @@
   src: url("../fonts/Montserrat-Bold.woff2") format("woff2"),
        url("../fonts/Montserrat-Bold.woff") format("woff");
   font-weight: bold;
+  font-display: swap;
 }
 
 @font-face {
@@ -31,4 +35,5 @@
   src: url("../fonts/Raleway-ExtraBold.woff2") format("woff2"),
        url("../fonts/Raleway-ExtraBold.woff") format("woff");
   font-weight: 800;
+  font-display: swap;
 }
