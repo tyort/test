@@ -4,7 +4,7 @@
   background: radial-gradient(closest-side, #B6A49B 35%, #FFFFFF 80%,);
   padding: 0 16px;
   margin-bottom: 64px;
-  z-index: -19;
+  z-index: 9;
 }
 
 .page-header picture {
@@ -14,8 +14,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -9;
   overflow: hidden;
+  z-index: -9;
 }
 
 .page-header picture img {
@@ -62,7 +62,6 @@
   font-size: 15px;
   line-height: 70%;
   color: #484848;
-  z-index: 9;
 
   &:hover,
   &:active {
