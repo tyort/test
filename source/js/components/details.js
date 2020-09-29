@@ -6,17 +6,21 @@ import ClientsStorage from '../storage/storage.js';
 import {hideElement, onEscKeyDown, phoneSample, nameSample} from '../formulas';
 
 const clientsStorage = new ClientsStorage();
+
+let yandexMapsScript = null;
 let yaMapsShown = false;
 
-window.addEventListener(`mapWasLoaded`, () => {
-  window.$(window).scroll(function () {
-    if (!yaMapsShown) {
-      if (window.$(window).height() + window.$(window).scrollTop() > window.$(`#YMapsID`).offset().top) {
-        yaMapsShown = true;
+window.$(window).scroll(function () {
+  if (!yaMapsShown) {
+    if (window.$(window).height() + window.$(window).scrollTop() > window.$(`#YMapsID`).offset().top) {
+      yaMapsShown = true;
+      showYaMaps();
+
+      yandexMapsScript.addEventListener(`load`, function () {
         window.ymaps.ready(init);
-      }
+      });
     }
-  });
+  }
 });
 
 if (form) {
@@ -77,4 +81,12 @@ function init() {
       .add(myPlacemark);
 }
 
+
+function showYaMaps() {
+  yandexMapsScript = document.createElement(`script`);
+  const key = `6b492866-f739-4d69-9dbc-9ff50d70ea08`;
+  yandexMapsScript.type = `text/javascript`;
+  yandexMapsScript.src = `https://api-maps.yandex.ru/2.1/?apikey=${key}&lang=ru_RU`;
+  document.body.appendChild(yandexMapsScript);
+}
 
