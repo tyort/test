@@ -16,6 +16,7 @@ const del = require(`del`);
 const rollup = require(`gulp-better-rollup`);
 const resolve = require(`rollup-plugin-node-resolve`);
 const commonjs = require(`rollup-plugin-commonjs`);
+const uglify = require(`gulp-uglify-es`).default;
 
 gulp.task(`css`, function () {
   return gulp
@@ -114,6 +115,12 @@ gulp.task(`js-main`, () => {
   // note that UMD and IIFE format requires `name` but it will be inferred from the source file name `mylibrary.js`
         .pipe(rollup({}, `iife`))
   // save sourcemap as separate file (in the same folder)
+        .pipe(uglify())
+        .pipe(
+            rename({
+              extname: `.min.js`
+            })
+        )
         .pipe(sourcemap.write(``))
         .pipe(gulp.dest(`build/js`))
   );
@@ -127,6 +134,12 @@ gulp.task(`js-vendor`, () => {
   // note that UMD and IIFE format requires `name` but it will be inferred from the source file name `mylibrary.js`
         .pipe(rollup({plugins: [resolve(), commonjs()]}, `iife`))
   // save sourcemap as separate file (in the same folder)
+        .pipe(uglify())
+        .pipe(
+            rename({
+              extname: `.min.js`
+            })
+        )
         .pipe(sourcemap.write(``))
         .pipe(gulp.dest(`build/js`))
   );
