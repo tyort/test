@@ -1,11 +1,3 @@
-export const catalogueItems = [
-  [`Общие`, `item-star`],
-  [`Академические`, `item-cap`],
-  [`Стажировки`, `item-portfolio`],
-  [`Волонтёрство`, `item-heart`],
-  [`Религиозные`, `item-candles`],
-];
-
 export const renderComponent = (container, element, place) => {
   switch (place) {
     case `afterBegin`:
