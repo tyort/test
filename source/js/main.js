@@ -7,7 +7,7 @@ const createPhotos = (photos) => {
   return photos
     .map((item) => {
       return (
-        `<a href="#"><img src="${item.url}" width="${item.width}" height="${item.height}" alt=""></a>`
+        `<img src="${item.url}" alt="">`
       );
     })
     .join(``);

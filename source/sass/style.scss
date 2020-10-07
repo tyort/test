@@ -64,14 +64,11 @@ body {
     border: 2px solid #FF0000;
   }
 
-  &:valid:not(:focus):not(:placeholder-shown) {
-    border: 2px solid #484848;
-  }
-
   &:invalid:not(:focus):not(:placeholder-shown) ~ .input-container__error-message {
     display: block;
   }
 
+  &:valid:not(:focus):not(:placeholder-shown),
   &:focus {
     border: 20px solid transparent;
     border-image: url(../img/input.svg);
