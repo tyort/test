@@ -9,20 +9,21 @@ export const catalogueItems = [
 export const renderComponent = (container, element, place) => {
   switch (place) {
     case `afterBegin`:
-      container.prepend(element.getElement());
+      container.prepend(element);
       break;
     case `afterEnd`:
-      container.after(element.getElement());
+      container.after(element);
       break;
     default:
-      container.append(element.getElement());
+      container.append(element);
   }
 };
 
 export const createElement = (template) => {
   const newElement = document.createElement(`div`);
+  newElement.classList.add(`photo-gallery__inner`);
   newElement.innerHTML = template;
-  return newElement.firstChild;
+  return newElement;
 };
 
 export const onEscKeyDown = (evt) => {
