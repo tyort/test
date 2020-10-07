@@ -3,36 +3,17 @@ const pageDesire = document.querySelector(`.page-desire`);
 const form = pageDesire === null ? null : pageDesire.querySelector(`form`);
 const successPopup = document.querySelector(`.page-success-popup`);
 import ClientsStorage from '../storage/storage.js';
-import {hideElement, onEscKeyDown, phoneSample} from '../formulas';
-
-const clientsStorage = new ClientsStorage();
+import {sendRequest} from '../formulas';
 
 
-if (form) {
-  form.addEventListener(`input`, (evt) => {
-    if (!phoneSample.test(evt.target.value)) {
-      evt.target.setCustomValidity(`Напиши номер правильно`);
 
-    } else {
-      evt.target.setCustomValidity(``);
-    }
-  });
+form.addEventListener(`submit`, (evt) => {
+  evt.preventDefault();
+  const requestURL = evt.target.querySelector(`#desire-phone`).value
 
-  form.addEventListener(`submit`, (evt) => {
-    evt.preventDefault();
-
-    clientsStorage.putClient({
-      'Full name': Date.now().toString(),
-      'Phone number': form.querySelector(`input[name="phone"]`).value.toString(),
-    });
-
-    hideElement();
-    form.reset();
-
-    successPopup.classList.toggle(`visually-hidden`, false);
-    document.addEventListener(`keydown`, onEscKeyDown);
-    body.style.overflow = `hidden`;
-  });
-}
+  sendRequest('GET', requestURL)
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+});
 
 
