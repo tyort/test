@@ -13,6 +13,13 @@
   overflow: auto;
 }
 
+.photo-container .button-wide{
+  position: fixed;
+  top: 15px;
+  right: 35px;
+  width: 150px;
+}
+
 .photo-gallery {
   width: 100%;
   display: flex;

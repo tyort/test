@@ -18,6 +18,23 @@ pageLink.querySelector(`form`).addEventListener(`submit`, (evt) => {
     .catch(err => console.log(err))
 });
 
+const turnOnListener = () => {
+  const photoGalleryInner = photoGallery.querySelector(`.photo-gallery__inner`);
+  const photolist = [...photoGalleryInner.children];
+
+  photolist.forEach((photo) => {
+    photo.addEventListener(`click`, () => {
+      let photoContainer = createElement(createPhotoContainer(photo.outerHTML)).firstChild;
+      renderComponent(body, photoContainer, `afterBegin`);
+
+      photoContainer = document.querySelector(`.photo-container`)
+      photoContainer.querySelector(`img`).style.width = `${photo.dataset.width}px`;
+      photoContainer.querySelector(`img`).style.height = `${photo.dataset.height}px`;
+      photoContainer.addEventListener(`click`, onPhotoClick)
+    })
+  })
+}
+
 const createPhotos = (photos) => {
   return photos
     .map((item) => {
@@ -33,21 +50,13 @@ const createPhotos = (photos) => {
     .join(``);
 };
 
-const turnOnListener = () => {
-  const photoGalleryInner = photoGallery.querySelector(`.photo-gallery__inner`);
-  const photolist = [...photoGalleryInner.children];
-
-  photolist.forEach((photo) => {
-    photo.addEventListener(`click`, () => {
-      renderComponent(body, createElement(photo.outerHTML), `afterBegin`);
-      body.firstChild.classList.add(`photo-container`);
-      const photoContainer = document.querySelector(`.photo-container`)
-      photoContainer.querySelector(`img`).style.width = `${photo.dataset.width}px`;
-      photoContainer.querySelector(`img`).style.height = `${photo.dataset.height}px`;
-
-      photoContainer.addEventListener(`click`, onPhotoClick)
-    })
-  })
+const createPhotoContainer = (photo) => {
+  return (
+    `<div class="photo-container">
+      ${photo}
+      <button class="button-wide">Удалить фото</button>
+    </div>`
+  )
 }
 
 const onPhotoClick = () => {
