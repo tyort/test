@@ -36,31 +36,25 @@ const createPhotos = (photos) => {
 const turnOnListener = () => {
   const sdasd = photoGallery.querySelector(`.photo-gallery__inner`);
   const photolist = [...sdasd.children];
-  photolist.forEach((photo, index) => {
+
+  photolist.forEach((photo) => {
     photo.addEventListener(`click`, () => {
+      renderComponent(body, createElement(photo.outerHTML), `afterBegin`);
+      body.firstChild.classList.add(`photo-container`);
+      const photoContainer = document.querySelector(`.photo-container`)
+      photoContainer.querySelector(`img`).style.width = `${photo.dataset.width}px`;
+      photoContainer.querySelector(`img`).style.height = `${photo.dataset.height}px`;
 
-      photolist.forEach((item, count) => {
-        if (index !== count) {
-          item.classList.toggle(`big-size`, false);
-          item.style.width = `auto`;
-          item.style.height = `150px`;
-          item.style.position = `static`;
-        }
-      })
-
-      photo.classList.toggle(`big-size`);
-
-      if (photo.classList.contains(`big-size`)) {
-        photo.style.width = `${photo.dataset.width}px`;
-        photo.style.height = `${photo.dataset.height}px`;
-        photo.style.position = `fixed`;
-      } else {
-        photo.style.width = `auto`;
-        photo.style.height = `150px`;
-        photo.style.position = `static`;
-      }
+      photoContainer.addEventListener(`click`, onPhotoClick)
     })
   })
+}
+
+
+const onPhotoClick = () => {
+  const photoContainer = document.querySelector(`.photo-container`);
+  photoContainer.removeEventListener(`click`, onPhotoClick);
+  photoContainer.remove();
 }
 
 
