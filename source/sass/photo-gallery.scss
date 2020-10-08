@@ -21,7 +21,6 @@
   max-width: 500px;
   height: 150px;
   object-fit: cover;
-  width: auto;
 
   @media (max-width: 400px) {
     width: 100%;
@@ -45,4 +44,5 @@
   top: 0;
   left: 0;
   box-shadow: none;
+  object-fit: contain;
 }
