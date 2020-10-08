@@ -20,6 +20,8 @@
   border-radius: 10px;
   max-width: 500px;
   height: 150px;
+  object-fit: cover;
+  width: auto;
 
   @media (max-width: 400px) {
     width: 100%;
@@ -31,4 +33,16 @@
     border: 1px solid rgba(62, 54, 107, 0.329);
     box-shadow: 3px 3px 15px rgba(178, 142, 212, 0.87);
   }
+}
+
+.photo-gallery__inner img.big-size {
+  z-index: 19;
+  filter: none;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0;
+  border: none;
+  top: 0;
+  left: 0;
+  box-shadow: none;
 }

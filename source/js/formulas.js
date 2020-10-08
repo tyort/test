@@ -13,7 +13,6 @@ export const renderComponent = (container, element, place) => {
 
 export const createElement = (template) => {
   const newElement = document.createElement(`div`);
-  newElement.classList.add(`photo-gallery__inner`);
   newElement.innerHTML = template;
   return newElement;
 };
