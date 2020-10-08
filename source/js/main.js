@@ -30,19 +30,20 @@ const turnOnListener = () => {
       photoContainer = document.querySelector(`.photo-container`)
       photoContainer.querySelector(`img`).style.width = `${photo.dataset.width}px`;
       photoContainer.querySelector(`img`).style.height = `${photo.dataset.height}px`;
-      photoContainer.addEventListener(`click`, onPhotoClick)
+      photoContainer.addEventListener(`click`, (evt) => onPhotoClick(evt))
     })
   })
 }
 
 const createPhotos = (photos) => {
   return photos
-    .map((item) => {
+    .map((item, index) => {
       return (
         `<img 
           src="${item.url}"
           data-width="${item.width}"
           data-height="${item.height}"
+          data-count="${index}"
           alt=""
         >`
       );
@@ -59,8 +60,16 @@ const createPhotoContainer = (photo) => {
   )
 }
 
-const onPhotoClick = () => {
+const onPhotoClick = (evt) => {
   const photoContainer = document.querySelector(`.photo-container`);
+
+  if (evt.target.className === `button-wide`) {
+    const count = evt.target.parentElement.querySelector(`img`).dataset.count;
+    const allPhotos = [...document.querySelector(`.photo-gallery__inner`).children];
+    const unwantedPhoto = allPhotos.find((photo) => photo.dataset.count === count);
+    unwantedPhoto.remove();
+  }
+
   photoContainer.removeEventListener(`click`, onPhotoClick);
   photoContainer.remove();
 }
