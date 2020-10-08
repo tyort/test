@@ -13,8 +13,18 @@
   overflow: auto;
 }
 
+.photo-gallery {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 15px;
+}
+
 .photo-gallery__inner {
   // border: $bred;
+  max-width: 860px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;

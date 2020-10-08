@@ -1,12 +1,12 @@
 const body = document.querySelector(`body`);
-const pageDesire = document.querySelector(`.page-desire`);
-const photoGallery = document.querySelector(`.photo-gallery`)
-const form = pageDesire.querySelector(`form`);
+const pageLink = document.querySelector(`.page-link`);
+const photoGallery = document.querySelector(`.photo-gallery`);
+
 import {sendRequest, renderComponent, createElement} from './formulas';
 
-form.addEventListener(`submit`, (evt) => {
+pageLink.querySelector(`form`).addEventListener(`submit`, (evt) => {
   evt.preventDefault();
-  const requestURL = evt.target.querySelector(`#desire-phone`).value
+  const requestURL = evt.target.querySelector(`#link-phone`).value
 
   sendRequest('GET', `https://don16obqbay2c.cloudfront.net/frontend-test-task/gallery-images.json`)
     .then(data => {
@@ -34,8 +34,8 @@ const createPhotos = (photos) => {
 };
 
 const turnOnListener = () => {
-  const sdasd = photoGallery.querySelector(`.photo-gallery__inner`);
-  const photolist = [...sdasd.children];
+  const photoGalleryInner = photoGallery.querySelector(`.photo-gallery__inner`);
+  const photolist = [...photoGalleryInner.children];
 
   photolist.forEach((photo) => {
     photo.addEventListener(`click`, () => {
@@ -49,7 +49,6 @@ const turnOnListener = () => {
     })
   })
 }
-
 
 const onPhotoClick = () => {
   const photoContainer = document.querySelector(`.photo-container`);

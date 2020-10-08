@@ -19,11 +19,12 @@ html {
 
 body {
   // border: $bred;
+  min-height: 100vh;
   color: #484848;
   font-family: "FiraSans", "Arial", sans-serif;
   font-style: normal;
-  background: #FFFFFF;
   overflow-x: hidden;
+  background: linear-gradient(150deg, transparent, transparent 20%, #f5a9a9, #b5aef0 80%);
 }
 
 .input-container {
@@ -40,7 +41,6 @@ body {
   border-radius: 80px;
   padding: 0 40px;
   font-family: inherit;
-  text-transform: uppercase;
   font-size: 17px;
   line-height: 70%;
   font-weight: 500;
@@ -103,6 +103,7 @@ h1 {
   color: #1FC0FC;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  margin-bottom: 15px;
 
   @media (max-width: 767px) {
     font-size: 32px;
@@ -110,5 +111,47 @@ h1 {
   }
 }
 
-@import "desire.scss";
+.page-link {
+  // border: $bred;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 15px;
+}
+
+.page-link__inner {
+  // border: $bred;
+  max-width: 860px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.page-link__inner form {
+  position: relative;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.page-link__inner .button-wide--recall {
+  position: absolute;
+  width: 216px;
+  height: 59px;
+  right: 0;
+  top: 0;
+
+  @media (max-width: 767px) {
+    position: static;
+    margin-top: 15px;
+  }
+}
+
 @import "photo-gallery.scss";
