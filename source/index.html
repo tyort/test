@@ -19,10 +19,27 @@
     <link rel="stylesheet" href="css/style.min.css" />
   </head>
   <body>
-    <include src="source/html/desire.html"></include>
+    <div class="page-desire">
+      <div class="page-desire__inner">
+        <h2>Хочу поехать!</h2>
+        <form>
+          <div class="input-container">
+            <input
+              id="desire-phone"
+              type="tel"
+              name="phone"
+              value=""
+              placeholder="Телефон"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <button class="button-wide button-wide--recall" type="submit">Перезвоните мне</button>
+        </form>
+      </div>
+    </div>
     <div class="photo-gallery">
     </div>
-    <script src="js/vendor.min.js"></script>
     <script src="js/main.min.js"></script>
   </body>
 </html>

@@ -1,5 +1,4 @@
 @import "fonts.scss";
-@import "../../node_modules/slick-carousel/slick/slick.scss";
 
 $bred: 0.5px solid red;
 $dual-border: 4px;
@@ -175,16 +174,5 @@ body .visually-hidden {
   }
 }
 
-@import "cross.scss";
-@import "header.scss";
-@import "about.scss";
-@import "programs.scss";
 @import "desire.scss";
 @import "photo-gallery.scss";
-@import "photo-diary.scss";
-@import "questions.scss";
-@import "reviews.scss";
-@import "details.scss";
-@import "footer.scss";
-@import "call-request.scss";
-@import "success-popup.scss";
