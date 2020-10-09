@@ -19,6 +19,14 @@ pageLink.querySelector(`form`).addEventListener(`submit`, (evt) => {
     .catch(err => console.log(err))
 });
 
+body.addEventListener(`drop`, (evt) => {
+  if (document.querySelector(`.photo-gallery__inner`)) {
+    const storage = evt.dataTransfer; // Объект DataTransfer используется для хранения данных, перетаскиваемых мышью во время операции drag and drop
+    const files = [...storage.files]; // список файлов с характеристиками
+    files.forEach((file) => previewFile(file));
+  }
+})
+
 const turnOnListener = () => {
   const photoGalleryInner = photoGallery.querySelector(`.photo-gallery__inner`);
   const photolist = [...photoGalleryInner.children];
@@ -81,14 +89,6 @@ movingEvents.forEach((eventName) => {
     evt.preventDefault()
     evt.stopPropagation()
   })
-})
-
-body.addEventListener(`drop`, (evt) => {
-  if (document.querySelector(`.photo-gallery__inner`)) {
-    const storage = evt.dataTransfer; // Объект DataTransfer используется для хранения данных, перетаскиваемых мышью во время операции drag and drop
-    const files = [...storage.files]; // список файлов с характеристиками
-    files.forEach((file) => previewFile(file));
-  }
 })
 
 const previewFile = (file) => {
