@@ -29,11 +29,8 @@
     </div>
     <div class="photo-gallery"></div>
     <div id="drop-area">
-      <form class="my-form">
-        <p>Загрузите изображения с помощью диалога выбора файлов или перетащив нужные изображения в выделенную область</p>
-        <input type="file" id="fileElem" multiple="" accept="image/*" onchange="handleFiles(this.files)">
-        <label class="button" for="fileElem">Выбрать изображения</label>
-      </form>
+      <input type="file" id="fileElem" multiple="" accept="image/*" onchange="handleFiles(this.files)">
+      <div id="gallery"></div>
     </div>
     <script src="js/main.min.js"></script>
   </body>
