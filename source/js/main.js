@@ -115,7 +115,7 @@ function handleFiles(files) {
 }
 
 function uploadFile(file, i) { // <- Добавили параметр `i`
-  var url = 'ВАШ URL ДЛЯ ЗАГРУЗКИ ФАЙЛОВ'
+  var url = 'http://192.168.43.222:8080'
   var xhr = new XMLHttpRequest()
   var formData = new FormData()
   xhr.open('POST', url, true)
