@@ -86,18 +86,46 @@ movingEvents.forEach((eventName) => {
 body.addEventListener(`drop`, (evt) => {
   const storage = evt.dataTransfer; // Объект DataTransfer используется для хранения данных, перетаскиваемых мышью во время операции drag and drop
   const files = [...storage.files]; // список файлов с характеристиками
-  files.forEach(previewFile)
+  files.forEach((file) => previewFile(file));
 })
 
 const previewFile = (file) => {
   const reader = new FileReader();
   reader.readAsDataURL(file);
+
   reader.onloadend = function() {
+    const image = new Image();
+    image.src = reader.result;
+
+    image.onload = function() {
+      return [this.width, this.height];
+    };
+
+    console.log(image.onload());
+
     const img = document.createElement(`img`);
     img.src = reader.result;
-    document.getElementById(`gallery`).appendChild(img);
+
+    if (document.querySelector(`.photo-gallery__inner`)) {
+      document.querySelector(`.photo-gallery__inner`).appendChild(img);
+    } else {
+      document.querySelector(`#gallery`).appendChild(img);
+    }
   }
 }
+
+
+const createPhotossdfsdf = (photo) => {
+  return (
+    `<img 
+      src="${item.url}"
+      data-width="${item.width}"
+      data-height="${item.height}"
+      data-count="${index}"
+      alt=""
+    >`
+  );
+};
 
 
 
