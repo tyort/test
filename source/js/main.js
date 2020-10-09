@@ -9,7 +9,7 @@ pageLink.querySelector(`form`).addEventListener(`submit`, (evt) => {
   evt.preventDefault();
   const requestURL = evt.target.querySelector(`#link-phone`).value
 
-  sendRequest('GET', `https://don16obqbay2c.cloudfront.net/frontend-test-task/gallery-images.json`)
+  sendRequest('GET', requestURL)
     .then(data => {
       const stringOfPhotos = createPhotos(data.galleryImages);
       renderComponent(photoGallery, createElement(stringOfPhotos), `afterBegin`);
@@ -84,9 +84,11 @@ movingEvents.forEach((eventName) => {
 })
 
 body.addEventListener(`drop`, (evt) => {
-  const storage = evt.dataTransfer; // Объект DataTransfer используется для хранения данных, перетаскиваемых мышью во время операции drag and drop
-  const files = [...storage.files]; // список файлов с характеристиками
-  files.forEach((file) => previewFile(file));
+  if (document.querySelector(`.photo-gallery__inner`)) {
+    const storage = evt.dataTransfer; // Объект DataTransfer используется для хранения данных, перетаскиваемых мышью во время операции drag and drop
+    const files = [...storage.files]; // список файлов с характеристиками
+    files.forEach((file) => previewFile(file));
+  }
 })
 
 const previewFile = (file) => {
@@ -98,30 +100,31 @@ const previewFile = (file) => {
     image.src = reader.result;
 
     image.onload = function() {
-      return [this.width, this.height];
+      const count = [...document.querySelector(`.photo-gallery__inner`).children].length;
+      let droppedPhoto = createPhotoByDrop(this.width, this.height, image.src, count);
+      renderComponent(document.querySelector(`.photo-gallery__inner`), createElement(droppedPhoto).firstChild);
+
+      droppedPhoto = document.querySelector(`.photo-gallery__inner`).lastChild;
+      droppedPhoto.addEventListener(`click`, () => {
+        let photoContainer = createElement(createPhotoContainer(droppedPhoto.outerHTML)).firstChild;
+        renderComponent(body, photoContainer, `afterBegin`);
+  
+        photoContainer = document.querySelector(`.photo-container`)
+        photoContainer.querySelector(`img`).style.width = `${droppedPhoto.dataset.width}px`;
+        photoContainer.querySelector(`img`).style.height = `${droppedPhoto.dataset.height}px`;
+        photoContainer.addEventListener(`click`, (evt) => onPhotoClick(evt))
+      })
     };
-
-    console.log(image.onload());
-
-    const img = document.createElement(`img`);
-    img.src = reader.result;
-
-    if (document.querySelector(`.photo-gallery__inner`)) {
-      document.querySelector(`.photo-gallery__inner`).appendChild(img);
-    } else {
-      document.querySelector(`#gallery`).appendChild(img);
-    }
   }
 }
 
-
-const createPhotossdfsdf = (photo) => {
+const createPhotoByDrop = (width, height, src, count) => {
   return (
     `<img 
-      src="${item.url}"
-      data-width="${item.width}"
-      data-height="${item.height}"
-      data-count="${index}"
+      src="${src}"
+      data-width="${width}"
+      data-height="${height}"
+      data-count="${count}"
       alt=""
     >`
   );
