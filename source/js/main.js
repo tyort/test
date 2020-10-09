@@ -1,9 +1,9 @@
 const body = document.querySelector(`body`);
 const pageLink = document.querySelector(`.page-link`);
 const photoGallery = document.querySelector(`.photo-gallery`);
+const movingEvents = [`dragenter`, `dragover`, `dragleave`, `drop`];
 
 import {sendRequest, renderComponent, createElement} from './formulas';
-import './drag-n-drop';
 
 pageLink.querySelector(`form`).addEventListener(`submit`, (evt) => {
   evt.preventDefault();
@@ -75,6 +75,29 @@ const onPhotoClick = (evt) => {
   photoContainer.remove();
 }
 
+
+movingEvents.forEach((eventName) => {
+  body.addEventListener(eventName, (evt) => {
+    evt.preventDefault()
+    evt.stopPropagation()
+  })
+})
+
+body.addEventListener(`drop`, (evt) => {
+  const storage = evt.dataTransfer; // Объект DataTransfer используется для хранения данных, перетаскиваемых мышью во время операции drag and drop
+  const files = [...storage.files]; // список файлов с характеристиками
+  files.forEach(previewFile)
+})
+
+const previewFile = (file) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onloadend = function() {
+    const img = document.createElement(`img`);
+    img.src = reader.result;
+    document.getElementById(`gallery`).appendChild(img);
+  }
+}
 
 
 

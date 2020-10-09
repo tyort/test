@@ -23,19 +23,6 @@ export const onEscKeyDown = (evt) => {
   }
 };
 
-export const hideElement = () => {
-  const requestPopup = document.querySelector(`.page-request-popup`);
-  const successPopup = document.querySelector(`.page-success-popup`);
-
-  successPopup.classList.toggle(`visually-hidden`, true);
-  requestPopup.classList.toggle(`visually-hidden`, true);
-  document.removeEventListener(`keydown`, onEscKeyDown);
-  document.querySelector(`body`).style.overflow = `visible`;
-};
-
-export const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-export const nameSample = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
-
 export function sendRequest(method, url, itemData = null) {
   const headers = {
     'Content-Type': 'application/json'
