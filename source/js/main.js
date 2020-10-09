@@ -100,7 +100,7 @@ const previewFile = (file) => {
     image.src = reader.result;
 
     image.onload = function() {
-      const count = [...document.querySelector(`.photo-gallery__inner`).children].length;
+      const count = Number(document.querySelector(`.photo-gallery__inner`).lastChild.dataset.count) + 1;
       let droppedPhoto = createPhotoByDrop(this.width, this.height, image.src, count);
       renderComponent(document.querySelector(`.photo-gallery__inner`), createElement(droppedPhoto).firstChild);
 
