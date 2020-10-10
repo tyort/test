@@ -25,7 +25,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 15px;
 }
 
 .photo-gallery__inner {
@@ -36,28 +35,27 @@
   flex-wrap: wrap;
   align-content: flex-start;
   padding: 5px;
-
-  @media (max-width: 400px) {
-    padding: 5px 10px;
-  }
 }
 
 .photo-gallery__inner .placeholder {
   // border: $bred;
-  flex: 1 1 200px;
+  flex: 1 1 auto;
   margin: 5px;
-  max-width: 500px;
   display: flex;
   border-radius: 10px;
   background: rgba(179, 200, 214, 0.534) url(../img/batman.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 50% 50%;
+
+  @media (min-width: 700px) {
+    max-width: 500px;
+  }
 }
 
 .photo-gallery__inner img {
   cursor: pointer;
-  filter: sepia(100%);
+  filter: grayscale(1) brightness(0.6);
   border-radius: 10px;
   height: 150px;
   object-fit: cover;
@@ -65,11 +63,10 @@
 
   @media (max-width: 400px) {
     width: 100%;
-    margin: 5px 0;
   }
-  
+
   &:hover {
-    filter: sepia(0%);
+    filter: none;
     box-shadow: 3px 3px 15px rgba(178, 142, 212, 0.87);
   }
 }
