@@ -44,17 +44,20 @@
 
 .photo-gallery__inner .placeholder {
   // border: $bred;
-  flex: 1 1 auto;
+  flex: 1 1 200px;
   margin: 5px;
   max-width: 500px;
   display: flex;
   border-radius: 10px;
+  background: rgba(179, 200, 214, 0.534) url(../img/batman.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50% 50%;
 }
 
 .photo-gallery__inner img {
   cursor: pointer;
-  filter: sepia(100%) opacity(70%);
-  border: 1px solid transparent;
+  filter: sepia(100%);
   border-radius: 10px;
   height: 150px;
   object-fit: cover;
@@ -67,7 +70,6 @@
   
   &:hover {
     filter: sepia(0%);
-    border: 1px solid rgba(62, 54, 107, 0.329);
     box-shadow: 3px 3px 15px rgba(178, 142, 212, 0.87);
   }
 }
