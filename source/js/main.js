@@ -7,7 +7,7 @@ import {sendRequest, renderComponent, createElement} from './formulas';
 
 pageLink.querySelector(`form`).addEventListener(`submit`, (evt) => {
   evt.preventDefault();
-  const requestURL = evt.target.querySelector(`#link-phone`).value
+  const requestURL = evt.target.querySelector(`#link-address`).value
 
   sendRequest('GET', requestURL)
     .then(data => {
@@ -31,7 +31,9 @@ const turnOnListener = () => {
   const photoGalleryInner = photoGallery.querySelector(`.photo-gallery__inner`);
   const photolist = [...photoGalleryInner.children];
 
-  photolist.forEach((photo) => {
+  photolist.forEach((item) => {
+    const photo = item.querySelector(`img`);
+
     photo.addEventListener(`click`, () => {
       let photoContainer = createElement(createPhotoContainer(photo.outerHTML)).firstChild;
       renderComponent(body, photoContainer, `afterBegin`);
@@ -48,13 +50,14 @@ const createPhotos = (photos) => {
   return photos
     .map((item, index) => {
       return (
-        `<img 
-          src="${item.url}"
-          data-width="${item.width}"
-          data-height="${item.height}"
-          data-count="${index}"
-          alt=""
-        >`
+        `<div class="placeholder">
+          <img 
+            src="${item.url}"
+            data-width="${item.width}"
+            data-height="${item.height}"
+            data-count="${index}"
+            alt="">
+        </div>`
       );
     })
     .join(``);
@@ -75,7 +78,12 @@ const onPhotoClick = (evt) => {
   if (evt.target.className === `button-wide`) {
     const count = evt.target.parentElement.querySelector(`img`).dataset.count;
     const allPhotos = [...document.querySelector(`.photo-gallery__inner`).children];
-    const unwantedPhoto = allPhotos.find((photo) => photo.dataset.count === count);
+
+    const unwantedPhoto = allPhotos.find((item) => {
+      const photo = item.querySelector(`img`);
+      return photo.dataset.count === count;
+    });
+
     unwantedPhoto.remove();
   }
 

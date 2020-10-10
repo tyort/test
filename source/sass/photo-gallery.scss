@@ -42,16 +42,23 @@
   }
 }
 
-.photo-gallery__inner img {
+.photo-gallery__inner .placeholder {
+  // border: $bred;
   flex: 1 1 auto;
   margin: 5px;
+  max-width: 500px;
+  display: flex;
+  border-radius: 10px;
+}
+
+.photo-gallery__inner img {
   cursor: pointer;
   filter: sepia(100%) opacity(70%);
   border: 1px solid transparent;
   border-radius: 10px;
-  max-width: 500px;
   height: 150px;
   object-fit: cover;
+  flex-grow: 1;
 
   @media (max-width: 400px) {
     width: 100%;
