@@ -108,11 +108,12 @@ const previewFile = (file) => {
     image.src = reader.result;
 
     image.onload = function() {
-      const count = Number(document.querySelector(`.photo-gallery__inner`).lastChild.dataset.count) + 1;
+      const lastPhoto = document.querySelector(`.photo-gallery__inner`).lastChild.querySelector(`img`);
+      const count = Number(lastPhoto.dataset.count) + 1;
       let droppedPhoto = createPhotoByDrop(this.width, this.height, image.src, count);
       renderComponent(document.querySelector(`.photo-gallery__inner`), createElement(droppedPhoto).firstChild);
 
-      droppedPhoto = document.querySelector(`.photo-gallery__inner`).lastChild;
+      droppedPhoto = document.querySelector(`.photo-gallery__inner`).lastChild.querySelector(`img`);
       droppedPhoto.addEventListener(`click`, () => {
         let photoContainer = createElement(createPhotoContainer(droppedPhoto.outerHTML)).firstChild;
         renderComponent(body, photoContainer, `afterBegin`);
@@ -128,13 +129,14 @@ const previewFile = (file) => {
 
 const createPhotoByDrop = (width, height, src, count) => {
   return (
-    `<img 
-      src="${src}"
-      data-width="${width}"
-      data-height="${height}"
-      data-count="${count}"
-      alt=""
-    >`
+    `<div class="placeholder">
+      <img 
+        src="${src}"
+        data-width="${width}"
+        data-height="${height}"
+        data-count="${count}"
+        alt="">
+    </div>`
   );
 };
 
