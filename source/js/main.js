@@ -12,9 +12,12 @@ pageLink.querySelector(`form`).addEventListener(`submit`, (evt) => {
   sendRequest('GET', requestURL)
     .then(data => {
       const stringOfPhotos = createPhotos(data.galleryImages);
+
       renderComponent(photoGallery, createElement(stringOfPhotos), `afterBegin`);
       photoGallery.querySelector(`div`).classList.add(`photo-gallery__inner`);
+
       turnOnListener();
+      pageLink.querySelector(`form`).reset();
     })
     .catch(err => console.log(err))
 });
